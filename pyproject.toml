@@ -51,6 +51,7 @@ addopts = [
     "-ra",
     "--strict-markers",
     "--strict-config",
+    "-m", "not slow",  # skip slow e2e tests by default; run with -m slow
     "--cov=pos",
     "--cov-report=term-missing",
     "--cov-report=html:htmlcov",

@@ -7,7 +7,7 @@ sequencia methods live here. All GA-operation methods come from the mixins.
 
 from __future__ import annotations
 
-from deap import algorithms, base, creator, tools
+from deap import base, creator, tools
 
 from pos.pool.bag_generator import generate_bags as _generate_bags, build_bags as _build_bags
 from pos.pool.data_splitter import split_data as _split_data
@@ -16,6 +16,7 @@ from pos.pool.genetic_operators import GeneticOperatorsMixin
 from pos.pool.fitness_evaluator import FitnessEvaluatorMixin
 from pos.pool.stop_criteria import StopCriteriaMixin
 from pos.pool.pool_builder import PoolBuilderMixin
+from pos.pool.ea_loop import ea_mu_plus_lambda_with_callback
 
 
 class poolGeneration(
@@ -65,6 +66,12 @@ class poolGeneration(
         self.base_name = "Base1"
         self.tem2 = []
         self.acc_temp = 0
+        # Stop-criteria state (must be initialized here so save_bags() does
+        # not crash when no generation improves over the initial 0 — a
+        # pre-existing latent bug exposed once the DEAP loop actually runs).
+        self.pop_temp: list = []
+        self.bags_temp: dict = {}
+        self.gen_temp: int = 0
         self.tam_bags = tam_bags
         self.nr_bags = nr_bags
         self.file_out = "isto_e_um_teste"
@@ -125,7 +132,7 @@ class poolGeneration(
             toolbox.register("mate", self.crossover)
             toolbox.register("mutate", self.mutation)
             toolbox.register("select", tools.selNSGA2)
-            self.pop = algorithms.eaMuPlusLambda(
+            self.pop = ea_mu_plus_lambda_with_callback(
                 self.pop, toolbox, self.nr_child, self.nr_individual,
                 self.proba_crossover, self.proba_mutation,
                 self.nr_generation, generation_function=self.the_function,

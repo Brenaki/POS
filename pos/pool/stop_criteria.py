@@ -85,9 +85,13 @@ class StopCriteriaMixin:
             self.max_acc(self.dist["score_g"], generation=self.generation,
                          population=self.off, bags=bags)
         if generation == self.nr_generation:
-            if self.stop_criteria in ("maxdistance", "maxacc"):
+            if self.stop_criteria in ("maxdistance", "maxacc") and len(self.pop_temp) > 0:
                 self.save_bags(self.pop_temp, self.bags_temp, self.gen_temp, self.base_name)
             else:
+                # Fallback: if stop_criteria never improved (e.g. dispersion
+                # of a single fitness row is always 0 — a pre-existing
+                # conceptual bug in max_distance), save the final population
+                # so get_bags()/get_pool() return non-empty results.
                 self.save_bags(self.off, bags, base_name=self.base_name)
         if self.method_disperse == True and generation != self.nr_generation:
             self.get_complexity(population=population)

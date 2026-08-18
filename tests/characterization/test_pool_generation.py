@@ -21,37 +21,28 @@ def _import_pool_generation():
 
 class TestPoolGenerationEndToEnd:
     @pytest.mark.slow
-    @pytest.mark.xfail(
-        reason="DEAP 1.3.3 eaMuPlusLambda does not accept generation_function "
-               "parameter (pre-existing POS bug, see ADR 0007). The GA runs "
-               "but the call signature mismatches.",
-        strict=True,
-    )
     def test_generate_get_bags_get_pool_wine(self, wine_split):
         """End-to-end: poolGeneration.generate → get_bags → get_pool on wine.
 
-        Now uses pyhard backend (Fase 3) — no R required. Marked slow because
-        generate() runs the GA which calls complexity_data3 many times.
+        Uses DEFAULT pool sizes (nr_bags=nr_individual=nr_pop=nr_child=100)
+        because the legacy fitness_evaluator.get_complexity() has a hardcoded
+        `range(100, nr_individual+100)` that only works with 100 — a known
+        legacy bug to be fixed in a future ADR.
 
-        We pass `types` explicitly to skip get_best_types, which alone would
-        call complexity_data3 1100 times (vote_complexity does 100 samples ×
-        11 iterations) — too slow for a test with the pyhard backend.
+        DEAP generation_function bug (ADR 0007) was fixed in ADR 0008.
+        ~270s with pyhard backend, nr_generation=1, iteration=1.
         """
         pg_mod = _import_pool_generation()
         pool_gen = pg_mod.poolGeneration(
-            nr_generation=2,
-            nr_individual=10,
-            nr_pop=10,
-            nr_child=10,
-            nr_bags=10,
-            iteration=2,
+            nr_generation=1,
+            iteration=1,
             classifier="tree",
             types=["F1", "T1"],  # skip get_best_types
         )
         pool_gen.generate(
             wine_split["X_train"], wine_split["y_train"],
             wine_split["X_test"], wine_split["y_test"],
-            iteration=2,
+            iteration=1,
         )
         bags = pool_gen.get_bags()
         pool = pool_gen.get_pool()
@@ -72,17 +63,12 @@ class TestPoolGenerationEndToEnd:
             assert hasattr(clf, "classes_")
 
     @pytest.mark.slow
-    @pytest.mark.xfail(
-        reason="DEAP 1.3.3 eaMuPlusLambda does not accept generation_function "
-               "parameter (pre-existing POS bug, see ADR 0007).",
-        strict=True,
-    )
     def test_get_pool_returns_decision_trees_when_classifier_tree(self, wine_split):
+        """Same as above but checks classifier type. Uses defaults (100)."""
         pg_mod = _import_pool_generation()
         pool_gen = pg_mod.poolGeneration(
-            nr_generation=1, nr_individual=5, nr_pop=5, nr_child=5,
-            nr_bags=5, iteration=1, classifier="tree",
-            types=["F1", "T1"],  # skip get_best_types
+            nr_generation=1, iteration=1, classifier="tree",
+            types=["F1", "T1"],
         )
         pool_gen.generate(
             wine_split["X_train"], wine_split["y_train"],

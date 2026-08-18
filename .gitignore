@@ -1,5 +1,12 @@
 __pycache__/
+*.pyc
 Base1isto_e_um_teste.csv
-__pycache__/Cpx.cpython-310.pyc
-__pycache__/pool_generation.cpython-310.pyc
 vscode/
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
