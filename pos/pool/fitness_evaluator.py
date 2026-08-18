@@ -1,0 +1,84 @@
+"""Fitness evaluation mixin: complexity, diversity, dispersion for GA.
+
+Extracted from pool_generation.py during Fase 2.
+"""
+
+from __future__ import annotations
+
+import numpy as np
+
+from pos.complexity import complexity_data3
+from pos.dispersion import dispersion_linear
+from pos.diversity import diversitys
+from pos.normalization import min_max_norm
+from pos.voting import voting_classifier
+from pos.classifiers import biuld_classifier, biuld_classifier_tree
+from pos.pool.bag_generator import build_bags
+
+
+class FitnessEvaluatorMixin:
+    """Evaluate GA individuals on complexity/dispersion/diversity/accuracy."""
+
+    def diversity_ga(self, pred, y):
+        pred = np.array(pred)
+        d = diversitys(y, pred)
+        return d
+
+    def parallel_distance2(self, i, bags, group, types):
+        indx_bag1 = bags["inst"][i]
+        X_bag, y_bag = build_bags(indx_bag1, self.X_train, self.y_train)
+        cpx = complexity_data3(X_bag, y_bag, group, types)
+        if self.classifier == "perc":
+            estimator, score, pred = biuld_classifier(
+                X_bag, y_bag, X_bag, y_bag, self.X_val, self.y_val
+            )
+        elif self.classifier == "tree":
+            estimator, score, pred = biuld_classifier_tree(
+                X_bag, y_bag, X_bag, y_bag, self.X_val, self.y_val
+            )
+        return cpx, score, pred, estimator
+
+    def get_complexity(self, first_evaluate=False, population=None):
+        dist = {"name": list(), "dist": list(), "diver": list(),
+                "score": list(), "score_g": list()}
+
+        if first_evaluate and self.generation == 0:
+            dist["name"] = self.pop
+            r = [self.parallel_distance2(i, self.bags, self.group, self.types)
+                 for i in range(len(dist["name"]))]
+            c, score, pred, pool = zip(*r)
+            self.c = c
+        elif first_evaluate == False and population is None:
+            begin = self.name_individual - self.nr_individual
+            for i in range(begin, self.name_individual):
+                dist["name"].append([i])
+            r = [self.parallel_distance2(j, self.bags, self.group, self.types)
+                 for j in range(100, self.nr_individual + 100)]
+            c, score, pred, pool = zip(*r)
+            self.c = c
+        elif population is not None:
+            dist["name"] = population
+            indices = [self.bags["name"].index(i[0]) for i in population]
+            r = [self.parallel_distance2(i, self.bags, self.group, self.types)
+                 for i in indices]
+            c, score, pred, pool = zip(*r)
+            self.c = c
+
+        dist["dist"] = dispersion_linear(c)
+        dist["score"] = score
+        d = self.diversity_ga(pred, self.y_val)
+        dist["diver"] = min_max_norm(d)
+        dist["score_g"] = voting_classifier(pool, self.X_val, self.y_val)
+        self.dist = dist
+        return
+
+    def evaluate_linear_dispersion(self, ind1):
+        dist = self.dist
+        dst1 = dist2 = diver = None
+        for i in range(len(dist["name"])):
+            if dist["name"][i][0] == ind1[0]:
+                dst1 = dist["dist"][i][0]
+                dist2 = dist["dist"][i][1]
+                diver = dist["diver"][i]
+                break
+        return (dst1, dist2, diver)
