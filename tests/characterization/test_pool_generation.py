@@ -20,12 +20,22 @@ def _import_pool_generation():
 
 
 class TestPoolGenerationEndToEnd:
-    @pytest.mark.requires_r
     @pytest.mark.slow
+    @pytest.mark.xfail(
+        reason="DEAP 1.3.3 eaMuPlusLambda does not accept generation_function "
+               "parameter (pre-existing POS bug, see ADR 0007). The GA runs "
+               "but the call signature mismatches.",
+        strict=True,
+    )
     def test_generate_get_bags_get_pool_wine(self, wine_split):
         """End-to-end: poolGeneration.generate → get_bags → get_pool on wine.
 
-        Requires R because generate() calls complexity_data3 (ECoL).
+        Now uses pyhard backend (Fase 3) — no R required. Marked slow because
+        generate() runs the GA which calls complexity_data3 many times.
+
+        We pass `types` explicitly to skip get_best_types, which alone would
+        call complexity_data3 1100 times (vote_complexity does 100 samples ×
+        11 iterations) — too slow for a test with the pyhard backend.
         """
         pg_mod = _import_pool_generation()
         pool_gen = pg_mod.poolGeneration(
@@ -36,6 +46,7 @@ class TestPoolGenerationEndToEnd:
             nr_bags=10,
             iteration=2,
             classifier="tree",
+            types=["F1", "T1"],  # skip get_best_types
         )
         pool_gen.generate(
             wine_split["X_train"], wine_split["y_train"],
@@ -60,13 +71,18 @@ class TestPoolGenerationEndToEnd:
             assert hasattr(clf, "predict")
             assert hasattr(clf, "classes_")
 
-    @pytest.mark.requires_r
     @pytest.mark.slow
+    @pytest.mark.xfail(
+        reason="DEAP 1.3.3 eaMuPlusLambda does not accept generation_function "
+               "parameter (pre-existing POS bug, see ADR 0007).",
+        strict=True,
+    )
     def test_get_pool_returns_decision_trees_when_classifier_tree(self, wine_split):
         pg_mod = _import_pool_generation()
         pool_gen = pg_mod.poolGeneration(
             nr_generation=1, nr_individual=5, nr_pop=5, nr_child=5,
             nr_bags=5, iteration=1, classifier="tree",
+            types=["F1", "T1"],  # skip get_best_types
         )
         pool_gen.generate(
             wine_split["X_train"], wine_split["y_train"],
