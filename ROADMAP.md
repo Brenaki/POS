@@ -18,7 +18,7 @@
 | 1  | Revisão bibliográfica sobre MCS, DCS/DES, diversidade e Oracle         | Set–Nov/2026       | [~]    |
 | 2  | Seleção das bases de dados e definição do protocolo experimental       | Out–Nov/2026       | [ ]    |
 | 3  | Implementação do pool de classificadores e avaliação individual         | Nov/2026–Jan/2027  | [~]    |
-| 4  | Implementação do Oracle tradicional e dos Oracles em diferentes níveis | Dez/2026–Fev/2027  | [ ]    |
+| 4  | Implementação do Oracle tradicional e dos Oracles em diferentes níveis | Dez/2026–Fev/2027  | [x]    |
 | 5  | Relatório Semestral conforme modelo PROPESP (até 15 mar 2027)          | Mar/2027           | [ ]    |
 | 6  | Experimentos comparativos (votação majoritária, combinação de probs, DCS/DES) | Fev–Jun/2027 | [ ]    |
 | 7  | Análise dos resultados, gráficos e recomendações                       | Ago–Nov/2027       | [ ]    |
@@ -65,21 +65,26 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
 - [ ] ADR 0003 atualizado com decisão pyhard final
 
 ### Fase 4 — Oracle_N (TDD, novo)
-- [ ] `pos/oracle/correctness_matrix.py` — matriz de acertos do pool
-- [ ] `pos/oracle/oracle_n.py` — `oracle_n_accuracy(matrix, n)`
-- [ ] `pos/oracle/oracle_curve.py` — curva Oracle_1..M
-- [ ] `pos/oracle/comparison.py` — vs majority/mean/DCS/DES
-- [ ] `tests/unit/oracle/` com casos triviais (N=1, N=M, N intermediário)
-- [ ] ADR 0006
+- [x] `pos/oracle/correctness_matrix.py` — matriz de acertos do pool
+- [x] `pos/oracle/oracle_n.py` — `oracle_n_accuracy(matrix, n)`
+- [x] `pos/oracle/oracle_curve.py` — curva Oracle_1..M
+- [x] `pos/oracle/comparison.py` — vs majority/mean (DCS/DES na Fase 5)
+- [x] `pos/oracle/arff_loader.py` — carrega 31 datasets .arff
+- [x] `pos/oracle/experiment.py` — 10-fold stratified CV, random_state=42
+- [x] `tests/unit/oracle/` com casos triviais (N=1, N=M, N intermediário, monotonicidade)
+- [x] ADR 0006 — arquitetura Oracle_N, protocolo 10-fold, fórmula
+- [x] ADR 0008 — fix DEAP generation_function (pré-requisito Q1=B)
 
 ## Decision log (ADRs)
 
 - `docs/adr/0001-python-version-and-deps.md` — pin Python 3.10, deps de requirements.txt
 - `docs/adr/0002-file-size-cap-150.md` — aperta o cap de 300 → 150 LOC/arquivo
 - `docs/adr/0003-remove-r-via-pyhard.md` — substituir R/ECoL por pyhard
-- `docs/adr/0004-split-cpx.md` — (planejado) quebrar Cpx.py
-- `docs/adr/0005-split-pool-generation.md` — (planejado) quebrar pool_generation.py
-- `docs/adr/0006-oracle-n-implementation.md` — (planejado) Oracle_N
+- `docs/adr/0004-split-cpx.md` — split Cpx.py em pacote pos/
+- `docs/adr/0005-split-pool-generation.md` — split pool_generation.py via mixins
+- `docs/adr/0006-oracle-n-architecture.md` — arquitetura Oracle_N, protocolo 10-fold
+- `docs/adr/0007-deap-generation-function-bug.md` — bug pre-existente DEAP (corrigido por 0008)
+- `docs/adr/0008-fix-deap-generation-function.md` — fix DEAP loop + fallback stop-criteria
 
 ## Notes
 
