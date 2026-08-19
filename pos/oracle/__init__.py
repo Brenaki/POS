@@ -24,6 +24,7 @@ from pos.oracle.oracle_curve import oracle_curve, oracle_curve_array
 from pos.oracle.oracle_n import oracle_n_accuracy, oracle_n_vector
 from pos.oracle.pool_evaluation import evaluate_pool
 from pos.oracle.random_forest_pool import build_rf_pool
+from pos.oracle.run_recorder import record_run
 
 __all__ = [
     "build_correctness_matrix",
@@ -41,4 +42,5 @@ __all__ = [
     "build_catalog",
     "save_catalog",
     "load_catalog",
+    "record_run",
 ]

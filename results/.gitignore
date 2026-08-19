@@ -1,0 +1,16 @@
+# Gitignore para results/ — versionar manifests/summaries, ignorar arrays pesados
+# (recuperáveis via re-execução usando o manifest). ADR 0009.
+
+# Arrays pesados — não versionar
+**/*.npy
+**/*.npz
+
+# htmlcov se cair aqui
+**/htmlcov/
+
+# Permitir manifests e summaries (versionados por padrão, mas explícito):
+!run_manifest.json
+!summary.csv
+!per_dataset_summary.csv
+!**/fold_manifest_*.json
+!datasets/catalog.csv
