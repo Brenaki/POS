@@ -10,3 +10,11 @@ htmlcov/
 *.egg-info/
 build/
 dist/
+
+# Experiment artifacts — arrays pesados ficam locais (recuperáveis via manifest)
+results/**/*.npy
+results/**/*.npz
+results/**/htmlcov/
+
+# Saida temporária do poolGeneration
+saida/
