@@ -110,10 +110,34 @@ Ver ADR 0009 para layout completo. Resumo:
 
 | Profile | Datasets | Folds | `nr_generation` | Modos | Uso |
 |---|---|---|---|---|---|
-| `--smoke` | Wine, Banana, Glass | 3 | 1 | ga + rf | validar fluxo |
+| `--smoke` | Wine, Banana, Vehicle | 3 | 1 | ga + rf | validar fluxo |
 | `--full` | 31 | 10 | 20 | ga + rf | execução científica |
 
 Smoke test **não** valida qualidade científica (pool GA degenerado com
 `nr_generation=1`) — apenas o pipeline de reprodução: manifest, arquivos,
 monotonicidade da curva Oracle, `Oracle_1 ≥ majority_vote`, reprodutibilidade
 com seed.
+
+## 8. Foco científico — Oracle_1..5
+
+O subprojeto investiga **Oracles em diferentes níveis** (Oracle_N onde N = 1..M).
+O foco da análise é **N = 1, 2, 3, 4, 5** — níveis intermediários que revelam a
+transição entre o Oracle tradicional (otimista) e limites mais conservadores.
+
+- `oracle_1` = Oracle tradicional (≥1 classificador correto)
+- `oracle_2` = ≥2 classificadores corretos simultaneamente
+- `oracle_3` = ≥3 classificadores corretos
+- `oracle_4` = ≥4 classificadores corretos
+- `oracle_5` = ≥5 classificadores corretos
+- `oracle_M` = unanimidade (todos M corretos) — registrado para referência
+
+A curva completa (Oracle_1..M) é preservada em `oracle_curve_json` no
+`summary.csv` e em `oracle_curve` no `fold_manifest.json` para auditoria.
+As colunas `oracle_1`..`oracle_5` no `summary.csv` e
+`per_dataset_summary.csv` facilitam a análise comparativa com majority vote,
+mean probs e (futuro) DCS/DES.
+
+**Referência experimental**: a tese base (Monteiro et al., 2022) usou 28
+datasets, 20 replicações, pool=100, 20 gerações do GA, 7 métodos de fusão
+(MVR + 6 DCS/DES). Nosso protocolo usa 31 datasets, 10-fold CV (10 folds),
+pool=100, 20 gerações do GA, 2 modos (ga + rf), focando Oracle_1..5.
