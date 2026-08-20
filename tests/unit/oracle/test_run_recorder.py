@@ -106,3 +106,55 @@ def test_record_run_skip_missing_dataset(tmp_path):
     summary = pd.read_csv(out_dir / "summary.csv")
     assert len(summary) == 0
     assert manifest["n_summary_rows"] == 0
+
+
+def test_record_run_resume_skips_completed_folds(tmp_path):
+    """Resume should skip folds that already have fold_manifest_<mode>.json."""
+    ds_dir = _tiny_dataset(tmp_path)
+    out_dir = tmp_path / "resume_run"
+    config = {
+        "datasets": ["Wine"], "n_folds": 2, "nr_generation": 1,
+        "random_state": 42, "modes": ["rf"], "M": 5,
+        "dataset_dir": str(ds_dir),
+    }
+    # First run — completes 2 folds
+    record_run(config, out_dir)
+    s1 = pd.read_csv(out_dir / "summary.csv")
+    assert len(s1) == 2
+
+    # Second run with resume=True — should skip all 2 folds, produce same summary
+    manifest = record_run(config, out_dir, resume=True)
+    s2 = pd.read_csv(out_dir / "summary.csv")
+    assert len(s2) == 2
+    assert s1["oracle_1"].tolist() == s2["oracle_1"].tolist()
+    assert s1["majority_vote"].tolist() == s2["majority_vote"].tolist()
+
+
+def test_record_run_resume_partial_run(tmp_path):
+    """Resume after a partial run (fold_1 deleted) should re-complete it."""
+    import shutil
+    ds_dir = _tiny_dataset(tmp_path)
+    out_dir = tmp_path / "partial_run"
+    config = {
+        "datasets": ["Wine"], "n_folds": 2, "nr_generation": 1,
+        "random_state": 42, "modes": ["rf"], "M": 5,
+        "dataset_dir": str(ds_dir),
+    }
+    # Full run first
+    record_run(config, out_dir)
+    s_full = pd.read_csv(out_dir / "summary.csv")
+    assert len(s_full) == 2
+    fold1_orig = s_full[s_full["fold"] == 1].iloc[0]["oracle_1"]
+
+    # Simulate interruption: delete fold_1 manifest + artifacts + truncate summary
+    fold1_dir = out_dir / "Wine" / "fold_1"
+    shutil.rmtree(fold1_dir)
+    s_fold0 = s_full[s_full["fold"] == 0]
+    s_fold0.to_csv(out_dir / "summary.csv", index=False)
+
+    # Resume — should re-run fold_1 and produce 2 rows again
+    record_run(config, out_dir, resume=True)
+    s_resumed = pd.read_csv(out_dir / "summary.csv")
+    assert len(s_resumed) == 2
+    fold1_new = s_resumed[s_resumed["fold"] == 1].iloc[0]["oracle_1"]
+    assert fold1_new == fold1_orig  # same result (deterministic)

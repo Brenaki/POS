@@ -20,6 +20,7 @@ from sklearn.model_selection import StratifiedKFold
 
 from pos.oracle.arff_loader import load_arff_dataset
 from pos.oracle.pool_evaluation import evaluate_pool
+from pos.oracle.resume_helpers import completed_folds, load_existing_summary
 from pos.oracle.run_helpers import (
     build_fold_manifest,
     build_pool_ga,
@@ -38,12 +39,9 @@ from pos.oracle.run_helpers import (
 def _build_manifest(config: dict[str, Any], repo_dir: Path) -> dict[str, Any]:
     return {
         "timestamp_iso": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "git_sha": git_sha(repo_dir),
-        "git_branch": git_branch(repo_dir),
-        "python_version": python_version(),
-        "platform": platform_str(),
-        "config": config,
-        "deps_versions": deps_versions(),
+        "git_sha": git_sha(repo_dir), "git_branch": git_branch(repo_dir),
+        "python_version": python_version(), "platform": platform_str(),
+        "config": config, "deps_versions": deps_versions(),
         "protocol_ref": "docs/protocol.md",
         "adr_ref": "docs/adr/0009-experiment-reproducibility.md",
     }
@@ -62,8 +60,13 @@ def _run_fold(X_tr, y_tr, X_val, y_val, X_test, y_test, mode, M, nr_gen, rs, job
     return evaluate_pool(pool, X_test, y_test)
 
 
-def record_run(config: dict[str, Any], output_dir: Path | str) -> dict[str, Any]:
-    """Run experiments per config and persist artifacts. Returns run_manifest."""
+def record_run(config: dict[str, Any], output_dir: Path | str,
+               resume: bool = False) -> dict[str, Any]:
+    """Run experiments per config and persist artifacts. Returns run_manifest.
+
+    If resume=True, skips (dataset, fold, mode) tuples that already have a
+    fold_manifest_<mode>.json, and appends to any existing summary.csv.
+    """
     repo_dir = Path(__file__).resolve().parents[2]
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -78,7 +81,10 @@ def record_run(config: dict[str, Any], output_dir: Path | str) -> dict[str, Any]
     dataset_dir = Path(config.get("dataset_dir", repo_dir / "Dataset"))
 
     manifest = _build_manifest(config, repo_dir)
-    summary_rows: list[dict] = []
+    done = completed_folds(output_dir) if resume else set()
+    summary_rows = load_existing_summary(output_dir) if resume else []
+    if resume and done:
+        print(f"[resume] {len(done)} folds already completed — skipping")
 
     for ds_name in datasets:
         ds_path = dataset_dir / f"{ds_name}.arff"
@@ -100,6 +106,8 @@ def record_run(config: dict[str, Any], output_dir: Path | str) -> dict[str, Any]
             X_tr, y_tr = X_train[mask], y_train[mask]
 
             for mode in modes:
+                if (ds_name, fold_idx, mode) in done:
+                    continue
                 try:
                     metrics = _run_fold(X_tr, y_tr, X_val, y_val, X_test, y_test,
                                         mode, M, nr_generation, random_state, jobs=jobs)
@@ -128,11 +136,10 @@ def record_run(config: dict[str, Any], output_dir: Path | str) -> dict[str, Any]
 
     summary_df = pd.DataFrame(summary_rows)
     if summary_df.empty:
-        # Write empty CSV with header so pd.read_csv doesn't fail with EmptyDataError
         (output_dir / "summary.csv").write_text(
-            "dataset,fold,mode,M,n_test,oracle_1,oracle_M,oracle_curve_json,"
-            "majority_vote,mean_probs,double_fault_mean,mean_individual_acc\n"
-        )
+            "dataset,fold,mode,M,n_test,oracle_1,oracle_2,oracle_3,oracle_4,"
+            "oracle_5,oracle_M,oracle_curve_json,majority_vote,mean_probs,"
+            "double_fault_mean,mean_individual_acc\n")
     else:
         summary_df.to_csv(output_dir / "summary.csv", index=False)
     pd.DataFrame(per_dataset_summary(summary_df)).to_csv(

@@ -6,6 +6,7 @@ Usage:
     python scripts/run_experiment.py --config cfg.json  # custom config
     python scripts/run_experiment.py --smoke --mode rf  # only RF baseline
     python scripts/run_experiment.py --smoke --dry-run  # print manifest, no run
+    python scripts/run_experiment.py --resume <dir>     # resume interrupted run
 
 Output: results/experiments/<ISO_timestamp>_<git_sha_short>/
 """
@@ -63,6 +64,8 @@ def main():
     g.add_argument("--smoke", action="store_true", help="3 datasets, 3 folds, gen=1")
     g.add_argument("--full", action="store_true", help="31 datasets, 10 folds, gen=20")
     g.add_argument("--config", type=str, help="path to JSON config file")
+    g.add_argument("--resume", type=str, metavar="DIR",
+                   help="resume an interrupted run in this output directory")
     p.add_argument("--mode", type=str, default="ga,rf",
                    help="comma-separated modes: ga,rf,both (default: ga,rf)")
     p.add_argument("--M", type=int, default=100, help="pool size for RF mode (default: 100)")
@@ -72,6 +75,21 @@ def main():
                    help="output root (default: results/experiments/)")
     p.add_argument("--dry-run", action="store_true", help="print manifest, do not run")
     args = p.parse_args()
+
+    if args.resume:
+        resume_dir = Path(args.resume)
+        if not resume_dir.exists():
+            raise SystemExit(f"resume dir not found: {resume_dir}")
+        manifest_path = resume_dir / "run_manifest.json"
+        if not manifest_path.exists():
+            raise SystemExit(f"no run_manifest.json in {resume_dir} — not a valid run dir")
+        config = json.loads(manifest_path.read_text())["config"]
+        print(f"[resume] dir: {resume_dir}")
+        print(f"[resume] config: {json.dumps(config)}")
+        manifest = record_run(config, resume_dir, resume=True)
+        print(f"[done] {manifest['n_summary_rows']} rows in summary.csv")
+        print(f"[done] git_sha: {manifest['git_sha']}")
+        return
 
     config = build_config(args)
     output_root = Path(args.output) if args.output else REPO_DIR / "results" / "experiments"
