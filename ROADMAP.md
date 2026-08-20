@@ -16,8 +16,8 @@
 | #  | Atividade                                                              | Meses              | Status |
 |----|------------------------------------------------------------------------|--------------------|--------|
 | 1  | Revisão bibliográfica sobre MCS, DCS/DES, diversidade e Oracle         | Set–Nov/2026       | [~]    |
-| 2  | Seleção das bases de dados e definição do protocolo experimental       | Out–Nov/2026       | [ ]    |
-| 3  | Implementação do pool de classificadores e avaliação individual         | Nov/2026–Jan/2027  | [~]    |
+| 2  | Seleção das bases de dados e definição do protocolo experimental       | Out–Nov/2026       | [x]    |
+| 3  | Implementação do pool de classificadores e avaliação individual         | Nov/2026–Jan/2027  | [x]    |
 | 4  | Implementação do Oracle tradicional e dos Oracles em diferentes níveis | Dez/2026–Fev/2027  | [x]    |
 | 5  | Relatório Semestral conforme modelo PROPESP (até 15 mar 2027)          | Mar/2027           | [ ]    |
 | 6  | Experimentos comparativos (votação majoritária, combinação de probs, DCS/DES) | Fev–Jun/2027 | [ ]    |
@@ -75,6 +75,21 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
 - [x] ADR 0006 — arquitetura Oracle_N, protocolo 10-fold, fórmula
 - [x] ADR 0008 — fix DEAP generation_function (pré-requisito Q1=B)
 
+### Fase 5 — Infraestrutura de experimentos (GA pool vs RF baseline)
+- [x] `pos/oracle/dataset_catalog.py` — catálogo de 31 datasets (build/save/load)
+- [x] `pos/oracle/pool_evaluation.py` — `evaluate_pool()` (acurácias individuais,
+      matriz de acertos, curva Oracle, majority vote, mean probs, double-fault)
+- [x] `pos/oracle/random_forest_pool.py` — `build_rf_pool()` via RandomForestClassifier
+- [x] `pos/oracle/run_recorder.py` — `record_run()` orquestra experimentos com try/except por fold
+- [x] `pos/oracle/run_helpers.py` — helpers de git/deps/hash, `build_pool_ga`/`build_pool_rf`,
+      `save_fold_artifacts`, `build_fold_manifest`, `build_summary_row`, `per_dataset_summary`
+- [x] `scripts/run_experiment.py` — CLI `--smoke`/`--full`/`--config`/`--mode`/`--jobs`/`--M`/`--dry-run`
+- [x] `docs/protocol.md` — protocolo experimental formal
+- [x] `results/datasets/catalog.csv` — 31 datasets (178–19020 samples, 2–8 classes, IMB 1.0–71.5)
+- [x] Smoke test validado: 3 datasets (Wine/Banana/Vehicle) × 2 modes (ga/rf) × 3 folds = 18 rows
+      — oracle_1 ≥ majority_vote (0 violações), curvas monótonas 18/18, M=100, manifest+artefatos OK
+- [x] ADR 0009 — layout de reprodutibilidade de experimentos
+
 ## Decision log (ADRs)
 
 - `docs/adr/0001-python-version-and-deps.md` — pin Python 3.10, deps de requirements.txt
@@ -85,6 +100,7 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
 - `docs/adr/0006-oracle-n-architecture.md` — arquitetura Oracle_N, protocolo 10-fold
 - `docs/adr/0007-deap-generation-function-bug.md` — bug pre-existente DEAP (corrigido por 0008)
 - `docs/adr/0008-fix-deap-generation-function.md` — fix DEAP loop + fallback stop-criteria
+- `docs/adr/0009-experiment-reproducibility.md` — layout de reprodutibilidade de experimentos
 
 ## Notes
 

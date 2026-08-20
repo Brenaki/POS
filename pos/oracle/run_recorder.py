@@ -49,10 +49,10 @@ def _build_manifest(config: dict[str, Any], repo_dir: Path) -> dict[str, Any]:
     }
 
 
-def _run_fold(X_tr, y_tr, X_val, y_val, X_test, y_test, mode, M, nr_gen, rs):
+def _run_fold(X_tr, y_tr, X_val, y_val, X_test, y_test, mode, M, nr_gen, rs, jobs=1):
     """Build pool for one mode and evaluate on test. Returns metrics or None."""
     if mode == "ga":
-        pool = build_pool_ga(X_tr, y_tr, X_val, y_val, nr_gen, rs)
+        pool = build_pool_ga(X_tr, y_tr, X_val, y_val, nr_gen, rs, jobs=jobs)
     elif mode == "rf":
         pool = build_pool_rf(X_tr, y_tr, M, rs)
     else:
@@ -74,6 +74,7 @@ def record_run(config: dict[str, Any], output_dir: Path | str) -> dict[str, Any]
     random_state: int = config["random_state"]
     modes: list[str] = config["modes"]
     M: int = config.get("M", 100)
+    jobs: int = config.get("jobs", 1)
     dataset_dir = Path(config.get("dataset_dir", repo_dir / "Dataset"))
 
     manifest = _build_manifest(config, repo_dir)
@@ -99,13 +100,22 @@ def record_run(config: dict[str, Any], output_dir: Path | str) -> dict[str, Any]
             X_tr, y_tr = X_train[mask], y_train[mask]
 
             for mode in modes:
-                metrics = _run_fold(X_tr, y_tr, X_val, y_val, X_test, y_test,
-                                    mode, M, nr_generation, random_state)
+                try:
+                    metrics = _run_fold(X_tr, y_tr, X_val, y_val, X_test, y_test,
+                                        mode, M, nr_generation, random_state, jobs=jobs)
+                except Exception as exc:
+                    print(f"[error] {ds_name} fold={fold_idx} mode={mode}: {type(exc).__name__}: {exc}")
+                    manifest.setdefault("errors", []).append({
+                        "dataset": ds_name, "fold": fold_idx, "mode": mode,
+                        "error_type": type(exc).__name__, "error_msg": str(exc)[:500],
+                    })
+                    continue
                 if metrics is None:
                     continue
                 fold_dir = output_dir / ds_name / f"fold_{fold_idx}"
                 # Re-build pool to save predictions
-                pool = (build_pool_ga(X_tr, y_tr, X_val, y_val, nr_generation, random_state)
+                pool = (build_pool_ga(X_tr, y_tr, X_val, y_val, nr_generation,
+                                      random_state, jobs=jobs)
                         if mode == "ga" else build_pool_rf(X_tr, y_tr, M, random_state))
                 save_fold_artifacts(fold_dir, metrics, pool, X_test, y_test)
 

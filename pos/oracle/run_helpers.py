@@ -6,6 +6,7 @@ Extracted from run_recorder.py to satisfy the <=150 LOC file cap.
 from __future__ import annotations
 
 import hashlib
+import json
 import platform
 import subprocess
 import sys
@@ -48,8 +49,12 @@ def indices_hash(idx: np.ndarray) -> str:
     return "sha256:" + hashlib.sha256(idx.tobytes()).hexdigest()[:16]
 
 
-def build_pool_ga(X_train, y_train, X_val, y_val, nr_generation: int, random_state: int):
-    """Build a pool via poolGeneration GA (legacy API)."""
+def build_pool_ga(X_train, y_train, X_val, y_val, nr_generation: int, random_state: int,
+                  jobs: int = 1):
+    """Build a pool via poolGeneration GA (legacy API).
+
+    jobs defaults to 1 (serial) — safest for low-core CPUs and reproducibility.
+    """
     from pool_generation import poolGeneration
 
     pg = poolGeneration(
@@ -57,6 +62,7 @@ def build_pool_ga(X_train, y_train, X_val, y_val, nr_generation: int, random_sta
         iteration=1,
         classifier="tree",
         types=["F1", "T1"],
+        jobs=jobs,
     )
     pg.generate(X_train, y_train, X_val, y_val, iteration=1)
     return pg.get_pool()
@@ -98,8 +104,6 @@ def per_dataset_summary(summary_df) -> list[dict]:
 
 def save_fold_artifacts(fold_dir, metrics, pool, X_test, y_test) -> None:
     """Save correctness_matrix.npy + predictions.npz to fold_dir."""
-    import numpy as np
-
     fold_dir.mkdir(parents=True, exist_ok=True)
     np.save(fold_dir / "correctness_matrix.npy", metrics["correctness_matrix"])
     preds = np.array([clf.predict(X_test) for clf in pool])
@@ -130,10 +134,6 @@ def build_fold_manifest(ds_name, fold_idx, mode, metrics, random_state,
 
 def build_summary_row(ds_name, fold_idx, mode, metrics, n_test) -> dict:
     """Build one summary.csv row dict."""
-    import json
-
-    import numpy as np
-
     curve = metrics["oracle_curve"]
     return {
         "dataset": ds_name, "fold": fold_idx, "mode": mode,

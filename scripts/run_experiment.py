@@ -24,7 +24,7 @@ sys.path.insert(0, str(REPO_DIR))
 from pos.oracle.run_helpers import git_sha  # noqa: E402
 from pos.oracle.run_recorder import record_run  # noqa: E402
 
-SMOKE_DATASETS = ["Wine", "Banana", "Glass"]
+SMOKE_DATASETS = ["Wine", "Banana", "Vehicle"]
 FULL_DATASETS = [
     "Adult", "Banana", "Blood", "CTG", "Diabetes", "Ecoli", "Faults", "German",
     "Glass", "Haberman", "Heart", "ILPD", "Ionosphere", "Laryngeal1", "Laryngeal3",
@@ -40,11 +40,13 @@ def build_config(args) -> dict:
         return {
             "datasets": SMOKE_DATASETS, "n_folds": 3, "nr_generation": 1,
             "random_state": 42, "modes": args.mode.split(","),
+            "M": args.M, "jobs": args.jobs,
         }
     if args.full:
         return {
             "datasets": FULL_DATASETS, "n_folds": 10, "nr_generation": 20,
             "random_state": 42, "modes": args.mode.split(","),
+            "M": args.M, "jobs": args.jobs,
         }
     raise SystemExit("Must pass one of --smoke / --full / --config")
 
@@ -63,6 +65,9 @@ def main():
     g.add_argument("--config", type=str, help="path to JSON config file")
     p.add_argument("--mode", type=str, default="ga,rf",
                    help="comma-separated modes: ga,rf,both (default: ga,rf)")
+    p.add_argument("--M", type=int, default=100, help="pool size for RF mode (default: 100)")
+    p.add_argument("--jobs", type=int, default=1,
+                   help="DEAP parallel jobs for GA mode (default: 1 — safest for low-core CPUs)")
     p.add_argument("--output", type=str, default=None,
                    help="output root (default: results/experiments/)")
     p.add_argument("--dry-run", action="store_true", help="print manifest, do not run")

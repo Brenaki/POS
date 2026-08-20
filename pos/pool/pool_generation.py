@@ -44,6 +44,7 @@ class poolGeneration(
         nr_bags=100,
         group=["overlapping", "neighborhood"],
         types=None,
+        jobs=8,
     ):
         self.method_disperse = method_disperse
         self.fit_value1 = fit_value[0]
@@ -58,7 +59,7 @@ class poolGeneration(
         self.cont_crossover = 1
         self.iteration = iteration
         self.dist_temp = 0
-        self.jobs = 8
+        self.jobs = jobs
         self.stop_criteria = stop_criteria
         self.classifier = classifier
         self.save_info = False
