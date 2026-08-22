@@ -8,10 +8,15 @@ Replaces dist_matrix() + neighborhood_measure() in the hot path.
 
 from __future__ import annotations
 
+import warnings
+
 import numpy as np
-from scipy.sparse.csgraph import minimum_spanning_tree
 from scipy.sparse import csr_matrix
+from scipy.sparse._base import SparseEfficiencyWarning  # noqa
+from scipy.sparse.csgraph import minimum_spanning_tree
 from sklearn.neighbors import KDTree
+
+warnings.filterwarnings("ignore", category=SparseEfficiencyWarning)
 
 
 def _normalize(X: np.ndarray) -> np.ndarray:
@@ -33,12 +38,13 @@ def _n1_fast(Xn: np.ndarray, y: np.ndarray, k: int = 10) -> float:
     rows = np.repeat(np.arange(n), k)
     cols = indices[:, 1:].ravel()
     vals = dists[:, 1:].ravel()
+    # Filter self-loops (i==j) to avoid setdiag (slow on CSR)
+    mask = rows != cols
+    rows, cols, vals = rows[mask], cols[mask], vals[mask]
 
     # Symmetrize: take min(i→j, j→i) as edge weight
     sparse = csr_matrix((vals, (rows, cols)), shape=(n, n))
     sym = sparse.minimum(sparse.T)
-    # Remove diagonal
-    sym.setdiag(0)
     sym.eliminate_zeros()
 
     mst = minimum_spanning_tree(sym)
