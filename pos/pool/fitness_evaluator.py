@@ -7,13 +7,13 @@ from __future__ import annotations
 
 import numpy as np
 
+from pos.classifiers import biuld_classifier, biuld_classifier_tree
 from pos.complexity import complexity_data3
 from pos.dispersion import dispersion_linear
 from pos.diversity import diversitys
 from pos.normalization import min_max_norm
-from pos.voting import voting_classifier
-from pos.classifiers import biuld_classifier, biuld_classifier_tree
 from pos.pool.bag_generator import build_bags
+from pos.voting import voting_classifier
 
 
 class FitnessEvaluatorMixin:
@@ -30,13 +30,17 @@ class FitnessEvaluatorMixin:
         cpx = complexity_data3(X_bag, y_bag, group, types)
         if self.classifier == "perc":
             estimator, score, pred = biuld_classifier(
-                X_bag, y_bag, X_bag, y_bag, self.X_val, self.y_val
-            )
+                X_bag, y_bag, X_bag, y_bag, self.X_val, self.y_val)
         elif self.classifier == "tree":
             estimator, score, pred = biuld_classifier_tree(
-                X_bag, y_bag, X_bag, y_bag, self.X_val, self.y_val
-            )
+                X_bag, y_bag, X_bag, y_bag, self.X_val, self.y_val)
         return cpx, score, pred, estimator
+
+    def _eval_many(self, indices):
+        """Evaluate parallel_distance2 for a list of bag indices."""
+        r = [self.parallel_distance2(i, self.bags, self.group, self.types)
+             for i in indices]
+        return zip(*r, strict=True) if r else ((), (), (), ())
 
     def get_complexity(self, first_evaluate=False, population=None):
         dist = {"name": list(), "dist": list(), "diver": list(),
@@ -44,24 +48,19 @@ class FitnessEvaluatorMixin:
 
         if first_evaluate and self.generation == 0:
             dist["name"] = self.pop
-            r = [self.parallel_distance2(i, self.bags, self.group, self.types)
-                 for i in range(len(dist["name"]))]
-            c, score, pred, pool = zip(*r)
+            c, score, pred, pool = self._eval_many(range(len(dist["name"])))
             self.c = c
         elif first_evaluate == False and population is None:
             begin = self.name_individual - self.nr_individual
             for i in range(begin, self.name_individual):
                 dist["name"].append([i])
-            r = [self.parallel_distance2(j, self.bags, self.group, self.types)
-                 for j in range(100, self.nr_individual + 100)]
-            c, score, pred, pool = zip(*r)
+            c, score, pred, pool = self._eval_many(
+                range(100, self.nr_individual + 100))
             self.c = c
         elif population is not None:
             dist["name"] = population
             indices = [self.bags["name"].index(i[0]) for i in population]
-            r = [self.parallel_distance2(i, self.bags, self.group, self.types)
-                 for i in indices]
-            c, score, pred, pool = zip(*r)
+            c, score, pred, pool = self._eval_many(indices)
             self.c = c
 
         dist["dist"] = dispersion_linear(c)

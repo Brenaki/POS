@@ -48,16 +48,17 @@ def _build_manifest(config: dict[str, Any], repo_dir: Path) -> dict[str, Any]:
 
 
 def _run_fold(X_tr, y_tr, X_val, y_val, X_test, y_test, mode, M, nr_gen, rs, jobs=1):
-    """Build pool for one mode and evaluate on test. Returns metrics or None."""
+    """Build pool and evaluate. Returns (metrics, pool) or (None, None)."""
     if mode == "ga":
         pool = build_pool_ga(X_tr, y_tr, X_val, y_val, nr_gen, rs, jobs=jobs)
     elif mode == "rf":
         pool = build_pool_rf(X_tr, y_tr, M, rs)
     else:
-        return None
+        return None, None
     if len(pool) == 0:
-        return None
-    return evaluate_pool(pool, X_test, y_test)
+        return None, None
+    metrics = evaluate_pool(pool, X_test, y_test)
+    return metrics, pool
 
 
 def record_run(config: dict[str, Any], output_dir: Path | str,
@@ -109,8 +110,8 @@ def record_run(config: dict[str, Any], output_dir: Path | str,
                 if (ds_name, fold_idx, mode) in done:
                     continue
                 try:
-                    metrics = _run_fold(X_tr, y_tr, X_val, y_val, X_test, y_test,
-                                        mode, M, nr_generation, random_state, jobs=jobs)
+                    metrics, pool = _run_fold(X_tr, y_tr, X_val, y_val, X_test, y_test,
+                                              mode, M, nr_generation, random_state, jobs=jobs)
                 except Exception as exc:
                     print(f"[error] {ds_name} fold={fold_idx} mode={mode}: {type(exc).__name__}: {exc}")
                     manifest.setdefault("errors", []).append({
@@ -121,10 +122,6 @@ def record_run(config: dict[str, Any], output_dir: Path | str,
                 if metrics is None:
                     continue
                 fold_dir = output_dir / ds_name / f"fold_{fold_idx}"
-                # Re-build pool to save predictions
-                pool = (build_pool_ga(X_tr, y_tr, X_val, y_val, nr_generation,
-                                      random_state, jobs=jobs)
-                        if mode == "ga" else build_pool_rf(X_tr, y_tr, M, random_state))
                 save_fold_artifacts(fold_dir, metrics, pool, X_test, y_test)
 
                 fm = build_fold_manifest(

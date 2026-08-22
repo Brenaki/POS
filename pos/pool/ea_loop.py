@@ -15,7 +15,7 @@ upstream DEAP never shipped `generation_function`. See ADR 0008.
 
 from __future__ import annotations
 
-from typing import Callable, Optional
+from typing import Callable
 
 from deap import algorithms, base, tools
 
@@ -28,24 +28,24 @@ def ea_mu_plus_lambda_with_callback(
     cxpb: float,
     mutpb: float,
     ngen: int,
-    generation_function: Optional[Callable] = None,
+    generation_function: Callable | None = None,
     stats=None,
     halloffame=None,
     verbose: bool = __debug__,
+    n_jobs: int = 1,
 ):
     """mu+lambda EA with optional per-generation callback.
 
-    Identical to `deap.algorithms.eaMuPlusLambda` except that after each
-    generation's selection step (and after the initial evaluation at gen 0),
-    `generation_function(population, gen, population[0].fitness.values)` is
-    called if `generation_function` is not None.
+    Note: n_jobs is accepted for API compatibility but the DEAP evaluate
+    function (evaluate_linear_dispersion) is a trivial dict lookup — the
+    real parallelism happens in get_complexity via joblib.
     """
     logbook = tools.Logbook()
     logbook.header = ["gen", "nevals"] + (stats.fields if stats else [])
 
     invalid_ind = [ind for ind in population if not ind.fitness.valid]
     fitnesses = toolbox.map(toolbox.evaluate, invalid_ind)
-    for ind, fit in zip(invalid_ind, fitnesses):
+    for ind, fit in zip(invalid_ind, fitnesses, strict=True):
         ind.fitness.values = fit
 
     if halloffame is not None:
@@ -64,7 +64,7 @@ def ea_mu_plus_lambda_with_callback(
 
         invalid_ind = [ind for ind in offspring if not ind.fitness.valid]
         fitnesses = toolbox.map(toolbox.evaluate, invalid_ind)
-        for ind, fit in zip(invalid_ind, fitnesses):
+        for ind, fit in zip(invalid_ind, fitnesses, strict=True):
             ind.fitness.values = fit
 
         if halloffame is not None:
