@@ -137,4 +137,5 @@ class poolGeneration(
                 self.pop, toolbox, self.nr_child, self.nr_individual,
                 self.proba_crossover, self.proba_mutation,
                 self.nr_generation, generation_function=self.the_function,
+                n_jobs=self.jobs,
             )
