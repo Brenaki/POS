@@ -12,7 +12,7 @@ from typing import List, Optional
 import numpy as np
 
 from pos.complexity.base import GROUP_MEASURES
-from pos.complexity.neighborhood_measures import dist_matrix, neighborhood_measure
+from pos.complexity.neighborhood_fast import neighborhood_measure_fast
 from pos.complexity.overlapping_measures import overlapping_measures
 
 
@@ -22,19 +22,17 @@ def complexity_data3(
     group: List[str],
     types: Optional[List[str]] = None,
 ) -> List[float]:
-    """Compute complexity measures for the given groups (fast numpy-only)."""
+    """Compute complexity measures for the given groups (KD-tree accelerated)."""
     X = np.asarray(X_data, dtype=float)
     y = np.asarray(y_data)
     result: list = []
-
-    D = dist_matrix(X) if "neighborhood" in group else None
 
     for grp in group:
         for m_name in GROUP_MEASURES.get(grp, []):
             if grp == "overlapping":
                 result.append(overlapping_measures(X, y, m_name))
             elif grp == "neighborhood":
-                result.append(neighborhood_measure(D, y, m_name))
+                result.append(neighborhood_measure_fast(X, y, m_name))
             else:
                 result.append(0.0)
     return result

@@ -41,7 +41,7 @@ def _n2(D: np.ndarray, y: np.ndarray) -> np.ndarray:
         same[same == 0] = np.inf
         diff = D[i, y != y[i]].copy()
         diff[diff == 0] = np.inf
-        intra = same[1] if len(same) > 1 else 1e-15
+        intra = same.min() if len(same) > 0 else 1e-15
         extra = diff.min() if len(diff) > 0 else 1e-15
         N2[i] = intra / max(extra, 1e-15)
     return 1 - 1 / (N2 + 1)

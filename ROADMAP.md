@@ -101,6 +101,8 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
 - `docs/adr/0007-deap-generation-function-bug.md` — bug pre-existente DEAP (corrigido por 0008)
 - `docs/adr/0008-fix-deap-generation-function.md` — fix DEAP loop + fallback stop-criteria
 - `docs/adr/0009-experiment-reproducibility.md` — layout de reprodutibilidade de experimentos
+- `docs/adr/0010-fast-complexity-numpy.md` — reimplementação numpy pura das medidas de complexidade
+- `docs/adr/0011-kdtree-neighborhood-measures.md` — KD-tree para neighborhood measures (O(n²)→O(n·k·log n))
 
 ## Notes
 
