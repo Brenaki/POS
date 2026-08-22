@@ -1,19 +1,34 @@
 """Fitness evaluation mixin: complexity, diversity, dispersion for GA.
 
 Extracted from pool_generation.py during Fase 2.
+Uses fast_adapter (numpy-only) instead of pyhard — no joblib nesting issues.
 """
 
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor
+
 import numpy as np
 
 from pos.classifiers import biuld_classifier, biuld_classifier_tree
-from pos.complexity import complexity_data3
+from pos.complexity.fast_adapter import complexity_data3
 from pos.dispersion import dispersion_linear
 from pos.diversity import diversitys
 from pos.normalization import min_max_norm
 from pos.pool.bag_generator import build_bags
 from pos.voting import voting_classifier
+
+
+def _eval_one(i, bags_inst, X_train, y_train, X_val, y_val, classifier, group, types):
+    """Module-level: evaluate one bag (thread-safe, no shared mutable state)."""
+    indx_bag1 = bags_inst[i]
+    X_bag, y_bag = build_bags(indx_bag1, X_train, y_train)
+    cpx = complexity_data3(X_bag, y_bag, group, types)
+    if classifier == "perc":
+        estimator, score, pred = biuld_classifier(X_bag, y_bag, X_bag, y_bag, X_val, y_val)
+    elif classifier == "tree":
+        estimator, score, pred = biuld_classifier_tree(X_bag, y_bag, X_bag, y_bag, X_val, y_val)
+    return cpx, score, pred, estimator
 
 
 class FitnessEvaluatorMixin:
@@ -37,7 +52,20 @@ class FitnessEvaluatorMixin:
         return cpx, score, pred, estimator
 
     def _eval_many(self, indices):
-        """Evaluate parallel_distance2 for a list of bag indices."""
+        """Evaluate parallel_distance2 for a list of bag indices.
+
+        Uses ThreadPoolExecutor when self.jobs > 1. Safe now because
+        fast_adapter uses pure numpy (no joblib nesting).
+        """
+        indices = list(indices)
+        if self.jobs > 1:
+            with ThreadPoolExecutor(max_workers=self.jobs) as ex:
+                results = list(ex.map(
+                    lambda i: _eval_one(i, self.bags["inst"], self.X_train,
+                        self.y_train, self.X_val, self.y_val, self.classifier,
+                        self.group, self.types),
+                    indices))
+            return list(zip(*results, strict=True))
         r = [self.parallel_distance2(i, self.bags, self.group, self.types)
              for i in indices]
         return zip(*r, strict=True) if r else ((), (), (), ())
