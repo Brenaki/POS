@@ -14,6 +14,7 @@ from scipy.stats import spearmanr  # noqa: E402
 from pos.analysis.figures_curves import COLORS, LABELS  # noqa: E402
 from pos.analysis.fusers import (  # noqa: E402
     FUSER_LABELS,
+    FUSERS,
     available_fusers,
     recovery_vs_redundancy,
 )
@@ -25,35 +26,54 @@ def plot_fuser_accuracy(df, out: Path) -> Path:
 
     The distance from the tallest bar to the dashed Oracle_1 line is the part
     of the pool's potential that no combination method reached.
+
+    ADR 0018 took the comparison from seven fusers to fourteen, which is too
+    many to sit side by side. The panels are stacked instead, on a shared x
+    axis, so the same fuser sits in the same column in all three panels. A
+    missing bar is a method that does not apply to that pool — META-DES and
+    KNOP need `predict_proba`, which a Perceptron has not got.
+
+    Each panel keeps its own y scale: the reading this figure exists for is
+    within a panel (how far the best fuser stays below its own Oracle_1), and
+    a shared axis driven by the weakest pool flattens the differences between
+    fusers in the other two.
     """
     modes = [m for m in MODES if (df["mode"] == m).any()]
-    fig, axes = plt.subplots(1, len(modes), figsize=(4.6 * len(modes), 4.6),
-                             sharey=True)
+    cols = [c for c in FUSERS
+            if any(c in available_fusers(df, m) for m in modes)]
+    fig, axes = plt.subplots(len(modes), 1, sharex=True,
+                             figsize=(max(8.0, 0.62 * len(cols) + 1.8),
+                                      2.9 * len(modes) + 1.0))
     axes = np.atleast_1d(axes)
-    floor = 1.0  # sharey: one floor for every panel, else the shortest bar clips
     for ax, mode in zip(axes, modes, strict=True):
         sub = df[df["mode"] == mode]
-        cols = available_fusers(df, mode)
-        vals = [sub[c].mean() for c in cols]
-        floor = min(floor, *vals, sub["mean_individual_acc"].mean())
+        have = available_fusers(df, mode)
+        vals = [sub[c].mean() if c in have else np.nan for c in cols]
+        oracle = sub["oracle_1"].mean()
+        floor = min(*[v for v in vals if not np.isnan(v)],
+                    sub["mean_individual_acc"].mean()) - 0.02
+        ax.set_ylim(max(0.0, floor), oracle + (oracle - floor) * 0.12)
         ax.bar(range(len(cols)), vals, color=COLORS[mode], alpha=0.8)
         for i, v in enumerate(vals):
-            ax.annotate(f"{v:.3f}", xy=(i, v), xytext=(0, 3),
-                        textcoords="offset points", ha="center", fontsize=8)
-        ax.axhline(sub["oracle_1"].mean(), color="black", ls="--", lw=1.2)
-        ax.annotate(f"Oracle_1 = {sub['oracle_1'].mean():.3f}",
-                    xy=(0, sub["oracle_1"].mean()), xytext=(2, -12),
-                    textcoords="offset points", fontsize=8.5)
+            if np.isnan(v):
+                continue
+            # Vertical: two fusers that tie to the third decimal are exactly
+            # the pair worth reading, and horizontal labels overprint there.
+            ax.annotate(f"{v:.3f}", xy=(i, v), xytext=(0, 4),
+                        textcoords="offset points", ha="center", va="bottom",
+                        rotation=90, fontsize=7.5)
+        ax.axhline(oracle, color="black", ls="--", lw=1.2)
         ax.axhline(sub["mean_individual_acc"].mean(), color="gray", ls=":", lw=1.2)
-        ax.set_xticks(range(len(cols)))
-        ax.set_xticklabels([FUSER_LABELS.get(c, c) for c in cols],
-                           rotation=45, ha="right", fontsize=8.5)
-        ax.set_title(LABELS[mode], fontsize=10)
+        ax.set_title(f"{LABELS[mode]} — Oracle_1 = {oracle:.3f}",
+                     fontsize=10, loc="left")
         ax.grid(alpha=0.25, axis="y")
-    axes[0].set_ylim(max(0.0, floor - 0.06), 1.03)
-    axes[0].set_ylabel("acurácia média sobre as bases")
+        ax.set_ylabel("acurácia média")
+    axes[-1].set_xticks(range(len(cols)))
+    axes[-1].set_xticklabels([FUSER_LABELS.get(c, c) for c in cols],
+                             rotation=45, ha="right", fontsize=9)
     fig.suptitle("Métodos reais de combinação vs o teto Oracle_1 "
-                 "(cinza pontilhado = acurácia individual média)", fontsize=11)
+                 "(preto tracejado = Oracle_1, cinza pontilhado = acurácia "
+                 "individual média)", fontsize=10.5)
     fig.tight_layout()
     fig.savefig(out, dpi=160)
     plt.close(fig)
