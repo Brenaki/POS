@@ -30,10 +30,12 @@ def plot_fuser_accuracy(df, out: Path) -> Path:
     fig, axes = plt.subplots(1, len(modes), figsize=(4.6 * len(modes), 4.6),
                              sharey=True)
     axes = np.atleast_1d(axes)
+    floor = 1.0  # sharey: one floor for every panel, else the shortest bar clips
     for ax, mode in zip(axes, modes, strict=True):
         sub = df[df["mode"] == mode]
         cols = available_fusers(df, mode)
         vals = [sub[c].mean() for c in cols]
+        floor = min(floor, *vals, sub["mean_individual_acc"].mean())
         ax.bar(range(len(cols)), vals, color=COLORS[mode], alpha=0.8)
         for i, v in enumerate(vals):
             ax.annotate(f"{v:.3f}", xy=(i, v), xytext=(0, 3),
@@ -48,8 +50,7 @@ def plot_fuser_accuracy(df, out: Path) -> Path:
                            rotation=45, ha="right", fontsize=8.5)
         ax.set_title(LABELS[mode], fontsize=10)
         ax.grid(alpha=0.25, axis="y")
-        floor = min([*vals, sub["mean_individual_acc"].mean()])
-        ax.set_ylim(max(0.0, floor - 0.06), 1.03)
+    axes[0].set_ylim(max(0.0, floor - 0.06), 1.03)
     axes[0].set_ylabel("acurácia média sobre as bases")
     fig.suptitle("Métodos reais de combinação vs o teto Oracle_1 "
                  "(cinza pontilhado = acurácia individual média)", fontsize=11)

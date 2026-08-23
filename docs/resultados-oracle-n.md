@@ -1,7 +1,8 @@
 # Resultados — Oracle_N em diferentes níveis
 
-- **Run**: `results/experiments/2026-08-23T06-42-14_376203d/` (ADR 0016; substitui o
-  run `2026-08-22T23-33-56_2a8a0f5`, idêntico exceto pela coluna `mean_probs`)
+- **Run**: `results/experiments/2026-08-23T10-09-30_376203d/` (ADR 0017; acrescenta as
+  colunas `des_*` ao run `2026-08-23T06-42-14_376203d`, do qual reproduz todas as
+  demais colunas bit-a-bit — ver "Verificação de reprodutibilidade")
 - **Commit**: `376203d` (branch `master`)
 - **Protocolo**: 29 bases × 10-fold estratificado × 3 modos, M=100, GA com 20 gerações,
   `random_state=42`. 870 folds, 0 erros. Ecoli e Glass excluídas pelo portão de
@@ -58,6 +59,11 @@ modos**: `oracle_1..5`, `oracle_M`, `oracle_curve_json`, `majority_vote`,
 `double_fault_mean` e `mean_individual_acc` saíram bit-idênticos ao run anterior.
 A única coluna que mudou foi `mean_probs`, que é o que o ADR 0016 alterou.
 
+O mesmo teste foi repetido para o run do ADR 0017, que acrescentou a seleção
+dinâmica ao pipeline: as **870/870 linhas** saíram idênticas ao run anterior em
+todas as colunas de pool, agora **incluindo `mean_probs`**. A inserção do DCS/DES
+não perturba a geração dos pools — o que era a condição para comparar os dois runs.
+
 ### Figuras
 
 | arquivo | conteúdo |
@@ -68,6 +74,8 @@ A única coluna que mudou foi `mean_probs`, que é o que o ADR 0016 alterou.
 | `figures/fig4_gap_per_dataset.png` | folga `Oracle_1 − MV` por base |
 | `figures/fig5_diversity_vs_gap.png` | redundância de erros × folga não explorada |
 | `figures/fig6_curves_per_dataset.png` | uma curva Oracle_N por base (29 painéis) |
+| `figures/fig7_fuser_accuracy.png` | acurácia de cada fusor por modo, contra Oracle_1 e a média individual |
+| `figures/fig8_recovered_gap.png` | parcela da folga recuperada pela seleção dinâmica, e sua (não-)relação com `DF/e²` |
 
 ---
 
@@ -204,16 +212,108 @@ e não do escore do classificador.
 
 ---
 
+## Achado 5 — a seleção dinâmica recupera menos de 20% da folga (objetivo 6)
+
+O objetivo 6 pede a comparação com métodos reais de combinação. Os quatro anteriores
+(votação majoritária, combinação suave, e as duas famílias de seleção dinâmica) agora
+estão medidos nos mesmos 870 folds. DSEL = a partição de validação, k=7 vizinhos.
+
+| modo | MVR | OLA | LCA | KNORA-E | KNORA-U | META-DES | melhor | Oracle_1 | folga MVR | **recuperada** |
+|---|---|---|---|---|---|---|---|---|---|---|
+| GA (Perceptron) | 0.7824 | 0.7926 | 0.7466 | 0.7972 | **0.8098** | — | 0.8330 | 0.9979 | 0.2154 | **19.96%** |
+| Bagging | 0.8467 | 0.8052 | 0.7984 | 0.8291 | 0.8474 | **0.8511** | 0.8674 | 0.9951 | 0.1484 | **12.77%** |
+| Random Forest | 0.8549 | 0.7947 | 0.7933 | 0.8312 | **0.8568** | 0.8535 | 0.8693 | 0.9970 | 0.1421 | **10.45%** |
+
+META-DES não roda sobre o pool do GA: exige `predict_proba`, que o Perceptron linear
+não tem (a mesma limitação do ADR 0016). As 290 linhas `des_metades` do modo `ga`
+ficam vazias, com o motivo registrado em cada manifest de fold.
+
+`melhor` é o máximo por fold entre os cinco métodos — é um *oracle sobre métodos*,
+escolhido no teste, e portanto otimista. `recuperada` = `(melhor − MVR) / (Oracle_1 − MVR)`
+usa esse máximo. Mesmo assim, **nenhum modo passa de 20%**: a folga que o Oracle_1
+anuncia continua, em mais de 80%, fora do alcance da seleção dinâmica. As medianas
+são ainda menores (GA 0.125, Bagging 0.077, RF 0.050) — a média é puxada por poucas
+bases, e no primeiro quartil dos três modos a recuperação é **zero**.
+
+### O DCS puro piora pools de árvores
+
+O resultado mais nítido não é sobre a folga, é sobre o custo de escolher **um único**
+classificador. OLA e LCA selecionam o vizinho mais competente e descartam o resto do
+pool; nos pools de árvores isso é significativamente pior que simplesmente votar:
+
+| par | Bagging | Random Forest |
+|---|---|---|
+| MVR − OLA | +0.0415 (p<1e-5) | +0.0602 (p<1e-5) |
+| MVR − LCA | +0.0483 (p=2e-5) | +0.0616 (p<1e-5) |
+| MVR − KNORA-E | +0.0176 (p=2e-4) | +0.0238 (p=1e-4) |
+| MVR − KNORA-U | −0.0007 (p=0.13) | −0.0019 (p=0.19) |
+| MVR − META-DES | −0.0044 (p=0.002) | +0.0014 (p=0.43) |
+
+Nos dois modos o Friedman rejeita com folga (chi2=111.7 e 123.3, k=7, N=29, CD=1.672) e
+o ranking de Nemenyi é o mesmo: **META-DES ≈ KNORA-U ≈ MVR ≈ média-probs > KNORA-E > LCA ≈ OLA**.
+A leitura é direta: quanto mais um método *poda* o pool, pior ele fica. KNORA-U, que
+não poda — pondera todos os classificadores que acertam a vizinhança — é o único que
+empata ou ganha do voto majoritário em todos os modos.
+
+### E ajuda pools de margem
+
+No GA a ordem se inverte parcialmente. KNORA-U bate o MVR por **+0.0274** (Wilcoxon
+p=0.005), vencendo em 145 dos 290 folds contra 66 derrotas e 79 empates — enquanto em
+Bagging e RF a mesma comparação dá +0.0007 e +0.0019, sem significância. Os dois DCS
+puros também deixam de ser catastróficos: OLA fica *acima* do MVR (0.7926 vs 0.7824,
+n.s.), e só LCA continua claramente pior.
+
+A explicação é geométrica, e as bases sintéticas 2D a isolam. Em P2, Lithuanian e
+Banana (d=2, fronteira não-linear, 2 classes) a recuperação média do GA é **0.807**;
+nos mesmos dados, Bagging recupera 0.160 e RF 0.114:
+
+| base | GA | Bagging | RF |
+|---|---|---|---|
+| P2 | **0.819** | 0.160 | 0.187 |
+| Lithuanian | **0.811** | 0.157 | −0.028 |
+| Banana | **0.790** | 0.162 | 0.184 |
+| Segmentation | **0.650** | 0.200 | 0.148 |
+| ... | | | |
+| Adult | 0.002 | 0.034 | 0.079 |
+| WDVG | 0.009 | 0.023 | 0.011 |
+| WBC | −0.040 | 0.246 | 0.180 |
+
+A seleção dinâmica paga quando o classificador-base é **fraco demais para a fronteira
+global mas adequado localmente**. Um Perceptron não separa a espiral do P2, mas separa
+qualquer vizinhança dela; escolher o Perceptron certo por região é exatamente o que
+falta. Uma árvore já resolve a fronteira sozinha, então o voto majoritário já está
+perto do que o pool consegue, e não sobra folga *local* para a seleção extrair — só
+sobra a folga que o Oracle_1 mede, que é de outra natureza (Achado 3).
+
+Ressalva: o DSEL do GA é a partição de validação que o próprio GA usou no fitness,
+então o número do GA é otimista em termos absolutos. O que a ressalva **não** explica
+é o padrão por base — o viés seria uniforme, e a vantagem do GA se concentra nas
+bases de fronteira não-linear em baixa dimensão.
+
+### A folga recuperada não é prevista pela redundância
+
+O Achado 2 mostrou que `DF/e²` prevê o **tamanho** da folga `Oracle_1 − MVR`. Ele não
+prevê quanto dessa folga é alcançável: agregando por base, a correlação de Spearman
+entre `recovered` e `df_ratio` não é significativa (pooled rho=+0.147, p=0.18, n=86;
+por modo: bagging +0.209 p=0.29, ga −0.128 p=0.51, rf +0.380 p=0.04 — e o único sinal
+não sobrevive à correção para três testes). Por fold ela desaparece de vez
+(rho=+0.014, p=0.68, n=830). São duas perguntas distintas — *quanta* folga
+existe, e *que fração* dela um método real consegue converter — e o índice de
+redundância só responde a primeira. `fig8_recovered_gap.png` mostra as duas metades.
+
+**Consequência para o subprojeto**: com métodos reais de combinação medidos, o Oracle_1
+se confirma como um limite **inatingível na prática**, não como uma meta. Entre 80% e
+90% da folga que ele anuncia não é recuperada nem pelo melhor dos cinco métodos
+escolhido a posteriori no teste. O valor operacional do Oracle_N está em `N*` e na
+curva (Achado 3), não em `Oracle_1` como alvo.
+
+---
+
 ## Pendências
 
-**DCS/DES (objetivo 6, parte final).** Implementado no ADR 0017 — OLA, LCA,
-KNORA-E, KNORA-U e META-DES via DESlib, com a partição de validação como DSEL, e a
-métrica `recovered` = parcela da folga `Oracle_1 − MVR` que a seleção dinâmica
-alcança. O run correspondente
-(`results/experiments/2026-08-23T10-09-30_376203d/`) está em execução; esta seção
-será substituída pelos resultados. Ele foi lançado antes do commit do ADR 0017,
-então seu manifest traz `git_sha: 376203d` com `git_dirty: true` — o código que
-ele executou é o do commit `25f4c14`.
+**Proveniência do run de referência.** O run `2026-08-23T10-09-30_376203d` foi
+lançado antes do commit do ADR 0017, então seu manifest traz `git_sha: 376203d` com
+`git_dirty: true`. O código que ele de fato executou é o do commit `25f4c14`.
 
 **Viés de DSEL a favor do GA.** O DSEL da seleção dinâmica é a partição de
 validação, que o GA já usa na função de fitness. Bagging e RF não a usam para nada,

@@ -20,8 +20,8 @@
 | 3  | Implementação do pool de classificadores e avaliação individual         | Nov/2026–Jan/2027  | [x]    |
 | 4  | Implementação do Oracle tradicional e dos Oracles em diferentes níveis | Dez/2026–Fev/2027  | [x]    |
 | 5  | Relatório Semestral conforme modelo PROPESP (até 15 mar 2027)          | Mar/2027           | [ ]    |
-| 6  | Experimentos comparativos (votação majoritária, combinação de probs, DCS/DES) | Fev–Jun/2027 | [~]    |
-| 7  | Análise dos resultados, gráficos e recomendações                       | Ago–Nov/2027       | [~]    |
+| 6  | Experimentos comparativos (votação majoritária, combinação de probs, DCS/DES) | Fev–Jun/2027 | [x]    |
+| 7  | Análise dos resultados, gráficos e recomendações                       | Ago–Nov/2027       | [x]    |
 | 8  | Relatório final (até 11 set 2027)                                      | Jul–Ago/2027       | [ ]    |
 
 ## Engineering milestones (enabling the cronograma)
@@ -127,10 +127,22 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
       e a métrica `recovered` = folga do Oracle recuperada pela seleção dinâmica
 - [x] `pos/analysis/figures_des.py` — fig7 (fusores vs teto Oracle_1) e
       fig8 (folga recuperada, por modo e vs `DF/e²`)
-- [~] Rodar `--full` com DCS/DES e reescrever `docs/resultados-oracle-n.md`
-      — run `2026-08-23T10-09-30_376203d` em andamento. Foi lançado de árvore
-      suja, então seu `run_manifest.json` traz `git_sha: 376203d` com
-      `git_dirty: true`; o código que ele executou é o do commit `25f4c14`.
+- [x] Rodar `--full` com DCS/DES e reescrever `docs/resultados-oracle-n.md`
+      — run `2026-08-23T10-09-30_376203d`, 870 folds, 0 erros, 2h20. Reproduziu
+      as 870 linhas do run anterior bit-a-bit em toda coluna de pool (agora
+      incluindo `mean_probs`): inserir DCS/DES não perturba a geração dos pools.
+      Foi lançado de árvore suja, então seu `run_manifest.json` traz
+      `git_sha: 376203d` com `git_dirty: true`; o código que ele executou é o do
+      commit `25f4c14`.
+      **Achado 5**: a seleção dinâmica recupera 19.96% (GA), 12.77% (Bagging) e
+      10.45% (RF) da folga `Oracle_1 − MVR`, e isso já usando o melhor dos cinco
+      métodos escolhido a posteriori no teste — o Oracle_1 é limite inatingível,
+      não meta. O DCS puro (OLA/LCA) é *significativamente pior* que o MVR nos
+      pools de árvores (até −0.062, p<1e-5); KNORA-U é o único que nunca perde.
+      No pool de Perceptrons KNORA-U ganha do MVR (+0.0274, p=0.005), com a
+      vantagem concentrada nas bases 2D de fronteira não-linear (recuperação
+      0.807 em P2/Lithuanian/Banana vs 0.16 do Bagging). `recovered` **não**
+      correlaciona com `DF/e²` (rho=+0.014, p=0.68).
 - [ ] Dividir a validação em metades (fitness do GA / DSEL) para tirar o viés
       otimista do GA em `recovered` — muda os pools, exige run próprio (ADR 0017)
 

@@ -1,0 +1,204 @@
+run: results/experiments/2026-08-23T10-09-30_376203d
+
+linhas: 870 | bases: 29 | modos: ['bagging', 'ga', 'rf']
+
+violacoes oracle_1 < majority: 0
+
+nao-monotonas: 0
+
+mean_probs ausente por modo: {}
+
+
+
+folga recuperada pela selecao dinamica:
+         oracle_1  mean_individual_acc  majority_vote  mean_probs  des_ola  des_lca  des_knorae  des_knorau  des_metades  des_best  recovered best_method_mode  gap_mv
+mode                                                                                                                                                                  
+ga         0.9979               0.7052         0.7824      0.7743   0.7926   0.7466      0.7972      0.8098          NaN    0.8330     0.1996           knorau  0.2154
+bagging    0.9951               0.7931         0.8467      0.8466   0.8052   0.7984      0.8291      0.8474       0.8511    0.8674     0.1277           knorau  0.1484
+rf         0.9970               0.7806         0.8549      0.8546   0.7947   0.7933      0.8312      0.8568       0.8535    0.8693     0.1045           knorau  0.1421
+
+
+
+oracle_1  (N=29 bases, k=3)
+  Friedman chi2=16.74 p=0.00023 | CD=0.615
+  ranks (1=melhor): ga=1.90  bagging=2.50  rf=1.60
+  medias:           ga=0.9979  bagging=0.9951  rf=0.9970
+    ga      vs bagging drank=0.60  wilcoxon_p=0.08298 dmedia=+0.0027
+    ga      vs rf      drank=0.29  wilcoxon_p=0.43257 dmedia=+0.0009
+    bagging vs rf      drank=0.90* wilcoxon_p=0.00020 dmedia=-0.0019
+
+oracle_2  (N=29 bases, k=3)
+  Friedman chi2=9.87 p=0.00718 | CD=0.615
+  ranks (1=melhor): ga=2.05  bagging=2.34  rf=1.60
+  medias:           ga=0.9956  bagging=0.9935  rf=0.9958
+    ga      vs bagging drank=0.29  wilcoxon_p=0.29045 dmedia=+0.0021
+    ga      vs rf      drank=0.45  wilcoxon_p=0.26415 dmedia=-0.0002
+    bagging vs rf      drank=0.74* wilcoxon_p=0.00052 dmedia=-0.0023
+
+oracle_5  (N=29 bases, k=3)
+  Friedman chi2=14.22 p=0.00082 | CD=0.615
+  ranks (1=melhor): ga=2.16  bagging=2.36  rf=1.48
+  medias:           ga=0.9905  bagging=0.9884  rf=0.9920
+    ga      vs bagging drank=0.21  wilcoxon_p=0.86116 dmedia=+0.0021
+    ga      vs rf      drank=0.67* wilcoxon_p=0.15313 dmedia=-0.0015
+    bagging vs rf      drank=0.88* wilcoxon_p=0.00016 dmedia=-0.0036
+
+oracle_M  (N=29 bases, k=3)
+  Friedman chi2=22.45 p=0.00001 | CD=0.615
+  ranks (1=melhor): ga=2.26  bagging=1.29  rf=2.45
+  medias:           ga=0.1136  bagging=0.3052  rf=0.1725
+    ga      vs bagging drank=0.97* wilcoxon_p=0.00064 dmedia=-0.1915
+    ga      vs rf      drank=0.19  wilcoxon_p=0.19762 dmedia=-0.0589
+    bagging vs rf      drank=1.16* wilcoxon_p=0.00000 dmedia=+0.1326
+
+majority_vote  (N=29 bases, k=3)
+  Friedman chi2=10.76 p=0.00461 | CD=0.615
+  ranks (1=melhor): ga=2.34  bagging=2.14  rf=1.52
+  medias:           ga=0.7824  bagging=0.8467  rf=0.8549
+    ga      vs bagging drank=0.21  wilcoxon_p=0.00645 dmedia=-0.0643
+    ga      vs rf      drank=0.83* wilcoxon_p=0.00097 dmedia=-0.0725
+    bagging vs rf      drank=0.62* wilcoxon_p=0.00351 dmedia=-0.0082
+
+mean_probs  (N=29 bases, k=3)
+  Friedman chi2=9.17 p=0.01019 | CD=0.615
+  ranks (1=melhor): ga=2.31  bagging=2.14  rf=1.55
+  medias:           ga=0.7743  bagging=0.8466  rf=0.8546
+    ga      vs bagging drank=0.17  wilcoxon_p=0.00516 dmedia=-0.0723
+    ga      vs rf      drank=0.76* wilcoxon_p=0.00097 dmedia=-0.0803
+    bagging vs rf      drank=0.59  wilcoxon_p=0.00324 dmedia=-0.0080
+
+mean_individual_acc  (N=29 bases, k=3)
+  Friedman chi2=11.66 p=0.00295 | CD=0.615
+  ranks (1=melhor): ga=2.28  bagging=1.48  rf=2.24
+  medias:           ga=0.7052  bagging=0.7931  rf=0.7806
+    ga      vs bagging drank=0.79* wilcoxon_p=0.00182 dmedia=-0.0879
+    ga      vs rf      drank=0.03  wilcoxon_p=0.00694 dmedia=-0.0754
+    bagging vs rf      drank=0.76* wilcoxon_p=0.00000 dmedia=+0.0126
+
+gap_1  (N=29 bases, k=3)
+  Friedman chi2=10.14 p=0.00629 | CD=0.615
+  ranks (1=melhor): ga=1.62  bagging=1.93  rf=2.45
+  medias:           ga=0.2154  bagging=0.1484  rf=0.1421
+    ga      vs bagging drank=0.31  wilcoxon_p=0.00234 dmedia=+0.0670
+    ga      vs rf      drank=0.83* wilcoxon_p=0.00067 dmedia=+0.0734
+    bagging vs rf      drank=0.52  wilcoxon_p=0.02027 dmedia=+0.0064
+
+gap_5  (N=29 bases, k=3)
+  Friedman chi2=4.19 p=0.12299 | CD=0.615
+  ranks (1=melhor): ga=1.72  bagging=2.02  rf=2.26
+  medias:           ga=0.2081  bagging=0.1417  rf=0.1371
+    ga      vs bagging drank=0.29  wilcoxon_p=0.00215 dmedia=+0.0664
+    ga      vs rf      drank=0.53  wilcoxon_p=0.00081 dmedia=+0.0710
+    bagging vs rf      drank=0.24  wilcoxon_p=0.13286 dmedia=+0.0046
+
+df_ratio  (N=29 bases, k=3)
+  Friedman chi2=18.69 p=0.00009 | CD=0.615
+  ranks (1=melhor): ga=1.69  bagging=2.66  rf=1.66
+  medias:           ga=2.1137  bagging=3.9780  rf=2.9195
+    ga      vs bagging drank=0.97* wilcoxon_p=0.00033 dmedia=-1.8643
+    ga      vs rf      drank=0.03  wilcoxon_p=0.07976 dmedia=-0.8058
+    bagging vs rf      drank=1.00* wilcoxon_p=0.00000 dmedia=+1.0585
+
+nstar  (N=29 bases, k=3)
+  Friedman chi2=2.00 p=0.36788 | CD=0.615
+  ranks (1=melhor): ga=1.86  bagging=2.21  rf=1.93
+  medias:           ga=51.5655  bagging=54.3828  rf=53.0310
+    ga      vs bagging drank=0.34  wilcoxon_p=0.04623 dmedia=-2.8172
+    ga      vs rf      drank=0.07  wilcoxon_p=0.15137 dmedia=-1.4655
+    bagging vs rf      drank=0.28  wilcoxon_p=0.38677 dmedia=+1.3517
+
+des_best  (N=29 bases, k=3)
+  Friedman chi2=9.33 p=0.00940 | CD=0.615
+  ranks (1=melhor): ga=2.41  bagging=1.97  rf=1.62
+  medias:           ga=0.8330  bagging=0.8674  rf=0.8693
+    ga      vs bagging drank=0.45  wilcoxon_p=0.00097 dmedia=-0.0344
+    ga      vs rf      drank=0.79* wilcoxon_p=0.00081 dmedia=-0.0364
+    bagging vs rf      drank=0.34  wilcoxon_p=0.06787 dmedia=-0.0019
+
+gap_des  (N=29 bases, k=3)
+  Friedman chi2=13.75 p=0.00103 | CD=0.615
+  ranks (1=melhor): ga=2.55  bagging=1.79  rf=1.66
+  medias:           ga=0.1649  bagging=0.1277  rf=0.1277
+    ga      vs bagging drank=0.76* wilcoxon_p=0.00014 dmedia=+0.0372
+    ga      vs rf      drank=0.90* wilcoxon_p=0.00030 dmedia=+0.0372
+    bagging vs rf      drank=0.14  wilcoxon_p=0.88538 dmedia=+0.0001
+
+recovered  (N=28 bases, k=3)
+  Friedman chi2=1.50 p=0.47237 | CD=0.626
+  ranks (1=melhor): ga=2.04  bagging=1.82  rf=2.14
+  medias:           ga=0.1857  bagging=0.1270  rf=0.0955
+    ga      vs bagging drank=0.21  wilcoxon_p=0.91967 dmedia=+0.0586
+    ga      vs rf      drank=0.11  wilcoxon_p=0.33857 dmedia=+0.0901
+    bagging vs rf      drank=0.32  wilcoxon_p=0.04512 dmedia=+0.0315
+
+fusores [ga]  (N=29 bases, k=6)
+  Friedman chi2=45.91 p=0.00000 | CD=1.400
+  ranks (1=melhor): majority_vote=3.07  mean_probs=3.48  des_ola=3.66  des_lca=5.33  des_knorae=3.36  des_knorau=2.10
+  medias:           majority_vote=0.7824  mean_probs=0.7743  des_ola=0.7926  des_lca=0.7466  des_knorae=0.7972  des_knorau=0.8098
+    majority_vote vs mean_probs    drank=0.41  wilcoxon_p=0.01426 dmedia=+0.0081
+    majority_vote vs des_ola       drank=0.59  wilcoxon_p=0.70133 dmedia=-0.0102
+    majority_vote vs des_lca       drank=2.26* wilcoxon_p=0.00234 dmedia=+0.0358
+    majority_vote vs des_knorae    drank=0.29  wilcoxon_p=0.84801 dmedia=-0.0148
+    majority_vote vs des_knorau    drank=0.97  wilcoxon_p=0.00479 dmedia=-0.0274
+    mean_probs    vs des_ola       drank=0.17  wilcoxon_p=0.88151 dmedia=-0.0183
+    mean_probs    vs des_lca       drank=1.84* wilcoxon_p=0.02906 dmedia=+0.0277
+    mean_probs    vs des_knorae    drank=0.12  wilcoxon_p=0.93213 dmedia=-0.0229
+    mean_probs    vs des_knorau    drank=1.38  wilcoxon_p=0.00045 dmedia=-0.0355
+    des_ola       vs des_lca       drank=1.67* wilcoxon_p=0.00002 dmedia=+0.0460
+    des_ola       vs des_knorae    drank=0.29  wilcoxon_p=0.19430 dmedia=-0.0046
+    des_ola       vs des_knorau    drank=1.55* wilcoxon_p=0.00599 dmedia=-0.0172
+    des_lca       vs des_knorae    drank=1.97* wilcoxon_p=0.00000 dmedia=-0.0506
+    des_lca       vs des_knorau    drank=3.22* wilcoxon_p=0.00000 dmedia=-0.0632
+    des_knorae    vs des_knorau    drank=1.26  wilcoxon_p=0.04312 dmedia=-0.0126
+
+fusores [bagging]  (N=29 bases, k=7)
+  Friedman chi2=111.68 p=0.00000 | CD=1.672
+  ranks (1=melhor): majority_vote=3.17  mean_probs=3.22  des_ola=6.29  des_lca=6.09  des_knorae=4.48  des_knorau=2.71  des_metades=2.03
+  medias:           majority_vote=0.8467  mean_probs=0.8466  des_ola=0.8052  des_lca=0.7984  des_knorae=0.8291  des_knorau=0.8474  des_metades=0.8511
+    majority_vote vs mean_probs    drank=0.05  wilcoxon_p=1.00000 dmedia=+0.0001
+    majority_vote vs des_ola       drank=3.12* wilcoxon_p=0.00000 dmedia=+0.0415
+    majority_vote vs des_lca       drank=2.91* wilcoxon_p=0.00002 dmedia=+0.0483
+    majority_vote vs des_knorae    drank=1.31  wilcoxon_p=0.00024 dmedia=+0.0176
+    majority_vote vs des_knorau    drank=0.47  wilcoxon_p=0.13054 dmedia=-0.0007
+    majority_vote vs des_metades   drank=1.14  wilcoxon_p=0.00228 dmedia=-0.0044
+    mean_probs    vs des_ola       drank=3.07* wilcoxon_p=0.00000 dmedia=+0.0414
+    mean_probs    vs des_lca       drank=2.86* wilcoxon_p=0.00002 dmedia=+0.0482
+    mean_probs    vs des_knorae    drank=1.26  wilcoxon_p=0.00027 dmedia=+0.0175
+    mean_probs    vs des_knorau    drank=0.52  wilcoxon_p=0.19243 dmedia=-0.0008
+    mean_probs    vs des_metades   drank=1.19  wilcoxon_p=0.00313 dmedia=-0.0045
+    des_ola       vs des_lca       drank=0.21  wilcoxon_p=0.49452 dmedia=+0.0068
+    des_ola       vs des_knorae    drank=1.81* wilcoxon_p=0.00004 dmedia=-0.0239
+    des_ola       vs des_knorau    drank=3.59* wilcoxon_p=0.00000 dmedia=-0.0422
+    des_ola       vs des_metades   drank=4.26* wilcoxon_p=0.00000 dmedia=-0.0459
+    des_lca       vs des_knorae    drank=1.60  wilcoxon_p=0.00004 dmedia=-0.0307
+    des_lca       vs des_knorau    drank=3.38* wilcoxon_p=0.00002 dmedia=-0.0490
+    des_lca       vs des_metades   drank=4.05* wilcoxon_p=0.00001 dmedia=-0.0527
+    des_knorae    vs des_knorau    drank=1.78* wilcoxon_p=0.00008 dmedia=-0.0183
+    des_knorae    vs des_metades   drank=2.45* wilcoxon_p=0.00003 dmedia=-0.0220
+    des_knorau    vs des_metades   drank=0.67  wilcoxon_p=0.01192 dmedia=-0.0037
+
+fusores [rf]  (N=29 bases, k=7)
+  Friedman chi2=123.29 p=0.00000 | CD=1.672
+  ranks (1=melhor): majority_vote=2.60  mean_probs=2.67  des_ola=6.34  des_lca=6.41  des_knorae=4.62  des_knorau=2.38  des_metades=2.97
+  medias:           majority_vote=0.8549  mean_probs=0.8546  des_ola=0.7947  des_lca=0.7933  des_knorae=0.8312  des_knorau=0.8568  des_metades=0.8535
+    majority_vote vs mean_probs    drank=0.07  wilcoxon_p=0.59298 dmedia=+0.0003
+    majority_vote vs des_ola       drank=3.74* wilcoxon_p=0.00000 dmedia=+0.0602
+    majority_vote vs des_lca       drank=3.81* wilcoxon_p=0.00000 dmedia=+0.0616
+    majority_vote vs des_knorae    drank=2.02* wilcoxon_p=0.00011 dmedia=+0.0238
+    majority_vote vs des_knorau    drank=0.22  wilcoxon_p=0.18875 dmedia=-0.0019
+    majority_vote vs des_metades   drank=0.36  wilcoxon_p=0.43105 dmedia=+0.0014
+    mean_probs    vs des_ola       drank=3.67* wilcoxon_p=0.00000 dmedia=+0.0599
+    mean_probs    vs des_lca       drank=3.74* wilcoxon_p=0.00000 dmedia=+0.0613
+    mean_probs    vs des_knorae    drank=1.95* wilcoxon_p=0.00009 dmedia=+0.0234
+    mean_probs    vs des_knorau    drank=0.29  wilcoxon_p=0.09185 dmedia=-0.0022
+    mean_probs    vs des_metades   drank=0.29  wilcoxon_p=0.47696 dmedia=+0.0011
+    des_ola       vs des_lca       drank=0.07  wilcoxon_p=0.71721 dmedia=+0.0015
+    des_ola       vs des_knorae    drank=1.72* wilcoxon_p=0.00000 dmedia=-0.0364
+    des_ola       vs des_knorau    drank=3.97* wilcoxon_p=0.00000 dmedia=-0.0621
+    des_ola       vs des_metades   drank=3.38* wilcoxon_p=0.00000 dmedia=-0.0587
+    des_lca       vs des_knorae    drank=1.79* wilcoxon_p=0.00000 dmedia=-0.0379
+    des_lca       vs des_knorau    drank=4.03* wilcoxon_p=0.00000 dmedia=-0.0635
+    des_lca       vs des_metades   drank=3.45* wilcoxon_p=0.00000 dmedia=-0.0602
+    des_knorae    vs des_knorau    drank=2.24* wilcoxon_p=0.00000 dmedia=-0.0256
+    des_knorae    vs des_metades   drank=1.66  wilcoxon_p=0.00004 dmedia=-0.0223
+    des_knorau    vs des_metades   drank=0.59  wilcoxon_p=0.33655 dmedia=+0.0033
