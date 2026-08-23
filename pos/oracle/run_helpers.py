@@ -54,7 +54,7 @@ def build_pool_ga(X_train, y_train, X_val, y_val, nr_generation, random_state, j
     from pool_generation import poolGeneration
 
     pg = poolGeneration(nr_generation=nr_generation, iteration=1, classifier="tree",
-                       types=["F1", "T1"], jobs=jobs)
+                       types=["F1", "T1"], jobs=jobs, random_state=random_state)
     pg.generate(X_train, y_train, X_val, y_val, iteration=1)
     return pg.get_pool()
 
@@ -63,6 +63,12 @@ def build_pool_rf(X_train, y_train, M, random_state):
     """Build a pool via RandomForestClassifier (baseline without GA)."""
     from pos.oracle.random_forest_pool import build_rf_pool
     return build_rf_pool(X_train, y_train, M=M, random_state=random_state)
+
+
+def build_pool_bagging(X_train, y_train, M, random_state):
+    """Build a pool via BaggingClassifier (controlled baseline, all features)."""
+    from pos.oracle.bagging_pool import build_bagging_pool
+    return build_bagging_pool(X_train, y_train, M=M, random_state=random_state)
 
 
 def python_version() -> str:

@@ -50,12 +50,12 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
 - [ ] Cobertura ≥80% das partes não-R; verdes
 
 ### Fase 2 — Refatoração estrutural (preserva comportamento)
-- [ ] Pacote `pos/` criado
-- [ ] `Cpx.py` → `pos/{normalization,dispersion,diversity,voting,complexity/*,classifiers,io_csv}.py` (cada <150 LOC)
-- [ ] `pool_generation.py` → `pos/pool/{bag_generator,data_splitter,complexity_voter,fitness_evaluator,genetic_operators,stop_criteria,pool_builder,pool_generation}.py` (<150 LOC cada)
-- [ ] Facades `cpx_legacy.py` + `pool_generation_legacy.py` re-exportam API pública
-- [ ] `sample.ipynb` continua rodando sem alteração
-- [ ] ADRs 0004–0005
+- [x] Pacote `pos/` criado
+- [x] `Cpx.py` → `pos/{normalization,dispersion,diversity,voting,complexity/*,classifiers,io_csv}.py` (cada <150 LOC)
+- [x] `pool_generation.py` → `pos/pool/{bag_generator,data_splitter,complexity_voter,fitness_evaluator,genetic_operators,stop_criteria,pool_builder,pool_generation}.py` (<150 LOC cada)
+- [x] Facades `cpx_legacy.py` + `pool_generation_legacy.py` re-exportam API pública
+- [x] `sample.ipynb` continua rodando sem alteração
+- [x] ADRs 0004–0005
 
 ### Fase 3 — Remoção do R via pyhard (modifica comportamento)
 - [ ] `pos/complexity/pyhard_adapter.py` com `ClassificationMeasures`
@@ -103,6 +103,7 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
 - `docs/adr/0009-experiment-reproducibility.md` — layout de reprodutibilidade de experimentos
 - `docs/adr/0010-fast-complexity-numpy.md` — reimplementação numpy pura das medidas de complexidade
 - `docs/adr/0011-kdtree-neighborhood-measures.md` — KD-tree para neighborhood measures (O(n²)→O(n·k·log n))
+- `docs/adr/0012-p0-fixes-reproducibility-types-ecol.md` — correções P0: reprodutibilidade GA, tipos de medidas, definições ECoL
 
 ## Notes
 

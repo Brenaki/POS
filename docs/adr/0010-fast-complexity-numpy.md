@@ -139,31 +139,30 @@ Speedup total: **~460×**.
 
 ## Alterou resultados?
 
-**Não — os valores de Oracle são preservados.**
+**Sim — a composição do pool e, consequentemente, os valores experimentais de
+Oracle_N podem mudar.**
 
-A reimplementação só substitui o backend de complexidade. Os passos que
-determinam os resultados finais não mudaram:
+A reimplementação substitui o backend de complexidade. A definição e o cálculo
+do Oracle_N permanecem inalterados, mas a substituição do backend de
+complexidade pode alterar a composição do pool e, consequentemente, os valores
+experimentais de Oracle_N.
+
+Os passos que determinam os resultados finais:
 
 1. **Splits de CV** (`StratifiedKFold`, `random_state=42`): idênticos.
 2. **Splits treino/validação** (`np.random.default_rng(42+fold)`): idênticos.
-3. **GA (DEAP)**: mesmo algoritmo, mesmos operadores, mesmas sementes.
-4. **Bags gerados**: idênticos (o GA opera sobre índices de instância, não
-   sobre valores de complexidade diretamente — a complexidade só afeta o
-   fitness, não a representação).
+3. **GA (DEAP)**: mesmo algoritmo, mesmos operadores.
+4. **Bags gerados**: o GA opera sobre índices de instância, não sobre valores
+   de complexidade diretamente — a complexidade só afeta o fitness.
 5. **Classificadores base** (`DecisionTreeClassifier`): idênticos.
 
-A única diferença é o **valor do fitness** de cada indivíduo, que pode variar
-em ≤0.04 (medida N1) devido à matriz de distância. Isso pode levar o GA a
-selecionar bags ligeiramente diferentes em alguns folds, produzindo pools
-não-idênticos. No entanto:
+A diferença está no **valor do fitness** de cada indivíduo:
+- Diferença ≤0.04 na medida N1 (matriz de distância diferente)
+- As medidas F1–F4 têm diferença < 0.01
 
-- As medidas F1–F4 (que dominam o fitness por serem mais baratas e
-  frequentemente mais informativas) têm diferença < 0.01.
-- A curva Oracle é robusta: a diferença no fitness individual não altera
-  significativamente a ordenação dos indivíduos no NSGA-II.
-- Para reprodutibilidade estrita bit-a-bit, usar `jobs=1` (o `jobs>1` com
-  ThreadPool pode introduzir variabilidade no agendamento, embora os
-  resultados sejam deterministicamente idênticos com mesmo seed).
+Se o fitness muda, a seleção NSGA-II pode escolher bags diferentes, produzindo
+pools não-idênticos e, consequentemente, valores de Oracle_N potencialmente
+diferentes.
 
 **Recomendação**: rodar a primeira execução completa com `jobs=4` (3 horas).
 Se auditoria bit-a-bit for necessária, re-executar um subset com `jobs=1`.

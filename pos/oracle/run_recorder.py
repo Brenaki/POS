@@ -23,6 +23,7 @@ from pos.oracle.pool_evaluation import evaluate_pool
 from pos.oracle.resume_helpers import completed_folds, load_existing_summary
 from pos.oracle.run_helpers import (
     build_fold_manifest,
+    build_pool_bagging,
     build_pool_ga,
     build_pool_rf,
     build_summary_row,
@@ -53,6 +54,8 @@ def _run_fold(X_tr, y_tr, X_val, y_val, X_test, y_test, mode, M, nr_gen, rs, job
         pool = build_pool_ga(X_tr, y_tr, X_val, y_val, nr_gen, rs, jobs=jobs)
     elif mode == "rf":
         pool = build_pool_rf(X_tr, y_tr, M, rs)
+    elif mode == "bagging":
+        pool = build_pool_bagging(X_tr, y_tr, M, rs)
     else:
         return None, None
     if len(pool) == 0:

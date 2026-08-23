@@ -67,7 +67,7 @@ def main():
     g.add_argument("--resume", type=str, metavar="DIR",
                    help="resume an interrupted run in this output directory")
     p.add_argument("--mode", type=str, default="ga,rf",
-                   help="comma-separated modes: ga,rf,both (default: ga,rf)")
+                    help="comma-separated modes: ga,rf,bagging (default: ga,rf)")
     p.add_argument("--M", type=int, default=100, help="pool size for RF mode (default: 100)")
     p.add_argument("--jobs", type=int, default=1,
                    help="DEAP parallel jobs for GA mode (default: 1 — safest for low-core CPUs)")

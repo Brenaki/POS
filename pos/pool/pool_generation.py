@@ -7,6 +7,8 @@ sequencia methods live here. All GA-operation methods come from the mixins.
 
 from __future__ import annotations
 
+import random
+
 from deap import base, creator, tools
 
 from pos.pool.bag_generator import generate_bags as _generate_bags, build_bags as _build_bags
@@ -45,6 +47,7 @@ class poolGeneration(
         group=["overlapping", "neighborhood"],
         types=None,
         jobs=8,
+        random_state=None,
     ):
         self.method_disperse = method_disperse
         self.fit_value1 = fit_value[0]
@@ -67,9 +70,6 @@ class poolGeneration(
         self.base_name = "Base1"
         self.tem2 = []
         self.acc_temp = 0
-        # Stop-criteria state (must be initialized here so save_bags() does
-        # not crash when no generation improves over the initial 0 — a
-        # pre-existing latent bug exposed once the DEAP loop actually runs).
         self.pop_temp: list = []
         self.bags_temp: dict = {}
         self.gen_temp: int = 0
@@ -82,9 +82,11 @@ class poolGeneration(
         self.pool_classificators = []
         self.group = group
         self.types = types
+        self.random_state = random_state
 
     def generate_bags(self, X_train, y_train):
-        return _generate_bags(X_train, y_train, self.nr_bags, self.tam_bags)
+        return _generate_bags(X_train, y_train, self.nr_bags, self.tam_bags,
+                               random_state=self.random_state)
 
     def build_bags(self, indx_bag):
         return _build_bags(indx_bag, self.X_train, self.y_train)
@@ -108,6 +110,11 @@ class poolGeneration(
         self.X_val = X_val
         self.y_val = y_val
         self.iteration = iteration
+        if self.random_state is not None:
+            random.seed(self.random_state)
+            if isinstance(self.random_state, int):
+                import numpy as _np
+                _np.random.seed(self.random_state)
         if self.types is None:
             self.types = _get_best_types(X_train, y_train, self.tam_bags, self.group)
         for t in range(0, self.iteration):

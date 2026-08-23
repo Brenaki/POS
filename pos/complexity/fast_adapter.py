@@ -22,10 +22,30 @@ def complexity_data3(
     group: List[str],
     types: Optional[List[str]] = None,
 ) -> List[float]:
-    """Compute complexity measures for the given groups (KD-tree accelerated)."""
+    """Compute complexity measures for the given groups (KD-tree accelerated).
+
+    When types is None: compute ALL measures in each group (legacy mode).
+    When types is a list: types[i] is the single measure name for group[i]
+    (one-to-one correspondence, matching ECoL R behavior). Returns one scalar
+    per group element.
+    """
     X = np.asarray(X_data, dtype=float)
     y = np.asarray(y_data)
     result: list = []
+
+    if types is not None:
+        for i, grp in enumerate(group):
+            m_name = types[i] if i < len(types) else None
+            if m_name is None:
+                result.append(0.0)
+                continue
+            if grp == "overlapping":
+                result.append(overlapping_measures(X, y, m_name))
+            elif grp == "neighborhood":
+                result.append(neighborhood_measure_fast(X, y, m_name))
+            else:
+                result.append(0.0)
+        return result
 
     for grp in group:
         for m_name in GROUP_MEASURES.get(grp, []):

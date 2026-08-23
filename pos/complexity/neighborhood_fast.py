@@ -1,9 +1,6 @@
 """KD-tree-based neighborhood measures — O(n·k·log n) instead of O(n²).
 
-Exact for N2, kDN, LSC (only need k-NN queries).
-Approximate for N1 (kNN-graph MST instead of complete-graph MST).
-
-Replaces dist_matrix() + neighborhood_measure() in the hot path.
+Exact for N2, kDN, LSC, T1. Approximate for N1 (kNN-graph MST).
 """
 
 from __future__ import annotations
@@ -20,7 +17,6 @@ warnings.filterwarnings("ignore", category=SparseEfficiencyWarning)
 
 
 def _normalize(X: np.ndarray) -> np.ndarray:
-    """Gower-equivalent normalization: divide each feature by its range."""
     X = X.astype(float)
     ranges = np.ptp(X, axis=0)
     ranges[ranges == 0] = 1.0
@@ -28,7 +24,6 @@ def _normalize(X: np.ndarray) -> np.ndarray:
 
 
 def _n1_fast(Xn: np.ndarray, y: np.ndarray, k: int = 10) -> float:
-    """N1 via kNN-graph MST — O(n·k·log n) instead of O(n²)."""
     n = len(y)
     k = min(k, n - 1)
     tree = KDTree(Xn, metric="manhattan")
@@ -63,7 +58,6 @@ def _n1_fast(Xn: np.ndarray, y: np.ndarray, k: int = 10) -> float:
 
 
 def _n2_fast(Xn: np.ndarray, y: np.ndarray) -> float:
-    """N2 — 1-NN same-class vs 1-NN different-class. Exact via KDTree."""
     n = len(y)
     classes = np.unique(y)
     N2 = np.zeros(n)
@@ -94,7 +88,6 @@ def _n2_fast(Xn: np.ndarray, y: np.ndarray) -> float:
 
 
 def _kdn_fast(Xn: np.ndarray, y: np.ndarray, k: int = 10) -> float:
-    """kDN — fraction of k-NN with different label. Exact via KDTree."""
     n = len(y)
     k = min(k + 1, n)
     tree = KDTree(Xn, metric="manhattan")
@@ -106,13 +99,6 @@ def _kdn_fast(Xn: np.ndarray, y: np.ndarray, k: int = 10) -> float:
 
 
 def _lsc_fast(Xn: np.ndarray, y: np.ndarray) -> float:
-    """LSC — local set cardinality via 1-NN enemy. Exact via KDTree.
-
-    For each point i, LSC = (#same-class neighbors closer than nearest enemy)
-    / class_size. Uses enemy KDTree for nearest-enemy distance, then
-    radius_neighbors_count to count same-class neighbors within that
-    radius — O(n·log n) with no large-k query.
-    """
     n = len(y)
     classes, counts = np.unique(y, return_counts=True)
     class_counts = dict(zip(classes, counts))
@@ -134,6 +120,17 @@ def _lsc_fast(Xn: np.ndarray, y: np.ndarray) -> float:
     return float(np.nanmean(1 - LSC))
 
 
+def _t1_fast(Xn: np.ndarray, y: np.ndarray) -> float:
+    """T1 = 1-NN leave-one-out error rate (ECoL N3)."""
+    n = len(y)
+    k = min(2, n)
+    tree = KDTree(Xn, metric="manhattan")
+    _, indices = tree.query(Xn, k=k)
+    nn_indices = indices[:, 1] if k > 1 else indices[:, 0]
+    errors = np.sum(y[nn_indices] != y)
+    return float(errors / n)
+
+
 def neighborhood_measure_fast(
     X: np.ndarray, y: np.ndarray, m_name: str
 ) -> float:
@@ -148,4 +145,6 @@ def neighborhood_measure_fast(
         return _kdn_fast(Xn, y)
     if m_name == "LSC":
         return _lsc_fast(Xn, y)
+    if m_name == "T1":
+        return _t1_fast(Xn, y)
     return 0.0
