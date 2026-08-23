@@ -44,23 +44,45 @@ def _t1_fast(Xn: np.ndarray, y: np.ndarray) -> float:
     if n < 2 or len(classes) < 2:
         return 0.0
 
-    # Step 1: nearest enemy distance for each point
+    # One KD-tree per class, reused for both steps below (ADR 0015).
+    idx_of = {c: np.where(y == c)[0] for c in classes}
+    trees = {c: KDTree(Xn[idx_of[c]], metric="manhattan") for c in classes}
+
+    # Step 1: nearest enemy distance = min over the other classes' trees.
     enemy_dist = np.full(n, np.inf)
     for c in classes:
-        mask_c = y == c
-        if not (~mask_c).any():
-            continue
-        tree_diff = KDTree(Xn[~mask_c], metric="manhattan")
-        d, _ = tree_diff.query(Xn[mask_c], k=1)
-        enemy_dist[mask_c] = d[:, 0]
+        idx_c = idx_of[c]
+        for other in classes:
+            if other == c:
+                continue
+            d = trees[other].query(Xn[idx_c], k=1)[0][:, 0]
+            enemy_dist[idx_c] = np.minimum(enemy_dist[idx_c], d)
 
     # Step 2: radius = enemy_dist / 2 (simplified radios)
     radii = enemy_dist / 2.0
     radii[~np.isfinite(radii)] = 0.0
 
-    # Step 3: adherence sets, one batched KDTree call
-    tree_all = KDTree(Xn, metric="manhattan")
-    neighbors = tree_all.query_radius(Xn, r=radii)
+    # Step 3: adherence sets.
+    # For r_i > 0 every point within r_i is necessarily same-class: an enemy
+    # sits at d >= 2*r_i, so d <= r_i would force r_i <= 0. Querying the
+    # point's own class tree is therefore exact and searches ~n/k points
+    # instead of n. r_i == 0 is the one exception (a duplicate carrying a
+    # different label sits at distance 0), so those fall back to a full tree.
+    neighbors = np.empty(n, dtype=object)
+    zero = radii <= 0.0
+    for c in classes:
+        idx_c = idx_of[c]
+        sel = idx_c[~zero[idx_c]]
+        if not len(sel):
+            continue
+        res = trees[c].query_radius(Xn[sel], r=radii[sel])
+        for pos, i in enumerate(sel):
+            neighbors[i] = idx_c[res[pos]]
+    if zero.any():
+        sel = np.where(zero)[0]
+        res = KDTree(Xn, metric="manhattan").query_radius(Xn[sel], r=radii[sel])
+        for pos, i in enumerate(sel):
+            neighbors[i] = res[pos]
 
     return _greedy_cover_fraction(neighbors, n)
 

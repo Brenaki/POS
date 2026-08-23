@@ -36,8 +36,14 @@ def generate_bags(
     return bags
 
 
-def build_bags(indx_bag: List[int], X_train: np.ndarray, y_train: np.ndarray) -> Tuple[list, list]:
-    """Reconstruct (X_data, y_data) for a bag given its instance indices."""
-    X_data = [X_train[int(i)] for i in indx_bag]
-    y_data = [y_train[int(i)] for i in indx_bag]
-    return X_data, y_data
+def build_bags(
+    indx_bag: List[int], X_train: np.ndarray, y_train: np.ndarray
+) -> Tuple[np.ndarray, np.ndarray]:
+    """Reconstruct (X_data, y_data) for a bag given its instance indices.
+
+    Vectorised in ADR 0015: the old list comprehension built a Python list of
+    row views that every consumer immediately re-materialised with
+    `np.asarray`. Fancy indexing produces the identical values in one step.
+    """
+    idx = np.asarray(indx_bag, dtype=int)
+    return X_train[idx], y_train[idx]

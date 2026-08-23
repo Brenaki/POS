@@ -100,6 +100,12 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
       (2.500 amostras: 154,6 s → 0,15 s), split de validação estratificado,
       artefatos por modo, `gen_temp` real, `random_state` no pool final,
       `--mode` default `ga,bagging,rf`, `--smoke` com 3 gerações
+- [x] ADR 0015 — otimizações **exatas** (bit-idênticas) + Perceptron da tese:
+      `diversitys` vetorizado (8.877x), memoização da avaliação de bags (metade
+      do trabalho por geração era recomputação de sobreviventes), T1 com árvores
+      por classe, `voting_classifier` sob demanda, `dispersion*` vetorizadas,
+      Perceptron linear corrigido e adotado como base do GA, `--jobs` = núcleos-1.
+      Magic: 8,05 h → 0,71 h
 - [ ] Validar `T1_fast` contra ECoL/R em bags congelados (ranking dos bags)
 - [ ] Decidir formalmente: `GA-F1/T1` vs PGDCS completo (`get_best_types` reativado)
 - [ ] Rodar `--full` científico e versionar `results/`
@@ -120,6 +126,7 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
 - `docs/adr/0012-p0-fixes-reproducibility-types-ecol.md` — correções P0: reprodutibilidade GA, tipos de medidas, definições ECoL
 - `docs/adr/0013-t1-hyperspheres-maxdistance-fix.md` — T1=Fraction of Hyper-spheres (N5), maxdistance/Gdisp fix
 - `docs/adr/0014-offspring-fitness-and-protocol-gates.md` — fitness da prole após a 1ª geração, portões de protocolo (Ecoli/Glass), T1 escalável
+- `docs/adr/0015-performance-exact-optimizations.md` — otimizações exatas, Perceptron linear da tese como base do GA, paralelismo por padrão
 
 ## Notes
 

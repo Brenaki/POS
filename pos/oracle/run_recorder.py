@@ -51,10 +51,12 @@ def _build_manifest(config: dict[str, Any], repo_dir: Path) -> dict[str, Any]:
     }
 
 
-def _run_fold(X_tr, y_tr, X_val, y_val, X_test, y_test, mode, M, nr_gen, rs, jobs=1):
+def _run_fold(X_tr, y_tr, X_val, y_val, X_test, y_test, mode, M, nr_gen, rs,
+              jobs=1, base_classifier="perc"):
     """Build pool and evaluate. Returns (metrics, pool) or (None, None)."""
     if mode == "ga":
-        pool = build_pool_ga(X_tr, y_tr, X_val, y_val, nr_gen, rs, jobs=jobs)
+        pool = build_pool_ga(X_tr, y_tr, X_val, y_val, nr_gen, rs, jobs=jobs,
+                             classifier=base_classifier)
     elif mode == "rf":
         pool = build_pool_rf(X_tr, y_tr, M, rs)
     elif mode == "bagging":
@@ -85,6 +87,7 @@ def record_run(config: dict[str, Any], output_dir: Path | str,
     modes: list[str] = config["modes"]
     M: int = config.get("M", 100)
     jobs: int = config.get("jobs", 1)
+    base_classifier: str = config.get("base_classifier", "perc")
     dataset_dir = Path(config.get("dataset_dir", repo_dir / "Dataset"))
 
     manifest = _build_manifest(config, repo_dir)
@@ -118,7 +121,8 @@ def record_run(config: dict[str, Any], output_dir: Path | str,
                     continue
                 try:
                     metrics, pool = _run_fold(X_tr, y_tr, X_val, y_val, X_test, y_test,
-                                              mode, M, nr_generation, random_state, jobs=jobs)
+                                              mode, M, nr_generation, random_state,
+                                              jobs=jobs, base_classifier=base_classifier)
                 except Exception as exc:
                     print(f"[error] {ds_name} fold={fold_idx} mode={mode}: {type(exc).__name__}: {exc}")
                     manifest.setdefault("errors", []).append({

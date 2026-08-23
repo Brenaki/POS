@@ -63,7 +63,15 @@ documentado à parte.
 ### 3.1. Modo `ga` (pool via algoritmo genético)
 
 - `poolGeneration.generate() → get_pool()` (tese original, ADR 0008).
-- `classifier="tree"` → `DecisionTreeClassifier` em bags gerados pelo GA.
+- `classifier="perc"` → **Perceptron linear** em bags gerados pelo GA.
+  É o classificador-base da tese (Monteiro et al. 2022, seç. 5) e está
+  nomeado no Objetivo 4 do SubProjeto. Até o ADR 0015 o código usava
+  `DecisionTreeClassifier` e o caminho `perc` estava quebrado.
+  `--base-classifier tree` mantém a variante com árvore.
+- **Limitação a reportar**: o Perceptron não expõe `predict_proba`, logo a
+  *média das probabilidades preditas* (Objetivo 6) **não é definida** para o
+  pool GA-Perceptron — `mean_probs` fica `None`. A comparação continua
+  disponível nos modos `rf` e `bagging`.
 - `types=["F1", "T1"]` hard-coded (bypassa `get_best_types`, que chamaria
   pyhard 100×12 = caro — ver `pos/pool/complexity_voter.py`).
 - **F1** = Maximum Fisher's Discriminant Ratio (ECoL dataset-level)
@@ -153,6 +161,10 @@ no mesmo diretório de fold, e só o último sobrevivia em disco.
 | `--smoke` | Wine, Banana, Vehicle | 3 | 3 | ga + bagging + rf | validar fluxo |
 | `--full` | 31 listadas, 29 elegíveis | 10 | 20 | ga + bagging + rf | execução científica |
 
+`--jobs` usa por padrão `nº de núcleos - 1` (ADR 0015). Isso é seguro para
+reprodutibilidade porque cada bag carrega semente própria
+(`random_state + posição`), independente da ordem de execução.
+
 `--mode` default = `ga,bagging,rf`. Bagging entrou justamente como baseline
 controlado (ADR 0012), então faz parte da configuração oficial.
 
@@ -162,6 +174,21 @@ reprodução: manifest, arquivos, monotonicidade da curva Oracle,
 smoke usa `nr_generation=3` e não 1: com uma única geração o GA nunca executa
 o caminho de avaliação de prole a partir da segunda geração, que foi
 exatamente onde estava o bug P0 mais grave do projeto.
+
+### 7.1. Conjunto de bases vs. a tese (ADR 0015)
+
+A Tabela 1 da tese usa **28 bases**, que são exatamente o nosso
+`FULL_DATASETS` menos `{Ecoli, Glass, Magic}` (o `Adult.arff` corresponde ao
+"Australian" da tabela: 690 × 14 × 2).
+
+- **Ecoli** e **Glass** são reprovadas pelo portão de elegibilidade do
+  ADR 0014 (classe minoritária < 10 folds).
+- **Magic** (19.020 instâncias) foi **mantida deliberadamente** como base
+  extra de escalabilidade. Ela está fora do conjunto de comparação direta
+  com o paper, e isso deve ser explicitado no relatório.
+
+Ou seja: as 28 bases da tese estão todas cobertas, e Magic é um acréscimo
+nosso, não uma substituição.
 
 ## 8. Foco científico — Oracle_1..5
 

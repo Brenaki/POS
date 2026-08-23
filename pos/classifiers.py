@@ -25,17 +25,24 @@ def biuld_classifier(
     X_test: Optional[np.ndarray] = None,
     y_test: Optional[np.ndarray] = None,
     score_train: bool = False,
+    random_state: Optional[int] = None,
 ):
     """Build a Perceptron and return (estimator, score[, score2,] predict).
 
-    KNOWN BUG (preserved): `X_test != None` raises ValueError when X_test is
-    a numpy array. Use `biuld_classifier_tree` for the array-X_test path, or
-    pass X_test=None to get the (estimator, score) return.
+    The linear Perceptron is the base classifier of the reference thesis
+    (Monteiro et al. 2022, sec. 5) and is named explicitly in the subproject's
+    Objective 4, so this path has to actually work.
+
+    Fixed in ADR 0015: the legacy `X_test != None` raised
+    `ValueError: The truth value of an array ... is ambiguous` for every numpy
+    X_test, which made `classifier="perc"` unusable. `n_jobs=4` was also
+    dropped — the GA already parallelises over bags, so the nested pool only
+    added contention. `random_state` is now honoured (Perceptron shuffles).
     """
-    perc = Perceptron(n_jobs=4, max_iter=100, tol=1.0)
+    perc = Perceptron(max_iter=100, tol=1.0, random_state=random_state)
     perc.fit(X_train, y_train)
     score = perc.score(X_val, y_val)
-    if X_test != None and y_test != None and score_train == False:  # noqa: E711 — legacy bug
+    if X_test is not None and y_test is not None and score_train == False:
         predict = perc.predict(X_test)
         return perc, score, predict
     elif score_train:

@@ -80,6 +80,7 @@ class poolGeneration(
         self.c = []
         self.bags_saved = []
         self.pool_classificators = []
+        self._eval_cache: dict = {}
         self.group = group
         self.types = types
         self.random_state = random_state
@@ -125,6 +126,9 @@ class poolGeneration(
             self.repetition = t
             self.generation = 0
             self.bags = self.generate_bags(self.X_train, self.y_train)
+            # bag names restart at 0 each iteration — the cache must not
+            # survive across iterations (ADR 0015)
+            self._eval_cache = {}
             creator.create("FitnessMult", base.Fitness,
                            weights=(self.fit_value1, self.fit_value2, self.fit_value3))
             creator.create("Individual", list, fitness=creator.FitnessMult)

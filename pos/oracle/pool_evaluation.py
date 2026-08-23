@@ -13,8 +13,8 @@ from __future__ import annotations
 from typing import Any
 
 import numpy as np
-from deslib.util import diversity
 
+from pos.diversity import double_fault_matrix
 from pos.oracle.comparison import majority_vote_accuracy, mean_probs_accuracy
 from pos.oracle.correctness_matrix import build_correctness_matrix
 from pos.oracle.oracle_curve import oracle_curve_array
@@ -25,14 +25,12 @@ def _double_fault_matrix(y: np.ndarray, preds: np.ndarray) -> np.ndarray:
 
     preds has shape (M, n_samples). Entry [i, j] = fraction of samples
     where both clf_i and clf_j are wrong.
+
+    Vectorised in ADR 0015 — this ran M*(M-1)/2 = 4950 calls into deslib's
+    per-sample Python loop for every fold of every mode.
     """
-    M = preds.shape[0]
-    dfm = np.zeros((M, M), dtype=float)
-    for i in range(M):
-        for j in range(i + 1, M):
-            df = diversity.double_fault(y, preds[i], preds[j])
-            dfm[i, j] = df
-            dfm[j, i] = df
+    dfm = double_fault_matrix(y, preds)
+    np.fill_diagonal(dfm, 0.0)
     return dfm
 
 

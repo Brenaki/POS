@@ -32,8 +32,13 @@ class PoolBuilderMixin:
                 y_bag = bag[1]
                 pool.append(tree.fit(X_bag, y_bag))
         else:
-            for bag in bags:
-                percP = Perceptron(tol=1.0)
+            # Must match biuld_classifier's Perceptron exactly: the final pool
+            # was being built with different hyperparameters (no max_iter, no
+            # seed) than the one the GA scored during fitness (ADR 0015).
+            for i, bag in enumerate(bags):
+                rs_i = (self.random_state + i
+                        if isinstance(self.random_state, int) else None)
+                percP = Perceptron(max_iter=100, tol=1.0, random_state=rs_i)
                 X_bag = bag[0]
                 y_bag = bag[1]
                 pool.append(percP.fit(X_bag, y_bag))

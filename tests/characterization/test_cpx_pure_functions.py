@@ -175,23 +175,36 @@ class TestVotingClassifier:
 # ---------------------------------------------------------------------------
 
 class TestBiuldClassifier:
-    def test_perceptron_with_xtest_array_raises_valueerror(self, wine_split):
-        # KNOWN BUG: `biuld_classifier` uses `X_test != None` which, for a
-        # numpy array, raises "truth value of an array is ambiguous". This
-        # means the Perceptron path is BROKEN whenever X_test is passed as an
-        # array (which is what pool_generation.parallel_distance2 does when
-        # classifier="perc"). Preserved during Fase 2; fix is a separate ADR.
-        X_tr, y_tr = wine_split["X_train"], wine_split["y_train"]
-        X_val, y_val = wine_split["X_valid"], wine_split["y_valid"]
-        with pytest.raises(ValueError, match="ambiguous"):
-            Cpx.biuld_classifier(X_tr, y_tr, X_tr, y_tr, X_val, y_val)
+    def test_perceptron_with_xtest_array_returns_predictions(self, wine_split):
+        """ADR 0015 fixed the legacy `X_test != None` array-truthiness bug.
 
-    def test_perceptron_score_train_with_xtest_array_also_raises(self, wine_split):
-        # Same root bug affects the score_train=True branch.
+        This test previously pinned the bug (it asserted ValueError). The
+        Perceptron is the thesis's base classifier and the GA's default, so
+        the path has to work with array X_test.
+        """
+        from sklearn.linear_model import Perceptron
+
         X_tr, y_tr = wine_split["X_train"], wine_split["y_train"]
         X_val, y_val = wine_split["X_valid"], wine_split["y_valid"]
-        with pytest.raises(ValueError, match="ambiguous"):
-            Cpx.biuld_classifier(X_tr, y_tr, X_tr, y_tr, X_val, y_val, score_train=True)
+        est, score, pred = Cpx.biuld_classifier(X_tr, y_tr, X_tr, y_tr, X_val, y_val)
+        assert isinstance(est, Perceptron)
+        assert 0.0 <= score <= 1.0
+        assert len(pred) == len(y_val)
+
+    def test_perceptron_score_train_branch_works(self, wine_split):
+        X_tr, y_tr = wine_split["X_train"], wine_split["y_train"]
+        X_val, y_val = wine_split["X_valid"], wine_split["y_valid"]
+        est, score, score2, pred = Cpx.biuld_classifier(
+            X_tr, y_tr, X_tr, y_tr, X_val, y_val, score_train=True)
+        assert 0.0 <= score <= 1.0 and 0.0 <= score2 <= 1.0
+        assert len(pred) == len(y_val)
+
+    def test_perceptron_random_state_is_reproducible(self, wine_split):
+        X_tr, y_tr = wine_split["X_train"], wine_split["y_train"]
+        X_val, y_val = wine_split["X_valid"], wine_split["y_valid"]
+        a = Cpx.biuld_classifier(X_tr, y_tr, X_tr, y_tr, X_val, y_val, random_state=7)[2]
+        b = Cpx.biuld_classifier(X_tr, y_tr, X_tr, y_tr, X_val, y_val, random_state=7)[2]
+        assert (a == b).all()
 
     def test_tree_returns_estimator_score_predict(self, wine_split):
         X_tr, y_tr = wine_split["X_train"], wine_split["y_train"]

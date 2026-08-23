@@ -49,11 +49,17 @@ def indices_hash(idx: np.ndarray) -> str:
     return "sha256:" + hashlib.sha256(idx.tobytes()).hexdigest()[:16]
 
 
-def build_pool_ga(X_train, y_train, X_val, y_val, nr_generation, random_state, jobs=1):
-    """Build a pool via poolGeneration GA (legacy API). jobs=1 = serial."""
+def build_pool_ga(X_train, y_train, X_val, y_val, nr_generation, random_state,
+                  jobs=1, classifier="perc"):
+    """Build a pool via poolGeneration GA (legacy API). jobs=1 = serial.
+
+    `classifier` defaults to the linear Perceptron used by the reference
+    thesis (Monteiro et al. 2022, sec. 5) and named in the subproject's
+    Objective 4. Pass "tree" for the DecisionTree variant (ADR 0015).
+    """
     from pool_generation import poolGeneration
 
-    pg = poolGeneration(nr_generation=nr_generation, iteration=1, classifier="tree",
+    pg = poolGeneration(nr_generation=nr_generation, iteration=1, classifier=classifier,
                        types=["F1", "T1"], jobs=jobs, random_state=random_state)
     pg.generate(X_train, y_train, X_val, y_val, iteration=1)
     return pg.get_pool()

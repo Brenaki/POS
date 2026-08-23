@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -38,6 +39,11 @@ FULL_DATASETS = [
 ]
 
 
+def default_jobs() -> int:
+    """Leave one core free so the machine stays usable (ADR 0015)."""
+    return max(1, (os.cpu_count() or 2) - 1)
+
+
 def build_config(args) -> dict:
     if args.config:
         return json.loads(Path(args.config).read_text())
@@ -45,13 +51,13 @@ def build_config(args) -> dict:
         return {
             "datasets": SMOKE_DATASETS, "n_folds": 3, "nr_generation": 3,
             "random_state": 42, "modes": args.mode.split(","),
-            "M": args.M, "jobs": args.jobs,
+            "M": args.M, "jobs": args.jobs, "base_classifier": args.base_classifier,
         }
     if args.full:
         return {
             "datasets": FULL_DATASETS, "n_folds": 10, "nr_generation": 20,
             "random_state": 42, "modes": args.mode.split(","),
-            "M": args.M, "jobs": args.jobs,
+            "M": args.M, "jobs": args.jobs, "base_classifier": args.base_classifier,
         }
     raise SystemExit("Must pass one of --smoke / --full / --config")
 
@@ -73,8 +79,12 @@ def main():
     p.add_argument("--mode", type=str, default="ga,bagging,rf",
                     help="comma-separated modes: ga,bagging,rf (default: all three)")
     p.add_argument("--M", type=int, default=100, help="pool size for RF mode (default: 100)")
-    p.add_argument("--jobs", type=int, default=1,
-                   help="DEAP parallel jobs for GA mode (default: 1 — safest for low-core CPUs)")
+    p.add_argument("--jobs", type=int, default=default_jobs(),
+                   help=f"parallel bag evaluations in GA mode (default: {default_jobs()} "
+                        "= cores-1; per-bag seeds make this reproducible)")
+    p.add_argument("--base-classifier", type=str, default="perc", choices=["perc", "tree"],
+                   help="GA base learner: 'perc' = linear Perceptron (thesis sec. 5, "
+                        "default), 'tree' = DecisionTree")
     p.add_argument("--output", type=str, default=None,
                    help="output root (default: results/experiments/)")
     p.add_argument("--dry-run", action="store_true", help="print manifest, do not run")

@@ -36,7 +36,7 @@ def _build_pool(X_train, y_train, X_val, y_val, nr_generation: int,
     pg = poolGeneration(
         nr_generation=nr_generation,
         iteration=1,
-        classifier="tree",
+        classifier="perc",  # linear Perceptron — thesis sec. 5 (ADR 0015)
         types=["F1", "T1"],  # skip get_best_types (pyhard expensive)
         random_state=random_state,
     )
@@ -99,7 +99,12 @@ def run_experiment(
         fold_curves.append(oracle_curve_array(matrix))
         fold_M.append(matrix.shape[1])
         fold_majority.append(majority_vote_accuracy(pool, X_test, y_test))
-        fold_mean_probs.append(mean_probs_accuracy(pool, X_test, y_test))
+        # A Perceptron pool has no predict_proba, so mean-of-probabilities is
+        # undefined for it. Mirrors the guard in evaluate_pool (ADR 0015).
+        try:
+            fold_mean_probs.append(mean_probs_accuracy(pool, X_test, y_test))
+        except (AttributeError, ValueError):
+            pass
 
     # Pad curves to same length (in case M differs; it shouldn't with same config)
     max_M = max(fold_M) if fold_M else 0
@@ -114,7 +119,7 @@ def run_experiment(
         "oracle_curve_std": np.nanstd(padded, axis=0).tolist(),
         "majority_vote_mean": float(np.mean(fold_majority)),
         "majority_vote_std": float(np.std(fold_majority)),
-        "mean_probs_mean": float(np.mean(fold_mean_probs)),
-        "mean_probs_std": float(np.std(fold_mean_probs)),
+        "mean_probs_mean": float(np.mean(fold_mean_probs)) if fold_mean_probs else None,
+        "mean_probs_std": float(np.std(fold_mean_probs)) if fold_mean_probs else None,
         "n_classifiers": int(max_M),
     }
