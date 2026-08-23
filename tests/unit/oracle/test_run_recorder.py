@@ -72,7 +72,7 @@ def test_record_run_rf_only_produces_manifests(tmp_path):
         assert fm["oracle_curve"][0] >= fm["majority_vote"]
 
     # correctness_matrix.npy (gitignored but exists on disk)
-    cm = np.load(out_dir / "Wine" / "fold_0" / "correctness_matrix.npy")
+    cm = np.load(out_dir / "Wine" / "fold_0" / "correctness_matrix_rf.npy")
     assert cm.shape[1] == 5  # M = 5
 
 

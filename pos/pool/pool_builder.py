@@ -24,8 +24,10 @@ class PoolBuilderMixin:
         bags = self.get_bags()
         pool = []
         if self.classifier == "tree":
-            for bag in bags:
-                tree = DecisionTreeClassifier()
+            for i, bag in enumerate(bags):
+                rs_i = (self.random_state + i
+                        if isinstance(self.random_state, int) else None)
+                tree = DecisionTreeClassifier(random_state=rs_i)
                 X_bag = bag[0]
                 y_bag = bag[1]
                 pool.append(tree.fit(X_bag, y_bag))

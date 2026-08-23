@@ -30,10 +30,33 @@
 - **Split interno treino/validação** (para `poolGeneration.generate()`, que
   precisa de `X_val`/`y_val` para avaliar fitness):
   - Do treino do fold, 20% é reservado para validação via
-    `np.random.default_rng(random_state + fold_idx).choice(...)`.
+    `pos.oracle.fold_splitter.stratified_val_split()`, que usa
+    `train_test_split(..., stratify=y_train)`.
   - Semente `random_state + fold_idx` = 42+i — determinística e independente
     por fold.
+  - **Estratificado desde o ADR 0014.** Antes era `rng.choice(...)` puro, o
+    que em bases desbalanceadas (Thyroid 12.1, Faults 12.2) podia entregar ao
+    GA uma validação com classes ausentes.
 - **Métricas reportadas**: média ± desvio sobre os 10 folds.
+
+### 2.1. Elegibilidade da base (ADR 0014)
+
+Antes de rodar, cada base passa por `check_dataset_viability()`:
+
+1. `min_class_count >= n_folds` — sem isso o `StratifiedKFold` não coloca a
+   classe mais rara em todos os folds.
+2. Para o modo `ga`, a classe mais rara precisa sobreviver à cadeia
+   k-fold → validação → bag com **≥ 2 instâncias** (exigência de
+   `GeneticOperatorsMixin.verify_bag`).
+
+Bases reprovadas são **puladas explicitamente** e registradas em
+`run_manifest.json` sob `skipped_datasets` (com o motivo). Elas não são
+removidas de `FULL_DATASETS`, para que a exclusão fique auditável.
+
+Com o catálogo atual, **Ecoli** (2 instâncias na menor classe) e **Glass**
+(9 < 10 folds) são reprovadas: o protocolo científico roda com **29 das 31
+bases**. Rodá-las exigiria outro protocolo (menos folds ou `tam_bags` maior),
+documentado à parte.
 
 ## 3. Pool de classificadores — três modos
 
@@ -47,10 +70,16 @@
 - **T1** = Fraction of Hyper-spheres Covering Data (ECoL N5)
 - `random_state` propagado para `random.seed()`, `np.random.seed()`,
   `train_test_split` e `DecisionTreeClassifier(random_state=rs+i)`.
-- `nr_generation`: controla gerações do GA. Smoke test usa 1 (degenerado,
-  valida fluxo); execução científica usa ≥20.
+- `nr_generation`: controla gerações do GA. Smoke test usa 3 (mínimo para
+  exercitar a avaliação de prole além da 1ª geração — ADR 0014); execução
+  científica usa 20.
 - **Gdisp**: `maxdistance` agora seleciona a geração com maior dispersão
-  global (matriz Nx3 de fitness), não a última geração (ADR 0013).
+  global (matriz Nx3 de fitness), não a última geração (ADR 0013). A geração
+  registrada em `gen_temp` é a real desde o ADR 0014.
+- **Escopo**: este é um GA com `types=["F1","T1"]` **fixo**. O estágio do
+  PGDCS que vota as medidas de complexidade mais dispersas
+  (`get_best_types`) existe mas está bypassado, portanto o modo `ga` é uma
+  **variante GA-F1/T1** do PGDCS, não sua reprodução integral. Ver ADR 0014.
 
 ### 3.2. Modo `bagging` (baseline controlado — Bagging)
 
@@ -110,20 +139,29 @@ Ver ADR 0009 para layout completo. Resumo:
 | `summary.csv` | sim | uma linha por (dataset, fold, mode) |
 | `per_dataset_summary.csv` | sim | mean±std por (dataset, mode) |
 | `fold_manifest.json` | sim | seeds, hashes, métricas por fold |
-| `correctness_matrix.npy` | não | (n_test × M) — recuperável via manifest |
-| `predictions.npz` | não | preds + probs por clf — recuperável via manifest |
+| `correctness_matrix_<mode>.npy` | não | (n_test × M) — recuperável via manifest |
+| `predictions_<mode>.npz` | não | preds + probs por clf — recuperável via manifest |
+
+O sufixo `<mode>` foi acrescentado no ADR 0014: sem ele, rodar
+`--mode ga,bagging,rf` fazia cada modo sobrescrever os artefatos do anterior
+no mesmo diretório de fold, e só o último sobrevivia em disco.
 
 ## 7. Configurações de execução
 
 | Profile | Datasets | Folds | `nr_generation` | Modos | Uso |
 |---|---|---|---|---|---|
-| `--smoke` | Wine, Banana, Vehicle | 3 | 1 | ga + rf | validar fluxo |
-| `--full` | 31 | 10 | 20 | ga + rf | execução científica |
+| `--smoke` | Wine, Banana, Vehicle | 3 | 3 | ga + bagging + rf | validar fluxo |
+| `--full` | 31 listadas, 29 elegíveis | 10 | 20 | ga + bagging + rf | execução científica |
 
-Smoke test **não** valida qualidade científica (pool GA degenerado com
-`nr_generation=1`) — apenas o pipeline de reprodução: manifest, arquivos,
-monotonicidade da curva Oracle, `Oracle_1 ≥ majority_vote`, reprodutibilidade
-com seed.
+`--mode` default = `ga,bagging,rf`. Bagging entrou justamente como baseline
+controlado (ADR 0012), então faz parte da configuração oficial.
+
+Smoke test **não** valida qualidade científica — apenas o pipeline de
+reprodução: manifest, arquivos, monotonicidade da curva Oracle,
+`Oracle_1 ≥ majority_vote`, reprodutibilidade com seed. Desde o ADR 0014 o
+smoke usa `nr_generation=3` e não 1: com uma única geração o GA nunca executa
+o caminho de avaliação de prole a partir da segunda geração, que foi
+exatamente onde estava o bug P0 mais grave do projeto.
 
 ## 8. Foco científico — Oracle_1..5
 
@@ -147,4 +185,4 @@ mean probs e (futuro) DCS/DES.
 **Referência experimental**: a tese base (Monteiro et al., 2022) usou 28
 datasets, 20 replicações, pool=100, 20 gerações do GA, 7 métodos de fusão
 (MVR + 6 DCS/DES). Nosso protocolo usa 31 datasets, 10-fold CV (10 folds),
-pool=100, 20 gerações do GA, 2 modos (ga + rf), focando Oracle_1..5.
+pool=100, 20 gerações do GA, 3 modos (ga + bagging + rf), focando Oracle_1..5.

@@ -102,16 +102,21 @@ def per_dataset_summary(summary_df) -> list[dict]:
     return rows
 
 
-def save_fold_artifacts(fold_dir, metrics, pool, X_test, y_test) -> None:
-    """Save correctness_matrix.npy + predictions.npz to fold_dir."""
+def save_fold_artifacts(fold_dir, metrics, pool, X_test, y_test, mode) -> None:
+    """Save correctness_matrix_<mode>.npy + predictions_<mode>.npz to fold_dir.
+
+    The filenames carry the mode: without it, running `--mode ga,bagging,rf`
+    made every mode overwrite the previous one's artifacts in the same fold
+    directory, so only the last mode survived on disk (ADR 0014).
+    """
     fold_dir.mkdir(parents=True, exist_ok=True)
-    np.save(fold_dir / "correctness_matrix.npy", metrics["correctness_matrix"])
+    np.save(fold_dir / f"correctness_matrix_{mode}.npy", metrics["correctness_matrix"])
     preds = np.array([clf.predict(X_test) for clf in pool])
     try:
         probs = np.array([clf.predict_proba(X_test) for clf in pool])
-        np.savez(fold_dir / "predictions.npz", preds=preds, probs=probs, y_test=y_test)
+        np.savez(fold_dir / f"predictions_{mode}.npz", preds=preds, probs=probs, y_test=y_test)
     except (AttributeError, ValueError):
-        np.savez(fold_dir / "predictions.npz", preds=preds, y_test=y_test)
+        np.savez(fold_dir / f"predictions_{mode}.npz", preds=preds, y_test=y_test)
 
 
 def build_fold_manifest(ds_name, fold_idx, mode, metrics, random_state,

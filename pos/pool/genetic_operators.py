@@ -12,6 +12,7 @@ import random
 import numpy as np
 
 from pos.pool.bag_generator import build_bags
+from pos.pool.errors import StratificationError
 
 
 class GeneticOperatorsMixin:
@@ -53,8 +54,10 @@ class GeneticOperatorsMixin:
             individual = self.verify_bag(ind_out1)
             cont = cont + 1
             if cont == 30:
-                print("Stratification error")
-                exit(0)
+                raise StratificationError(
+                    "crossover could not produce a stratified bag after 30 "
+                    f"attempts (tam_bags={self.tam_bags}); the training split "
+                    "is too small or too imbalanced for this protocol")
         ind1[0] = self.name_individual
         ind2[0] = self.name_individual
         self.bags["name"].append(self.name_individual)
@@ -83,8 +86,16 @@ class GeneticOperatorsMixin:
         indx2 = self.bags["name"].index(ind2)
         indx_bag2 = self.bags["inst"][indx2]
         _, y2_data = build_bags(indx_bag2, self.X_train, self.y_train)
+        tries = 0
         while y_data[inst] != y2_data[inst2 - 1]:
             inst = random.randint(0, len(y_data) - 1)
+            tries += 1
+            if tries == 1000:
+                # The donor class is absent from this bag — without a bound
+                # this loop never terminates (ADR 0014).
+                raise StratificationError(
+                    "mutation could not find a same-class instance to swap "
+                    "after 1000 attempts; bag lost a class")
         for i in range(len(indx_bag1)):
             if i == inst:
                 ind_out.append(indx_bag2[i])

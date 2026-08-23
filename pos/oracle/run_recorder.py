@@ -1,7 +1,8 @@
 """Run recorder: persist a reproducible Oracle_N experiment to disk.
 
 Orchestrates 10-fold stratified CV for datasets x pool modes (ga, rf).
-Per fold saves correctness_matrix.npy, predictions.npz, fold_manifest_<mode>.json.
+Per fold saves correctness_matrix_<mode>.npy, predictions_<mode>.npz and
+fold_manifest_<mode>.json.
 Global: run_manifest.json, summary.csv, per_dataset_summary.csv.
 
 ADR 0006 (protocol), ADR 0009 (reproducibility layout).
@@ -14,11 +15,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-import numpy as np
 import pandas as pd
 from sklearn.model_selection import StratifiedKFold
 
 from pos.oracle.arff_loader import load_arff_dataset
+from pos.oracle.fold_splitter import check_dataset_viability, stratified_val_split
 from pos.oracle.pool_evaluation import evaluate_pool
 from pos.oracle.resume_helpers import completed_folds, load_existing_summary
 from pos.oracle.run_helpers import (
@@ -35,6 +36,8 @@ from pos.oracle.run_helpers import (
     python_version,
     save_fold_artifacts,
 )
+
+VAL_FRAC = 0.2
 
 
 def _build_manifest(config: dict[str, Any], repo_dir: Path) -> dict[str, Any]:
@@ -96,18 +99,19 @@ def record_run(config: dict[str, Any], output_dir: Path | str,
             print(f"[skip] {ds_name}: not found at {ds_path}")
             continue
         X, y = load_arff_dataset(ds_path)
+        ok, reason = check_dataset_viability(y, n_folds, modes, val_frac=VAL_FRAC)
+        if not ok:
+            print(f"[skip] {ds_name}: {reason}")
+            manifest.setdefault("skipped_datasets", []).append(
+                {"dataset": ds_name, "reason": reason})
+            continue
         skf = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=random_state)
 
         for fold_idx, (train_idx, test_idx) in enumerate(skf.split(X, y)):
             X_train, X_test = X[train_idx], X[test_idx]
             y_train, y_test = y[train_idx], y[test_idx]
-            n_val = max(1, len(X_train) // 5)
-            rng = np.random.default_rng(random_state + fold_idx)
-            val_idx = rng.choice(len(X_train), size=n_val, replace=False)
-            mask = np.ones(len(X_train), dtype=bool)
-            mask[val_idx] = False
-            X_val, y_val = X_train[~mask], y_train[~mask]
-            X_tr, y_tr = X_train[mask], y_train[mask]
+            X_tr, y_tr, X_val, y_val = stratified_val_split(
+                X_train, y_train, VAL_FRAC, random_state + fold_idx)
 
             for mode in modes:
                 if (ds_name, fold_idx, mode) in done:
@@ -125,7 +129,7 @@ def record_run(config: dict[str, Any], output_dir: Path | str,
                 if metrics is None:
                     continue
                 fold_dir = output_dir / ds_name / f"fold_{fold_idx}"
-                save_fold_artifacts(fold_dir, metrics, pool, X_test, y_test)
+                save_fold_artifacts(fold_dir, metrics, pool, X_test, y_test, mode)
 
                 fm = build_fold_manifest(
                     ds_name, fold_idx, mode, metrics, random_state,

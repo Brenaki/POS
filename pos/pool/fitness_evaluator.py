@@ -77,11 +77,17 @@ class FitnessEvaluatorMixin:
             c, score, pred, pool = self._eval_many(range(len(dist["name"])))
             self.c = c
         elif first_evaluate == False and population is None:
+            # Offspring produced since the last call: names
+            # [name_individual - nr_individual, name_individual).
+            # Resolve each name to its position in self.bags instead of
+            # assuming name == position (the old `range(100, nr_individual+100)`
+            # only happened to be right for generation 1 — see ADR 0014).
             begin = self.name_individual - self.nr_individual
-            for i in range(begin, self.name_individual):
+            names = list(range(begin, self.name_individual))
+            for i in names:
                 dist["name"].append([i])
-            c, score, pred, pool = self._eval_many(
-                range(100, self.nr_individual + 100))
+            indices = [self.bags["name"].index(i) for i in names]
+            c, score, pred, pool = self._eval_many(indices)
             self.c = c
         elif population is not None:
             dist["name"] = population

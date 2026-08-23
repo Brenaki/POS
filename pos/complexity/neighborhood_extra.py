@@ -13,6 +13,8 @@ Algorithm:
 
 from __future__ import annotations
 
+import heapq
+
 import numpy as np
 from sklearn.neighbors import KDTree
 
@@ -56,28 +58,46 @@ def _t1_fast(Xn: np.ndarray, y: np.ndarray) -> float:
     radii = enemy_dist / 2.0
     radii[~np.isfinite(radii)] = 0.0
 
-    # Step 3: build adherence matrix (sparse via KDTree radius_neighbors)
+    # Step 3: adherence sets, one batched KDTree call
     tree_all = KDTree(Xn, metric="manhattan")
+    neighbors = tree_all.query_radius(Xn, r=radii)
+
+    return _greedy_cover_fraction(neighbors, n)
+
+
+def _greedy_cover_fraction(neighbors, n: int) -> float:
+    """Greedy set cover over `neighbors`, returning #spheres / n.
+
+    Lazy (CELF) greedy: marginal coverage is submodular, so a popped
+    candidate whose recomputed key is still <= the next heap key is the true
+    lexicographic maximum. The heap key is `(-gain, index)`, which reproduces
+    the naive loop's tie-break (largest gain, lowest index) exactly while
+    dropping its O(n^3) rescan (ADR 0014).
+    """
     covered = np.zeros(n, dtype=bool)
+    heap = [(-len(neighbors[i]), i) for i in range(n)]
+    heapq.heapify(heap)
+    n_uncovered = n
     n_spheres = 0
 
-    # Greedy set cover: pick sphere covering most uncovered points
-    neighbors = [set(tree_all.query_radius([Xn[i]], r=radii[i])[0]) for i in range(n)]
-
-    while not covered.all():
+    while n_uncovered > 0:
         best_i = -1
-        best_count = -1
-        for i in range(n):
+        while heap:
+            key = heapq.heappop(heap)
+            i = key[1]
             if covered[i]:
                 continue
-            uncovered = neighbors[i] - set(np.where(covered)[0])
-            count = len(uncovered)
-            if count > best_count:
-                best_count = count
+            nb = neighbors[i]
+            gain = int(np.count_nonzero(~covered[nb])) if len(nb) else 0
+            if not heap or (-gain, i) <= heap[0]:
                 best_i = i
+                break
+            heapq.heappush(heap, (-gain, i))
         if best_i < 0:
             break
-        covered[list(neighbors[best_i])] = True
+        nb = neighbors[best_i]
+        n_uncovered -= int(np.count_nonzero(~covered[nb]))
+        covered[nb] = True
         n_spheres += 1
 
     return float(n_spheres / n)

@@ -24,10 +24,10 @@ class TestPoolGenerationEndToEnd:
     def test_generate_get_bags_get_pool_wine(self, wine_split):
         """End-to-end: poolGeneration.generate → get_bags → get_pool on wine.
 
-        Uses DEFAULT pool sizes (nr_bags=nr_individual=nr_pop=nr_child=100)
-        because the legacy fitness_evaluator.get_complexity() has a hardcoded
-        `range(100, nr_individual+100)` that only works with 100 — a known
-        legacy bug to be fixed in a future ADR.
+        Uses DEFAULT pool sizes (nr_bags=nr_individual=nr_pop=nr_child=100).
+        The hardcoded `range(100, nr_individual+100)` in
+        fitness_evaluator.get_complexity() was removed in ADR 0014 — offspring
+        are now resolved by bag name, so this no longer depends on 100.
 
         DEAP generation_function bug (ADR 0007) was fixed in ADR 0008.
         ~270s with pyhard backend, nr_generation=1, iteration=1.
@@ -52,8 +52,9 @@ class TestPoolGenerationEndToEnd:
         assert len(bags) >= 1
         for bag in bags:
             X_bag, y_bag = bag
-            assert X_bag.shape[0] == y_bag.shape[0]
-            assert X_bag.shape[1] == wine_split["X_train"].shape[1]
+            # build_bags returns plain lists, not arrays
+            assert len(X_bag) == len(y_bag)
+            assert len(X_bag[0]) == wine_split["X_train"].shape[1]
 
         assert isinstance(pool, list)
         assert len(pool) == len(bags)

@@ -88,7 +88,21 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
 - [x] `results/datasets/catalog.csv` — 31 datasets (178–19020 samples, 2–8 classes, IMB 1.0–71.5)
 - [x] Smoke test validado: 3 datasets (Wine/Banana/Vehicle) × 2 modes (ga/rf) × 3 folds = 18 rows
       — oracle_1 ≥ majority_vote (0 violações), curvas monótonas 18/18, M=100, manifest+artefatos OK
+      — **obsoleto**: rodado com `nr_generation=1` e o bug de prole do ADR 0014 ativo
 - [x] ADR 0009 — layout de reprodutibilidade de experimentos
+
+### Fase 6 — Correções P0 pré-experimento científico (revisões externas)
+- [x] ADR 0012 — reprodutibilidade do GA (`random_state`), tipos ECoL, baseline Bagging
+- [x] ADR 0013 — T1 = Fraction of Hyper-spheres (N5), Gdisp com população inteira
+- [x] ADR 0014 — **prole avaliada nos próprios bags a partir da 2ª geração** (P0 que
+      invalidava todo GA com `nr_generation > 1`), `exit(0)` → `StratificationError`,
+      portão de elegibilidade por base (Ecoli/Glass fora do 10-fold), T1 lazy-greedy
+      (2.500 amostras: 154,6 s → 0,15 s), split de validação estratificado,
+      artefatos por modo, `gen_temp` real, `random_state` no pool final,
+      `--mode` default `ga,bagging,rf`, `--smoke` com 3 gerações
+- [ ] Validar `T1_fast` contra ECoL/R em bags congelados (ranking dos bags)
+- [ ] Decidir formalmente: `GA-F1/T1` vs PGDCS completo (`get_best_types` reativado)
+- [ ] Rodar `--full` científico e versionar `results/`
 
 ## Decision log (ADRs)
 
@@ -105,6 +119,7 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
 - `docs/adr/0011-kdtree-neighborhood-measures.md` — KD-tree para neighborhood measures (O(n²)→O(n·k·log n))
 - `docs/adr/0012-p0-fixes-reproducibility-types-ecol.md` — correções P0: reprodutibilidade GA, tipos de medidas, definições ECoL
 - `docs/adr/0013-t1-hyperspheres-maxdistance-fix.md` — T1=Fraction of Hyper-spheres (N5), maxdistance/Gdisp fix
+- `docs/adr/0014-offspring-fitness-and-protocol-gates.md` — fitness da prole após a 1ª geração, portões de protocolo (Ecoli/Glass), T1 escalável
 
 ## Notes
 

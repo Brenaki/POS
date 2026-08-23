@@ -20,11 +20,17 @@ from sklearn.model_selection import StratifiedKFold
 from pos.oracle.arff_loader import load_arff_dataset
 from pos.oracle.comparison import majority_vote_accuracy, mean_probs_accuracy
 from pos.oracle.correctness_matrix import build_correctness_matrix
+from pos.oracle.fold_splitter import stratified_val_split
 from pos.oracle.oracle_curve import oracle_curve_array
 
 
-def _build_pool(X_train, y_train, X_val, y_val, nr_generation: int):
-    """Build a classifier pool via poolGeneration (legacy API)."""
+def _build_pool(X_train, y_train, X_val, y_val, nr_generation: int,
+                random_state: int = 42):
+    """Build a classifier pool via poolGeneration (legacy API).
+
+    `random_state` must be propagated: without it the GA seeds nothing and
+    two runs of `run_experiment` with the same seed diverge (ADR 0014).
+    """
     from pool_generation import poolGeneration
 
     pg = poolGeneration(
@@ -32,6 +38,7 @@ def _build_pool(X_train, y_train, X_val, y_val, nr_generation: int):
         iteration=1,
         classifier="tree",
         types=["F1", "T1"],  # skip get_best_types (pyhard expensive)
+        random_state=random_state,
     )
     pg.generate(X_train, y_train, X_val, y_val, iteration=1)
     return pg.get_pool()
@@ -79,18 +86,12 @@ def run_experiment(
         X_train, X_test = X[train_idx], X[test_idx]
         y_train, y_test = y[train_idx], y[test_idx]
         # Split train into train + val for poolGeneration.generate()
-        # (it needs X_val, y_val for fitness evaluation)
-        n_val = max(1, len(X_train) // 5)
-        rng = np.random.default_rng(random_state + fold_idx)
-        val_idx = rng.choice(len(X_train), size=n_val, replace=False)
-        train_mask = np.ones(len(X_train), dtype=bool)
-        train_mask[val_idx] = False
-        X_val = X_train[~train_mask]
-        y_val = y_train[~train_mask]
-        X_tr = X_train[train_mask]
-        y_tr = y_train[train_mask]
+        # (it needs X_val, y_val for fitness evaluation). Stratified —
+        # an unstratified draw destabilises imbalanced bases (ADR 0014).
+        X_tr, y_tr, X_val, y_val = stratified_val_split(
+            X_train, y_train, 0.2, random_state + fold_idx)
 
-        pool = _build_pool(X_tr, y_tr, X_val, y_val, nr_generation)
+        pool = _build_pool(X_tr, y_tr, X_val, y_val, nr_generation, random_state)
         if len(pool) == 0:
             continue
 

@@ -76,6 +76,10 @@ class StopCriteriaMixin:
 
     def the_function(self, population, gen, fitness):
         generation = gen
+        # Keep the instance counter in sync with the EA loop so that the
+        # generation recorded by max_distance/max_acc is the real one
+        # (it used to stay pinned at 0 — see ADR 0014).
+        self.generation = gen
         self.off = []
         bags_ant = self.bags
         bags = {"name": list(), "inst": list()}
@@ -87,10 +91,10 @@ class StopCriteriaMixin:
         for i in range(len(population)):
             self.off.append(population[i][0])
         if self.stop_criteria == "maxdistance":
-            self.max_distance(fitness, generation=self.generation,
+            self.max_distance(fitness, generation=generation,
                               population=self.off, bags=bags)
         elif self.stop_criteria == "maxacc":
-            self.max_acc(self.dist["score_g"], generation=self.generation,
+            self.max_acc(self.dist["score_g"], generation=generation,
                          population=self.off, bags=bags)
         if generation == self.nr_generation:
             if self.stop_criteria in ("maxdistance", "maxacc") and len(self.pop_temp) > 0:
