@@ -54,13 +54,15 @@ def biuld_classifier_tree(
     X_test: Optional[np.ndarray] = None,
     y_test: Optional[np.ndarray] = None,
     score_train: bool = False,
+    random_state: Optional[int] = None,
 ):
     """Build a DecisionTree and return (estimator, score[, score2,] predict).
 
     Note: the legacy code uses `X_test.all() != None` which accidentally
     works for arrays (because `.all()` returns a scalar). Preserved as-is.
+    random_state: explicit seed for reproducibility (None = global RNG).
     """
-    tree = DecisionTreeClassifier()
+    tree = DecisionTreeClassifier(random_state=random_state)
     tree.fit(X_train, y_train)
     score = tree.score(X_val, y_val)
     if X_test.all() != None and y_test.all() != None and score_train == False:  # noqa: E711

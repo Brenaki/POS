@@ -104,6 +104,7 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
 - `docs/adr/0010-fast-complexity-numpy.md` — reimplementação numpy pura das medidas de complexidade
 - `docs/adr/0011-kdtree-neighborhood-measures.md` — KD-tree para neighborhood measures (O(n²)→O(n·k·log n))
 - `docs/adr/0012-p0-fixes-reproducibility-types-ecol.md` — correções P0: reprodutibilidade GA, tipos de medidas, definições ECoL
+- `docs/adr/0013-t1-hyperspheres-maxdistance-fix.md` — T1=Fraction of Hyper-spheres (N5), maxdistance/Gdisp fix
 
 ## Notes
 

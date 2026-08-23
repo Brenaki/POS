@@ -19,15 +19,16 @@ from pos.pool.bag_generator import build_bags
 from pos.voting import voting_classifier
 
 
-def _eval_one(i, bags_inst, X_train, y_train, X_val, y_val, classifier, group, types):
+def _eval_one(i, bags_inst, X_train, y_train, X_val, y_val, classifier, group, types, random_state=None):
     """Module-level: evaluate one bag (thread-safe, no shared mutable state)."""
     indx_bag1 = bags_inst[i]
     X_bag, y_bag = build_bags(indx_bag1, X_train, y_train)
     cpx = complexity_data3(X_bag, y_bag, group, types)
+    rs_i = random_state + i if isinstance(random_state, int) else None
     if classifier == "perc":
         estimator, score, pred = biuld_classifier(X_bag, y_bag, X_bag, y_bag, X_val, y_val)
     elif classifier == "tree":
-        estimator, score, pred = biuld_classifier_tree(X_bag, y_bag, X_bag, y_bag, X_val, y_val)
+        estimator, score, pred = biuld_classifier_tree(X_bag, y_bag, X_bag, y_bag, X_val, y_val, random_state=rs_i)
     return cpx, score, pred, estimator
 
 
@@ -43,27 +44,24 @@ class FitnessEvaluatorMixin:
         indx_bag1 = bags["inst"][i]
         X_bag, y_bag = build_bags(indx_bag1, self.X_train, self.y_train)
         cpx = complexity_data3(X_bag, y_bag, group, types)
+        rs_i = self.random_state + i if isinstance(self.random_state, int) else None
         if self.classifier == "perc":
             estimator, score, pred = biuld_classifier(
                 X_bag, y_bag, X_bag, y_bag, self.X_val, self.y_val)
         elif self.classifier == "tree":
             estimator, score, pred = biuld_classifier_tree(
-                X_bag, y_bag, X_bag, y_bag, self.X_val, self.y_val)
+                X_bag, y_bag, X_bag, y_bag, self.X_val, self.y_val, random_state=rs_i)
         return cpx, score, pred, estimator
 
     def _eval_many(self, indices):
-        """Evaluate parallel_distance2 for a list of bag indices.
-
-        Uses ThreadPoolExecutor when self.jobs > 1. Safe now because
-        fast_adapter uses pure numpy (no joblib nesting).
-        """
+        """Evaluate parallel_distance2 for a list of bag indices."""
         indices = list(indices)
         if self.jobs > 1:
             with ThreadPoolExecutor(max_workers=self.jobs) as ex:
                 results = list(ex.map(
                     lambda i: _eval_one(i, self.bags["inst"], self.X_train,
                         self.y_train, self.X_val, self.y_val, self.classifier,
-                        self.group, self.types),
+                        self.group, self.types, self.random_state),
                     indices))
             return list(zip(*results, strict=True))
         r = [self.parallel_distance2(i, self.bags, self.group, self.types)

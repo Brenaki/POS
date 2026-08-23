@@ -13,15 +13,23 @@ from pos.dispersion import dispersion
 class StopCriteriaMixin:
     """maxdistance/maxacc stop criteria + bag saving."""
 
-    def max_distance(self, fitness, generation=None, population=None, bags=None):
-        if fitness[2]:
+    def max_distance(self, fitness_matrix, generation=None, population=None, bags=None):
+        """Select generation with maximum global dispersion (Gdisp).
+
+        fitness_matrix: Nx3 array of fitness values for the entire population.
+        Gdisp = mean pairwise distance across all individuals in the
+        3-dimensional fitness space (complexity1, complexity2, diversity).
+        """
+        if isinstance(fitness_matrix, np.ndarray) and fitness_matrix.ndim == 2:
+            # Full population fitness matrix — compute real Gdisp
+            dist_dist_media = np.mean(dispersion(fitness_matrix))
+        elif isinstance(fitness_matrix, (tuple, list)) and len(fitness_matrix) == 3:
+            # Legacy: single fitness tuple — degenerate (always 0)
             dist_dist_media = np.mean(
-                dispersion(np.column_stack([fitness[0], fitness[1], fitness[2]]))
+                dispersion(np.column_stack([fitness_matrix[0], fitness_matrix[1], fitness_matrix[2]]))
             )
         else:
-            dist_dist_media = np.mean(
-                dispersion(np.column_stack([fitness[0], fitness[1]]))
-            )
+            dist_dist_media = 0.0
         if dist_dist_media > self.dist_temp:
             self.dist_temp = dist_dist_media
             self.pop_temp = population
@@ -88,10 +96,6 @@ class StopCriteriaMixin:
             if self.stop_criteria in ("maxdistance", "maxacc") and len(self.pop_temp) > 0:
                 self.save_bags(self.pop_temp, self.bags_temp, self.gen_temp, self.base_name)
             else:
-                # Fallback: if stop_criteria never improved (e.g. dispersion
-                # of a single fitness row is always 0 — a pre-existing
-                # conceptual bug in max_distance), save the final population
-                # so get_bags()/get_pool() return non-empty results.
                 self.save_bags(self.off, bags, base_name=self.base_name)
         if self.method_disperse == True and generation != self.nr_generation:
             self.get_complexity(population=population)

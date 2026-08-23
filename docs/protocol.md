@@ -35,7 +35,7 @@
     por fold.
 - **Métricas reportadas**: média ± desvio sobre os 10 folds.
 
-## 3. Pool de classificadores — dois modos
+## 3. Pool de classificadores — três modos
 
 ### 3.1. Modo `ga` (pool via algoritmo genético)
 
@@ -43,23 +43,30 @@
 - `classifier="tree"` → `DecisionTreeClassifier` em bags gerados pelo GA.
 - `types=["F1", "T1"]` hard-coded (bypassa `get_best_types`, que chamaria
   pyhard 100×12 = caro — ver `pos/pool/complexity_voter.py`).
+- **F1** = Maximum Fisher's Discriminant Ratio (ECoL dataset-level)
+- **T1** = Fraction of Hyper-spheres Covering Data (ECoL N5)
+- `random_state` propagado para `random.seed()`, `np.random.seed()`,
+  `train_test_split` e `DecisionTreeClassifier(random_state=rs+i)`.
 - `nr_generation`: controla gerações do GA. Smoke test usa 1 (degenerado,
   valida fluxo); execução científica usa ≥20.
-- **Limitação conhecida**: DEAP com `jobs=8` paralelo pode não ser
-  bit-exact reprodutível; `jobs=1` para reprodutibilidade estrita (lento).
-  Registrar `jobs` no manifest.
+- **Gdisp**: `maxdistance` agora seleciona a geração com maior dispersão
+  global (matriz Nx3 de fitness), não a última geração (ADR 0013).
 
-### 3.2. Modo `rf` (baseline sem GA — RandomForest)
+### 3.2. Modo `bagging` (baseline controlado — Bagging)
+
+- `BaggingClassifier(n_estimators=M, random_state=rs, bootstrap=True,
+  max_features=1.0)` — usa TODAS as features por árvore.
+- Isola o efeito do GA do feature subsampling do Random Forest.
+- Retorna `bag.estimators_` — lista de `DecisionTreeClassifier` fitted.
+
+### 3.3. Modo `rf` (baseline forte — RandomForest)
 
 - `RandomForestClassifier(n_estimators=M, random_state=rs, bootstrap=True)`
-  com **config default** do sklearn (`max_features='sqrt'`,
-  `max_samples=None` se bootstrap=True → tamanho do treino).
-- Retorna `forest.estimators_` — lista de `DecisionTreeClassifier` fitted,
-  mesma interface `.predict`/`.predict_proba` do pool GA.
+  com **config default** do sklearn (`max_features='sqrt'`).
+- Retorna `forest.estimators_` — mesma interface do pool GA.
 - **Decisão (ADR 0009)**: manter defaults. `max_features='sqrt'` introduz
   diversidade de features que o GA não explora — diferença *esperada e
-  informativa* entre as duas abordagens, não confounder. Para igualar
-  condições no futuro: `max_features=1.0` + novo ADR derivado.
+  informativa*.
 
 ## 4. Métricas
 

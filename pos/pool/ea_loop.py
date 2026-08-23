@@ -6,18 +6,25 @@ call in `pool_generation.py` (see ADR 0007). DEAP 1.3.3 does not accept a
 invokes the callback after each generation's selection step.
 
 Callback contract (matches `poolGeneration.the_function`):
-    generation_function(population, gen, fitness)
-where `fitness` is the fitness tuple of the first individual in the
-post-selection population (NSGA-II first-front representative). This is an
-interpretation of the original (now-lost) modified-DEAP contract, since the
-upstream DEAP never shipped `generation_function`. See ADR 0008.
+    generation_function(population, gen, fitness_matrix)
+where `fitness_matrix` is a Nx3 numpy array of fitness values for ALL
+individuals in the post-selection population. This allows computing
+the global dispersion (Gdisp) across the entire population, not just
+the first individual's fitness (which always gives dispersion=0).
+See ADR 0008 and ADR 0013.
 """
 
 from __future__ import annotations
 
 from typing import Callable
 
+import numpy as np
 from deap import algorithms, base, tools
+
+
+def _population_fitness_matrix(population) -> np.ndarray:
+    """Extract Nx3 fitness matrix from population (all individuals)."""
+    return np.array([ind.fitness.values for ind in population])
 
 
 def ea_mu_plus_lambda_with_callback(
@@ -57,7 +64,7 @@ def ea_mu_plus_lambda_with_callback(
         print(logbook.stream)
 
     if generation_function is not None:
-        generation_function(population, 0, population[0].fitness.values)
+        generation_function(population, 0, _population_fitness_matrix(population))
 
     for gen in range(1, ngen + 1):
         offspring = algorithms.varOr(population, toolbox, lambda_, cxpb, mutpb)
@@ -78,6 +85,6 @@ def ea_mu_plus_lambda_with_callback(
             print(logbook.stream)
 
         if generation_function is not None:
-            generation_function(population, gen, population[0].fitness.values)
+            generation_function(population, gen, _population_fitness_matrix(population))
 
     return population, logbook

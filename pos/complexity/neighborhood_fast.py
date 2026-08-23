@@ -121,14 +121,9 @@ def _lsc_fast(Xn: np.ndarray, y: np.ndarray) -> float:
 
 
 def _t1_fast(Xn: np.ndarray, y: np.ndarray) -> float:
-    """T1 = 1-NN leave-one-out error rate (ECoL N3)."""
-    n = len(y)
-    k = min(2, n)
-    tree = KDTree(Xn, metric="manhattan")
-    _, indices = tree.query(Xn, k=k)
-    nn_indices = indices[:, 1] if k > 1 else indices[:, 0]
-    errors = np.sum(y[nn_indices] != y)
-    return float(errors / n)
+    """T1 = Fraction of Hyper-spheres Covering Data (ECoL N5). Delegates."""
+    from pos.complexity.neighborhood_extra import _t1_fast as _t1
+    return _t1(Xn, y)
 
 
 def neighborhood_measure_fast(
@@ -147,4 +142,7 @@ def neighborhood_measure_fast(
         return _lsc_fast(Xn, y)
     if m_name == "T1":
         return _t1_fast(Xn, y)
+    if m_name == "N3":
+        from pos.complexity.neighborhood_extra import _n3_fast
+        return _n3_fast(Xn, y)
     return 0.0

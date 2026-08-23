@@ -150,10 +150,12 @@ class TestF4CollectiveEfficiency:
 
 
 class TestT1Measure:
-    """T1 = error rate of 1-NN (leave-one-out). Same as ECoL N3.
+    """T1 = Fraction of Hyper-spheres Covering Data (ECoL N5).
 
-    PGDCS uses 'T1' as alias for N3 (1-NN leave-one-out error rate).
-    The original data complexity library called this 'T1'.
+    PGDCS uses 'T1' which is Fraction of Hyper-spheres Covering Data.
+    This corresponds to ECoL N5, NOT N3 (1-NN error rate).
+    T1 measures how many hyperspheres are needed to cover all data points.
+    Lower T1 = fewer spheres needed = simpler problem.
     """
 
     def test_t1_returns_scalar(self, well_separated):
@@ -161,16 +163,23 @@ class TestT1Measure:
         assert isinstance(v, float)
 
     def test_t1_well_separated_lower(self, well_separated, heavy_overlap):
+        """Well-separated data needs fewer hyperspheres → lower T1."""
         v_sep = neighborhood_measure_fast(well_separated[0], well_separated[1], "T1")
         v_ovl = neighborhood_measure_fast(heavy_overlap[0], heavy_overlap[1], "T1")
         assert v_sep < v_ovl
 
     def test_t1_not_zero(self, heavy_overlap):
-        """T1 must NOT return 0.0 for overlapping data (was placeholder before)."""
+        """T1 must NOT return 0.0 (was placeholder before)."""
         v = neighborhood_measure_fast(heavy_overlap[0], heavy_overlap[1], "T1")
         assert v != 0.0, "T1 returned 0.0 — placeholder not replaced"
 
     def test_t1_range_0_to_1(self, well_separated, heavy_overlap):
         for X, y in [well_separated, heavy_overlap]:
             v = neighborhood_measure_fast(X, y, "T1")
-            assert 0.0 <= v <= 1.0
+            assert 0.0 < v <= 1.0
+
+    def test_t1_is_not_n3(self, heavy_overlap):
+        """T1 should differ from N3 (1-NN LOO error) — they are different measures."""
+        t1 = neighborhood_measure_fast(heavy_overlap[0], heavy_overlap[1], "T1")
+        n3 = neighborhood_measure_fast(heavy_overlap[0], heavy_overlap[1], "N3")
+        assert t1 != n3, f"T1={t1} equals N3={n3} — T1 should be Hyper-spheres, not 1-NN error"
