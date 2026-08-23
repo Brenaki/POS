@@ -128,7 +128,9 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
 - [x] `pos/analysis/figures_des.py` — fig7 (fusores vs teto Oracle_1) e
       fig8 (folga recuperada, por modo e vs `DF/e²`)
 - [~] Rodar `--full` com DCS/DES e reescrever `docs/resultados-oracle-n.md`
-      — run `2026-08-23T10-09-30_376203d` em andamento
+      — run `2026-08-23T10-09-30_376203d` em andamento. Foi lançado de árvore
+      suja, então seu `run_manifest.json` traz `git_sha: 376203d` com
+      `git_dirty: true`; o código que ele executou é o do commit `25f4c14`.
 - [ ] Dividir a validação em metades (fitness do GA / DSEL) para tirar o viés
       otimista do GA em `recovered` — muda os pools, exige run próprio (ADR 0017)
 

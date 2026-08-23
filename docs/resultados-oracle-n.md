@@ -211,7 +211,9 @@ KNORA-E, KNORA-U e META-DES via DESlib, com a partição de validação como DSE
 métrica `recovered` = parcela da folga `Oracle_1 − MVR` que a seleção dinâmica
 alcança. O run correspondente
 (`results/experiments/2026-08-23T10-09-30_376203d/`) está em execução; esta seção
-será substituída pelos resultados.
+será substituída pelos resultados. Ele foi lançado antes do commit do ADR 0017,
+então seu manifest traz `git_sha: 376203d` com `git_dirty: true` — o código que
+ele executou é o do commit `25f4c14`.
 
 **Viés de DSEL a favor do GA.** O DSEL da seleção dinâmica é a partição de
 validação, que o GA já usa na função de fitness. Bagging e RF não a usam para nada,
