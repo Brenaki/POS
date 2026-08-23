@@ -20,8 +20,8 @@
 | 3  | Implementação do pool de classificadores e avaliação individual         | Nov/2026–Jan/2027  | [x]    |
 | 4  | Implementação do Oracle tradicional e dos Oracles em diferentes níveis | Dez/2026–Fev/2027  | [x]    |
 | 5  | Relatório Semestral conforme modelo PROPESP (até 15 mar 2027)          | Mar/2027           | [ ]    |
-| 6  | Experimentos comparativos (votação majoritária, combinação de probs, DCS/DES) | Fev–Jun/2027 | [ ]    |
-| 7  | Análise dos resultados, gráficos e recomendações                       | Ago–Nov/2027       | [ ]    |
+| 6  | Experimentos comparativos (votação majoritária, combinação de probs, DCS/DES) | Fev–Jun/2027 | [~]    |
+| 7  | Análise dos resultados, gráficos e recomendações                       | Ago–Nov/2027       | [~]    |
 | 8  | Relatório final (até 11 set 2027)                                      | Jul–Ago/2027       | [ ]    |
 
 ## Engineering milestones (enabling the cronograma)
@@ -112,9 +112,25 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
       — run `2026-08-22T23-33-56_2a8a0f5`: 29 bases x 10 folds x 3 modos = 870 folds,
       0 erros, ~2h20. Invariantes Oracle_N verificados em 870/870.
       Análise em `docs/resultados-oracle-n.md`, figuras em `results/**/figures/`.
-- [ ] Reexecutar `--full` com ADR 0016 para preencher `mean_probs` do GA (290 linhas)
-- [ ] DCS/DES via DESlib (objetivo 6): há folga medida (`Oracle_1 − MV` = 0.2154 no GA)
-      e um critério para prever onde ela é grande (`DF/e²`, Spearman −0.86)
+- [x] Reexecutar `--full` com ADR 0016 para preencher `mean_probs` do GA (290 linhas)
+      — run `2026-08-23T06-42-14_376203d`: 870 folds, 0 erros. Determinismo verificado:
+      as colunas do pool saíram bit-idênticas ao run anterior em 870/870 linhas nos
+      três modos; só `mean_probs` mudou. Resultado: a combinação suave é
+      *significativamente pior* que o MVR no pool de Perceptrons (−0.0081, p=0.014)
+      e empata nos pools de árvores.
+
+### Fase 7 — Métodos reais de combinação e análise (marcos 6 e 7 do cronograma)
+- [x] ADR 0017 — DCS/DES via DESlib: OLA, LCA, KNORA-E, KNORA-U, META-DES em
+      todo fold de todo modo, DSEL = a partição de validação; shim de
+      compatibilidade `deslib_compat` para os aliases NumPy removidos em 1.24
+- [x] `pos/analysis/fusers.py` — comparação por fusor (Friedman/Nemenyi com k até 7)
+      e a métrica `recovered` = folga do Oracle recuperada pela seleção dinâmica
+- [x] `pos/analysis/figures_des.py` — fig7 (fusores vs teto Oracle_1) e
+      fig8 (folga recuperada, por modo e vs `DF/e²`)
+- [~] Rodar `--full` com DCS/DES e reescrever `docs/resultados-oracle-n.md`
+      — run `2026-08-23T10-09-30_376203d` em andamento
+- [ ] Dividir a validação em metades (fitness do GA / DSEL) para tirar o viés
+      otimista do GA em `recovered` — muda os pools, exige run próprio (ADR 0017)
 
 ## Decision log (ADRs)
 
@@ -134,6 +150,7 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
 - `docs/adr/0014-offspring-fitness-and-protocol-gates.md` — fitness da prole após a 1ª geração, portões de protocolo (Ecoli/Glass), T1 escalável
 - `docs/adr/0015-performance-exact-optimizations.md` — otimizações exatas, Perceptron linear da tese como base do GA, paralelismo por padrão
 - `docs/adr/0016-soft-fusion-for-margin-pools.md` — combinação suave para pools sem `predict_proba` (média de margens normalizadas)
+- `docs/adr/0017-dcs-des-baselines-deslib.md` — DCS/DES via DESlib (OLA, LCA, KNORA-E/U, META-DES), DSEL = validação, métrica `recovered`
 
 ## Notes
 

@@ -14,6 +14,8 @@ from pathlib import Path
 
 import numpy as np
 
+from pos.oracle.des_comparison import des_columns
+
 
 def git_sha(repo_dir: Path) -> str:
     try:
@@ -31,6 +33,21 @@ def git_branch(repo_dir: Path) -> str:
         ).decode().strip()
     except Exception:
         return "unknown"
+
+
+def git_dirty(repo_dir: Path) -> bool:
+    """True when the run was launched from an uncommitted working tree.
+
+    Without this the manifest's `git_sha` silently claims a provenance the
+    code does not have.
+    """
+    try:
+        out = subprocess.check_output(
+            ["git", "status", "--porcelain"], cwd=repo_dir, stderr=subprocess.DEVNULL,
+        ).decode().strip()
+        return bool(out)
+    except Exception:
+        return False
 
 
 def deps_versions() -> dict[str, str]:
@@ -139,6 +156,8 @@ def build_fold_manifest(ds_name, fold_idx, mode, metrics, random_state,
         "mean_probs": metrics["mean_probs"],
         "soft_fusion_rule": metrics.get("soft_fusion_rule", "none"),
         "double_fault_mean": metrics["double_fault_mean"],
+        "des": metrics.get("des", {}),
+        "des_notes": metrics.get("des_notes", {}),
         "train_indices_hash": indices_hash(train_idx),
         "test_indices_hash": indices_hash(test_idx),
     }
@@ -160,4 +179,5 @@ def build_summary_row(ds_name, fold_idx, mode, metrics, n_test) -> dict:
     }
     for n in range(1, 6):
         row[f"oracle_{n}"] = curve[n - 1] if len(curve) >= n else None
+    row.update(des_columns(metrics.get("des")))
     return row

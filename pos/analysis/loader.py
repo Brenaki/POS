@@ -12,8 +12,11 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from pos.oracle.des_comparison import DES_METHODS
+
 MODES = ["ga", "bagging", "rf"]
 FOCUS_LEVELS = [1, 2, 3, 4, 5]
+DES_COLS = [f"des_{m}" for m in DES_METHODS]
 
 
 def load_run(run_dir: Path | str) -> pd.DataFrame:
@@ -31,6 +34,12 @@ def load_run(run_dir: Path | str) -> pd.DataFrame:
                   the raw value cannot compare pools of different strength;
                   e^2 is the value expected if the errors were independent,
                   making the ratio a scale-free redundancy index (1 = independent).
+    des_best    : best DCS/DES accuracy available on that fold (NaN if the run
+                  carried no DES columns).
+    recovered   : (des_best - majority_vote) / (oracle_1 - majority_vote), the
+                  share of the unexploited gap that dynamic selection actually
+                  reaches. 0 = no better than majority vote, 1 = reaches the
+                  Oracle. This is the quantity objective 8 asks to predict.
     """
     run_dir = Path(run_dir)
     df = pd.read_csv(run_dir / "summary.csv")
@@ -46,7 +55,22 @@ def load_run(run_dir: Path | str) -> pd.DataFrame:
 
     err = 1.0 - df["mean_individual_acc"]
     df["df_ratio"] = df["double_fault_mean"] / np.where(err > 0, err**2, np.nan)
+    _attach_des(df)
     return df
+
+
+def _attach_des(df: pd.DataFrame) -> None:
+    """Add des_best / des_best_method / gap_des / recovered, in place."""
+    present = [c for c in DES_COLS if c in df.columns]
+    if not present:
+        return
+    df["des_best"] = df[present].max(axis=1)
+    df["des_best_method"] = df[present].apply(
+        lambda r: r.idxmax()[4:] if r.notna().any() else None, axis=1)
+    df["gap_des"] = df["oracle_1"] - df["des_best"]
+    gap = df["oracle_1"] - df["majority_vote"]
+    df["recovered"] = np.where(
+        gap > 1e-9, (df["des_best"] - df["majority_vote"]) / gap, np.nan)
 
 
 def mean_curve(df: pd.DataFrame, mode: str) -> np.ndarray:

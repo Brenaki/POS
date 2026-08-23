@@ -1,7 +1,8 @@
 # Resultados — Oracle_N em diferentes níveis
 
-- **Run**: `results/experiments/2026-08-22T23-33-56_2a8a0f5/`
-- **Commit**: `2a8a0f5` (branch `master`)
+- **Run**: `results/experiments/2026-08-23T06-42-14_376203d/` (ADR 0016; substitui o
+  run `2026-08-22T23-33-56_2a8a0f5`, idêntico exceto pela coluna `mean_probs`)
+- **Commit**: `376203d` (branch `master`)
 - **Protocolo**: 29 bases × 10-fold estratificado × 3 modos, M=100, GA com 20 gerações,
   `random_state=42`. 870 folds, 0 erros. Ecoli e Glass excluídas pelo portão de
   viabilidade (menor classe com 2 e 9 instâncias, < 10 folds).
@@ -37,15 +38,25 @@ média dos classificadores-base sob outro nome.
 
 | modo | Oracle_1 | Oracle_2 | Oracle_5 | Oracle_M | votação maj. | média probs | acc. individual | DF |
 |---|---|---|---|---|---|---|---|---|
-| GA (PGDCS, Perceptron) | **0.9979** | 0.9956 | 0.9905 | 0.1136 | 0.7824 | — | 0.7052 | 0.1564 |
+| GA (PGDCS, Perceptron) | **0.9979** | 0.9956 | 0.9905 | 0.1136 | 0.7824 | 0.7743 | 0.7052 | 0.1564 |
 | Bagging | 0.9951 | 0.9935 | 0.9884 | 0.3052 | 0.8467 | 0.8466 | 0.7931 | 0.1094 |
 | Random Forest | 0.9970 | **0.9958** | **0.9920** | 0.1725 | **0.8549** | 0.8546 | 0.7806 | 0.1069 |
 
 Teste de Friedman com pós-teste de Nemenyi (N=29 bases, k=3, CD=0.615) e Wilcoxon
 pareado — ver `analysis.txt` do run para o relatório completo.
 
-`média das probabilidades` está vazia no modo GA: o Perceptron linear da tese não
-expõe `predict_proba`. Tratado na seção "Pendências".
+A coluna `média probs` não usa a mesma regra nos três modos, e a tabela registra
+qual foi usada (`soft_fusion_rule`): Bagging e RF usam a média das probabilidades
+preditas; o GA usa a média das distâncias normalizadas ao hiperplano, porque o
+Perceptron linear da tese não expõe `predict_proba` (ADR 0016). O que é comparável
+entre as três colunas é o desempenho da combinação suave, não a escala do escore.
+
+**Verificação de reprodutibilidade.** O ADR 0016 exigiu reexecutar o `--full` para
+reconstruir os pools. Como `random_state=42` é propagado, o run novo tinha de
+reproduzir os pools antigos exatamente. Verificado em **870/870 linhas nos três
+modos**: `oracle_1..5`, `oracle_M`, `oracle_curve_json`, `majority_vote`,
+`double_fault_mean` e `mean_individual_acc` saíram bit-idênticos ao run anterior.
+A única coluna que mudou foi `mean_probs`, que é o que o ADR 0016 alterou.
 
 ### Figuras
 
@@ -161,16 +172,52 @@ a partir de **N=3**. A vantagem do GA existe só na ponta mais otimista da curva
 
 ---
 
+## Achado 4 — a combinação suave não ajuda pools de margem (objetivo 6)
+
+Com as 290 linhas do GA preenchidas, a comparação pedida pelo objetivo 6 entre
+votação majoritária e combinação suave fica completa:
+
+| modo | votação maj. | combinação suave | Δ | Wilcoxon (N=29) | regra |
+|---|---|---|---|---|---|
+| GA (Perceptron) | 0.7824 | 0.7743 | **−0.0081** | **p=0.014** | média de margens normalizadas |
+| Bagging | 0.8467 | 0.8466 | −0.0001 | p=1.00 | média de probabilidades |
+| Random Forest | 0.8549 | 0.8546 | −0.0003 | p=0.59 | média de probabilidades |
+
+Nos pools de árvores as duas regras empatam — a diferença é da ordem de 1e-4 e não
+é significativa. No pool de Perceptrons a combinação suave é **significativamente
+pior** que a votação majoritária: perde em 222 dos 290 folds, e chega a −0.067 na
+Segmentation, −0.046 no Wine, −0.041 no Vehicle.
+
+**Leitura**: a normalização por `||w||` do ADR 0016 remove o artefato de escala —
+um classificador com pesos grandes não domina mais a média por acidente de
+magnitude — mas não remove o artefato de confiança. A distância ao hiperplano
+continua não sendo uma probabilidade: um Perceptron que separou seu bag com folga
+larga produz distâncias grandes para *toda* amostra, inclusive as que ele erra, e
+essa magnitude entra na média com o mesmo peso de uma competência real. A
+probabilidade de uma folha de árvore, por pior que seja calibrada, ao menos é uma
+frequência observada no treino.
+
+Consequência para o subprojeto: para pools de classificadores lineares, "média das
+probabilidades preditas" não é o método real de combinação a bater — o MVR é. É
+mais um argumento para a seleção dinâmica, onde a competência é estimada dos dados
+e não do escore do classificador.
+
+---
+
 ## Pendências
 
-**`mean_probs` no modo GA.** O Perceptron linear (tese sec. 5, objetivo 4 do
-subprojeto) não expõe `predict_proba`, então a "média das probabilidades preditas"
-do objetivo 6 fica indefinida para as 290 linhas do GA. Três saídas foram
-registradas no ADR 0015; a adotada está no ADR 0016.
+**DCS/DES (objetivo 6, parte final).** Implementado no ADR 0017 — OLA, LCA,
+KNORA-E, KNORA-U e META-DES via DESlib, com a partição de validação como DSEL, e a
+métrica `recovered` = parcela da folga `Oracle_1 − MVR` que a seleção dinâmica
+alcança. O run correspondente
+(`results/experiments/2026-08-23T10-09-30_376203d/`) está em execução; esta seção
+será substituída pelos resultados.
 
-**DCS/DES (objetivo 6, parte final).** Os achados 1 e 2 tornam a comparação com
-OLA/LCA/META-DES via DESlib a próxima etapa natural — há folga medida e um critério
-para prever onde ela é grande.
+**Viés de DSEL a favor do GA.** O DSEL da seleção dinâmica é a partição de
+validação, que o GA já usa na função de fitness. Bagging e RF não a usam para nada,
+então a comparação de `recovered` entre modos é otimista para o GA. Corrigir exige
+dividir a validação em duas metades, o que muda os pools do GA — registrado no
+ADR 0017 como candidato ao próximo run.
 
 **Bases de imagens (objetivo 5).** O protocolo usa as 28 bases da tese de referência
 mais Magic. O objetivo 5 menciona preferência por bases de imagens públicas; a

@@ -23,6 +23,7 @@ from pathlib import Path
 REPO_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_DIR))
 
+from pos.oracle.des_comparison import DES_METHODS  # noqa: E402
 from pos.oracle.run_helpers import git_sha  # noqa: E402
 from pos.oracle.run_recorder import record_run  # noqa: E402
 
@@ -47,17 +48,20 @@ def default_jobs() -> int:
 def build_config(args) -> dict:
     if args.config:
         return json.loads(Path(args.config).read_text())
+    des = [] if args.no_des else list(DES_METHODS)
     if args.smoke:
         return {
             "datasets": SMOKE_DATASETS, "n_folds": 3, "nr_generation": 3,
             "random_state": 42, "modes": args.mode.split(","),
             "M": args.M, "jobs": args.jobs, "base_classifier": args.base_classifier,
+            "des_methods": des,
         }
     if args.full:
         return {
             "datasets": FULL_DATASETS, "n_folds": 10, "nr_generation": 20,
             "random_state": 42, "modes": args.mode.split(","),
             "M": args.M, "jobs": args.jobs, "base_classifier": args.base_classifier,
+            "des_methods": des,
         }
     raise SystemExit("Must pass one of --smoke / --full / --config")
 
@@ -85,6 +89,8 @@ def main():
     p.add_argument("--base-classifier", type=str, default="perc", choices=["perc", "tree"],
                    help="GA base learner: 'perc' = linear Perceptron (thesis sec. 5, "
                         "default), 'tree' = DecisionTree")
+    p.add_argument("--no-des", action="store_true",
+                   help="skip the DCS/DES baselines (OLA, LCA, KNORA-E/U, META-DES)")
     p.add_argument("--output", type=str, default=None,
                    help="output root (default: results/experiments/)")
     p.add_argument("--dry-run", action="store_true", help="print manifest, do not run")

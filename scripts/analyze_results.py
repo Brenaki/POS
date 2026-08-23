@@ -21,6 +21,8 @@ from pos.analysis.figures_compare import (  # noqa: E402
     plot_nstar,
 )
 from pos.analysis.figures_curves import plot_mean_curves, plot_per_dataset_grid  # noqa: E402
+from pos.analysis.figures_des import plot_fuser_accuracy, plot_recovered_gap  # noqa: E402
+from pos.analysis.fusers import fuser_comparison, recovery_summary  # noqa: E402
 from pos.analysis.loader import MODES, load_run  # noqa: E402
 from pos.analysis.stats_tests import compare, format_comparison  # noqa: E402
 
@@ -30,6 +32,7 @@ METRICS = [
     ("oracle_1", True), ("oracle_2", True), ("oracle_5", True), ("oracle_M", True),
     ("majority_vote", True), ("mean_probs", True), ("mean_individual_acc", True),
     ("gap_1", True), ("gap_5", True), ("df_ratio", False), ("nstar", False),
+    ("des_best", True), ("gap_des", False), ("recovered", True),
 ]
 
 
@@ -47,9 +50,15 @@ def main() -> None:
     plot_gap_per_dataset(df, fig_dir / "fig4_gap_per_dataset.png", level=1)
     plot_diversity_vs_gap(df, fig_dir / "fig5_diversity_vs_gap.png")
     plot_per_dataset_grid(df, fig_dir / "fig6_curves_per_dataset.png")
+    has_des = "recovered" in df.columns and df["recovered"].notna().any()
+    if has_des:
+        plot_fuser_accuracy(df, fig_dir / "fig7_fuser_accuracy.png")
+        plot_recovered_gap(df, fig_dir / "fig8_recovered_gap.png")
 
     results, blocks = {}, []
     for metric, higher in METRICS:
+        if metric not in df.columns:
+            continue
         missing = [m for m in MODES if df.loc[df["mode"] == m, metric].isna().all()]
         if missing:
             blocks.append(f"{metric}: comparacao pareada impossivel — sem valor "
@@ -57,6 +66,11 @@ def main() -> None:
             continue
         res = compare(df, metric, higher_is_better=higher)
         results[metric] = res
+        blocks.append(format_comparison(res))
+
+    for mode in MODES if has_des else []:
+        res = fuser_comparison(df, mode)
+        results[f"fusers_{mode}"] = res
         blocks.append(format_comparison(res))
 
     head = [
@@ -69,6 +83,10 @@ def main() -> None:
             df[df.mean_probs.isna()].groupby("mode").size().to_dict()),
         "",
     ]
+    if has_des:
+        head.append("folga recuperada pela selecao dinamica:\n"
+                    + recovery_summary(df).round(4).to_string())
+        head.append("")
     (run_dir / "analysis.txt").write_text("\n\n".join(head + blocks) + "\n")
     (run_dir / "analysis.json").write_text(json.dumps(results, indent=2))
     print("\n\n".join(head + blocks))

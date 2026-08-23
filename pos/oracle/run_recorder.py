@@ -19,6 +19,7 @@ import pandas as pd
 from sklearn.model_selection import StratifiedKFold
 
 from pos.oracle.arff_loader import load_arff_dataset
+from pos.oracle.des_comparison import DES_METHODS, evaluate_des
 from pos.oracle.fold_splitter import check_dataset_viability, stratified_val_split
 from pos.oracle.pool_evaluation import evaluate_pool
 from pos.oracle.resume_helpers import completed_folds, load_existing_summary
@@ -30,6 +31,7 @@ from pos.oracle.run_helpers import (
     build_summary_row,
     deps_versions,
     git_branch,
+    git_dirty,
     git_sha,
     per_dataset_summary,
     platform_str,
@@ -44,6 +46,7 @@ def _build_manifest(config: dict[str, Any], repo_dir: Path) -> dict[str, Any]:
     return {
         "timestamp_iso": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "git_sha": git_sha(repo_dir), "git_branch": git_branch(repo_dir),
+        "git_dirty": git_dirty(repo_dir),
         "python_version": python_version(), "platform": platform_str(),
         "config": config, "deps_versions": deps_versions(),
         "protocol_ref": "docs/protocol.md",
@@ -52,7 +55,7 @@ def _build_manifest(config: dict[str, Any], repo_dir: Path) -> dict[str, Any]:
 
 
 def _run_fold(X_tr, y_tr, X_val, y_val, X_test, y_test, mode, M, nr_gen, rs,
-              jobs=1, base_classifier="perc"):
+              jobs=1, base_classifier="perc", des_methods=()):
     """Build pool and evaluate. Returns (metrics, pool) or (None, None)."""
     if mode == "ga":
         pool = build_pool_ga(X_tr, y_tr, X_val, y_val, nr_gen, rs, jobs=jobs,
@@ -66,6 +69,11 @@ def _run_fold(X_tr, y_tr, X_val, y_val, X_test, y_test, mode, M, nr_gen, rs,
     if len(pool) == 0:
         return None, None
     metrics = evaluate_pool(pool, X_test, y_test)
+    if des_methods:
+        # DSEL = the validation split, already held out of pool training.
+        accs, notes = evaluate_des(pool, X_val, y_val, X_test, y_test,
+                                   random_state=rs, methods=tuple(des_methods))
+        metrics["des"], metrics["des_notes"] = accs, notes
     return metrics, pool
 
 
@@ -88,6 +96,7 @@ def record_run(config: dict[str, Any], output_dir: Path | str,
     M: int = config.get("M", 100)
     jobs: int = config.get("jobs", 1)
     base_classifier: str = config.get("base_classifier", "perc")
+    des_methods: list[str] = config.get("des_methods", list(DES_METHODS))
     dataset_dir = Path(config.get("dataset_dir", repo_dir / "Dataset"))
 
     manifest = _build_manifest(config, repo_dir)
@@ -122,7 +131,8 @@ def record_run(config: dict[str, Any], output_dir: Path | str,
                 try:
                     metrics, pool = _run_fold(X_tr, y_tr, X_val, y_val, X_test, y_test,
                                               mode, M, nr_generation, random_state,
-                                              jobs=jobs, base_classifier=base_classifier)
+                                              jobs=jobs, base_classifier=base_classifier,
+                                              des_methods=des_methods)
                 except Exception as exc:
                     print(f"[error] {ds_name} fold={fold_idx} mode={mode}: {type(exc).__name__}: {exc}")
                     manifest.setdefault("errors", []).append({
@@ -147,8 +157,8 @@ def record_run(config: dict[str, Any], output_dir: Path | str,
         (output_dir / "summary.csv").write_text(
             "dataset,fold,mode,M,n_test,oracle_1,oracle_2,oracle_3,oracle_4,"
             "oracle_5,oracle_M,oracle_curve_json,majority_vote,mean_probs,"
-            "soft_fusion_rule,"
-            "double_fault_mean,mean_individual_acc\n")
+            "soft_fusion_rule,double_fault_mean,mean_individual_acc,"
+            + ",".join(f"des_{m}" for m in DES_METHODS) + "\n")
     else:
         summary_df.to_csv(output_dir / "summary.csv", index=False)
     pd.DataFrame(per_dataset_summary(summary_df)).to_csv(

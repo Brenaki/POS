@@ -1,0 +1,99 @@
+run: results/experiments/2026-08-23T06-42-14_376203d
+
+linhas: 870 | bases: 29 | modos: ['bagging', 'ga', 'rf']
+
+violacoes oracle_1 < majority: 0
+
+nao-monotonas: 0
+
+mean_probs ausente por modo: {}
+
+
+
+oracle_1  (N=29 bases, k=3)
+  Friedman chi2=16.74 p=0.00023 | CD=0.615
+  ranks (1=melhor): ga=1.90  bagging=2.50  rf=1.60
+  medias:           ga=0.9979  bagging=0.9951  rf=0.9970
+    ga      vs bagging drank=0.60  wilcoxon_p=0.08298 dmedia=+0.0027
+    ga      vs rf      drank=0.29  wilcoxon_p=0.43257 dmedia=+0.0009
+    bagging vs rf      drank=0.90* wilcoxon_p=0.00020 dmedia=-0.0019
+
+oracle_2  (N=29 bases, k=3)
+  Friedman chi2=9.87 p=0.00718 | CD=0.615
+  ranks (1=melhor): ga=2.05  bagging=2.34  rf=1.60
+  medias:           ga=0.9956  bagging=0.9935  rf=0.9958
+    ga      vs bagging drank=0.29  wilcoxon_p=0.29045 dmedia=+0.0021
+    ga      vs rf      drank=0.45  wilcoxon_p=0.26415 dmedia=-0.0002
+    bagging vs rf      drank=0.74* wilcoxon_p=0.00052 dmedia=-0.0023
+
+oracle_5  (N=29 bases, k=3)
+  Friedman chi2=14.22 p=0.00082 | CD=0.615
+  ranks (1=melhor): ga=2.16  bagging=2.36  rf=1.48
+  medias:           ga=0.9905  bagging=0.9884  rf=0.9920
+    ga      vs bagging drank=0.21  wilcoxon_p=0.86116 dmedia=+0.0021
+    ga      vs rf      drank=0.67* wilcoxon_p=0.15313 dmedia=-0.0015
+    bagging vs rf      drank=0.88* wilcoxon_p=0.00016 dmedia=-0.0036
+
+oracle_M  (N=29 bases, k=3)
+  Friedman chi2=22.45 p=0.00001 | CD=0.615
+  ranks (1=melhor): ga=2.26  bagging=1.29  rf=2.45
+  medias:           ga=0.1136  bagging=0.3052  rf=0.1725
+    ga      vs bagging drank=0.97* wilcoxon_p=0.00064 dmedia=-0.1915
+    ga      vs rf      drank=0.19  wilcoxon_p=0.19762 dmedia=-0.0589
+    bagging vs rf      drank=1.16* wilcoxon_p=0.00000 dmedia=+0.1326
+
+majority_vote  (N=29 bases, k=3)
+  Friedman chi2=10.76 p=0.00461 | CD=0.615
+  ranks (1=melhor): ga=2.34  bagging=2.14  rf=1.52
+  medias:           ga=0.7824  bagging=0.8467  rf=0.8549
+    ga      vs bagging drank=0.21  wilcoxon_p=0.00645 dmedia=-0.0643
+    ga      vs rf      drank=0.83* wilcoxon_p=0.00097 dmedia=-0.0725
+    bagging vs rf      drank=0.62* wilcoxon_p=0.00351 dmedia=-0.0082
+
+mean_probs  (N=29 bases, k=3)
+  Friedman chi2=9.17 p=0.01019 | CD=0.615
+  ranks (1=melhor): ga=2.31  bagging=2.14  rf=1.55
+  medias:           ga=0.7743  bagging=0.8466  rf=0.8546
+    ga      vs bagging drank=0.17  wilcoxon_p=0.00516 dmedia=-0.0723
+    ga      vs rf      drank=0.76* wilcoxon_p=0.00097 dmedia=-0.0803
+    bagging vs rf      drank=0.59  wilcoxon_p=0.00324 dmedia=-0.0080
+
+mean_individual_acc  (N=29 bases, k=3)
+  Friedman chi2=11.66 p=0.00295 | CD=0.615
+  ranks (1=melhor): ga=2.28  bagging=1.48  rf=2.24
+  medias:           ga=0.7052  bagging=0.7931  rf=0.7806
+    ga      vs bagging drank=0.79* wilcoxon_p=0.00182 dmedia=-0.0879
+    ga      vs rf      drank=0.03  wilcoxon_p=0.00694 dmedia=-0.0754
+    bagging vs rf      drank=0.76* wilcoxon_p=0.00000 dmedia=+0.0126
+
+gap_1  (N=29 bases, k=3)
+  Friedman chi2=10.14 p=0.00629 | CD=0.615
+  ranks (1=melhor): ga=1.62  bagging=1.93  rf=2.45
+  medias:           ga=0.2154  bagging=0.1484  rf=0.1421
+    ga      vs bagging drank=0.31  wilcoxon_p=0.00234 dmedia=+0.0670
+    ga      vs rf      drank=0.83* wilcoxon_p=0.00067 dmedia=+0.0734
+    bagging vs rf      drank=0.52  wilcoxon_p=0.02027 dmedia=+0.0064
+
+gap_5  (N=29 bases, k=3)
+  Friedman chi2=4.19 p=0.12299 | CD=0.615
+  ranks (1=melhor): ga=1.72  bagging=2.02  rf=2.26
+  medias:           ga=0.2081  bagging=0.1417  rf=0.1371
+    ga      vs bagging drank=0.29  wilcoxon_p=0.00215 dmedia=+0.0664
+    ga      vs rf      drank=0.53  wilcoxon_p=0.00081 dmedia=+0.0710
+    bagging vs rf      drank=0.24  wilcoxon_p=0.13286 dmedia=+0.0046
+
+df_ratio  (N=29 bases, k=3)
+  Friedman chi2=18.69 p=0.00009 | CD=0.615
+  ranks (1=melhor): ga=1.69  bagging=2.66  rf=1.66
+  medias:           ga=2.1137  bagging=3.9780  rf=2.9195
+    ga      vs bagging drank=0.97* wilcoxon_p=0.00033 dmedia=-1.8643
+    ga      vs rf      drank=0.03  wilcoxon_p=0.07976 dmedia=-0.8058
+    bagging vs rf      drank=1.00* wilcoxon_p=0.00000 dmedia=+1.0585
+
+nstar  (N=29 bases, k=3)
+  Friedman chi2=2.00 p=0.36788 | CD=0.615
+  ranks (1=melhor): ga=1.86  bagging=2.21  rf=1.93
+  medias:           ga=51.5655  bagging=54.3828  rf=53.0310
+    ga      vs bagging drank=0.34  wilcoxon_p=0.04623 dmedia=-2.8172
+    ga      vs rf      drank=0.07  wilcoxon_p=0.15137 dmedia=-1.4655
+    bagging vs rf      drank=0.28  wilcoxon_p=0.38677 dmedia=+1.3517
