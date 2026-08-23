@@ -147,6 +147,7 @@ def record_run(config: dict[str, Any], output_dir: Path | str,
         (output_dir / "summary.csv").write_text(
             "dataset,fold,mode,M,n_test,oracle_1,oracle_2,oracle_3,oracle_4,"
             "oracle_5,oracle_M,oracle_curve_json,majority_vote,mean_probs,"
+            "soft_fusion_rule,"
             "double_fault_mean,mean_individual_acc\n")
     else:
         summary_df.to_csv(output_dir / "summary.csv", index=False)

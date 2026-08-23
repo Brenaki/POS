@@ -16,7 +16,12 @@ Public API:
 """
 
 from pos.oracle.arff_loader import list_datasets, load_arff_dataset
-from pos.oracle.comparison import majority_vote_accuracy, mean_probs_accuracy
+from pos.oracle.comparison import (
+    majority_vote_accuracy,
+    mean_decision_accuracy,
+    mean_probs_accuracy,
+    soft_fusion_accuracy,
+)
 from pos.oracle.correctness_matrix import build_correctness_matrix
 from pos.oracle.dataset_catalog import build_catalog, load_catalog, save_catalog
 from pos.oracle.experiment import run_experiment
@@ -34,6 +39,8 @@ __all__ = [
     "oracle_curve_array",
     "majority_vote_accuracy",
     "mean_probs_accuracy",
+    "mean_decision_accuracy",
+    "soft_fusion_accuracy",
     "load_arff_dataset",
     "list_datasets",
     "run_experiment",

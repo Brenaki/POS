@@ -18,7 +18,7 @@ import numpy as np
 from sklearn.model_selection import StratifiedKFold
 
 from pos.oracle.arff_loader import load_arff_dataset
-from pos.oracle.comparison import majority_vote_accuracy, mean_probs_accuracy
+from pos.oracle.comparison import majority_vote_accuracy, soft_fusion_accuracy
 from pos.oracle.correctness_matrix import build_correctness_matrix
 from pos.oracle.fold_splitter import stratified_val_split
 from pos.oracle.oracle_curve import oracle_curve_array
@@ -99,12 +99,11 @@ def run_experiment(
         fold_curves.append(oracle_curve_array(matrix))
         fold_M.append(matrix.shape[1])
         fold_majority.append(majority_vote_accuracy(pool, X_test, y_test))
-        # A Perceptron pool has no predict_proba, so mean-of-probabilities is
-        # undefined for it. Mirrors the guard in evaluate_pool (ADR 0015).
-        try:
-            fold_mean_probs.append(mean_probs_accuracy(pool, X_test, y_test))
-        except (AttributeError, ValueError):
-            pass
+        # A Perceptron pool has no predict_proba; soft_fusion_accuracy falls
+        # back to the normalised mean decision function (ADR 0016).
+        soft, _rule = soft_fusion_accuracy(pool, X_test, y_test)
+        if soft is not None:
+            fold_mean_probs.append(soft)
 
     # Pad curves to same length (in case M differs; it shouldn't with same config)
     max_M = max(fold_M) if fold_M else 0

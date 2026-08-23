@@ -1,0 +1,432 @@
+{
+  "oracle_1": {
+    "metric": "oracle_1",
+    "n_datasets": 29,
+    "friedman_chi2": 16.738095238095198,
+    "friedman_p": 0.00023193634033763234,
+    "ranks": {
+      "ga": 1.896551724137931,
+      "bagging": 2.5,
+      "rf": 1.603448275862069
+    },
+    "critical_difference": 0.6153019443806599,
+    "means": {
+      "ga": 0.9978741214017766,
+      "bagging": 0.9951413881530488,
+      "rf": 0.9969986880123316
+    },
+    "pairs": [
+      {
+        "a": "ga",
+        "b": "bagging",
+        "rank_delta": 0.603448275862069,
+        "nemenyi_significant": false,
+        "wilcoxon_p": 0.08297978868920647,
+        "mean_delta": 0.0027327332487278033
+      },
+      {
+        "a": "ga",
+        "b": "rf",
+        "rank_delta": 0.2931034482758621,
+        "nemenyi_significant": false,
+        "wilcoxon_p": 0.43256967723381,
+        "mean_delta": 0.0008754333894449573
+      },
+      {
+        "a": "bagging",
+        "b": "rf",
+        "rank_delta": 0.896551724137931,
+        "nemenyi_significant": true,
+        "wilcoxon_p": 0.00019643672621231134,
+        "mean_delta": -0.001857299859282846
+      }
+    ]
+  },
+  "oracle_2": {
+    "metric": "oracle_2",
+    "n_datasets": 29,
+    "friedman_chi2": 9.87368421052634,
+    "friedman_p": 0.0071772275523374835,
+    "ranks": {
+      "ga": 2.0517241379310347,
+      "bagging": 2.3448275862068964,
+      "rf": 1.603448275862069
+    },
+    "critical_difference": 0.6153019443806599,
+    "means": {
+      "ga": 0.995609378233429,
+      "bagging": 0.9935258827191142,
+      "rf": 0.995826259199254
+    },
+    "pairs": [
+      {
+        "a": "ga",
+        "b": "bagging",
+        "rank_delta": 0.29310344827586166,
+        "nemenyi_significant": false,
+        "wilcoxon_p": 0.29044639432372954,
+        "mean_delta": 0.0020834955143147482
+      },
+      {
+        "a": "ga",
+        "b": "rf",
+        "rank_delta": 0.44827586206896575,
+        "nemenyi_significant": false,
+        "wilcoxon_p": 0.2641496340638618,
+        "mean_delta": -0.00021688096582506144
+      },
+      {
+        "a": "bagging",
+        "b": "rf",
+        "rank_delta": 0.7413793103448274,
+        "nemenyi_significant": true,
+        "wilcoxon_p": 0.0005167151238567522,
+        "mean_delta": -0.0023003764801398097
+      }
+    ]
+  },
+  "oracle_5": {
+    "metric": "oracle_5",
+    "n_datasets": 29,
+    "friedman_chi2": 14.220000000000002,
+    "friedman_p": 0.0008168949921050276,
+    "ranks": {
+      "ga": 2.1551724137931036,
+      "bagging": 2.3620689655172415,
+      "rf": 1.4827586206896552
+    },
+    "critical_difference": 0.6153019443806599,
+    "means": {
+      "ga": 0.9905460916587819,
+      "bagging": 0.9884244485803523,
+      "rf": 0.992004709608935
+    },
+    "pairs": [
+      {
+        "a": "ga",
+        "b": "bagging",
+        "rank_delta": 0.2068965517241379,
+        "nemenyi_significant": false,
+        "wilcoxon_p": 0.8611621969468249,
+        "mean_delta": 0.002121643078429658
+      },
+      {
+        "a": "ga",
+        "b": "rf",
+        "rank_delta": 0.6724137931034484,
+        "nemenyi_significant": true,
+        "wilcoxon_p": 0.1531274510196695,
+        "mean_delta": -0.0014586179501531182
+      },
+      {
+        "a": "bagging",
+        "b": "rf",
+        "rank_delta": 0.8793103448275863,
+        "nemenyi_significant": true,
+        "wilcoxon_p": 0.00016231562257156015,
+        "mean_delta": -0.0035802610285827763
+      }
+    ]
+  },
+  "oracle_M": {
+    "metric": "oracle_M",
+    "n_datasets": 29,
+    "friedman_chi2": 22.45217391304348,
+    "friedman_p": 1.3322090555957266e-05,
+    "ranks": {
+      "ga": 2.2586206896551726,
+      "bagging": 1.293103448275862,
+      "rf": 2.4482758620689653
+    },
+    "critical_difference": 0.6153019443806599,
+    "means": {
+      "ga": 0.11362648711838372,
+      "bagging": 0.30517388319421057,
+      "rf": 0.17254157498705414
+    },
+    "pairs": [
+      {
+        "a": "ga",
+        "b": "bagging",
+        "rank_delta": 0.9655172413793105,
+        "nemenyi_significant": true,
+        "wilcoxon_p": 0.0006361513664445838,
+        "mean_delta": -0.19154739607582685
+      },
+      {
+        "a": "ga",
+        "b": "rf",
+        "rank_delta": 0.1896551724137927,
+        "nemenyi_significant": false,
+        "wilcoxon_p": 0.19762490689754486,
+        "mean_delta": -0.05891508786867042
+      },
+      {
+        "a": "bagging",
+        "b": "rf",
+        "rank_delta": 1.1551724137931032,
+        "nemenyi_significant": true,
+        "wilcoxon_p": 1.1175870895385742e-08,
+        "mean_delta": 0.13263230820715644
+      }
+    ]
+  },
+  "majority_vote": {
+    "metric": "majority_vote",
+    "n_datasets": 29,
+    "friedman_chi2": 10.758620689655174,
+    "friedman_p": 0.00461100083426822,
+    "ranks": {
+      "ga": 2.3448275862068964,
+      "bagging": 2.1379310344827585,
+      "rf": 1.5172413793103448
+    },
+    "critical_difference": 0.6153019443806599,
+    "means": {
+      "ga": 0.7824271712835599,
+      "bagging": 0.8467035807910072,
+      "rf": 0.8549243318374236
+    },
+    "pairs": [
+      {
+        "a": "ga",
+        "b": "bagging",
+        "rank_delta": 0.2068965517241379,
+        "nemenyi_significant": false,
+        "wilcoxon_p": 0.006451543420553207,
+        "mean_delta": -0.06427640950744729
+      },
+      {
+        "a": "ga",
+        "b": "rf",
+        "rank_delta": 0.8275862068965516,
+        "nemenyi_significant": true,
+        "wilcoxon_p": 0.0009746924042701721,
+        "mean_delta": -0.07249716055386368
+      },
+      {
+        "a": "bagging",
+        "b": "rf",
+        "rank_delta": 0.6206896551724137,
+        "nemenyi_significant": true,
+        "wilcoxon_p": 0.0035108327865600586,
+        "mean_delta": -0.008220751046416397
+      }
+    ]
+  },
+  "mean_individual_acc": {
+    "metric": "mean_individual_acc",
+    "n_datasets": 29,
+    "friedman_chi2": 11.655172413793082,
+    "friedman_p": 0.0029451774562683857,
+    "ranks": {
+      "ga": 2.2758620689655173,
+      "bagging": 1.4827586206896552,
+      "rf": 2.2413793103448274
+    },
+    "critical_difference": 0.6153019443806599,
+    "means": {
+      "ga": 0.705200511424875,
+      "bagging": 0.7931101924537355,
+      "rf": 0.7805554991548413
+    },
+    "pairs": [
+      {
+        "a": "ga",
+        "b": "bagging",
+        "rank_delta": 0.7931034482758621,
+        "nemenyi_significant": true,
+        "wilcoxon_p": 0.0018163397908210754,
+        "mean_delta": -0.08790968102886043
+      },
+      {
+        "a": "ga",
+        "b": "rf",
+        "rank_delta": 0.034482758620689946,
+        "nemenyi_significant": false,
+        "wilcoxon_p": 0.006938289850950241,
+        "mean_delta": -0.0753549877299663
+      },
+      {
+        "a": "bagging",
+        "b": "rf",
+        "rank_delta": 0.7586206896551722,
+        "nemenyi_significant": true,
+        "wilcoxon_p": 2.384185791015625e-06,
+        "mean_delta": 0.012554693298894137
+      }
+    ]
+  },
+  "gap_1": {
+    "metric": "gap_1",
+    "n_datasets": 29,
+    "friedman_chi2": 10.137931034482733,
+    "friedman_p": 0.006288922558859071,
+    "ranks": {
+      "ga": 1.6206896551724137,
+      "bagging": 1.9310344827586208,
+      "rf": 2.4482758620689653
+    },
+    "critical_difference": 0.6153019443806599,
+    "means": {
+      "ga": 0.2154469501182166,
+      "bagging": 0.14843780736204143,
+      "rf": 0.14207435617490777
+    },
+    "pairs": [
+      {
+        "a": "ga",
+        "b": "bagging",
+        "rank_delta": 0.3103448275862071,
+        "nemenyi_significant": false,
+        "wilcoxon_p": 0.00234014168381691,
+        "mean_delta": 0.06700914275617517
+      },
+      {
+        "a": "ga",
+        "b": "rf",
+        "rank_delta": 0.8275862068965516,
+        "nemenyi_significant": true,
+        "wilcoxon_p": 0.0006687678396701813,
+        "mean_delta": 0.07337259394330883
+      },
+      {
+        "a": "bagging",
+        "b": "rf",
+        "rank_delta": 0.5172413793103445,
+        "nemenyi_significant": false,
+        "wilcoxon_p": 0.020265981554985046,
+        "mean_delta": 0.006363451187133662
+      }
+    ]
+  },
+  "gap_5": {
+    "metric": "gap_5",
+    "n_datasets": 29,
+    "friedman_chi2": 4.191304347826065,
+    "friedman_p": 0.12299000661868056,
+    "ranks": {
+      "ga": 1.7241379310344827,
+      "bagging": 2.0172413793103448,
+      "rf": 2.2586206896551726
+    },
+    "critical_difference": 0.6153019443806599,
+    "means": {
+      "ga": 0.20811892037522187,
+      "bagging": 0.14172086778934503,
+      "rf": 0.13708037777151122
+    },
+    "pairs": [
+      {
+        "a": "ga",
+        "b": "bagging",
+        "rank_delta": 0.2931034482758621,
+        "nemenyi_significant": false,
+        "wilcoxon_p": 0.002152439206838608,
+        "mean_delta": 0.06639805258587683
+      },
+      {
+        "a": "ga",
+        "b": "rf",
+        "rank_delta": 0.53448275862069,
+        "nemenyi_significant": false,
+        "wilcoxon_p": 0.0008089840412139893,
+        "mean_delta": 0.07103854260371065
+      },
+      {
+        "a": "bagging",
+        "b": "rf",
+        "rank_delta": 0.24137931034482785,
+        "nemenyi_significant": false,
+        "wilcoxon_p": 0.132861236687201,
+        "mean_delta": 0.004640490017833815
+      }
+    ]
+  },
+  "df_ratio": {
+    "metric": "df_ratio",
+    "n_datasets": 29,
+    "friedman_chi2": 18.68965517241378,
+    "friedman_p": 8.741640556650603e-05,
+    "ranks": {
+      "ga": 1.6896551724137931,
+      "bagging": 2.6551724137931036,
+      "rf": 1.6551724137931034
+    },
+    "critical_difference": 0.6153019443806599,
+    "means": {
+      "ga": 2.113728020695294,
+      "bagging": 3.9780116503870517,
+      "rf": 2.9195309407744756
+    },
+    "pairs": [
+      {
+        "a": "ga",
+        "b": "bagging",
+        "rank_delta": 0.9655172413793105,
+        "nemenyi_significant": true,
+        "wilcoxon_p": 0.00033221766352653503,
+        "mean_delta": -1.8642836296917578
+      },
+      {
+        "a": "ga",
+        "b": "rf",
+        "rank_delta": 0.034482758620689724,
+        "nemenyi_significant": false,
+        "wilcoxon_p": 0.07975950092077255,
+        "mean_delta": -0.8058029200791816
+      },
+      {
+        "a": "bagging",
+        "b": "rf",
+        "rank_delta": 1.0000000000000002,
+        "nemenyi_significant": true,
+        "wilcoxon_p": 3.725290298461914e-08,
+        "mean_delta": 1.0584807096125761
+      }
+    ]
+  },
+  "nstar": {
+    "metric": "nstar",
+    "n_datasets": 29,
+    "friedman_chi2": 1.9999999999999836,
+    "friedman_p": 0.36787944117144533,
+    "ranks": {
+      "ga": 1.8620689655172413,
+      "bagging": 2.206896551724138,
+      "rf": 1.9310344827586208
+    },
+    "critical_difference": 0.6153019443806599,
+    "means": {
+      "ga": 51.56551724137932,
+      "bagging": 54.38275862068966,
+      "rf": 53.03103448275861
+    },
+    "pairs": [
+      {
+        "a": "ga",
+        "b": "bagging",
+        "rank_delta": 0.3448275862068966,
+        "nemenyi_significant": false,
+        "wilcoxon_p": 0.046231354491907864,
+        "mean_delta": -2.817241379310339
+      },
+      {
+        "a": "ga",
+        "b": "rf",
+        "rank_delta": 0.06896551724137945,
+        "nemenyi_significant": false,
+        "wilcoxon_p": 0.15137469391329242,
+        "mean_delta": -1.4655172413792954
+      },
+      {
+        "a": "bagging",
+        "b": "rf",
+        "rank_delta": 0.2758620689655171,
+        "nemenyi_significant": false,
+        "wilcoxon_p": 0.3867740718376753,
+        "mean_delta": 1.3517241379310434
+      }
+    ]
+  }
+}

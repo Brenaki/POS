@@ -108,7 +108,13 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
       Magic: 8,05 h → 0,71 h
 - [ ] Validar `T1_fast` contra ECoL/R em bags congelados (ranking dos bags)
 - [ ] Decidir formalmente: `GA-F1/T1` vs PGDCS completo (`get_best_types` reativado)
-- [ ] Rodar `--full` científico e versionar `results/`
+- [x] Rodar `--full` científico e versionar `results/`
+      — run `2026-08-22T23-33-56_2a8a0f5`: 29 bases x 10 folds x 3 modos = 870 folds,
+      0 erros, ~2h20. Invariantes Oracle_N verificados em 870/870.
+      Análise em `docs/resultados-oracle-n.md`, figuras em `results/**/figures/`.
+- [ ] Reexecutar `--full` com ADR 0016 para preencher `mean_probs` do GA (290 linhas)
+- [ ] DCS/DES via DESlib (objetivo 6): há folga medida (`Oracle_1 − MV` = 0.2154 no GA)
+      e um critério para prever onde ela é grande (`DF/e²`, Spearman −0.86)
 
 ## Decision log (ADRs)
 
@@ -127,6 +133,7 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
 - `docs/adr/0013-t1-hyperspheres-maxdistance-fix.md` — T1=Fraction of Hyper-spheres (N5), maxdistance/Gdisp fix
 - `docs/adr/0014-offspring-fitness-and-protocol-gates.md` — fitness da prole após a 1ª geração, portões de protocolo (Ecoli/Glass), T1 escalável
 - `docs/adr/0015-performance-exact-optimizations.md` — otimizações exatas, Perceptron linear da tese como base do GA, paralelismo por padrão
+- `docs/adr/0016-soft-fusion-for-margin-pools.md` — combinação suave para pools sem `predict_proba` (média de margens normalizadas)
 
 ## Notes
 
