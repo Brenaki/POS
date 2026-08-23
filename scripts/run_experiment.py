@@ -23,7 +23,7 @@ from pathlib import Path
 REPO_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_DIR))
 
-from pos.oracle.des_comparison import DES_METHODS  # noqa: E402
+from pos.oracle.des_methods import DES_METHODS  # noqa: E402
 from pos.oracle.run_helpers import git_sha  # noqa: E402
 from pos.oracle.run_recorder import record_run  # noqa: E402
 
@@ -90,7 +90,7 @@ def main():
                    help="GA base learner: 'perc' = linear Perceptron (thesis sec. 5, "
                         "default), 'tree' = DecisionTree")
     p.add_argument("--no-des", action="store_true",
-                   help="skip the DCS/DES baselines (OLA, LCA, KNORA-E/U, META-DES)")
+                   help="skip the DCS/DES baselines entirely (see pos/oracle/des_methods.py)")
     p.add_argument("--output", type=str, default=None,
                    help="output root (default: results/experiments/)")
     p.add_argument("--dry-run", action="store_true", help="print manifest, do not run")

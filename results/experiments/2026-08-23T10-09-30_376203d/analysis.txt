@@ -151,6 +151,15 @@ fusores [ga]  (N=29 bases, k=6)
     des_lca       vs des_knorau    drank=3.22* wilcoxon_p=0.00000 dmedia=-0.0632
     des_knorae    vs des_knorau    drank=1.26  wilcoxon_p=0.04312 dmedia=-0.0126
 
+todos os fusores vs MVR [ga] (Wilcoxon pareado, Holm)
+                  label    mean   delta  wins  losses       p  p_holm
+fuser                                                                
+des_lca             LCA  0.7466 -0.0358     5      24  0.0023  0.0117
+des_knorau      KNORA-U  0.8098  0.0274    23       6  0.0048  0.0192
+mean_probs  fusão suave  0.7743 -0.0081     8      19  0.0143  0.0428
+des_ola             OLA  0.7926  0.0102    11      18  0.7013  1.0000
+des_knorae      KNORA-E  0.7972  0.0148    12      17  0.8480  1.0000
+
 fusores [bagging]  (N=29 bases, k=7)
   Friedman chi2=111.68 p=0.00000 | CD=1.672
   ranks (1=melhor): majority_vote=3.17  mean_probs=3.22  des_ola=6.29  des_lca=6.09  des_knorae=4.48  des_knorau=2.71  des_metades=2.03
@@ -177,6 +186,16 @@ fusores [bagging]  (N=29 bases, k=7)
     des_knorae    vs des_metades   drank=2.45* wilcoxon_p=0.00003 dmedia=-0.0220
     des_knorau    vs des_metades   drank=0.67  wilcoxon_p=0.01192 dmedia=-0.0037
 
+todos os fusores vs MVR [bagging] (Wilcoxon pareado, Holm)
+                   label    mean   delta  wins  losses       p  p_holm
+fuser                                                                 
+des_ola              OLA  0.8052 -0.0415     0      28  0.0000  0.0000
+des_lca              LCA  0.7984 -0.0483     1      26  0.0000  0.0001
+des_knorae       KNORA-E  0.8291 -0.0176     5      21  0.0002  0.0010
+des_metades     META-DES  0.8511  0.0044    20       7  0.0023  0.0068
+des_knorau       KNORA-U  0.8474  0.0007    15       6  0.1305  0.2611
+mean_probs   fusão suave  0.8466 -0.0001     1       2  1.0000  1.0000
+
 fusores [rf]  (N=29 bases, k=7)
   Friedman chi2=123.29 p=0.00000 | CD=1.672
   ranks (1=melhor): majority_vote=2.60  mean_probs=2.67  des_ola=6.34  des_lca=6.41  des_knorae=4.62  des_knorau=2.38  des_metades=2.97
@@ -202,3 +221,13 @@ fusores [rf]  (N=29 bases, k=7)
     des_knorae    vs des_knorau    drank=2.24* wilcoxon_p=0.00000 dmedia=-0.0256
     des_knorae    vs des_metades   drank=1.66  wilcoxon_p=0.00004 dmedia=-0.0223
     des_knorau    vs des_metades   drank=0.59  wilcoxon_p=0.33655 dmedia=+0.0033
+
+todos os fusores vs MVR [rf] (Wilcoxon pareado, Holm)
+                   label    mean   delta  wins  losses       p  p_holm
+fuser                                                                 
+des_lca              LCA  0.7933 -0.0616     0      29  0.0000  0.0000
+des_ola              OLA  0.7947 -0.0602     1      28  0.0000  0.0000
+des_knorae       KNORA-E  0.8312 -0.0238     3      25  0.0001  0.0004
+des_knorau       KNORA-U  0.8568  0.0019    14      10  0.1888  0.5663
+des_metades     META-DES  0.8535 -0.0014    10      16  0.4310  0.8621
+mean_probs   fusão suave  0.8546 -0.0003     1       2  0.5930  0.8621

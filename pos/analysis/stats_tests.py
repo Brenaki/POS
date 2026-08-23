@@ -6,7 +6,7 @@ test gates the post-hoc comparison.
 
 `compare` ranks the three pool modes on one metric; `compare_table` takes any
 dataset x method table, which is what the fuser comparison of milestone 6
-needs (majority vote vs soft fusion vs the five DCS/DES methods).
+needs (majority vote vs soft fusion vs the DCS/DES methods).
 """
 
 from __future__ import annotations
@@ -17,11 +17,13 @@ from scipy.stats import friedmanchisquare, wilcoxon
 
 from pos.analysis.loader import MODES, per_dataset
 
-# Studentised range q_0.05 divided by sqrt(2), indexed by k, infinite df
-# (Demsar 2006, Table 5). k=3 is the three pool modes; the fuser comparison
-# needs up to k=7.
+# Studentised range / sqrt(2) at alpha=0.05 (Demsar 2006, Table 5). Runs to
+# k=20 because ADR 0018 compares up to fourteen fusers at once — and the way
+# these values grow is itself the reason that comparison is only descriptive.
 Q_ALPHA = {2: 1.960, 3: 2.343, 4: 2.569, 5: 2.728, 6: 2.850,
-           7: 2.948, 8: 3.031, 9: 3.102, 10: 3.164}
+           7: 2.948, 8: 3.031, 9: 3.102, 10: 3.164,
+           11: 3.219, 12: 3.268, 13: 3.313, 14: 3.354, 15: 3.391,
+           16: 3.426, 17: 3.458, 18: 3.489, 19: 3.517, 20: 3.544}
 Q_ALPHA_K3 = Q_ALPHA[3]
 
 
@@ -102,3 +104,30 @@ def format_comparison(res: dict) -> str:
             f"    {pr['a']:{width}} vs {pr['b']:{width}} drank={pr['rank_delta']:.2f}{mark} "
             f"wilcoxon_p={pr['wilcoxon_p']:.5f} dmedia={pr['mean_delta']:+.4f}")
     return "\n".join(lines)
+
+
+def holm_wilcoxon(table: pd.DataFrame, baseline: str, others: list[str]) -> pd.DataFrame:
+    """Paired Wilcoxon of each column against `baseline`, Holm-corrected.
+
+    The descriptive tier of ADR 0018: with a dozen fusers Friedman/Nemenyi has
+    no power left, but a family of paired tests against the single baseline
+    that matters does — provided the family-wise error is controlled. Holm is
+    used rather than Bonferroni because it is uniformly more powerful and
+    needs no extra assumption.
+    """
+    rows = []
+    for col in others:
+        diff = table[col] - table[baseline]
+        p = 1.0 if np.allclose(diff, 0.0) else float(wilcoxon(table[col],
+                                                              table[baseline])[1])
+        rows.append({"fuser": col, "mean": float(table[col].mean()),
+                     "delta": float(diff.mean()),
+                     "wins": int((diff > 1e-12).sum()),
+                     "losses": int((diff < -1e-12).sum()),
+                     "p": p})
+    res = pd.DataFrame(rows).set_index("fuser").sort_values("p")
+    m = len(res)
+    # Holm: the k-th smallest p is scaled by (m - k), then made monotone.
+    adj = [min(1.0, (m - i) * p) for i, p in enumerate(res["p"].values)]
+    res["p_holm"] = np.maximum.accumulate(adj)
+    return res

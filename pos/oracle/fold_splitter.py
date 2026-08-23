@@ -89,3 +89,28 @@ def stratified_val_split(
         random_state=random_state, stratify=stratify,
     )
     return X_tr, y_tr, X_val, y_val
+
+
+def stratified_three_way_split(
+    X_train: np.ndarray,
+    y_train: np.ndarray,
+    val_frac: float,
+    random_state: int,
+) -> tuple[np.ndarray, ...]:
+    """Split into (X_tr, y_tr, X_val, y_val, X_dsel, y_dsel), stratified.
+
+    ADR 0018. `X_tr` keeps exactly the share it had under the two-way split,
+    so bagging/rf pools stay bit-identical to the previous run; the `val_frac`
+    slice is what gets halved, into the GA's fitness set and the DSEL of the
+    dynamic selection. Keeping the two disjoint is the whole point — under the
+    two-way split the GA estimated local competence on data it had already
+    optimised against.
+    """
+    X_tr, y_tr, X_rest, y_rest = stratified_val_split(
+        X_train, y_train, val_frac, random_state)
+    stratify = y_rest if min_class_count(y_rest) >= 2 else None
+    X_val, X_dsel, y_val, y_dsel = train_test_split(
+        X_rest, y_rest, test_size=0.5, random_state=random_state,
+        stratify=stratify,
+    )
+    return X_tr, y_tr, X_val, y_val, X_dsel, y_dsel

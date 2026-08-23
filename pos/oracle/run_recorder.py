@@ -11,7 +11,6 @@ ADR 0006 (protocol), ADR 0009 (reproducibility layout).
 from __future__ import annotations
 
 import json
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -19,43 +18,33 @@ import pandas as pd
 from sklearn.model_selection import StratifiedKFold
 
 from pos.oracle.arff_loader import load_arff_dataset
-from pos.oracle.des_comparison import DES_METHODS, evaluate_des
-from pos.oracle.fold_splitter import check_dataset_viability, stratified_val_split
+from pos.oracle.des_comparison import effective_k, evaluate_des
+from pos.oracle.des_methods import DES_METHODS
+from pos.oracle.fold_splitter import (
+    check_dataset_viability,
+    stratified_three_way_split,
+)
 from pos.oracle.pool_evaluation import evaluate_pool
 from pos.oracle.resume_helpers import completed_folds, load_existing_summary
 from pos.oracle.run_helpers import (
-    build_fold_manifest,
     build_pool_bagging,
     build_pool_ga,
     build_pool_rf,
-    build_summary_row,
-    deps_versions,
-    git_branch,
-    git_dirty,
-    git_sha,
     per_dataset_summary,
-    platform_str,
-    python_version,
+)
+from pos.oracle.run_records import (
+    build_fold_manifest,
+    build_run_manifest,
+    build_summary_row,
+    empty_summary_columns,
     save_fold_artifacts,
 )
 
 VAL_FRAC = 0.2
 
 
-def _build_manifest(config: dict[str, Any], repo_dir: Path) -> dict[str, Any]:
-    return {
-        "timestamp_iso": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "git_sha": git_sha(repo_dir), "git_branch": git_branch(repo_dir),
-        "git_dirty": git_dirty(repo_dir),
-        "python_version": python_version(), "platform": platform_str(),
-        "config": config, "deps_versions": deps_versions(),
-        "protocol_ref": "docs/protocol.md",
-        "adr_ref": "docs/adr/0009-experiment-reproducibility.md",
-    }
-
-
-def _run_fold(X_tr, y_tr, X_val, y_val, X_test, y_test, mode, M, nr_gen, rs,
-              jobs=1, base_classifier="perc", des_methods=()):
+def _run_fold(X_tr, y_tr, X_val, y_val, X_dsel, y_dsel, X_test, y_test, mode,
+              M, nr_gen, rs, jobs=1, base_classifier="perc", des_methods=()):
     """Build pool and evaluate. Returns (metrics, pool) or (None, None)."""
     if mode == "ga":
         pool = build_pool_ga(X_tr, y_tr, X_val, y_val, nr_gen, rs, jobs=jobs,
@@ -70,10 +59,14 @@ def _run_fold(X_tr, y_tr, X_val, y_val, X_test, y_test, mode, M, nr_gen, rs,
         return None, None
     metrics = evaluate_pool(pool, X_test, y_test)
     if des_methods:
-        # DSEL = the validation split, already held out of pool training.
-        accs, notes = evaluate_des(pool, X_val, y_val, X_test, y_test,
-                                   random_state=rs, methods=tuple(des_methods))
-        metrics["des"], metrics["des_notes"] = accs, notes
+        # DSEL is disjoint from both pool training and the GA's fitness set
+        # (ADR 0018) — under the old two-way split it was the fitness set.
+        des, preds, notes = evaluate_des(pool, X_dsel, y_dsel, X_test, y_test,
+                                         random_state=rs,
+                                         methods=tuple(des_methods))
+        metrics["des"], metrics["des_preds"], metrics["des_notes"] = des, preds, notes
+        metrics["k_eff"] = effective_k(len(y_dsel))
+        metrics["n_dsel"] = int(len(y_dsel))
     return metrics, pool
 
 
@@ -99,7 +92,7 @@ def record_run(config: dict[str, Any], output_dir: Path | str,
     des_methods: list[str] = config.get("des_methods", list(DES_METHODS))
     dataset_dir = Path(config.get("dataset_dir", repo_dir / "Dataset"))
 
-    manifest = _build_manifest(config, repo_dir)
+    manifest = build_run_manifest(config, repo_dir)
     done = completed_folds(output_dir) if resume else set()
     summary_rows = load_existing_summary(output_dir) if resume else []
     if resume and done:
@@ -122,14 +115,15 @@ def record_run(config: dict[str, Any], output_dir: Path | str,
         for fold_idx, (train_idx, test_idx) in enumerate(skf.split(X, y)):
             X_train, X_test = X[train_idx], X[test_idx]
             y_train, y_test = y[train_idx], y[test_idx]
-            X_tr, y_tr, X_val, y_val = stratified_val_split(
+            X_tr, y_tr, X_val, y_val, X_dsel, y_dsel = stratified_three_way_split(
                 X_train, y_train, VAL_FRAC, random_state + fold_idx)
 
             for mode in modes:
                 if (ds_name, fold_idx, mode) in done:
                     continue
                 try:
-                    metrics, pool = _run_fold(X_tr, y_tr, X_val, y_val, X_test, y_test,
+                    metrics, pool = _run_fold(X_tr, y_tr, X_val, y_val,
+                                              X_dsel, y_dsel, X_test, y_test,
                                               mode, M, nr_generation, random_state,
                                               jobs=jobs, base_classifier=base_classifier,
                                               des_methods=des_methods)
@@ -155,10 +149,7 @@ def record_run(config: dict[str, Any], output_dir: Path | str,
     summary_df = pd.DataFrame(summary_rows)
     if summary_df.empty:
         (output_dir / "summary.csv").write_text(
-            "dataset,fold,mode,M,n_test,oracle_1,oracle_2,oracle_3,oracle_4,"
-            "oracle_5,oracle_M,oracle_curve_json,majority_vote,mean_probs,"
-            "soft_fusion_rule,double_fault_mean,mean_individual_acc,"
-            + ",".join(f"des_{m}" for m in DES_METHODS) + "\n")
+            ",".join(empty_summary_columns()) + "\n")
     else:
         summary_df.to_csv(output_dir / "summary.csv", index=False)
     pd.DataFrame(per_dataset_summary(summary_df)).to_csv(

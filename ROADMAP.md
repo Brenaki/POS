@@ -21,7 +21,7 @@
 | 4  | Implementação do Oracle tradicional e dos Oracles em diferentes níveis | Dez/2026–Fev/2027  | [x]    |
 | 5  | Relatório Semestral conforme modelo PROPESP (até 15 mar 2027)          | Mar/2027           | [ ]    |
 | 6  | Experimentos comparativos (votação majoritária, combinação de probs, DCS/DES) | Fev–Jun/2027 | [x]    |
-| 7  | Análise dos resultados, gráficos e recomendações                       | Ago–Nov/2027       | [x]    |
+| 7  | Análise dos resultados, gráficos e recomendações                       | Ago–Nov/2027       | [~]    |
 | 8  | Relatório final (até 11 set 2027)                                      | Jul–Ago/2027       | [ ]    |
 
 ## Engineering milestones (enabling the cronograma)
@@ -143,8 +143,22 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
       vantagem concentrada nas bases 2D de fronteira não-linear (recuperação
       0.807 em P2/Lithuanian/Banana vs 0.16 do Bagging). `recovered` **não**
       correlaciona com `DF/e²` (rho=+0.014, p=0.68).
-- [ ] Dividir a validação em metades (fitness do GA / DSEL) para tirar o viés
-      otimista do GA em `recovered` — muda os pools, exige run próprio (ADR 0017)
+- [x] **ADR 0018** — split de três vias (`X_tr` / `X_val` fitness / `X_dsel`
+      DSEL, com `X_tr` intacto para os pools de árvore saírem bit-idênticos),
+      suíte de métricas (precisão/revocação/F1 macro + acurácia balanceada) para
+      todo fusor, `oracle_1_balanced`, e as predições do DCS/DES gravadas no
+      `.npz` — a falha do ADR 0017 que obrigou este rerun
+- [x] Lista de métodos de 5 → 12, escolhida por benchmark: MCB e Rank (a
+      penalidade do DCS é geral?), DES-P e DES-KNN (DES-KNN liga ao `DF/e²`),
+      KNOP, e os estáticos SingleBest e StaticSelection (o extremo do eixo de
+      poda). MLA, APriori e APosteriori medidos e descartados com motivo.
+- [x] Duas camadas estatísticas: Friedman/Nemenyi sobre o conjunto do ADR 0017
+      (poder preservado, comparável com o run anterior) + Wilcoxon com correção
+      de Holm para os 12 restantes
+- [ ] Rodar o `--full` do ADR 0018 e medir o viés de DSEL por
+      diferença-em-diferenças contra o run `2026-08-23T10-09-30_376203d`
+- [ ] Reescrever `docs/resultados-oracle-n.md` com a leitura em acurácia
+      balanceada e consolidar uma seção de recomendações (fecha o marco 7)
 
 ## Decision log (ADRs)
 
@@ -164,6 +178,7 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
 - `docs/adr/0014-offspring-fitness-and-protocol-gates.md` — fitness da prole após a 1ª geração, portões de protocolo (Ecoli/Glass), T1 escalável
 - `docs/adr/0015-performance-exact-optimizations.md` — otimizações exatas, Perceptron linear da tese como base do GA, paralelismo por padrão
 - `docs/adr/0016-soft-fusion-for-margin-pools.md` — combinação suave para pools sem `predict_proba` (média de margens normalizadas)
+- `docs/adr/0018-three-way-split-and-metric-suite.md` — split de três vias, suíte de métricas por fusor, 12 métodos de seleção
 - `docs/adr/0017-dcs-des-baselines-deslib.md` — DCS/DES via DESlib (OLA, LCA, KNORA-E/U, META-DES), DSEL = validação, métrica `recovered`
 
 ## Notes

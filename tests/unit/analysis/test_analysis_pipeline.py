@@ -19,15 +19,22 @@ from pos.analysis.figures_compare import (
 )
 from pos.analysis.figures_curves import plot_mean_curves, plot_per_dataset_grid
 from pos.analysis.figures_des import plot_fuser_accuracy, plot_recovered_gap
-from pos.analysis.fusers import available_fusers, fuser_comparison, recovery_summary
+from pos.analysis.fusers import (
+    PRIMARY_FUSERS,
+    available_fusers,
+    fuser_comparison,
+    recovery_summary,
+    secondary_vs_mvr,
+)
 from pos.analysis.loader import MODES, load_run, mean_curve, per_dataset
 from pos.analysis.stats_tests import (
     compare,
     compare_table,
     critical_difference,
     format_comparison,
+    holm_wilcoxon,
 )
-from pos.oracle.des_comparison import DES_METHODS
+from pos.oracle.des_methods import DES_METHODS, NEEDS_PROBA, STATIC_METHODS
 
 M = 8
 N_DATASETS = 6
@@ -42,7 +49,16 @@ def _row(ds, fold, mode, rng):
     # DES lands between majority vote and the Oracle, as it does in practice.
     des = {f"des_{d}": float(rng.uniform(majority, curve[0])) for d in DES_METHODS}
     if mode == "ga":
-        des["des_metades"] = np.nan  # needs predict_proba; a Perceptron has none
+        for name in NEEDS_PROBA:  # a Perceptron exposes no predict_proba
+            des[f"des_{name}"] = np.nan
+    # The static baselines must never feed `recovered`, so make them the best
+    # column on the row: if they leaked in, des_best would come from here.
+    for name in STATIC_METHODS:
+        des[f"des_{name}"] = float(curve[0])
+    for d in DES_METHODS:  # the metric suite of ADR 0018
+        base = des[f"des_{d}"]
+        for suffix in ("precision", "recall", "f1", "balanced_acc"):
+            des[f"des_{d}_{suffix}"] = base - 0.02
     return {
         "dataset": ds, "fold": fold, "mode": mode, "M": M, "n_test": 50,
         "oracle_M": float(curve[-1]), "oracle_curve_json": json.dumps(curve.tolist()),
@@ -50,6 +66,12 @@ def _row(ds, fold, mode, rng):
         "soft_fusion_rule": "mean_probs",
         "double_fault_mean": float(rng.uniform(0.05, 0.3)),
         "mean_individual_acc": acc,
+        "oracle_1_balanced": float(curve[0]) - 0.01,
+        "n_dsel": 40, "k_eff": 7,
+        **{f"mv_{s}": majority - 0.02
+           for s in ("acc", "precision", "recall", "f1", "balanced_acc")},
+        **{f"soft_{s}": majority - 0.03
+           for s in ("acc", "precision", "recall", "f1", "balanced_acc")},
         **{f"oracle_{n}": float(curve[n - 1]) for n in range(1, 6)},
         **des,
     }
@@ -124,14 +146,59 @@ def test_des_columns_derive_best_and_recovered_share(run_dir):
     assert np.allclose(df["gap_des"], df["oracle_1"] - df["des_best"])
 
 
-def test_metades_is_dropped_only_from_the_mode_that_cannot_run_it(run_dir):
+def test_proba_methods_are_dropped_only_from_the_mode_that_cannot_run_them(run_dir):
     """An all-NaN fuser column must not silently empty the paired test."""
     df = load_run(run_dir)
-    assert "des_metades" not in available_fusers(df, "ga")
-    assert "des_metades" in available_fusers(df, "rf")
+    for name in NEEDS_PROBA:
+        assert f"des_{name}" not in available_fusers(df, "ga")
+        assert f"des_{name}" in available_fusers(df, "rf")
     assert fuser_comparison(df, "ga")["n_datasets"] == N_DATASETS
-    assert len(fuser_comparison(df, "ga")["methods"]) == len(DES_METHODS) + 1
-    assert len(fuser_comparison(df, "rf")["methods"]) == len(DES_METHODS) + 2
+    n_ga = len(fuser_comparison(df, "ga", PRIMARY_FUSERS)["methods"])
+    n_rf = len(fuser_comparison(df, "rf", PRIMARY_FUSERS)["methods"])
+    assert n_rf - n_ga == len([m for m in NEEDS_PROBA
+                               if f"des_{m}" in PRIMARY_FUSERS])
+
+
+def test_static_baselines_never_feed_the_recovered_metric(run_dir):
+    """`recovered` is about *dynamic* selection (ADR 0018).
+
+    The fixture makes the static columns the best on every row, so if they
+    leaked into the per-fold maximum `des_best_method` would name one.
+    """
+    df = load_run(run_dir)
+    assert not set(df["des_best_method"].dropna()) & set(STATIC_METHODS)
+
+
+def test_balanced_gap_is_derived_when_the_run_carries_the_metric(run_dir):
+    df = load_run(run_dir)
+    assert np.allclose(df["gap_1_balanced"],
+                       df["oracle_1_balanced"] - df["mv_balanced_acc"])
+
+
+def test_fuser_table_can_be_read_on_balanced_accuracy(run_dir):
+    """Milestone 7: the same ranking, read on a metric that sees the minority."""
+    df = load_run(run_dir)
+    res = fuser_comparison(df, "rf", PRIMARY_FUSERS, "balanced_acc")
+    assert set(res["methods"]) <= set(PRIMARY_FUSERS)
+    assert res["n_datasets"] == N_DATASETS
+
+
+def test_secondary_table_ranks_every_fuser_against_mvr_with_holm(run_dir):
+    df = load_run(run_dir)
+    sec = secondary_vs_mvr(df, "rf")
+    assert "majority_vote" not in sec.index
+    assert (sec["p_holm"] >= sec["p"] - 1e-12).all()
+    assert (sec["p_holm"] <= 1.0).all()
+    # Holm keeps the adjusted p-values monotone in the raw ones.
+    assert list(sec["p_holm"]) == sorted(sec["p_holm"])
+
+
+def test_holm_is_never_weaker_than_no_correction():
+    table = pd.DataFrame({"base": [0.0] * 10,
+                          "a": [0.1] * 10, "b": [0.05] * 10, "c": [-0.2] * 10})
+    res = holm_wilcoxon(table, "base", ["a", "b", "c"])
+    assert len(res) == 3
+    assert (res["p_holm"] >= res["p"]).all()
 
 
 def test_recovery_summary_has_one_row_per_mode(run_dir):

@@ -671,7 +671,7 @@
       }
     ]
   },
-  "fusers_ga": {
+  "fusers_ga_acc": {
     "metric": "fusores [ga]",
     "methods": [
       "majority_vote",
@@ -824,7 +824,7 @@
       }
     ]
   },
-  "fusers_bagging": {
+  "fusers_bagging_acc": {
     "metric": "fusores [bagging]",
     "methods": [
       "majority_vote",
@@ -1028,7 +1028,7 @@
       }
     ]
   },
-  "fusers_rf": {
+  "fusers_rf_acc": {
     "metric": "fusores [rf]",
     "methods": [
       "majority_vote",

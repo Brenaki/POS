@@ -25,8 +25,10 @@ from pos.oracle.comparison import (
 )
 from pos.oracle.correctness_matrix import build_correctness_matrix
 from pos.oracle.dataset_catalog import build_catalog, load_catalog, save_catalog
-from pos.oracle.des_comparison import DES_METHODS, best_des, evaluate_des
+from pos.oracle.des_comparison import best_des, des_columns, evaluate_des
+from pos.oracle.des_methods import DES_METHODS, PRIMARY_METHODS
 from pos.oracle.experiment import run_experiment
+from pos.oracle.metrics import prediction_metrics
 from pos.oracle.oracle_curve import oracle_curve, oracle_curve_array
 from pos.oracle.oracle_n import oracle_n_accuracy, oracle_n_vector
 from pos.oracle.pool_evaluation import evaluate_pool
@@ -46,10 +48,13 @@ __all__ = [
     "evaluate_des",
     "best_des",
     "DES_METHODS",
+    "PRIMARY_METHODS",
+    "des_columns",
     "load_arff_dataset",
     "list_datasets",
     "run_experiment",
     "evaluate_pool",
+    "prediction_metrics",
     "build_rf_pool",
     "build_catalog",
     "save_catalog",

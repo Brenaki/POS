@@ -12,11 +12,18 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from pos.oracle.des_comparison import DES_METHODS
+from pos.oracle.des_methods import (
+    DCS_METHODS,
+    DES_METHODS,
+    DES_ONLY_METHODS,
+)
 
 MODES = ["ga", "bagging", "rf"]
 FOCUS_LEVELS = [1, 2, 3, 4, 5]
 DES_COLS = [f"des_{m}" for m in DES_METHODS]
+# `recovered` is about *dynamic* selection, so the static baselines
+# (single best, static selection) must not feed the per-fold maximum.
+DYNAMIC_COLS = [f"des_{m}" for m in DCS_METHODS + DES_ONLY_METHODS]
 
 
 def load_run(run_dir: Path | str) -> pd.DataFrame:
@@ -34,8 +41,11 @@ def load_run(run_dir: Path | str) -> pd.DataFrame:
                   the raw value cannot compare pools of different strength;
                   e^2 is the value expected if the errors were independent,
                   making the ratio a scale-free redundancy index (1 = independent).
-    des_best    : best DCS/DES accuracy available on that fold (NaN if the run
+    des_best    : best *dynamic* (DCS/DES) accuracy available on that fold —
+                  the static baselines are excluded on purpose (NaN if the run
                   carried no DES columns).
+    oracle_1_balanced_gap : oracle_1_balanced - mv_balanced_acc, the same gap
+                  read on balanced accuracy (milestone 7, ADR 0018).
     recovered   : (des_best - majority_vote) / (oracle_1 - majority_vote), the
                   share of the unexploited gap that dynamic selection actually
                   reaches. 0 = no better than majority vote, 1 = reaches the
@@ -56,12 +66,14 @@ def load_run(run_dir: Path | str) -> pd.DataFrame:
     err = 1.0 - df["mean_individual_acc"]
     df["df_ratio"] = df["double_fault_mean"] / np.where(err > 0, err**2, np.nan)
     _attach_des(df)
+    if {"oracle_1_balanced", "mv_balanced_acc"} <= set(df.columns):
+        df["gap_1_balanced"] = df["oracle_1_balanced"] - df["mv_balanced_acc"]
     return df
 
 
 def _attach_des(df: pd.DataFrame) -> None:
     """Add des_best / des_best_method / gap_des / recovered, in place."""
-    present = [c for c in DES_COLS if c in df.columns]
+    present = [c for c in DYNAMIC_COLS if c in df.columns]
     if not present:
         return
     df["des_best"] = df[present].max(axis=1)

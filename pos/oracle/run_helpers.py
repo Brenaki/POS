@@ -6,15 +6,12 @@ Extracted from run_recorder.py to satisfy the <=150 LOC file cap.
 from __future__ import annotations
 
 import hashlib
-import json
 import platform
 import subprocess
 import sys
 from pathlib import Path
 
 import numpy as np
-
-from pos.oracle.des_comparison import des_columns
 
 
 def git_sha(repo_dir: Path) -> str:
@@ -123,61 +120,3 @@ def per_dataset_summary(summary_df) -> list[dict]:
                 row[f"{col}_std"] = grp[col].std()
         rows.append(row)
     return rows
-
-
-def save_fold_artifacts(fold_dir, metrics, pool, X_test, y_test, mode) -> None:
-    """Save correctness_matrix_<mode>.npy + predictions_<mode>.npz to fold_dir.
-
-    The filenames carry the mode: without it, running `--mode ga,bagging,rf`
-    made every mode overwrite the previous one's artifacts in the same fold
-    directory, so only the last mode survived on disk (ADR 0014).
-    """
-    fold_dir.mkdir(parents=True, exist_ok=True)
-    np.save(fold_dir / f"correctness_matrix_{mode}.npy", metrics["correctness_matrix"])
-    preds = np.array([clf.predict(X_test) for clf in pool])
-    try:
-        probs = np.array([clf.predict_proba(X_test) for clf in pool])
-        np.savez(fold_dir / f"predictions_{mode}.npz", preds=preds, probs=probs, y_test=y_test)
-    except (AttributeError, ValueError):
-        np.savez(fold_dir / f"predictions_{mode}.npz", preds=preds, y_test=y_test)
-
-
-def build_fold_manifest(ds_name, fold_idx, mode, metrics, random_state,
-                        n_train, n_val, n_test, train_idx, test_idx) -> dict:
-    """Build the fold_manifest dict."""
-    return {
-        "dataset": ds_name, "fold_idx": fold_idx, "mode": mode,
-        "random_state": random_state, "val_seed": random_state + fold_idx,
-        "n_train": int(n_train), "n_val": int(n_val), "n_test": int(n_test),
-        "M": metrics["n_classifiers"],
-        "individual_accuracies": metrics["individual_accuracies"],
-        "oracle_curve": metrics["oracle_curve"],
-        "majority_vote": metrics["majority_vote"],
-        "mean_probs": metrics["mean_probs"],
-        "soft_fusion_rule": metrics.get("soft_fusion_rule", "none"),
-        "double_fault_mean": metrics["double_fault_mean"],
-        "des": metrics.get("des", {}),
-        "des_notes": metrics.get("des_notes", {}),
-        "train_indices_hash": indices_hash(train_idx),
-        "test_indices_hash": indices_hash(test_idx),
-    }
-
-
-def build_summary_row(ds_name, fold_idx, mode, metrics, n_test) -> dict:
-    """Build one summary.csv row dict. Oracle_1..5 from curve indices 0..4."""
-    curve = metrics["oracle_curve"]
-    row = {
-        "dataset": ds_name, "fold": fold_idx, "mode": mode,
-        "M": metrics["n_classifiers"], "n_test": int(n_test),
-        "oracle_M": curve[-1] if curve else None,
-        "oracle_curve_json": json.dumps(curve),
-        "majority_vote": metrics["majority_vote"],
-        "mean_probs": metrics["mean_probs"],
-        "soft_fusion_rule": metrics.get("soft_fusion_rule", "none"),
-        "double_fault_mean": metrics["double_fault_mean"],
-        "mean_individual_acc": float(np.mean(metrics["individual_accuracies"])),
-    }
-    for n in range(1, 6):
-        row[f"oracle_{n}"] = curve[n - 1] if len(curve) >= n else None
-    row.update(des_columns(metrics.get("des")))
-    return row

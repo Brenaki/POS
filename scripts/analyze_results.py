@@ -22,7 +22,13 @@ from pos.analysis.figures_compare import (  # noqa: E402
 )
 from pos.analysis.figures_curves import plot_mean_curves, plot_per_dataset_grid  # noqa: E402
 from pos.analysis.figures_des import plot_fuser_accuracy, plot_recovered_gap  # noqa: E402
-from pos.analysis.fusers import fuser_comparison, recovery_summary  # noqa: E402
+from pos.analysis.fusers import (  # noqa: E402
+    PRIMARY_FUSERS,
+    fuser_comparison,
+    fuser_table,
+    recovery_summary,
+    secondary_vs_mvr,
+)
 from pos.analysis.loader import MODES, load_run  # noqa: E402
 from pos.analysis.stats_tests import compare, format_comparison  # noqa: E402
 
@@ -33,7 +39,14 @@ METRICS = [
     ("majority_vote", True), ("mean_probs", True), ("mean_individual_acc", True),
     ("gap_1", True), ("gap_5", True), ("df_ratio", False), ("nstar", False),
     ("des_best", True), ("gap_des", False), ("recovered", True),
+    # Milestone 7 asks the same comparison to be read beyond accuracy.
+    ("mv_balanced_acc", True), ("mv_f1", True), ("soft_balanced_acc", True),
+    ("oracle_1_balanced", True), ("gap_1_balanced", True),
 ]
+
+# Fuser rankings are reported on accuracy and on balanced accuracy; where the
+# two disagree, the disagreement is the result (ADR 0018).
+FUSER_VALUES = ["", "balanced_acc"]
 
 
 def main() -> None:
@@ -69,9 +82,19 @@ def main() -> None:
         blocks.append(format_comparison(res))
 
     for mode in MODES if has_des else []:
-        res = fuser_comparison(df, mode)
-        results[f"fusers_{mode}"] = res
-        blocks.append(format_comparison(res))
+        for value in FUSER_VALUES:
+            # A run predating ADR 0018 carries no per-metric columns; asking
+            # for balanced accuracy there must skip, not crash.
+            if fuser_table(df, mode, PRIMARY_FUSERS, value).empty:
+                continue
+            res = fuser_comparison(df, mode, PRIMARY_FUSERS, value)
+            results[f"fusers_{mode}_{value or 'acc'}"] = res
+            blocks.append(format_comparison(res))
+        sec = secondary_vs_mvr(df, mode)
+        if not sec.empty:
+            blocks.append(f"todos os fusores vs MVR [{mode}] "
+                          f"(Wilcoxon pareado, Holm)\n"
+                          + sec.round(4).to_string())
 
     head = [
         f"run: {run_dir}",
@@ -83,6 +106,11 @@ def main() -> None:
             df[df.mean_probs.isna()].groupby("mode").size().to_dict()),
         "",
     ]
+    if "k_eff" in df.columns and df["k_eff"].notna().any():
+        head.append("DSEL por modo (tamanho e k efetivo):\n"
+                    + df.groupby("mode")[["n_dsel", "k_eff"]].agg(
+                        ["min", "median", "max"]).to_string())
+        head.append("")
     if has_des:
         head.append("folga recuperada pela selecao dinamica:\n"
                     + recovery_summary(df).round(4).to_string())
