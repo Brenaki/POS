@@ -20,6 +20,10 @@ from __future__ import annotations
 import numpy as np
 from sklearn.model_selection import train_test_split
 
+# Modes that train on stratified bags of the training split, and so need
+# every bag to keep >= 2 instances of the rarest class (ADR 0019).
+BAG_MODES = ("ga", "pgdcs", "randbag")
+
 
 def min_class_count(y: np.ndarray) -> int:
     """Number of instances in the least populated class."""
@@ -49,9 +53,10 @@ def check_dataset_viability(
 ) -> tuple[bool, str]:
     """Return (ok, reason). `reason` is empty when the dataset is usable.
 
-    The GA requires every bag to keep >= 2 instances of every class
+    The bag-based modes require every bag to keep >= 2 instances of every class
     (`GeneticOperatorsMixin.verify_bag`); rf/bagging only need k-fold to be
-    well defined, so the stricter check is applied only when "ga" is a mode.
+    well defined, so the stricter check applies only to `BAG_MODES` (ADR 0019
+    added `pgdcs` and `randbag`, which draw the same bags the GA does).
     """
     m = min_class_count(y)
     if m < n_folds:
@@ -59,12 +64,12 @@ def check_dataset_viability(
             f"min_class_count={m} < n_folds={n_folds}: StratifiedKFold cannot "
             "place the rarest class in every fold"
         )
-    if "ga" in modes:
+    if any(mode in BAG_MODES for mode in modes):
         per_bag = min_instances_per_class_in_bag(m, n_folds, val_frac, tam_bags)
         if per_bag < 2:
             return False, (
                 f"min_class_count={m} leaves ~{per_bag} instance(s) of the "
-                f"rarest class per GA bag (need >= 2 for verify_bag) with "
+                f"rarest class per bag (need >= 2 for verify_bag) with "
                 f"n_folds={n_folds}, val_frac={val_frac}, tam_bags={tam_bags}"
             )
     return True, ""

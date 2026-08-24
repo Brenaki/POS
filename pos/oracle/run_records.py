@@ -68,6 +68,9 @@ def build_fold_manifest(ds_name, fold_idx, mode, metrics, random_state,
         "mean_probs_metrics": metrics.get("mean_probs_metrics"),
         "des": metrics.get("des", {}),
         "des_notes": metrics.get("des_notes", {}),
+        # Which complexity measures the PGDCS vote picked for this fold (ADR
+        # 0019). Empty for every other mode, which fixes its measures up front.
+        "pgdcs_types": metrics.get("pgdcs_types") or [],
         "train_indices_hash": indices_hash(train_idx),
         "test_indices_hash": indices_hash(test_idx),
     }
@@ -88,6 +91,7 @@ def build_summary_row(ds_name, fold_idx, mode, metrics, n_test) -> dict:
         "mean_individual_acc": float(np.mean(metrics["individual_accuracies"])),
         "oracle_1_balanced": metrics.get("oracle_1_balanced"),
         "n_dsel": metrics.get("n_dsel"), "k_eff": metrics.get("k_eff"),
+        "pgdcs_types": "|".join(metrics.get("pgdcs_types") or []),
     }
     for n in range(1, 6):
         row[f"oracle_{n}"] = curve[n - 1] if len(curve) >= n else None

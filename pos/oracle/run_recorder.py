@@ -25,13 +25,9 @@ from pos.oracle.fold_splitter import (
     stratified_three_way_split,
 )
 from pos.oracle.pool_evaluation import evaluate_pool
+from pos.oracle.pool_modes import build_pool_for_mode
 from pos.oracle.resume_helpers import completed_folds, load_existing_summary
-from pos.oracle.run_helpers import (
-    build_pool_bagging,
-    build_pool_ga,
-    build_pool_rf,
-    per_dataset_summary,
-)
+from pos.oracle.run_helpers import per_dataset_summary
 from pos.oracle.run_records import (
     build_fold_manifest,
     build_run_manifest,
@@ -46,18 +42,13 @@ VAL_FRAC = 0.2
 def _run_fold(X_tr, y_tr, X_val, y_val, X_dsel, y_dsel, X_test, y_test, mode,
               M, nr_gen, rs, jobs=1, base_classifier="perc", des_methods=()):
     """Build pool and evaluate. Returns (metrics, pool) or (None, None)."""
-    if mode == "ga":
-        pool = build_pool_ga(X_tr, y_tr, X_val, y_val, nr_gen, rs, jobs=jobs,
-                             classifier=base_classifier)
-    elif mode == "rf":
-        pool = build_pool_rf(X_tr, y_tr, M, rs)
-    elif mode == "bagging":
-        pool = build_pool_bagging(X_tr, y_tr, M, rs)
-    else:
-        return None, None
-    if len(pool) == 0:
+    pool, extra = build_pool_for_mode(mode, X_tr, y_tr, X_val, y_val, M, nr_gen,
+                                      rs, jobs=jobs,
+                                      base_classifier=base_classifier)
+    if pool is None or len(pool) == 0:
         return None, None
     metrics = evaluate_pool(pool, X_test, y_test)
+    metrics.update(extra)
     if des_methods:
         # DSEL is disjoint from both pool training and the GA's fitness set
         # (ADR 0018) — under the old two-way split it was the fitness set.

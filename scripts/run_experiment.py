@@ -24,6 +24,7 @@ REPO_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_DIR))
 
 from pos.oracle.des_methods import DES_METHODS  # noqa: E402
+from pos.oracle.pool_modes import MODES  # noqa: E402
 from pos.oracle.run_helpers import git_sha  # noqa: E402
 from pos.oracle.run_recorder import record_run  # noqa: E402
 
@@ -80,8 +81,8 @@ def main():
     g.add_argument("--config", type=str, help="path to JSON config file")
     g.add_argument("--resume", type=str, metavar="DIR",
                    help="resume an interrupted run in this output directory")
-    p.add_argument("--mode", type=str, default="ga,bagging,rf",
-                    help="comma-separated modes: ga,bagging,rf (default: all three)")
+    p.add_argument("--mode", type=str, default=",".join(MODES),
+                    help=f"comma-separated modes: {','.join(MODES)} (default: all five)")
     p.add_argument("--M", type=int, default=100, help="pool size for RF mode (default: 100)")
     p.add_argument("--jobs", type=int, default=default_jobs(),
                    help=f"parallel bag evaluations in GA mode (default: {default_jobs()} "

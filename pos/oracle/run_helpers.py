@@ -32,19 +32,41 @@ def git_branch(repo_dir: Path) -> str:
         return "unknown"
 
 
+# Untracked experiment output cannot change what the code does, so it must not
+# make a run look unreproducible (ADR 0019). Anything else — including a new
+# untracked .py — still counts.
+IGNORED_UNTRACKED_PREFIXES = ("results/",)
+
+
+def dirty_entries(repo_dir: Path) -> list[str]:
+    """Porcelain lines that genuinely compromise the run's provenance."""
+    try:
+        out = subprocess.check_output(
+            ["git", "status", "--porcelain"], cwd=repo_dir, stderr=subprocess.DEVNULL,
+        ).decode()
+    except Exception:
+        return []
+    entries = []
+    for line in out.splitlines():
+        if not line.strip():
+            continue
+        status, _, path = line.partition(" ")
+        path = path.strip().strip('"')
+        if line.startswith("??") and path.startswith(IGNORED_UNTRACKED_PREFIXES):
+            continue
+        entries.append(line)
+    return entries
+
+
 def git_dirty(repo_dir: Path) -> bool:
     """True when the run was launched from an uncommitted working tree.
 
     Without this the manifest's `git_sha` silently claims a provenance the
-    code does not have.
+    code does not have — which is exactly what happened to the ADR 0017 and
+    ADR 0018 runs. Untracked files under `results/` are excluded: they are the
+    output of runs, never an input to one.
     """
-    try:
-        out = subprocess.check_output(
-            ["git", "status", "--porcelain"], cwd=repo_dir, stderr=subprocess.DEVNULL,
-        ).decode().strip()
-        return bool(out)
-    except Exception:
-        return False
+    return bool(dirty_entries(repo_dir))
 
 
 def deps_versions() -> dict[str, str]:

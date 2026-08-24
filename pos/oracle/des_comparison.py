@@ -21,8 +21,15 @@ from __future__ import annotations
 
 import numpy as np
 
-from pos.oracle.des_methods import DEFAULT_K, DES_METHODS, method_classes, takes_k
+from pos.oracle.des_methods import (
+    DEFAULT_K,
+    DES_METHODS,
+    STATIC_METHODS,
+    method_classes,
+    takes_k,
+)
 from pos.oracle.metrics import METRIC_NAMES, prediction_metrics
+from pos.oracle.selection_size import SelectionSpy, static_summary
 
 
 def effective_k(n_dsel: int, k: int = DEFAULT_K) -> int:
@@ -59,12 +66,39 @@ def evaluate_des(pool, X_dsel, y_dsel, X_test, y_test, k: int = DEFAULT_K,
                 kwargs["n_jobs"] = n_jobs
             ds = cls(**kwargs)
             ds.fit(np.asarray(X_dsel), np.asarray(y_dsel))
+            spy = _attach_spy(name, ds)
             y_pred = ds.predict(np.asarray(X_test))
             preds[name] = np.asarray(y_pred)
-            metrics[name] = prediction_metrics(y_test, y_pred)
+            got = prediction_metrics(y_test, y_pred)
+            got.update(_selection_summary(name, spy, ds, len(pool), len(y_test)))
+            metrics[name] = got
         except Exception as exc:  # recorded, never fatal — see docstring
             notes[name] = f"{type(exc).__name__}: {exc}"[:200]
     return metrics, preds, notes
+
+
+def _attach_spy(name: str, ds):
+    """Record what the method selects. Never let instrumentation kill a run."""
+    if name in STATIC_METHODS:
+        return None
+    try:
+        spy = SelectionSpy()
+        spy.attach(ds)
+        return spy
+    except Exception:  # same policy as the caller: measured or noted, never fatal
+        return None
+
+
+def _selection_summary(name, spy, ds, M, n_queries) -> dict:
+    """E[S]/M for this method, measured (dynamic) or known (static)."""
+    if name in STATIC_METHODS:
+        return static_summary(name, M)
+    if spy is None:
+        return {"sel_frac": None, "routed_frac": None}
+    try:
+        return spy.summary(M, n_queries, ds=ds)
+    except Exception:
+        return {"sel_frac": None, "routed_frac": None}
 
 
 def des_accuracies(metrics: dict | None, methods=DES_METHODS) -> dict:
@@ -87,6 +121,9 @@ def des_columns(metrics: dict | None, methods=DES_METHODS) -> dict:
         for name in METRIC_NAMES:
             if name != "acc":
                 out[f"des_{m}_{name}"] = got.get(name)
+        # ADR 0019: the pruning axis, measured instead of inferred.
+        out[f"des_{m}_sel_frac"] = got.get("sel_frac")
+        out[f"des_{m}_routed_frac"] = got.get("routed_frac")
     return out
 
 

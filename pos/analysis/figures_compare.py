@@ -47,11 +47,17 @@ def plot_nstar(df, out: Path) -> Path:
 
 def plot_gap_per_dataset(df, out: Path, level: int = 1) -> Path:
     """Oracle_N - majority vote per dataset, sorted. Large gap = DCS/DES worth trying."""
-    table = per_dataset(df, f"gap_{level}").sort_values("ga")
+    table = per_dataset(df, f"gap_{level}")
+    # Sort by whichever mode the run actually has, not a fixed name.
+    table = table.sort_values(next(m for m in MODES if m in table.columns))
     y = np.arange(len(table))
     fig, ax = plt.subplots(figsize=(8.5, 0.32 * len(table) + 1.8))
-    for off, mode in zip([-0.26, 0.0, 0.26], MODES, strict=True):
-        ax.barh(y + off, table[mode].values, height=0.25, color=COLORS[mode],
+    # Bar offsets are derived from the mode count so a run with more modes
+    # still lays out (ADR 0019 took it from three to five).
+    width = 0.8 / len(MODES)
+    offsets = [(i - (len(MODES) - 1) / 2) * width for i in range(len(MODES))]
+    for off, mode in zip(offsets, MODES, strict=True):
+        ax.barh(y + off, table[mode].values, height=width * 0.9, color=COLORS[mode],
                 label=LABELS[mode])
     ax.set_yticks(y)
     ax.set_yticklabels(table.index, fontsize=8)

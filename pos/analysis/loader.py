@@ -18,7 +18,8 @@ from pos.oracle.des_methods import (
     DES_ONLY_METHODS,
 )
 
-MODES = ["ga", "bagging", "rf"]
+# ADR 0019 added the PGDCS-with-vote mode and the generation control.
+MODES = ["pgdcs", "ga", "randbag", "bagging", "rf"]
 FOCUS_LEVELS = [1, 2, 3, 4, 5]
 DES_COLS = [f"des_{m}" for m in DES_METHODS]
 # `recovered` is about *dynamic* selection, so the static baselines

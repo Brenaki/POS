@@ -107,7 +107,9 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
       Perceptron linear corrigido e adotado como base do GA, `--jobs` = núcleos-1.
       Magic: 8,05 h → 0,71 h
 - [ ] Validar `T1_fast` contra ECoL/R em bags congelados (ranking dos bags)
-- [ ] Decidir formalmente: `GA-F1/T1` vs PGDCS completo (`get_best_types` reativado)
+- [x] Decidir formalmente: `GA-F1/T1` vs PGDCS completo (`get_best_types` reativado)
+      — decidido no **ADR 0019**: em vez de escolher no papel, os dois viram modos
+      do run canônico (`ga` e `pgdcs`) e a diferença é medida. Ver Fase 8.
 - [x] Rodar `--full` científico e versionar `results/`
       — run `2026-08-22T23-33-56_2a8a0f5`: 29 bases x 10 folds x 3 modos = 870 folds,
       0 erros, ~2h20. Invariantes Oracle_N verificados em 870/870.
@@ -186,6 +188,54 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
       existe nível intermediário de Oracle_N que sirva de limite realista.
       Sete recomendações consolidadas na seção final do documento.
 
+### Fase 8 — Correções para publicação (revisão externa)
+
+A revisão externa do relatório (`2c33634`) aprovou a resposta ao subprojeto e
+abriu uma segunda pergunta: isto está pronto para virar artigo? Ainda não. Nove
+pontos a corrigir, mais o PGDCS completo. Dois são bloqueadores de experimento
+(ADR 0019); o resto é rigor, e roda sobre o run novo sem custo de máquina.
+
+- [ ] **ADR 0019** — run canônico de árvore limpa, PGDCS completo como quinto
+      modo, controle de geração `randbag`, instrumentação de poda
+- [ ] **B0 · backend da votação de medidas** (bloqueia o PGDCS). O
+      `complexity_voter` importa de `pos.complexity` → pyhard, que devolve `0.0`
+      fixo para `F1v`, `N3` e **`T1`**: a votação jamais poderia escolher T1, uma
+      das duas medidas hoje hardcoded. O fitness do GA já usa o `fast_adapter`,
+      então seleção e fitness discordavam sobre a mesma medida (Wine: F3 `0.153`
+      vs `0.469`). Somar a isso `complexities()` sem `random_state` — escolha de
+      medidas não reprodutível, contra o ADR 0012. Custo da votação por fold:
+      pyhard 229 min em Phoneme (inviável) contra 2.6 min no `fast_adapter`
+- [ ] **Ponto 2 · modo `pgdcs`** — PGDCS completo, `types=None` reativando
+      `get_best_types`; gravar as medidas escolhidas por fold (`pgdcs_types`) —
+      é resultado, não telemetria. ~10.7 h só de votação, aceitas explicitamente
+- [ ] **Ponto 7 · modo `randbag`** — bags aleatórios + Perceptron, a população de
+      geração 0 do próprio GA. Desfaz o confounder: `ga` vs `randbag` isola a
+      busca, `randbag` vs `bagging` isola o classificador-base
+- [ ] **Ponto 8 · poda medida** — envolver `ds.select` do DESlib e gravar
+      `E[S]/M` por fusor, mais a fração de consultas roteadas para seleção
+      (o DESlib curto-circuita vizinhança unânime)
+- [ ] **Ponto 1 · rerun canônico** — `--full` de árvore limpa, 29 bases x 10
+      folds x 5 modos = 1450 folds, ~18–19 h. Critério de aceitação:
+      bit-identidade de `ga`/`bagging`/`rf` contra `2026-08-23T14-19-59_2286fcc`
+      — se bater, o run sujo fica validado em vez de descartado
+- [ ] **Ponto 6 · `DF` normalizado exato** — `df_ratio` usa `e²` com `e` médio, o
+      que só vale se todos erram na mesma taxa; o denominador correto é
+      `2/(M(M-1)) · Σ_{i<j} e_i e_j`. Os `e_i` já estão gravados em cada
+      `fold_manifest_<mode>.json`, então sai offline
+- [ ] **Ponto 3 · `N*` binário vs multiclasse** — 22 das 29 bases são binárias, e
+      nelas `Oracle_{M/2+1} ≡ MVR` torna `N* ≈ 51` quase obrigatório. Separar os
+      dois grupos e condicionar a conclusão do objetivo 7
+- [ ] **Ponto 4 · a fórmula `0.15`** — `MVR + 0.15(Oracle_1 − MVR)` é a
+      recuperação *média*, não uma cota; vira estimativa, com o quantil
+      `Q_{0.95}(R)` ao lado
+- [ ] **Ponto 5 · limiares `DF/e²`** — descobertos e avaliados nas mesmas 29
+      bases; validar leave-one-dataset-out antes de chamar de regra
+- [ ] **Ponto 9 · o que prevê recuperabilidade** — regredir `recovered` sobre as
+      medidas de complexidade + `n_classes`, dimensão, desbalanceamento,
+      `df_ratio_exact`; avaliação leave-one-dataset-out (n=29)
+- [ ] Bases de imagem via embeddings de CNN (objetivo 5 e o vínculo com o projeto
+      maior) — segunda bateria experimental, não uma correção; fica aberto
+
 ## Decision log (ADRs)
 
 - `docs/adr/0001-python-version-and-deps.md` — pin Python 3.10, deps de requirements.txt
@@ -206,6 +256,7 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
 - `docs/adr/0016-soft-fusion-for-margin-pools.md` — combinação suave para pools sem `predict_proba` (média de margens normalizadas)
 - `docs/adr/0018-three-way-split-and-metric-suite.md` — split de três vias, suíte de métricas por fusor, 12 métodos de seleção
 - `docs/adr/0017-dcs-des-baselines-deslib.md` — DCS/DES via DESlib (OLA, LCA, KNORA-E/U, META-DES), DSEL = validação, métrica `recovered`
+- `docs/adr/0019-canonical-rerun-and-generation-control.md` — run canônico de árvore limpa, PGDCS completo como quinto modo, controle `randbag`, poda medida
 
 ## Notes
 

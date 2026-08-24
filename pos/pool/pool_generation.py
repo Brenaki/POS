@@ -117,7 +117,9 @@ class poolGeneration(
                 import numpy as _np
                 _np.random.seed(self.random_state)
         if self.types is None:
-            self.types = _get_best_types(X_train, y_train, self.tam_bags, self.group)
+            self.types = _get_best_types(X_train, y_train, self.tam_bags,
+                                          self.group,
+                                          random_state=self.random_state)
         for t in range(0, self.iteration):
             print("Interation - ", t)
             self.name_individual = 100

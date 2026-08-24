@@ -12,8 +12,14 @@ import numpy as np  # noqa: E402
 
 from pos.analysis.loader import MODES, mean_curve  # noqa: E402
 
-COLORS = {"ga": "#c0392b", "bagging": "#2980b9", "rf": "#27ae60"}
-LABELS = {"ga": "GA (PGDCS, Perceptron)", "bagging": "Bagging", "rf": "Random Forest"}
+COLORS = {"pgdcs": "#8e44ad", "ga": "#c0392b", "randbag": "#e67e22",
+          "bagging": "#2980b9", "rf": "#27ae60"}
+# ADR 0019: `ga` is PGDCS with the complexity measures fixed at F1/T1, not
+# the published method — the label says so, and `pgdcs` is the real thing.
+LABELS = {"pgdcs": "PGDCS completo (Perceptron)",
+          "ga": "PGDCS-F1/T1 (Perceptron)",
+          "randbag": "Bags aleatorios (Perceptron)",
+          "bagging": "Bagging (arvore)", "rf": "Random Forest"}
 
 
 def _majority(df, mode):
@@ -27,6 +33,10 @@ def plot_mean_curves(df, out: Path, zoom: int | None = None) -> Path:
     focuses on (N = 1..5) where the traditional Oracle saturates.
     """
     fig, ax = plt.subplots(figsize=(8.5, 5.2))
+    # Five majority-vote lines can land within ~0.01 of one another, so the
+    # labels are staggered by rank instead of by a per-mode constant.
+    ranked = sorted(MODES, key=lambda m: _majority(df, m))
+    nudge = {m: (-11 if i % 2 else 5) for i, m in enumerate(ranked)}
     for mode in MODES:
         curve = mean_curve(df, mode)
         n = np.arange(1, len(curve) + 1)
@@ -42,8 +52,7 @@ def plot_mean_curves(df, out: Path, zoom: int | None = None) -> Path:
             # flatten the very differences the zoom exists to show
             continue
         ax.axhline(maj, color=COLORS[mode], ls=":", lw=1.2, alpha=0.8)
-        # nudge the three MV labels apart: bagging and rf sit ~0.008 apart
-        dy = {"ga": 4, "bagging": -11, "rf": 4}[mode]
+        dy = nudge[mode]
         ax.annotate(f"MV {maj:.3f}", xy=(n[-1], maj), xytext=(-4, dy),
                     textcoords="offset points", ha="right", fontsize=8,
                     color=COLORS[mode])

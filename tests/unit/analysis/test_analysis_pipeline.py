@@ -117,8 +117,8 @@ def test_compare_reports_ranks_and_pairs(run_dir):
     res = compare(df, "oracle_1")
     assert res["n_datasets"] == N_DATASETS
     assert set(res["ranks"]) == set(MODES)
-    assert len(res["pairs"]) == 3
-    assert res["critical_difference"] == critical_difference(N_DATASETS)
+    assert len(res["pairs"]) == len(MODES) * (len(MODES) - 1) // 2
+    assert res["critical_difference"] == critical_difference(N_DATASETS, k=len(MODES))
     assert "Friedman" in format_comparison(res)
 
 
