@@ -23,12 +23,47 @@ Random Forest & 53 & $[51, 56]$ & 53.0 & 79.3\% \\
 \end{table}
 
 Friedman $p=0.40$: \textbf{os três modos têm o mesmo $N^{*}$, e ele fica em
-$N\approx M/2$}. Não é coincidência empírica --- é quase uma identidade. Em problema
-binário com $M=100$, ``a votação majoritária acerta'' equivale a ``pelo menos $51$
-classificadores acertam'', ou seja $\On{51}\equiv\mvr$ por construção; $22$ das $29$
-bases são binárias.
+$N\approx M/2$}. Não é coincidência empírica. O mecanismo não é a identidade
+$\On{M/2+1}\equiv\mvr$ --- essa afirmação, feita em versões anteriores, é falsa ---
+mas um \emph{sanduíche}:
+\begin{equation}
+\On{M/2+1} \;\le\; \mvr \;\le\; \On{M/2}.
+\end{equation}
 
-Disso decorre a resposta ao objetivo:
+A votação acerta sempre que mais da metade do pool acerta, logo $\mvr\ge\On{51}$;
+e ela só pode ganhar, além disso, os empates $50$--$50$, logo nunca passa de
+$\On{50}$. O sanduíche foi verificado em \textbf{660 de 660} folds binários, mas a
+igualdade $\mvr=\On{51}$ vale em apenas $508$ deles ($77\%$): nos demais $23\%$ os
+empates são desfeitos a favor, com excesso médio de $+0.0035$.
+
+A distinção não é um detalhe --- é ela que dá o valor de $N^{*}$. Como $N^{*}$ é o
+primeiro nível \emph{estritamente} abaixo do \mvr{}, e $\On{51}=\mvr$ não satisfaz
+``$<$'', os empates empurram $N^{*}$ de $51$ para $52$ ou mais, que é exatamente
+onde as medianas caem.
+
+\paragraph{O limite é do caso binário.} $22$ das $29$ bases são binárias. Nas $7$
+multiclasse a votação é por pluralidade e um classificador correto não precisa de
+$51$ votos para vencer, então o sanduíche não vale --- e $N^{*}$ desce de forma
+significativa:
+
+\begin{table}[htbp]
+\centering
+\caption{$N^{*}$ mediano por cardinalidade de classes.}
+\begin{tabular}{lrrrr}
+\toprule
+grupo & bases & GA & Bagging & RF \\
+\midrule
+binárias    & 22 & 53.4 & 53.7 & 53.5 \\
+multiclasse &  7 & 44.4 & 48.1 & 47.3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent
+Mediana $53.7$ contra $47.6$, Mann-Whitney $p=2.7\times10^{-6}$. Dentro de cada
+grupo os modos continuam empatados ($p=0.71$ e $p=0.37$).
+
+Disso decorre a resposta ao objetivo, \textbf{restrita aos problemas binários}:
 
 \begin{itemize}
 \item Para $N \ll M/2$ a curva está \textbf{saturada}: os três modos ficam entre
@@ -55,12 +90,28 @@ $\On{1}-\mvr$ ponderada pela fração dela que métodos reais recuperam. Medido:
 tomando o melhor de dez métodos dinâmicos escolhido \emph{a posteriori} no teste, a
 recuperação fica em $24.0\%$ (GA), $15.0\%$ (Bagging) e $14.2\%$ (RF), com medianas
 bem menores ($0.167$, $0.108$, $0.091$) e recuperação \emph{exatamente zero} no
-primeiro quartil de Bagging e RF. Um limite superior operacional e honesto para um
-pool de árvores é, portanto,
+primeiro quartil de Bagging e RF.
+
+\textbf{Correção.} Versões anteriores apresentavam
 \begin{equation}
-\mvr + 0.15\,\bigl(\On{1}-\mvr\bigr),
+\mvr + 0.15\,\bigl(\On{1}-\mvr\bigr)
 \end{equation}
-e ainda assim otimista, porque o numerador usa escolha de método no teste.
+como ``limite superior operacional''. Não é um limite: $0.15$ é a recuperação
+\emph{média} dos pools de árvore, e uma média é ultrapassada por metade da massa.
+Medido nos folds de árvore, $37.7\%$ deles recuperam mais que $0.15$. A expressão é
+uma \textbf{estimativa}, $\widehat{\mathrm{Acc}}_{DS}$, e deve ser lida como tal.
+
+Quem quiser de fato uma cota precisa de um quantil alto da distribuição de
+$R=\text{recuperação}$, não da sua média:
+\begin{equation}
+\widehat{\mathrm{Acc}}_{DS} = \mvr + \overline{R}\,\bigl(\On{1}-\mvr\bigr),
+\qquad
+\mathrm{cota}_{95} = \mvr + Q_{0.95}(R)\,\bigl(\On{1}-\mvr\bigr),
+\end{equation}
+com $Q_{0.95}(R)=0.50$ nos pools de árvore --- mais de três vezes a média. E os dois
+números descrevem a mesma distribuição em que $31\%$ dos folds recuperam
+\emph{nada} ($R\le 0$). Ambos permanecem otimistas, porque $R$ é medido escolhendo o
+melhor método no próprio teste.
 
 \paragraph{Robustez à métrica.} A metodologia do subprojeto pede precisão, revocação,
 F1 e acurácia balanceada além da acurácia --- a preocupação legítima sendo que a

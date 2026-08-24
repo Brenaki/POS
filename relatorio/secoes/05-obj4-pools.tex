@@ -6,9 +6,13 @@ Forest e Perceptron, induzindo diversidade por variações de treinamento.}
 Três modos, todos com $M=100$:
 
 \begin{description}
-\item[GA (PGDCS).] Pool de Perceptrons lineares gerado por algoritmo genético que
+\item[PGDCS-F1/T1.] Pool de Perceptrons lineares gerado por algoritmo genético que
 otimiza medidas de complexidade dos \emph{bags} --- é a estratégia que induz
-diversidade explicitamente.
+diversidade explicitamente. O nome traz o sufixo porque \textbf{não é o PGDCS
+completo}: a etapa em que o método \emph{vota} quais medidas de complexidade
+convêm a cada base (\texttt{get\_best\_types}) foi desligada, e as medidas ficaram
+fixas em F1 e T1. Chamá-lo apenas de ``PGDCS'' convidaria a comparação errada com
+o artigo original. O efeito dessa simplificação é medido separadamente (ADR 0019).
 \item[Bagging.] Árvores de decisão sobre reamostragens \emph{bootstrap}.
 \item[Random Forest.] Árvores com subamostragem adicional de atributos.
 \end{description}

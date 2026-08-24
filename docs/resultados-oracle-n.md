@@ -201,9 +201,36 @@ majoritária`:
 
 Friedman p=0.40 — **os três modos têm o mesmo N***, e ele fica em `N ≈ M/2`.
 
-Não é coincidência empírica, é quase uma identidade. Em problema binário com M=100,
-"a votação majoritária acerta" ⟺ "pelo menos 51 classificadores acertam", ou seja
-`Oracle_51 ≡ MV` por construção. 22 das 29 bases são binárias.
+Não é coincidência empírica. **Correção (ADR 0019):** versões anteriores deste
+documento afirmavam a identidade `Oracle_51 ≡ MVR` em problema binário. Isso está
+errado, e a versão certa é mais informativa. O que vale é um *sanduíche*:
+
+```
+Oracle_{M/2+1}  ≤  MVR  ≤  Oracle_{M/2}
+```
+
+A votação majoritária acerta sempre que mais da metade do pool acerta, logo
+`MVR ≥ Oracle_51`; além disso ela só pode ganhar empates 50–50, logo nunca passa de
+`Oracle_50`. Verificado: o sanduíche vale em **660/660** folds binários, e a
+igualdade `MVR = Oracle_51` vale em apenas **508** deles (77%) — nos outros 23% os
+empates são desfeitos a favor, e a diferença média é +0.0035 (máx +0.0968).
+
+É justamente a diferença entre identidade e sanduíche que explica o valor de `N*`.
+Como `N*` é o primeiro nível **estritamente abaixo** do MVR, e `Oracle_51 = MVR` não
+é "<", os empates empurram `N*` de 51 para 52+ — que é exatamente onde as medianas
+caem. 22 das 29 bases são binárias.
+
+**Nas 7 multiclasse o limite não vale**, porque a votação é por pluralidade e um
+classificador correto não precisa de 51 votos para vencer. Medido, `N*` é
+significativamente menor lá:
+
+| grupo | bases | GA | Bagging | RF |
+|---|---|---|---|---|
+| binárias | 22 | 53.4 | 53.7 | 53.5 |
+| multiclasse | 7 | 44.4 | 48.1 | 47.3 |
+
+Mediana 53.7 contra 47.6, Mann-Whitney **p=2.7e-06**. Dentro de cada grupo os modos
+seguem empatados (Friedman p=0.71 nas binárias, p=0.37 nas multiclasse).
 
 **Consequência metodológica**: `Oracle_N` só carrega informação além do MVR em
 `N ≪ M/2`. Acima disso a curva é uma reescrita da votação majoritária. Isso
@@ -225,10 +252,13 @@ Onde o poder discriminante realmente está:
 Um detalhe visível na fig. 2: o GA lidera em N=1, mas o Random Forest o ultrapassa
 a partir de **N=3**. A vantagem do GA existe só na ponta mais otimista da curva.
 
-**Resposta ao objetivo 7**: nenhum nível intermediário de `Oracle_N` serve como
-limite superior realista. Ou o nível está em `N ≪ M/2` e continua saturado perto de
-1.0, ou está em `N ≈ M/2` e já *é* a votação majoritária. Não há faixa intermediária
-útil. O que o objetivo 7 buscava — uma estimativa conservadora e alcançável — não é
+**Resposta ao objetivo 7**: **nos problemas binários avaliados**, nenhum nível
+intermediário de `Oracle_N` serve como limite superior realista. Ou o nível está em
+`N ≪ M/2` e continua saturado perto de 1.0, ou está em `N ≈ M/2` e já *é* a votação
+majoritária. Não há faixa intermediária útil. A restrição ao caso binário é
+deliberada: o sanduíche que fecha o argumento depende de maioria absoluta, e sob
+pluralidade ele não vale — com 7 bases multiclasse não há poder para afirmar o
+mesmo lá, só para mostrar que `N*` desce. O que o objetivo 7 buscava — uma estimativa conservadora e alcançável — não é
 `Oracle_N` para algum N, é a folga `Oracle_1 − MVR` ponderada pela fração dela que
 métodos reais recuperam (Achado 5), e `N*` é o diagnóstico que mostra *por que*
 nenhum N intermediário funciona.
@@ -464,9 +494,11 @@ não discrimina. A folga contra o MVR discrimina (0.142 a 0.219 entre modos, 0.0
 
 **2. Não procure um `Oracle_N` intermediário como limite realista.** Medido: `N*`
 fica em `N ≈ M/2` nos três modos (mediana 52–53 de M=100, Friedman p=0.40), porque
-em problema binário `Oracle_{M/2+1} ≡ MVR` por construção. Abaixo disso a curva está
-saturada acima de 0.98; acima disso ela é o MVR sob outro nome. **Não existe faixa
-intermediária informativa.** Reporte `Oracle_1`, a folga, e `N*` como diagnóstico.
+em problema binário vale o sanduíche `Oracle_{M/2+1} ≤ MVR ≤ Oracle_{M/2}` (660/660
+folds). Abaixo disso a curva está saturada acima de 0.98; acima disso ela é o MVR sob
+outro nome. **Não existe faixa intermediária informativa nos problemas binários** —
+nas 7 bases multiclasse `N*` cai para ~47 e a afirmação não foi testada com poder.
+Reporte `Oracle_1`, a folga, e `N*` como diagnóstico.
 
 **3. Calcule `DF/e²` antes de treinar qualquer método de seleção.** É `O(M² · n)`
 sobre a matriz de acertos que já se tem, e prevê o tamanho da folga com Spearman
@@ -480,6 +512,23 @@ sobre a matriz de acertos que já se tem, e prevê o tamanho da folga com Spearm
 
 Exemplos dos extremos no run: Thyroid (`DF/e²` 6.96–8.58, folga 0.035) contra P2
 (`DF/e²` 1.02, folga 0.458).
+
+**Os cortes foram validados fora da amostra** (ADR 0019), porque descobri-los e
+avaliá-los nas mesmas 29 bases seria circular. Reajustando os dois limiares em 28
+bases e prevendo a 29ª, 29 vezes: acerto **0.805** contra **0.736** da regra trivial
+(responder sempre a faixa mais comum), e os cortes reajustados caem na mediana em
+**1.14 / 4.82** — praticamente os mesmos ≈1 e ≥4 da tabela. A regra sobrevive, com a
+ressalva de que a margem sobre o baseline é de 7 pontos, não de uma ordem de
+grandeza: a faixa do meio domina o catálogo (64 dos 87 pares base×modo).
+
+**Sobre o denominador.** `e²` com `e` médio só é o valor esperado sob independência
+se todos os classificadores errarem na mesma taxa; o exato é
+`2/(M(M−1)) · Σ_{i<j} e_i e_j`. Recalculado a partir das acurácias individuais já
+gravadas em cada `fold_manifest`, o índice exato **não muda a conclusão**: Spearman
+agrupado −0.8603 → −0.8607 (por modo: GA −0.9325, Bagging −0.9142, RF −0.7877). A
+razão exato/médio tem mediana 1.0005, porque o desvio das acurácias individuais
+dentro de um pool é pequeno (média 0.054). Vale a correção por rigor — e o índice
+exato dá LODO 0.839 contra 0.805 —, não por mudar o resultado.
 
 **4. `DF/e²` não prevê o que você vai *recuperar*.** Ele prevê a folga, não a fração
 alcançável (rho=+0.19, p=0.074 por base; +0.02, p=0.59 por fold). Para prever

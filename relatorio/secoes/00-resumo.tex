@@ -10,10 +10,10 @@ individual, a votação majoritária, a média de probabilidades e \emph{doze} m
 de seleção dinâmica de classificadores e de \emph{ensembles}.
 
 Os três resultados centrais são: \textbf{(i)} nenhum nível intermediário de \On{N}
-serve como limite superior realista --- o menor $N$ em que \On{N} cai abaixo da
-votação majoritária fica em $N\approx M/2$ nos três modos (mediana $52$--$53$,
-Friedman $p=0.40$), porque em problema binário $\On{M/2+1}$ é, por construção, a
-própria votação majoritária; \textbf{(ii)} a folga $\On{1}-\mvr$ é previsível
+serve como limite superior realista \emph{nos problemas binários} --- o menor $N$ em
+que \On{N} cai abaixo da votação majoritária fica em $N\approx M/2$ nos três modos
+(mediana $52$--$53$, Friedman $p=0.40$), porque aí vale
+$\On{M/2+1}\le\mvr\le\On{M/2}$, verificado em $660$ de $660$ folds binários; \textbf{(ii)} a folga $\On{1}-\mvr$ é previsível
 \emph{antes} de treinar qualquer método de seleção, pelo índice de redundância de
 erros $\dfe$ (Spearman $-0.86$, $n=87$); \textbf{(iii)} mesmo tomando o melhor de
 dez métodos dinâmicos escolhido \emph{a posteriori} no teste, a seleção dinâmica
