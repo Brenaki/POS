@@ -195,42 +195,66 @@ abriu uma segunda pergunta: isto está pronto para virar artigo? Ainda não. Nov
 pontos a corrigir, mais o PGDCS completo. Dois são bloqueadores de experimento
 (ADR 0019); o resto é rigor, e roda sobre o run novo sem custo de máquina.
 
-- [ ] **ADR 0019** — run canônico de árvore limpa, PGDCS completo como quinto
+- [x] **ADR 0019** — run canônico de árvore limpa, PGDCS completo como quinto
       modo, controle de geração `randbag`, instrumentação de poda
-- [ ] **B0 · backend da votação de medidas** (bloqueia o PGDCS). O
+- [x] **B0 · backend da votação de medidas** (bloqueia o PGDCS). O
       `complexity_voter` importa de `pos.complexity` → pyhard, que devolve `0.0`
       fixo para `F1v`, `N3` e **`T1`**: a votação jamais poderia escolher T1, uma
       das duas medidas hoje hardcoded. O fitness do GA já usa o `fast_adapter`,
       então seleção e fitness discordavam sobre a mesma medida (Wine: F3 `0.153`
       vs `0.469`). Somar a isso `complexities()` sem `random_state` — escolha de
       medidas não reprodutível, contra o ADR 0012. Custo da votação por fold:
-      pyhard 229 min em Phoneme (inviável) contra 2.6 min no `fast_adapter`
-- [ ] **Ponto 2 · modo `pgdcs`** — PGDCS completo, `types=None` reativando
+      pyhard 229 min em Phoneme (inviável) contra 2.6 min no `fast_adapter`.
+      Corrigido e testado: a votação virou determinística por seed e T1/N3/F1v
+      voltaram a ser elegíveis. Commit `5aceb11`
+- [~] **Ponto 2 · modo `pgdcs`** — PGDCS completo, `types=None` reativando
       `get_best_types`; gravar as medidas escolhidas por fold (`pgdcs_types`) —
       é resultado, não telemetria. ~10.7 h só de votação, aceitas explicitamente
-- [ ] **Ponto 7 · modo `randbag`** — bags aleatórios + Perceptron, a população de
+- [~] **Ponto 7 · modo `randbag`** — bags aleatórios + Perceptron, a população de
       geração 0 do próprio GA. Desfaz o confounder: `ga` vs `randbag` isola a
       busca, `randbag` vs `bagging` isola o classificador-base
-- [ ] **Ponto 8 · poda medida** — envolver `ds.select` do DESlib e gravar
+- [~] **Ponto 8 · poda medida** — envolver `ds.select` do DESlib e gravar
       `E[S]/M` por fusor, mais a fração de consultas roteadas para seleção
       (o DESlib curto-circuita vizinhança unânime)
-- [ ] **Ponto 1 · rerun canônico** — `--full` de árvore limpa, 29 bases x 10
+- [~] **Ponto 1 · rerun canônico** — `--full` de árvore limpa, 29 bases x 10
       folds x 5 modos = 1450 folds, ~18–19 h. Critério de aceitação:
       bit-identidade de `ga`/`bagging`/`rf` contra `2026-08-23T14-19-59_2286fcc`
-      — se bater, o run sujo fica validado em vez de descartado
-- [ ] **Ponto 6 · `DF` normalizado exato** — `df_ratio` usa `e²` com `e` médio, o
-      que só vale se todos erram na mesma taxa; o denominador correto é
-      `2/(M(M-1)) · Σ_{i<j} e_i e_j`. Os `e_i` já estão gravados em cada
-      `fold_manifest_<mode>.json`, então sai offline
-- [ ] **Ponto 3 · `N*` binário vs multiclasse** — 22 das 29 bases são binárias, e
-      nelas `Oracle_{M/2+1} ≡ MVR` torna `N* ≈ 51` quase obrigatório. Separar os
-      dois grupos e condicionar a conclusão do objetivo 7
-- [ ] **Ponto 4 · a fórmula `0.15`** — `MVR + 0.15(Oracle_1 − MVR)` é a
-      recuperação *média*, não uma cota; vira estimativa, com o quantil
-      `Q_{0.95}(R)` ao lado
-- [ ] **Ponto 5 · limiares `DF/e²`** — descobertos e avaliados nas mesmas 29
-      bases; validar leave-one-dataset-out antes de chamar de regra
-- [ ] **Ponto 9 · o que prevê recuperabilidade** — regredir `recovered` sobre as
+      — se bater, o run sujo fica validado em vez de descartado.
+      Em andamento: `2026-08-24T09-38-20_5aceb11`, **`git_dirty: false`** — o
+      portão do ponto 1 cumprido. Verificação parcial em 90 folds das 3
+      primeiras bases: `ga`/`bagging`/`rf` **30/30 idênticos** em curva Oracle,
+      acurácias individuais, MVR e DF. Os dois modos novos não perturbam os
+      antigos, e a ordem dos modos não vaza estado de RNG
+- [x] **Ponto 6 · `DF` normalizado exato** — o denominador correto é
+      `2/(M(M-1)) · Σ_{i<j} e_i e_j`; os `e_i` já estavam gravados em cada
+      `fold_manifest_<mode>.json`, então saiu offline, sem rerun.
+      **Resultado: não muda nada.** Spearman agrupado −0.8603 → −0.8607; razão
+      exato/médio com mediana 1.0005, porque o desvio das acurácias individuais
+      dentro de um pool é 0.054. Objeção teoricamente certa, empiricamente
+      imaterial aqui. Vale por rigor — e dá LODO 0.839 contra 0.805
+- [x] **Ponto 3 · `N*` binário vs multiclasse**.
+      **Achou um erro publicado**: `Oracle_{M/2+1} ≡ MVR` é falso. O que vale é o
+      sanduíche `Oracle_51 ≤ MVR ≤ Oracle_50`, verificado em **660/660** folds
+      binários, com igualdade exata em só 508 (77%) — os outros 23% são empates
+      50–50 desfeitos a favor. É a distinção que explica o `N*`: como ele é o
+      primeiro nível *estritamente* abaixo do MVR, os empates o empurram de 51
+      para 52+, que é onde as medianas caem.
+      Nas 7 multiclasse o sanduíche não vale (pluralidade) e `N*` cai para 47.6
+      contra 53.7, Mann-Whitney p=2.7e-06. A resposta ao objetivo 7 passou a ser
+      explicitamente restrita ao caso binário. Commit `80f1bb2`
+- [x] **Ponto 4 · a fórmula `0.15`** — era chamada de "limite superior
+      operacional" e não é: **37.7%** dos folds de árvore recuperam mais que
+      0.15. Virou estimativa, com a cota a 95% ao lado — `Q_{0.95}(R) = 0.50`,
+      mais de três vezes a média, na mesma distribuição em que **31%** dos folds
+      recuperam nada. Commit `80f1bb2`
+- [x] **Ponto 5 · limiares `DF/e²`** — descobertos e avaliados nas mesmas 29
+      bases, logo circulares. Validados leave-one-dataset-out: **a regra
+      generaliza**. Acerto 0.805 (0.839 com o denominador exato) contra 0.736 da
+      regra trivial, e os cortes reajustados fora da amostra caem na mediana em
+      **1.14 / 4.82** — praticamente os ≈1 e ≥4 publicados. Ressalva: a margem é
+      de 7 pontos, não de uma ordem de grandeza, porque a faixa do meio domina
+      (64 dos 87 pares base×modo). Commit `80f1bb2`
+- [~] **Ponto 9 · o que prevê recuperabilidade** — regredir `recovered` sobre as
       medidas de complexidade + `n_classes`, dimensão, desbalanceamento,
       `df_ratio_exact`; avaliação leave-one-dataset-out (n=29)
 - [ ] Bases de imagem via embeddings de CNN (objetivo 5 e o vínculo com o projeto
