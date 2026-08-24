@@ -1,0 +1,23 @@
+\begin{abstract}
+\noindent
+Este relatório responde, um a um, aos oito objetivos específicos do subprojeto, a
+partir de um experimento de $29$ bases $\times$ $10$ folds estratificados $\times$
+$3$ modos de geração de pool ($870$ folds, $0$ erros), com pools de $M=100$
+classificadores. As medidas \On{1} a \On{M} foram implementadas e verificadas;
+a monotonicidade $\On{1}\ge\On{2}\ge\dots\ge\On{M}$ vale em $870/870$ folds, assim
+como $\On{1}\ge$ votação majoritária. Os limites foram confrontados com a acurácia
+individual, a votação majoritária, a média de probabilidades e \emph{doze} métodos
+de seleção dinâmica de classificadores e de \emph{ensembles}.
+
+Os três resultados centrais são: \textbf{(i)} nenhum nível intermediário de \On{N}
+serve como limite superior realista --- o menor $N$ em que \On{N} cai abaixo da
+votação majoritária fica em $N\approx M/2$ nos três modos (mediana $52$--$53$,
+Friedman $p=0.40$), porque em problema binário $\On{M/2+1}$ é, por construção, a
+própria votação majoritária; \textbf{(ii)} a folga $\On{1}-\mvr$ é previsível
+\emph{antes} de treinar qualquer método de seleção, pelo índice de redundância de
+erros $\dfe$ (Spearman $-0.86$, $n=87$); \textbf{(iii)} mesmo tomando o melhor de
+dez métodos dinâmicos escolhido \emph{a posteriori} no teste, a seleção dinâmica
+recupera apenas $24.0\%$, $15.0\%$ e $14.2\%$ dessa folga --- o \On{1} é um limite
+inatingível na prática, não uma meta. O relatório fecha com sete recomendações
+operacionais.
+\end{abstract}

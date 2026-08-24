@@ -1,0 +1,17 @@
+\subsection{Objetivo 1 --- o Oracle como limite superior em DCS/DES}
+
+\textit{Estudar o conceito de Oracle em MCS, com ênfase em sua utilização como
+medida de limite superior em técnicas de DCS e DES.}
+
+O Oracle é o seletor ideal: dada uma amostra, ele escolhe um classificador correto
+se existir algum no pool. Por isso é usado como cota superior de qualquer método de
+seleção --- nenhum seletor real pode acertar uma amostra que \emph{nenhum} membro do
+pool acerta. Souza e Cavalcanti (2017) documentam que essa cota é frouxa: técnicas
+DCS selecionam classificadores competentes para no máximo cerca de $85\%$ das
+instâncias, mesmo com Oracle de $100\%$ no treino.
+
+O experimento reproduz e quantifica essa frouxidão nas $29$ bases. O \On{1} médio
+fica entre $0.9951$ e $0.9976$ nos três modos --- ou seja, \emph{praticamente não
+discrimina entre pools}. A informação está na distância até os métodos reais, não no
+valor do Oracle. Esta é a motivação empírica direta da generalização proposta pelo
+subprojeto e o fio condutor das seções seguintes.

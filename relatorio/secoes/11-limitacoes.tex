@@ -1,0 +1,25 @@
+\section{Limitações}
+
+\begin{itemize}
+\item \textbf{Bases de imagens.} O objetivo 5 as menciona como preferência; o
+catálogo atual privilegia comparabilidade com a literatura de referência. É a
+pendência mais direta.
+
+\item \textbf{$M=100$ fixo.} Todas as conclusões sobre $N^{*}$ são relativas a
+$M=100$. O argumento estrutural ($\On{M/2+1}\equiv\mvr$ em problema binário) é
+independente de $M$, mas a verificação empírica não varreu $M$.
+
+\item \textbf{Dois métodos ausentes no pool do GA.} META-DES e KNOP exigem
+\texttt{predict\_proba}, indisponível no Perceptron linear. As colunas ficam vazias
+com o motivo gravado por fold, e as comparações entre modos que os envolvem foram
+restritas aos modos aplicáveis --- não houve imputação.
+
+\item \textbf{``Melhor por fold'' é otimista.} A métrica de folga recuperada usa o
+máximo entre métodos escolhido no conjunto de teste. Um seletor de método honesto
+entregaria menos. Os números de recuperação são cotas superiores.
+
+\item \textbf{Poder estatístico com $14$ fusores.} A diferença crítica de Nemenyi
+cresce com o número de colunas a ponto de nada ser significativo. Por isso o
+protocolo mantém um conjunto primário de $7$ métodos para Friedman/Nemenyi e trata os
+demais em camada descritiva, com Wilcoxon pareado contra o \mvr{} e correção de Holm.
+\end{itemize}

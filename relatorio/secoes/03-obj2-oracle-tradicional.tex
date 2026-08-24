@@ -1,0 +1,26 @@
+\subsection{Objetivo 2 --- implementação do Oracle tradicional}
+
+\textit{Implementar a medida tradicional de Oracle.}
+
+Implementado em \texttt{pos/oracle/}, sobre uma matriz de acertos binária
+$M \times n$ construída a partir das predições de cada classificador do pool. As
+verificações que sustentam a corretude:
+
+\begin{itemize}
+\item $\On{1}\ \ge$ votação majoritária em \textbf{$870/870$ folds}. O Oracle
+tradicional nunca subestimou um método real de combinação --- o que é uma
+propriedade necessária, e sua violação indicaria erro na matriz de acertos.
+
+\item Identidade de consistência, verificada com erro máximo $5.6\times10^{-16}$:
+\begin{equation}
+\frac{1}{M}\sum_{N=1}^{M}\On{N} \;\equiv\; \text{acurácia individual média do pool}.
+\end{equation}
+Ela decorre de $\sum_N P(\ge N \text{ corretos})/M = \mathbb{E}[\text{fração de
+classificadores corretos}]$ e liga a curva à matriz de acertos por dois caminhos
+independentes.
+\end{itemize}
+
+A identidade tem uma consequência metodológica que vale registrar: a
+\textbf{``área sob a curva \On{N}'' não é uma métrica nova}. Ela é a acurácia média
+dos classificadores-base sob outro nome, e não deve ser reportada como medida
+independente.

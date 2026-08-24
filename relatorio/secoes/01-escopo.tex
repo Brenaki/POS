@@ -1,0 +1,77 @@
+\section{Escopo e material}
+
+O experimento cujos números este relatório reporta é o run
+\texttt{2026-08-23T14-19-59\_2286fcc}, executado no commit \texttt{2286fcc}. Toda
+tabela, figura e teste aqui pode ser reproduzido com
+
+\begin{quote}\ttfamily\footnotesize
+python scripts/run\_experiment.py --full\\
+python scripts/analyze\_results.py results/experiments/<run>
+\end{quote}
+
+\noindent
+e conferido contra \texttt{analysis.txt} e \texttt{analysis.json} gravados dentro do
+diretório do run. A análise textual completa, com o encadeamento dos achados, está
+em \path{docs/resultados-oracle-n.md}; este documento é o recorte que responde
+diretamente às perguntas do subprojeto.
+
+\subsection{Protocolo}
+
+\begin{table}[htbp]
+\centering\small
+\caption{Protocolo experimental.}
+\begin{tabular}{ll}
+\toprule
+Item & Valor \\
+\midrule
+Bases & $29$ (das $31$ do catálogo; Ecoli e Glass excluídas pelo portão de viabilidade) \\
+Validação & $10$-fold estratificado, \texttt{random\_state=42} \\
+Partição interna & treino / validação-\emph{fitness} / DSEL, disjuntas \\
+Tamanho do pool & $M=100$ em todos os modos \\
+Modos de pool & GA (PGDCS, Perceptron linear), Bagging (árvores), Random Forest \\
+Fusores medidos & $14$ (MVR, combinação suave, $10$ dinâmicos, $2$ estáticos) \\
+Métricas & acurácia, precisão e revocação macro, F1 macro, acurácia balanceada \\
+Estatística & Friedman + Nemenyi (protocolo Dem\v{s}ar) e Wilcoxon pareado com Holm \\
+Unidade pareada & a \emph{base} (folds promediados antes do teste) \\
+Total & $870$ folds, $0$ erros, $4$h$08$ de relógio \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Duas bases foram excluídas por um portão de viabilidade explícito: a classe mais
+rara de Ecoli tem $2$ instâncias e a de Glass tem $9$, ambas abaixo dos $10$ folds,
+o que impede a estratificação. A exclusão está registrada no manifesto do run com o
+motivo, e não é um descarte silencioso.
+
+\subsection{Definições usadas}
+
+Para um pool com $M$ classificadores e uma amostra $x$,
+\begin{equation}
+\On{N}(x) = \mathbf{1}\!\left[\ \sum_{j=1}^{M} \mathbf{1}[\,h_j(x)=y(x)\,] \ \ge\ N \ \right],
+\qquad N = 1,\dots,M ,
+\end{equation}
+de modo que \On{1} é o Oracle tradicional e vale
+$\On{1}\ge\On{2}\ge\dots\ge\On{M}$.
+
+Duas quantidades derivadas organizam o relatório:
+
+\begin{description}
+\item[Folga.] $\;\On{1}-\mvr$, a parcela do potencial anunciado pelo Oracle que a
+votação majoritária não converte.
+
+\item[Folga recuperada.] $\;\dfrac{\text{melhor método dinâmico}-\mvr}{\On{1}-\mvr}$,
+a fração dessa folga que um método real alcança. O numerador usa o \emph{máximo por
+fold} entre os dez métodos dinâmicos, escolhido no conjunto de teste: é um
+\emph{oracle sobre métodos} e portanto uma cota superior generosa do que a seleção
+dinâmica entrega.
+\end{description}
+
+Uma terceira quantidade mede diversidade de forma comparável entre pools de força
+diferente. O Double Fault bruto (\texttt{DF}, a fração de pares que erram juntos)
+penaliza pools fracos por construção, porque classificadores que erram mais erram
+juntos mais. Normalizando pelo valor esperado sob erros independentes,
+\begin{equation}
+\dfe, \qquad e = 1 - \text{acurácia individual média},
+\end{equation}
+obtém-se um índice em que $1$ significa erros independentes e valores altos
+significam redundância.

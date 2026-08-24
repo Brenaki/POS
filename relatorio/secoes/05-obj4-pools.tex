@@ -1,0 +1,41 @@
+\subsection{Objetivo 4 --- construção dos pools}
+
+\textit{Construir pools com algoritmos simples e amplamente conhecidos, como Random
+Forest e Perceptron, induzindo diversidade por variações de treinamento.}
+
+Três modos, todos com $M=100$:
+
+\begin{description}
+\item[GA (PGDCS).] Pool de Perceptrons lineares gerado por algoritmo genético que
+otimiza medidas de complexidade dos \emph{bags} --- é a estratégia que induz
+diversidade explicitamente.
+\item[Bagging.] Árvores de decisão sobre reamostragens \emph{bootstrap}.
+\item[Random Forest.] Árvores com subamostragem adicional de atributos.
+\end{description}
+
+Os três atendem ao objetivo (algoritmos simples; diversidade por variação de
+subconjuntos de dados, de atributos e da própria seleção dos \emph{bags}) e cobrem
+uma faixa larga de força do classificador-base, o que se mostrou determinante nas
+seções seguintes.
+
+A medida de diversidade merece destaque porque o número bruto inverte a conclusão:
+
+\begin{table}[htbp]
+\centering
+\caption{Diversidade: o Double Fault bruto contra o índice normalizado.}
+\begin{tabular}{lrrrr}
+\toprule
+Modo & Acc.\ individual & DF bruto & $e^{2}$ esperado & \dfe \\
+\midrule
+GA            & 0.7052 & 0.1566 & 0.0869 & \textbf{2.13} \\
+Random Forest & 0.7806 & 0.1069 & 0.0482 & 2.92 \\
+Bagging       & 0.7931 & 0.1094 & 0.0428 & 3.98 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Pelo DF bruto o GA seria o \emph{menos} diverso (maior valor, $0.1566$); pelo índice
+normalizado ele é o \emph{mais} diverso (menor valor, $2.13$; Friedman $p=0.00009$,
+GA e RF empatados em \emph{rank} e ambos à frente do Bagging). O DF absoluto sozinho
+leva ao diagnóstico errado, porque classificadores mais fracos erram mais e portanto
+erram juntos mais.

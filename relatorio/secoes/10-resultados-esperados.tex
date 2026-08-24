@@ -1,0 +1,37 @@
+\section{Confronto com os resultados esperados}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.40\textwidth} >{\raggedright\arraybackslash}p{0.56\textwidth}@{}}
+\toprule
+\textbf{Esperado no projeto} & \textbf{Obtido} \\
+\midrule
+\endhead
+Caracterizar quantitativamente \On{N} em múltiplos níveis e construir a curva.
+& Confirmado. Curva completa $N=1..M$ por fold, monotonicidade em $870/870$, e a
+identidade que liga a média da curva à acurácia individual. \\
+\addlinespace
+Verificar se níveis intermediários se aproximam de métodos práticos.
+& \textbf{Refutado}, com mecanismo identificado: $N^{*}\approx M/2$ porque
+$\On{M/2+1}\equiv\mvr$ em problema binário. Abaixo disso a curva está saturada.
+Resultado negativo, mas informativo --- fecha a pergunta em vez de deixá-la em
+aberto. \\
+\addlinespace
+Implementação reprodutível de \On{1}..\On{M}, com scripts de treino, matriz de
+acertos, métricas e gráficos.
+& Entregue. Manifesto por fold com \emph{git SHA}, versões de dependências e
+sementes; $8$ figuras e testes estatísticos gerados por um único comando. \\
+\addlinespace
+Relacionar diversidade, redundância de acertos e desempenho.
+& Entregue e quantificado: $\dfe$ prevê a folga com $\rho=-0.86$ $(n=87)$, e o
+mesmo índice \emph{não} prevê a fração recuperável --- distinção que não estava
+antecipada no projeto. \\
+\addlinespace
+Indicar em que cenários o Oracle tradicional superestima o desempenho alcançável.
+& Entregue: superestima sempre, e mais ainda em pools diversos de base fraco. Entre
+$76\%$ e $86\%$ da folga anunciada não é recuperada nem pelo melhor de dez métodos
+escolhido no teste. \\
+\addlinespace
+Apoiar a decisão sobre usar métodos complexos de seleção.
+& Entregue como as sete recomendações operacionais, com um limiar numérico em \dfe{}
+e um critério qualitativo para prever recuperação. \\
+\bottomrule
+\end{longtable}

@@ -1,0 +1,46 @@
+% Relatório de resultados — Oracle_N em diferentes níveis.
+%
+% Compile com:  tectonic -X compile relatorio.tex
+%
+% Cada seção vive em seu próprio arquivo sob secoes/, e o preâmbulo
+% (pacotes e macros) em preambulo.tex. Para acrescentar uma seção, crie o
+% arquivo e insira um \input abaixo, na posição em que ela deve aparecer.
+
+\documentclass[11pt,a4paper]{article}
+
+\input{preambulo}
+
+\title{\bfseries Análise do impacto de Oracles em diferentes níveis\\
+na acurácia de Sistemas de Múltiplos Classificadores\\[0.4em]
+\large Relatório de resultados --- respostas aos objetivos específicos}
+
+\author{Subprojeto de Iniciação Científica}
+\date{23 de agosto de 2026}
+
+\begin{document}
+\maketitle
+
+\input{secoes/00-resumo}
+
+\tableofcontents
+\bigskip
+
+\input{secoes/01-escopo}
+
+%======================================================================
+\section{Respostas aos objetivos específicos}
+
+\input{secoes/02-obj1-conceito}
+\input{secoes/03-obj2-oracle-tradicional}
+\input{secoes/04-obj3-generalizacao}
+\input{secoes/05-obj4-pools}
+\input{secoes/06-obj5-bases}
+\input{secoes/07-obj6-metodos-reais}
+\input{secoes/08-obj7-niveis-intermediarios}
+\input{secoes/09-obj8-recomendacoes}
+
+\input{secoes/10-resultados-esperados}
+\input{secoes/11-limitacoes}
+\input{secoes/12-referencias}
+
+\end{document}
