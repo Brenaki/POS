@@ -133,6 +133,18 @@ teste das 29 bases nos 3 modos, dá **+0.9 h de CPU**, ~0.3 h de relógio com
 `jobs=3`. Aceito: é o único método que mede diversidade explicitamente, que é a
 trilha do Achado 2.
 
+**Custo medido (pós-run).** A estimativa acima errou por cerca de 6x. O run do
+ADR 0018 (`2026-08-23T14-19-59_2286fcc`) levou **4h08** de relógio contra **2h21**
+do run do ADR 0017 (`2026-08-23T10-09-30_376203d`), nas mesmas 29 bases × 10 folds
+× 3 modos e no mesmo hardware com `jobs=3` — fator **1.76x**, ou **+1h47** em vez
+dos +0.3 h previstos. O erro foi de método: o custo por amostra de teste foi medido
+num fold só e extrapolado linearmente em `n_test`, mas as razões por base ficaram
+entre 1.27x e 3.56x sem crescer com o tamanho da base (Magic, a maior, deu 2.04x).
+O sobrecusto é **por fold e por método**, não por amostra — construir e ajustar
+sete estimadores DESlib extras sobre um pool de 100 classificadores domina o
+tempo de inferência. Fica registrado para a próxima estimativa: contar
+`n_folds × n_modos × n_métodos`, não `n_test`.
+
 **Cinco métodos não rodam sobre o pool do GA** por exigirem `predict_proba`, que
 o Perceptron linear não tem: META-DES (já sabido do ADR 0017), KNOP, APriori,
 APosteriori e StackedClassifier. Os quatro primeiros ficam com a coluna vazia no

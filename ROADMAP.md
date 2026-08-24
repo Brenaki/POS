@@ -21,7 +21,7 @@
 | 4  | Implementação do Oracle tradicional e dos Oracles em diferentes níveis | Dez/2026–Fev/2027  | [x]    |
 | 5  | Relatório Semestral conforme modelo PROPESP (até 15 mar 2027)          | Mar/2027           | [ ]    |
 | 6  | Experimentos comparativos (votação majoritária, combinação de probs, DCS/DES) | Fev–Jun/2027 | [x]    |
-| 7  | Análise dos resultados, gráficos e recomendações                       | Ago–Nov/2027       | [~]    |
+| 7  | Análise dos resultados, gráficos e recomendações                       | Ago–Nov/2027       | [x]    |
 | 8  | Relatório final (até 11 set 2027)                                      | Jul–Ago/2027       | [ ]    |
 
 ## Engineering milestones (enabling the cronograma)
@@ -155,10 +155,36 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
 - [x] Duas camadas estatísticas: Friedman/Nemenyi sobre o conjunto do ADR 0017
       (poder preservado, comparável com o run anterior) + Wilcoxon com correção
       de Holm para os 12 restantes
-- [ ] Rodar o `--full` do ADR 0018 e medir o viés de DSEL por
+- [x] Rodar o `--full` do ADR 0018 e medir o viés de DSEL por
       diferença-em-diferenças contra o run `2026-08-23T10-09-30_376203d`
-- [ ] Reescrever `docs/resultados-oracle-n.md` com a leitura em acurácia
+      — run `2026-08-23T14-19-59_2286fcc`, 870 folds, 0 erros, 4h08 (1.76x o run
+      anterior; a estimativa do ADR errou por 6x, corrigida lá).
+      **Pré-condição verificada**: com `X_tr` intacto, os pools de Bagging e RF
+      saíram bit-idênticos ao run anterior — `max |Δ| = 0.000000` em toda coluna
+      de pool e curva Oracle idêntica em 290/290 folds de cada modo. Sem isso a
+      decomposição não valeria.
+      **Achado 0**: restrito aos 5 métodos comuns aos dois runs, o DSEL pela
+      metade custou −0.0057 de folga recuperada ao grupo de controle (Bagging+RF,
+      que não tinham viés), o GA perdeu −0.0003, logo o **viés de DSEL é +0.0055**
+      — ~3% relativos, e nenhum dos deltas é significativo. O desenho antigo
+      **não** estava inflando materialmente o GA; a correção está feita e é a que
+      vale daqui em diante.
+- [x] Reescrever `docs/resultados-oracle-n.md` com a leitura em acurácia
       balanceada e consolidar uma seção de recomendações (fecha o marco 7)
+      — **Achado 5** (12 métodos): recuperação 24.0% (GA), 15.0% (Bagging), 14.2%
+      (RF) mesmo usando o melhor dos 10 dinâmicos escolhido a posteriori. O eixo
+      que organiza tudo é a **poda**: OLA/LCA/MCB/Rank/melhor-individual perdem
+      0.044–0.069 contra o MVR nos pools de árvores em 27–29 das 29 bases
+      (p_Holm<0.001); os que não podam (KNORA-U, DES-P, META-DES, KNOP, seleção
+      estática) empatam. **KNORA-U é o único fusor que bate o MVR de forma
+      sustentada em algum modo** (+0.0272 no GA, p_Holm=0.0045).
+      **Achado 6**: em acurácia balanceada a folga *cresce* (GA 0.2192→0.2599) e o
+      DCS puro sobe 0.3–0.4 posições de rank, mas o topo não muda — o ranking de
+      fusores é robusto à métrica.
+      **Achado 3 / objetivo 7**: `N*` fica em `N ≈ M/2` nos três modos
+      (Friedman p=0.40) porque `Oracle_{M/2+1} ≡ MVR` em problema binário. Não
+      existe nível intermediário de Oracle_N que sirva de limite realista.
+      Sete recomendações consolidadas na seção final do documento.
 
 ## Decision log (ADRs)
 

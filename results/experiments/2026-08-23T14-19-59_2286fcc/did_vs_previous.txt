@@ -1,0 +1,23 @@
+antigo: results/experiments/2026-08-23T10-09-30_376203d  (870 linhas)
+novo  : results/experiments/2026-08-23T14-19-59_2286fcc  (870 linhas)
+folds pareados: 870
+metodos dinamicos comuns (5): ola, lca, knorae, knorau, metades
+
+identidade dos pools (max |novo - antigo|; bagging/rf devem ser 0):
+         folds  oracle_1  oracle_2  oracle_5  oracle_M  majority_vote  mean_individual_acc  double_fault_mean    M
+mode                                                                                                              
+ga         290  0.057143  0.057143       0.1  0.222222       0.171429                 0.05           0.035342  0.0
+bagging    290  0.000000  0.000000       0.0  0.000000       0.000000                 0.00           0.000000  0.0
+rf         290  0.000000  0.000000       0.0  0.000000       0.000000                 0.00           0.000000  0.0
+
+diferenca-em-diferencas:
+         pares  rec_old  rec_new   d_rec       p  d_oracle_1  d_majority_vote  d_mean_individual_acc  d_M
+mode                                                                                                     
+ga         288   0.2003   0.2001 -0.0003  0.4679     -0.0003          -0.0043                    0.0  0.0
+bagging    271   0.1277   0.1195 -0.0082  0.0795      0.0000           0.0000                    0.0  0.0
+rf         270   0.1045   0.1013 -0.0032  0.6654      0.0000           0.0000                    0.0  0.0
+
+  efeito do DSEL menor (controle bagging+rf) : -0.0057
+  delta observado no GA                      : -0.0003
+  vies de DSEL (GA - controle)               : +0.0055
+  enfraquecimento do pool GA: d oracle_1=-0.0003 d MVR=-0.0043 d acc_individual=+0.0000 d M=+0.00
