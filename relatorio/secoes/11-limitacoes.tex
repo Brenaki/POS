@@ -6,13 +6,20 @@ catálogo atual privilegia comparabilidade com a literatura de referência. É a
 pendência mais direta.
 
 \item \textbf{$M=100$ fixo.} Todas as conclusões sobre $N^{*}$ são relativas a
-$M=100$. O argumento estrutural ($\On{M/2+1}\equiv\mvr$ em problema binário) é
-independente de $M$, mas a verificação empírica não varreu $M$.
+$M=100$. O argumento estrutural ($\On{M/2+1}\le\mvr\le\On{M/2}$ em problema binário)
+é independente de $M$, mas a verificação empírica não varreu $M$.
 
-\item \textbf{Dois métodos ausentes no pool do GA.} META-DES e KNOP exigem
-\texttt{predict\_proba}, indisponível no Perceptron linear. As colunas ficam vazias
-com o motivo gravado por fold, e as comparações entre modos que os envolvem foram
-restritas aos modos aplicáveis --- não houve imputação.
+\item \textbf{Dois métodos ausentes nos pools de Perceptron.} META-DES e KNOP
+exigem \texttt{predict\_proba}, indisponível no Perceptron linear --- vale para os
+três modos que o usam (PGDCS completo, PGDCS-F1/T1, bags aleatórios). As colunas
+ficam vazias com o motivo gravado por fold, e as comparações entre modos que os
+envolvem foram restritas aos modos aplicáveis --- não houve imputação.
+
+\item \textbf{A instrumentação de poda mede só as consultas roteadas.} O DESlib
+curto-circuita amostras em que a vizinhança é unânime, e essas nunca chegam ao
+seletor. $E[S]/M$ é medido sobre as consultas roteadas para seleção dinâmica
+(fração gravada junto, entre $76\%$ e $100\%$ conforme o método); não é uma medida
+sobre todas as consultas.
 
 \item \textbf{``Melhor por fold'' é otimista.} A métrica de folga recuperada usa o
 máximo entre métodos escolhido no conjunto de teste. Um seletor de método honesto

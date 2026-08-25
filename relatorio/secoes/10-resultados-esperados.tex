@@ -6,32 +6,39 @@
 \midrule
 \endhead
 Caracterizar quantitativamente \On{N} em múltiplos níveis e construir a curva.
-& Confirmado. Curva completa $N=1..M$ por fold, monotonicidade em $870/870$, e a
+& Confirmado. Curva completa $N=1..M$ por fold, monotonicidade em $1450/1450$, e a
 identidade que liga a média da curva à acurácia individual. \\
 \addlinespace
 Verificar se níveis intermediários se aproximam de métodos práticos.
 & \textbf{Refutado}, com mecanismo identificado: $N^{*}\approx M/2$ porque
-$\On{M/2+1}\equiv\mvr$ em problema binário. Abaixo disso a curva está saturada.
-Resultado negativo, mas informativo --- fecha a pergunta em vez de deixá-la em
-aberto. \\
+$\On{M/2+1}\le\mvr\le\On{M/2}$ em problema binário. Abaixo disso a curva está
+saturada. Resultado negativo, mas informativo --- fecha a pergunta em vez de
+deixá-la em aberto. \\
 \addlinespace
 Implementação reprodutível de \On{1}..\On{M}, com scripts de treino, matriz de
 acertos, métricas e gráficos.
 & Entregue. Manifesto por fold com \emph{git SHA}, versões de dependências e
-sementes; $8$ figuras e testes estatísticos gerados por um único comando. \\
+sementes; $8$ figuras e testes estatísticos gerados por um único comando --- e desta
+vez a partir de árvore limpa, com o run anterior validado bit a bit contra ele. \\
 \addlinespace
 Relacionar diversidade, redundância de acertos e desempenho.
-& Entregue e quantificado: $\dfe$ prevê a folga com $\rho=-0.86$ $(n=87)$, e o
-mesmo índice \emph{não} prevê a fração recuperável --- distinção que não estava
+& Entregue e quantificado: $\dfe$ prevê a folga com $\rho=-0.89$ $(n=145)$, validado
+fora da amostra ($85{,}5\%$ de acerto \emph{leave-one-dataset-out}), e o mesmo índice
+sozinho \emph{não} prevê a fração recuperável --- mas complexidade de dados, via
+floresta aleatória, prevê ($R^2_{\text{LODO}}=0.36$). Nenhuma distinção estava
 antecipada no projeto. \\
 \addlinespace
 Indicar em que cenários o Oracle tradicional superestima o desempenho alcançável.
 & Entregue: superestima sempre, e mais ainda em pools diversos de base fraco. Entre
 $76\%$ e $86\%$ da folga anunciada não é recuperada nem pelo melhor de dez métodos
-escolhido no teste. \\
+escolhido no teste, e essa faixa é explicada pelo classificador-base --- não pelo
+método de geração do pool, um confounder que o desenho atual separa
+explicitamente. \\
 \addlinespace
 Apoiar a decisão sobre usar métodos complexos de seleção.
-& Entregue como as sete recomendações operacionais, com um limiar numérico em \dfe{}
-e um critério qualitativo para prever recuperação. \\
+& Entregue como as oito recomendações operacionais, com um limiar numérico em \dfe{}
+validado fora da amostra, um modelo preditivo de recuperabilidade e a constatação de
+que o PGDCS completo não compensa o custo adicional sobre a variante de medidas
+fixas. \\
 \bottomrule
 \end{longtable}

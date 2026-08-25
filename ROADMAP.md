@@ -207,24 +207,36 @@ pontos a corrigir, mais o PGDCS completo. Dois são bloqueadores de experimento
       pyhard 229 min em Phoneme (inviável) contra 2.6 min no `fast_adapter`.
       Corrigido e testado: a votação virou determinística por seed e T1/N3/F1v
       voltaram a ser elegíveis. Commit `5aceb11`
-- [~] **Ponto 2 · modo `pgdcs`** — PGDCS completo, `types=None` reativando
-      `get_best_types`; gravar as medidas escolhidas por fold (`pgdcs_types`) —
-      é resultado, não telemetria. ~10.7 h só de votação, aceitas explicitamente
-- [~] **Ponto 7 · modo `randbag`** — bags aleatórios + Perceptron, a população de
-      geração 0 do próprio GA. Desfaz o confounder: `ga` vs `randbag` isola a
-      busca, `randbag` vs `bagging` isola o classificador-base
-- [~] **Ponto 8 · poda medida** — envolver `ds.select` do DESlib e gravar
-      `E[S]/M` por fusor, mais a fração de consultas roteadas para seleção
-      (o DESlib curto-circuita vizinhança unânime)
-- [~] **Ponto 1 · rerun canônico** — `--full` de árvore limpa, 29 bases x 10
-      folds x 5 modos = 1450 folds, ~18–19 h. Critério de aceitação:
-      bit-identidade de `ga`/`bagging`/`rf` contra `2026-08-23T14-19-59_2286fcc`
-      — se bater, o run sujo fica validado em vez de descartado.
-      Em andamento: `2026-08-24T09-38-20_5aceb11`, **`git_dirty: false`** — o
-      portão do ponto 1 cumprido. Verificação parcial em 90 folds das 3
-      primeiras bases: `ga`/`bagging`/`rf` **30/30 idênticos** em curva Oracle,
-      acurácias individuais, MVR e DF. Os dois modos novos não perturbam os
-      antigos, e a ordem dos modos não vaza estado de RNG
+- [x] **Ponto 2 · modo `pgdcs`** — PGDCS completo, `types=None` reativando
+      `get_best_types`; medidas gravadas por fold (`pgdcs_types`).
+      **Resultado**: PGDCS completo e `ga` (F1/T1 fixo) não diferem em nenhuma
+      métrica de pool (`p≥0.29` em Oracle_1/MVR/gap/`df_ratio`/`recovered`), e a
+      votação raramente escolhe F1/T1 (4/290 folds, 1.4%). As 10.7 h da votação
+      não compraram resultado — o atalho fica justificado por medição, não por
+      economia. Commit `5aceb11`
+- [x] **Ponto 7 · modo `randbag`** — bags aleatórios + Perceptron, a população de
+      geração 0 do próprio GA. Desfaz o confounder: `ga` vs `randbag` **não**
+      difere (`p≥0.13` em toda métrica) — a busca do GA não produz diversidade
+      útil detectável nestas métricas; `randbag` vs `bagging` **difere**
+      fortemente (MVR `p=0.0038`, `df_ratio` `p=0.0004`) — o eixo que organiza
+      os resultados é o classificador-base, não o método de geração. A tese do
+      coorientador (busca por diversidade produz especialistas desperdiçados
+      pela votação) não se sustenta nestes dados: o padrão aparece igual sem
+      busca alguma. Commit `5aceb11`
+- [x] **Ponto 8 · poda medida** — `ds.select` do DESlib envolvido, `E[S]/M`
+      gravado por fusor com a fração roteada para DS. OLA/LCA/MCB/Rank ficam em
+      1% (poda máxima); KNORA-U/KNOP em 100% (reponderação, sem poda).
+      Correlação `E[S]/M` × margem sobre o MVR: forte nos pools de árvore
+      (RF ρ=0.80, Bagging ρ=0.74), mais fraca nos de Perceptron (ρ≈0.39–0.41) —
+      a poda organiza mais quando o base learner é forte. Commit `5aceb11`
+- [x] **Ponto 1 · rerun canônico** — `--full` de árvore limpa, 29 bases x 10
+      folds x 5 modos = 1450 folds, 16h44 de relógio, 0 erros.
+      `2026-08-24T09-38-20_5aceb11`, **`git_dirty: false`**. Critério de
+      aceitação cumprido: bit-identidade de `ga`/`bagging`/`rf` contra
+      `2026-08-23T14-19-59_2286fcc` em **3480/3480** combinações
+      base×fold×modo×métrica de pool, `max|Δ|=0.000000000`, **0 divergências**
+      — o run sujo fica validado, procedência reproduzível estabelecida.
+      Commit `5aceb11`
 - [x] **Ponto 6 · `DF` normalizado exato** — o denominador correto é
       `2/(M(M-1)) · Σ_{i<j} e_i e_j`; os `e_i` já estavam gravados em cada
       `fold_manifest_<mode>.json`, então saiu offline, sem rerun.
@@ -254,9 +266,13 @@ pontos a corrigir, mais o PGDCS completo. Dois são bloqueadores de experimento
       **1.14 / 4.82** — praticamente os ≈1 e ≥4 publicados. Ressalva: a margem é
       de 7 pontos, não de uma ordem de grandeza, porque a faixa do meio domina
       (64 dos 87 pares base×modo). Commit `80f1bb2`
-- [~] **Ponto 9 · o que prevê recuperabilidade** — regredir `recovered` sobre as
+- [x] **Ponto 9 · o que prevê recuperabilidade** — regredido `recovered` sobre
       medidas de complexidade + `n_classes`, dimensão, desbalanceamento,
-      `df_ratio_exact`; avaliação leave-one-dataset-out (n=29)
+      `df_ratio_exact`, acurácia individual média, leave-one-dataset-out (n=29).
+      **Ridge falha** fora da amostra (`R²=-0.018`, pior que a média constante).
+      **Floresta generaliza** (`R²=0.355`, ρ=0.335, p=4e-5, EAM 0.109 contra
+      0.141 do baseline) — a relação é não-linear mas aprendível. Commit
+      `5aceb11`
 - [ ] Bases de imagem via embeddings de CNN (objetivo 5 e o vínculo com o projeto
       maior) — segunda bateria experimental, não uma correção; fica aberto
 

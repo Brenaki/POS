@@ -1,19 +1,32 @@
 \section{Escopo e material}
 
-O experimento cujos números este relatório reporta é o run
-\texttt{2026-08-23T14-19-59\_2286fcc}, executado no commit \texttt{2286fcc}. Toda
-tabela, figura e teste aqui pode ser reproduzido com
+O experimento cujos números este relatório reporta é o run canônico
+\url{2026-08-24T09-38-20_5aceb11}, executado no commit \texttt{5aceb11}, de
+árvore limpa (\texttt{git\_dirty: false}). Toda tabela, figura e teste aqui pode ser
+reproduzido com
 
 \begin{quote}\ttfamily\footnotesize
 python scripts/run\_experiment.py --full\\
-python scripts/analyze\_results.py results/experiments/<run>
+python scripts/analyze\_results.py results/experiments/<run>\\
+python scripts/analyze\_review.py results/experiments/<run>
 \end{quote}
 
 \noindent
-e conferido contra \texttt{analysis.txt} e \texttt{analysis.json} gravados dentro do
-diretório do run. A análise textual completa, com o encadeamento dos achados, está
-em \path{docs/resultados-oracle-n.md}; este documento é o recorte que responde
+e conferido contra \texttt{analysis.txt}, \texttt{analysis.json} e
+\texttt{review\_analysis.txt} gravados dentro do diretório do run. A análise textual
+completa, com o encadeamento dos achados, está em
+\path{docs/resultados-oracle-n.md}; este documento é o recorte que responde
 diretamente às perguntas do subprojeto.
+
+\paragraph{Procedência.} O run anterior (\texttt{2286fcc}) tinha
+\texttt{git\_dirty: true} --- o código real divergia do commit registrado, e nada
+publicado a partir dele era reproduzível (ADR 0019). O run canônico substitui-o de
+árvore limpa. Antes de qualquer análise, os três modos comuns aos dois desenhos
+(\texttt{ga}, \texttt{bagging}, \texttt{rf}) foram comparados coluna a coluna:
+\textbf{$3480$ combinações base$\times$fold$\times$modo$\times$métrica de pool
+comparadas, $0$ divergências, $\max|\Delta| = 0{,}000000000$}. O run sujo fica
+\textbf{validado}: todo número já publicado sobrevive e ganha procedência
+reprodutível.
 
 \subsection{Protocolo}
 
@@ -28,12 +41,12 @@ Bases & $29$ (das $31$ do catálogo; Ecoli e Glass excluídas pelo portão de vi
 Validação & $10$-fold estratificado, \texttt{random\_state=42} \\
 Partição interna & treino / validação-\emph{fitness} / DSEL, disjuntas \\
 Tamanho do pool & $M=100$ em todos os modos \\
-Modos de pool & PGDCS-F1/T1 (Perceptron linear), Bagging (árvores), Random Forest \\
+Modos de pool & PGDCS completo, PGDCS-F1/T1, bags aleatórios, Bagging, Random Forest \\
 Fusores medidos & $14$ (MVR, combinação suave, $10$ dinâmicos, $2$ estáticos) \\
 Métricas & acurácia, precisão e revocação macro, F1 macro, acurácia balanceada \\
 Estatística & Friedman + Nemenyi (protocolo Dem\v{s}ar) e Wilcoxon pareado com Holm \\
 Unidade pareada & a \emph{base} (folds promediados antes do teste) \\
-Total & $870$ folds, $0$ erros, $4$h$08$ de relógio \\
+Total & $1450$ folds, $0$ erros, $16$h$44$ de relógio \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -42,6 +55,27 @@ Duas bases foram excluídas por um portão de viabilidade explícito: a classe m
 rara de Ecoli tem $2$ instâncias e a de Glass tem $9$, ambas abaixo dos $10$ folds,
 o que impede a estratificação. A exclusão está registrada no manifesto do run com o
 motivo, e não é um descarte silencioso.
+
+\paragraph{Os cinco modos.} Cada um isola uma variável (ADR 0019):
+
+\begin{description}
+\item[PGDCS completo.] Perceptrons lineares, algoritmo genético, e a etapa em que o
+método \emph{vota} quais medidas de complexidade convêm a cada base
+(\texttt{get\_best\_types}) ativa --- a especificação original do método.
+\item[PGDCS-F1/T1.] Idêntico, mas com as medidas fixas em F1 e T1 em vez de votadas.
+É o modo já publicado em versões anteriores deste relatório; mantido para
+comparabilidade e para o critério de aceitação do run acima.
+\item[Bags aleatórios.] Mesmos bags estratificados de $50\%$, mesmo Perceptron,
+mesma seed, \textbf{sem} busca genética --- a população de geração $0$ do próprio
+GA. Isola o efeito da busca.
+\item[Bagging.] Árvores de decisão sobre reamostragens \emph{bootstrap}.
+\item[Random Forest.] Árvores com subamostragem adicional de atributos.
+\end{description}
+
+Os contrastes que os cinco modos destravam --- e cujos resultados aparecem nas
+seções seguintes --- são: PGDCS completo \emph{vs} PGDCS-F1/T1 (efeito de votar as
+medidas), PGDCS-F1/T1 \emph{vs} bags aleatórios (efeito da busca do GA), bags
+aleatórios \emph{vs} Bagging (efeito do classificador-base).
 
 \subsection{Definições usadas}
 
@@ -74,4 +108,6 @@ juntos mais. Normalizando pelo valor esperado sob erros independentes,
 \dfe, \qquad e = 1 - \text{acurácia individual média},
 \end{equation}
 obtém-se um índice em que $1$ significa erros independentes e valores altos
-significam redundância.
+significam redundância. O denominador acima assume taxa de erro igual entre
+classificadores; a versão exata, $\frac{2}{M(M-1)}\sum_{i<j}e_ie_j$, é usada como
+verificação de rigor na seção do objetivo 8.

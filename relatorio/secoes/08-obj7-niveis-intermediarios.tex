@@ -11,19 +11,21 @@ que o Oracle deixa de ser otimista.
 \begin{table}[htbp]
 \centering
 \caption{$N^{*}$ por modo, com $M=100$.}
-\begin{tabular}{lrrrr}
+\begin{tabular}{lrr}
 \toprule
-Modo & Mediana & IQR & Média & Folds com $N^{*}>50$ \\
+Modo & Mediana & Média \\
 \midrule
-GA            & 52 & $[51, 55]$ & 51.9 & 79.3\% \\
-Bagging       & 53 & $[51, 56]$ & 54.4 & 81.4\% \\
-Random Forest & 53 & $[51, 56]$ & 53.0 & 79.3\% \\
+PGDCS completo & 52 & 51.9 \\
+PGDCS-F1/T1    & 52 & 51.9 \\
+Bags aleatórios& 52 & 52.0 \\
+Random Forest  & 53 & 53.0 \\
+Bagging        & 53 & 54.4 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Friedman $p=0.40$: \textbf{os três modos têm o mesmo $N^{*}$, e ele fica em
-$N\approx M/2$}. Não é coincidência empírica. O mecanismo não é a identidade
+Friedman $p=0.48$ ($k=5$): \textbf{os cinco modos têm o mesmo $N^{*}$}, e ele fica em
+$N\approx M/2$. Não é coincidência empírica. O mecanismo não é a identidade
 $\On{M/2+1}\equiv\mvr$ --- essa afirmação, feita em versões anteriores, é falsa ---
 mas um \emph{sanduíche}:
 \begin{equation}
@@ -32,9 +34,10 @@ mas um \emph{sanduíche}:
 
 A votação acerta sempre que mais da metade do pool acerta, logo $\mvr\ge\On{51}$;
 e ela só pode ganhar, além disso, os empates $50$--$50$, logo nunca passa de
-$\On{50}$. O sanduíche foi verificado em \textbf{660 de 660} folds binários, mas a
-igualdade $\mvr=\On{51}$ vale em apenas $508$ deles ($77\%$): nos demais $23\%$ os
-empates são desfeitos a favor, com excesso médio de $+0.0035$.
+$\On{50}$. O sanduíche foi verificado em \textbf{$1100$ de $1100$} folds binários
+(as $22$ bases binárias $\times$ $10$ folds $\times$ $5$ modos), mas a igualdade
+$\mvr=\On{51}$ vale em apenas $833$ deles ($75{,}7\%$): nos demais $24{,}3\%$ os
+empates são desfeitos a favor, o que empurra $N^{*}$ acima de $51$.
 
 A distinção não é um detalhe --- é ela que dá o valor de $N^{*}$. Como $N^{*}$ é o
 primeiro nível \emph{estritamente} abaixo do \mvr{}, e $\On{51}=\mvr$ não satisfaz
@@ -48,28 +51,29 @@ significativa:
 
 \begin{table}[htbp]
 \centering
-\caption{$N^{*}$ mediano por cardinalidade de classes.}
-\begin{tabular}{lrrrr}
+\caption{$N^{*}$ mediano por cardinalidade de classes, cinco modos.}
+\begin{tabular}{lrrrrr}
 \toprule
-grupo & bases & GA & Bagging & RF \\
+grupo & PGDCS & F1/T1 & Bags aleat. & Bagging & RF \\
 \midrule
-binárias    & 22 & 53.4 & 53.7 & 53.5 \\
-multiclasse &  7 & 44.4 & 48.1 & 47.3 \\
+binárias (22)    & 53.1 & 53.4 & 53.5 & 53.7 & 53.5 \\
+multiclasse (7)  & 45.7 & 44.4 & 44.3 & 48.1 & 47.3 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \noindent
-Mediana $53.7$ contra $47.6$, Mann-Whitney $p=2.7\times10^{-6}$. Dentro de cada
-grupo os modos continuam empatados ($p=0.71$ e $p=0.37$).
+Mediana global $53.6$ contra $47.3$, Mann-Whitney $p=2.2\times10^{-11}$. Dentro de
+cada grupo os cinco modos continuam sem diferença estatística significativa.
 
 Disso decorre a resposta ao objetivo, \textbf{restrita aos problemas binários}:
 
 \begin{itemize}
-\item Para $N \ll M/2$ a curva está \textbf{saturada}: os três modos ficam entre
-$0.988$ e $0.998$ em $N=1..5$, e $\On{5}\ge\mvr$ em $100\%$ dos $870$ folds. As
-diferenças entre modos são estatisticamente reais ($p<0.001$) mas de magnitude
-$0.002$--$0.004$. Mais conservador que \On{1}, sim; perto de um método real, não.
+\item Para $N \ll M/2$ a curva está \textbf{saturada}: os cinco modos ficam entre
+$0.988$ e $0.998$ em $N=1..5$, e $\On{5}\ge\mvr$ em praticamente todos os folds. As
+diferenças entre modos são estatisticamente reais em alguns pares ($p<0.001$) mas
+de magnitude $0.001$--$0.004$. Mais conservador que \On{1}, sim; perto de um método
+real, não.
 
 \item Para $N\approx M/2$ a curva \textbf{já é} a votação majoritária, sob outro
 nome. Não acrescenta informação.
@@ -80,17 +84,21 @@ nome. Não acrescenta informação.
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.72\textwidth]{figuras/fig3_nstar.png}
-\caption{Distribuição de $N^{*}$. A concentração em torno de $M/2$ nos três modos é o
-que impede qualquer nível intermediário de servir como limite realista.}
+\caption{Distribuição de $N^{*}$. A concentração em torno de $M/2$ nos cinco modos é
+o que impede qualquer nível intermediário de servir como limite realista.}
 \end{figure}
 
 \paragraph{O que substitui a ideia original.} O objetivo 7 buscava uma estimativa
 conservadora e alcançável. Ela existe, mas não é ``\On{N} para algum $N$''; é a folga
 $\On{1}-\mvr$ ponderada pela fração dela que métodos reais recuperam. Medido: mesmo
 tomando o melhor de dez métodos dinâmicos escolhido \emph{a posteriori} no teste, a
-recuperação fica em $24.0\%$ (GA), $15.0\%$ (Bagging) e $14.2\%$ (RF), com medianas
-bem menores ($0.167$, $0.108$, $0.091$) e recuperação \emph{exatamente zero} no
-primeiro quartil de Bagging e RF.
+recuperação média fica em $24{,}3\%$ (PGDCS completo), $24{,}0\%$ (PGDCS-F1/T1),
+$23{,}1\%$ (bags aleatórios), $15{,}0\%$ (Bagging) e $14{,}2\%$ (RF) --- os três
+pools de Perceptron recuperam quase o dobro dos pools de árvore, consistente com o
+achado do objetivo 4 de que o classificador-base, não o método de geração, organiza
+os resultados. As medianas são bem menores em todos os modos ($0.167$ nos três de
+Perceptron; $0.108$ e $0.091$ em Bagging e RF), e um quarto dos folds de árvore
+recupera \emph{exatamente zero} ($31{,}1\%$ no agregado).
 
 \textbf{Correção.} Versões anteriores apresentavam
 \begin{equation}
@@ -98,7 +106,7 @@ primeiro quartil de Bagging e RF.
 \end{equation}
 como ``limite superior operacional''. Não é um limite: $0.15$ é a recuperação
 \emph{média} dos pools de árvore, e uma média é ultrapassada por metade da massa.
-Medido nos folds de árvore, $37.7\%$ deles recuperam mais que $0.15$. A expressão é
+Medido nos folds de árvore, $37{,}7\%$ deles recuperam mais que $0.15$. A expressão é
 uma \textbf{estimativa}, $\widehat{\mathrm{Acc}}_{DS}$, e deve ser lida como tal.
 
 Quem quiser de fato uma cota precisa de um quantil alto da distribuição de
@@ -108,27 +116,28 @@ $R=\text{recuperação}$, não da sua média:
 \qquad
 \mathrm{cota}_{95} = \mvr + Q_{0.95}(R)\,\bigl(\On{1}-\mvr\bigr),
 \end{equation}
-com $Q_{0.95}(R)=0.50$ nos pools de árvore --- mais de três vezes a média. E os dois
-números descrevem a mesma distribuição em que $31\%$ dos folds recuperam
-\emph{nada} ($R\le 0$). Ambos permanecem otimistas, porque $R$ é medido escolhendo o
-melhor método no próprio teste.
+com $Q_{0.95}(R)=0.50$ nos pools de árvore --- mais de três vezes a média. Ambos
+permanecem otimistas, porque $R$ é medido escolhendo o melhor método no próprio
+teste.
 
 \paragraph{Robustez à métrica.} A metodologia do subprojeto pede precisão, revocação,
 F1 e acurácia balanceada além da acurácia --- a preocupação legítima sendo que a
 acurácia bruta esconda a classe minoritária, num catálogo que chega a IMB $71.5$. As
-quatro métricas foram gravadas para \emph{todo} fusor. Em acurácia balanceada tudo
-cai, mas de forma quase uniforme, e a folga \emph{cresce}:
+quatro métricas foram gravadas para \emph{todo} fusor, nos cinco modos. Em acurácia
+balanceada tudo cai, mas de forma quase uniforme, e a folga \emph{cresce}:
 
 \begin{table}[htbp]
-\centering
+\centering\small
 \caption{Acurácia \emph{versus} acurácia balanceada.}
 \begin{tabular}{lrrrrrr}
 \toprule
 Modo & \On{1} & \On{1} balanc. & \mvr & \mvr balanc. & Folga & Folga balanc. \\
 \midrule
-GA            & 0.9976 & 0.9967 & 0.7784 & 0.7368 & 0.2192 & 0.2599 \\
-Bagging       & 0.9951 & 0.9923 & 0.8467 & 0.8163 & 0.1484 & 0.1760 \\
-Random Forest & 0.9970 & 0.9949 & 0.8549 & 0.8214 & 0.1421 & 0.1735 \\
+PGDCS completo & 0.9972 & 0.9961 & 0.7771 & 0.7349 & 0.2201 & 0.2611 \\
+PGDCS-F1/T1    & 0.9976 & 0.9967 & 0.7784 & 0.7368 & 0.2192 & 0.2599 \\
+Bags aleatórios& 0.9979 & 0.9970 & 0.7808 & 0.7390 & 0.2170 & 0.2580 \\
+Bagging        & 0.9951 & 0.9923 & 0.8467 & 0.8163 & 0.1484 & 0.1760 \\
+Random Forest  & 0.9970 & 0.9949 & 0.8549 & 0.8214 & 0.1421 & 0.1735 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -136,8 +145,8 @@ Random Forest & 0.9970 & 0.9949 & 0.8549 & 0.8214 & 0.1421 & 0.1735 \\
 O \On{1} é quase insensível ao desbalanceamento --- basta \emph{um} classificador do
 pool acertar a instância minoritária --- enquanto o \mvr{} precisa que $51$ acertem,
 e é aí que a minoria se perde. Nos \emph{ranks} de fusor a única mudança sistemática
-é o DCS puro melhorar $0.3$--$0.4$ posições (OLA vai de \emph{rank} $6.38$ para
-$6.00$ no RF), o que faz sentido --- escolher o competente na vizinhança ajuda numa
-região minoritária. Mas em nenhum modo isso muda o topo: KNORA-U, META-DES, \mvr{} e
-combinação suave continuam empatados na frente, e OLA e LCA continuam no fundo.
-\textbf{Nenhuma conclusão deste relatório depende da escolha da métrica.}
+é o DCS puro melhorar posições nos pools de árvore, o que faz sentido --- escolher o
+competente na vizinhança ajuda numa região minoritária. Mas em nenhum modo isso muda
+o topo: KNORA-U, META-DES, \mvr{} e combinação suave continuam empatados na frente, e
+OLA e LCA continuam no fundo. \textbf{Nenhuma conclusão deste relatório depende da
+escolha da métrica.}

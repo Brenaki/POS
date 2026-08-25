@@ -1,14 +1,21 @@
 # Resultados — Oracle_N em diferentes níveis
 
-- **Run**: `results/experiments/2026-08-23T14-19-59_2286fcc/` (ADR 0018; split de
-  três vias, 12 métodos de seleção dinâmica, suíte de métricas por fusor)
-- **Commit**: `2286fcc` (branch `master`)
-- **Protocolo**: 29 bases × 10-fold estratificado × 3 modos, M=100, GA com 20 gerações,
-  `random_state=42`. 870 folds, 0 erros, 4h08 de relógio. Ecoli e Glass excluídas pelo
-  portão de viabilidade (menor classe com 2 e 9 instâncias, < 10 folds).
+- **Run**: `results/experiments/2026-08-24T09-38-20_5aceb11/` (ADR 0019; run
+  canônico de árvore limpa, PGDCS completo e controle `randbag` como modos novos,
+  poda medida via `ds.select`)
+- **Commit**: `5aceb11` (branch `master`), `git_dirty: false`
+- **Protocolo**: 29 bases × 10-fold estratificado × 5 modos, M=100, GA com 20
+  gerações, `random_state=42`. 1450 folds, 0 erros, 16h44 de relógio. Ecoli e Glass
+  excluídas pelo portão de viabilidade (menor classe com 2 e 9 instâncias, < 10
+  folds).
+- **Procedência**: o run anterior (`2286fcc`) tinha `git_dirty: true`. Antes de
+  qualquer análise, `ga`/`bagging`/`rf` foram comparados bit a bit contra ele:
+  **3480/3480** combinações base×fold×modo×métrica de pool idênticas,
+  `max|Δ|=0.000000000` — o run sujo fica validado, e todo número deste documento
+  vindo dele permanece correto.
 - **Reprodução**: `python scripts/run_experiment.py --full` →
   `python scripts/analyze_results.py results/experiments/<run>` →
-  `python scripts/compare_runs.py <run_anterior> <run>`
+  `python scripts/analyze_review.py results/experiments/<run>`
 
 Este documento mapeia os resultados aos objetivos específicos do subprojeto
 (`docs/SubProjeto - ANÁLISE DO IMPACTO DE ORACLES...md`).
@@ -18,8 +25,8 @@ Este documento mapeia os resultados aos objetivos específicos do subprojeto
 ## Verificação dos invariantes (objetivos 2 e 3)
 
 A relação `Oracle_1 ≥ Oracle_2 ≥ ... ≥ Oracle_M` é a definição da medida
-generalizada. Verificada em **870/870 folds**, sem exceção. `Oracle_1 ≥ votação
-majoritária` também vale em 870/870 — o Oracle tradicional nunca subestimou um
+generalizada. Verificada em **1450/1450 folds**, sem exceção. `Oracle_1 ≥ votação
+majoritária` também vale em 1450/1450 — o Oracle tradicional nunca subestimou um
 método real de combinação.
 
 Identidade adicional, verificada com erro máximo `5.6e-16`:
@@ -120,6 +127,49 @@ enfraquecimento do pool do GA também foi mínimo (`Δ Oracle_1 = −0.0003`,
 `Δ MVR = −0.0043`, `Δ acurácia individual = 0.0000`).
 
 Saída completa em `did_vs_previous.txt` do run.
+
+---
+
+## Achado 0b — o confounder geração×classificador-base, resolvido (ADR 0019)
+
+Versões anteriores deste documento não podiam separar "o GA gera diversidade útil"
+de "o Perceptron é mais fraco individualmente" — os dois efeitos andavam juntos:
+GA⇒Perceptron, Bagging/RF⇒árvore. O ADR 0019 acrescentou dois modos de controle
+para isolar cada variável, mantendo `ga`/`bagging`/`rf` intactos (validados bit a
+bit acima):
+
+- **PGDCS completo** — reativa `get_best_types()` (a etapa do PGDCS que vota, por
+  base, quais medidas de complexidade usar), contra `ga` que as fixa em F1/T1.
+- **`randbag`** — a população de geração 0 do próprio GA: mesmos bags, mesmo
+  Perceptron, mesma seed, **sem** busca genética.
+
+Contrastes (Wilcoxon pareado por base, N=29):
+
+| contraste | Oracle_1 | MVR | `DF/e²` | isola |
+|---|---|---|---|---|
+| PGDCS completo vs `ga` | p=0.39 | p=0.88 | p=0.29 | votar as medidas |
+| `ga` vs `randbag` | p=0.59 | p=0.15 | p=0.13 | a busca do GA |
+| `randbag` vs Bagging | p=0.12 | **p=0.0038** | **p=0.0004** | o classificador-base |
+
+**Nenhuma das duas variáveis de geração dentro do Perceptron muda o resultado.** A
+diferença aparece inteira no terceiro contraste, onde a busca é ausente dos dois
+lados e o único fator restante é o classificador-base. **O eixo que organiza os
+resultados deste documento é o classificador-base, não o método de geração.** A
+tese de que a busca do GA por diversidade produz especialistas que a votação
+desperdiça não se sustenta nestes dados.
+
+Isso também responde, por medição, a pendência "GA-F1/T1 vs PGDCS completo" que
+ficava aberta desde a Fase 6: reativar a votação completa custou 10,7h de relógio
+(concentradas em Magic e WDVG) para produzir um pool estatisticamente
+indistinguível do que as medidas fixas já entregavam — e a votação raramente
+escolhe F1/T1 (4/290 folds, 1,4%; os pares mais votados envolvem F3, F4, LSC e
+medidas de vizinhança). **Use PGDCS-F1/T1 em produção**; o PGDCS completo só se
+justifica quando a pergunta em teste é exatamente sobre a escolha de medidas.
+
+A poda também foi medida diretamente (`ds.select` do DESlib), não mais inferida da
+natureza do algoritmo: `E[S]/M` correlaciona com a margem sobre o MVR mais
+fortemente nos pools de árvore (RF ρ=0,80, Bagging ρ=0,74) que nos de Perceptron
+(ρ≈0,39–0,41) — a poda organiza mais quando o classificador-base é forte.
 
 ---
 
@@ -502,7 +552,7 @@ Reporte `Oracle_1`, a folga, e `N*` como diagnóstico.
 
 **3. Calcule `DF/e²` antes de treinar qualquer método de seleção.** É `O(M² · n)`
 sobre a matriz de acertos que já se tem, e prevê o tamanho da folga com Spearman
-−0.86 (n=87). Regra operacional medida neste run:
+−0.89 (n=145, base×modo). Regra operacional medida neste run:
 
 | `DF/e²` | folga típica | decisão |
 |---|---|---|
@@ -515,26 +565,32 @@ Exemplos dos extremos no run: Thyroid (`DF/e²` 6.96–8.58, folga 0.035) contra
 
 **Os cortes foram validados fora da amostra** (ADR 0019), porque descobri-los e
 avaliá-los nas mesmas 29 bases seria circular. Reajustando os dois limiares em 28
-bases e prevendo a 29ª, 29 vezes: acerto **0.805** contra **0.736** da regra trivial
-(responder sempre a faixa mais comum), e os cortes reajustados caem na mediana em
-**1.14 / 4.82** — praticamente os mesmos ≈1 e ≥4 da tabela. A regra sobrevive, com a
-ressalva de que a margem sobre o baseline é de 7 pontos, não de uma ordem de
-grandeza: a faixa do meio domina o catálogo (64 dos 87 pares base×modo).
+bases e prevendo a 29ª, 145 vezes (base×modo): acerto **0.834** contra **0.759** da
+regra trivial (responder sempre a faixa mais comum), e os cortes reajustados caem na
+mediana em **1.23 / 4.82** — praticamente os mesmos ≈1 e ≥4 da tabela. A regra
+sobrevive, com a ressalva de que a margem sobre o baseline é de 7 a 10 pontos, não
+de uma ordem de grandeza: a faixa do meio domina o catálogo.
 
 **Sobre o denominador.** `e²` com `e` médio só é o valor esperado sob independência
 se todos os classificadores errarem na mesma taxa; o exato é
 `2/(M(M−1)) · Σ_{i<j} e_i e_j`. Recalculado a partir das acurácias individuais já
 gravadas em cada `fold_manifest`, o índice exato **não muda a conclusão**: Spearman
-agrupado −0.8603 → −0.8607 (por modo: GA −0.9325, Bagging −0.9142, RF −0.7877). A
-razão exato/médio tem mediana 1.0005, porque o desvio das acurácias individuais
-dentro de um pool é pequeno (média 0.054). Vale a correção por rigor — e o índice
-exato dá LODO 0.839 contra 0.805 —, não por mudar o resultado.
+agrupado −0.8869 → −0.8878 (n=145, base×modo). A razão exato/médio tem mediana
+1.0006, porque o desvio médio das acurácias individuais dentro de um pool é pequeno
+(0.064). Desta vez a correção também **melhora** a validação fora da amostra
+(recomendação 3): LODO **0.855** contra 0.834 com o denominador aproximado, ambos
+acima do baseline de 0.759.
 
-**4. `DF/e²` não prevê o que você vai *recuperar*.** Ele prevê a folga, não a fração
-alcançável (rho=+0.19, p=0.074 por base; +0.02, p=0.59 por fold). Para prever
-recuperação o preditor que funcionou foi qualitativo: **base de fronteira não-linear
-em baixa dimensão + classificador-base fraco** (GA-Perceptron em P2/Lithuanian/Banana
-recupera 0.77; nas mesmas bases o RF recupera 0.16).
+**4. `DF/e²` não prevê o que você vai *recuperar*, mas complexidade de dados prevê
+melhor que o acaso.** `DF/e²` prevê a folga, não a fração alcançável. Regredindo
+`recovered` sobre medidas de complexidade + `n_classes`, dimensão, desbalanceamento,
+`df_ratio_exact` e acurácia individual média (leave-one-dataset-out, n=29): um
+modelo linear (*ridge*) falha (R²=−0.018, pior que prever a média constante); uma
+floresta aleatória generaliza (R²=0.355, ρ=+0.335, p=4e-5, EAM 0.109 contra 0.141 do
+baseline) — a relação é não-linear mas aprendível. O padrão qualitativo que motivou
+a busca continua visível nos dados: pools de Perceptron em bases de fronteira
+não-linear em baixa dimensão (P2/Lithuanian/Banana) recuperam ≈0.77; nas mesmas
+bases o RF recupera ≈0.16.
 
 **5. Se for usar seleção dinâmica, use um método que não pode o pool.** O eixo
 poda→perda é o achado mais robusto do run: OLA, LCA, MCB, Rank e o melhor individual
@@ -556,15 +612,13 @@ DCS/DES é da ordem do custo de gerar os pools, e num pool de árvores ele compr
 
 ## Pendências
 
-**Proveniência do run.** O run `2026-08-23T14-19-59_2286fcc` foi lançado de árvore
-suja (`git_dirty: true`); o código que ele executou corresponde ao commit `2286fcc`
-mais as mudanças do ADR 0018 já commitadas em seguida.
-
 **Bases de imagens (objetivo 5).** O protocolo usa as 28 bases da tese de referência
 mais Magic. O objetivo 5 menciona preferência por bases de imagens públicas; a
-escolha atual privilegia comparabilidade direta com Monteiro et al. (2022).
+escolha atual privilegia comparabilidade direta com Monteiro et al. (2022). Item
+aberto da Fase 8 — segunda bateria experimental, não uma correção.
 
 **Validação de `T1_fast` contra ECoL/R.** Pendente de instalação do R (Fase 0).
 
-**`GA-F1/T1` vs PGDCS completo.** `get_best_types()` segue desativado; decisão formal
-pendente.
+Resolvidas nesta rodada (ADR 0019, run `5aceb11`): proveniência do run (árvore
+limpa, run sujo anterior validado bit a bit) e `GA-F1/T1` vs PGDCS completo
+(Achado 0b — indistinguíveis; use F1/T1).

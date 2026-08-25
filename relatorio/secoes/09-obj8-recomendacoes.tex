@@ -7,11 +7,12 @@ redução de custo computacional.}
 A base quantitativa da recomendação é que o índice de redundância prevê a folga
 \emph{antes} de treinar qualquer método de seleção:
 \begin{equation}
-\text{Spearman}\bigl(\dfe,\ \On{1}-\mvr\bigr) = -0.860,
-\quad p = 8\times10^{-27},\quad n = 87 .
+\text{Spearman}\bigl(\dfe,\ \On{1}-\mvr\bigr) = -0.887,
+\quad p = 8\times10^{-50},\quad n = 145 .
 \end{equation}
-Por modo: GA $-0.933$, Bagging $-0.909$, RF $-0.785$. O índice custa
-$O(M^{2}n)$ sobre a matriz de acertos que já se tem.
+Por modo: PGDCS-F1/T1 $-0.933$, bags aleatórios $-0.929$, PGDCS completo $-0.920$,
+Bagging $-0.909$, RF $-0.785$. O índice custa $O(M^{2}n)$ sobre a matriz de acertos
+que já se tem.
 
 \begin{figure}[htbp]
 \centering
@@ -21,16 +22,25 @@ quantidade contra $\dfe$: a correlação que prevê o \emph{tamanho} da folga
 não prevê a \emph{fração alcançável}.}
 \end{figure}
 
-As sete recomendações que o experimento sustenta:
+As oito recomendações que o experimento sustenta:
 
 \begin{enumerate}
 \item \textbf{Use $\On{1}-\mvr$ como medida de potencial, não \On{1} como meta.}
-O \On{1} fica entre $0.995$ e $0.998$ nos três modos e $29$ bases: não discrimina. A
-folga discrimina ($0.142$ a $0.219$ entre modos; $0.017$ a $0.458$ entre bases).
+O \On{1} fica entre $0.995$ e $0.998$ nos cinco modos e $29$ bases: não discrimina. A
+folga discrimina ($0.142$ a $0.220$ entre modos; maior ainda entre bases).
 
 \item \textbf{Não procure um \On{N} intermediário como limite realista.} $N^{*}$
-fica em $N\approx M/2$ nos três modos (Friedman $p=0.40$). Reporte \On{1}, a folga e
+fica em $N\approx M/2$ nos cinco modos (Friedman $p=0.48$). Reporte \On{1}, a folga e
 $N^{*}$ como diagnóstico; não reporte um nível intermediário como cota.
+
+\item \textbf{Se o classificador-base for Perceptron, o PGDCS completo não compensa
+o custo.} Reativar a votação de medidas de complexidade (\texttt{get\_best\_types})
+custou $10{,}7$h de relógio a mais, concentradas em duas bases, e produziu um pool
+estatisticamente indistinguível do que as medidas fixas F1/T1 já entregavam em
+\On{1}, $\mvr$, folga, $\dfe$ e recuperação (nenhum $p<0.29$). A votação também
+raramente escolhe F1/T1 ($1{,}4\%$ dos folds) --- o atalho não acerta a escolha, mas
+empata o resultado. Use PGDCS-F1/T1 em produção; reserve o PGDCS completo para
+quando a hipótese em teste for exatamente sobre a escolha de medidas.
 
 \item \textbf{Calcule \dfe{} antes de treinar qualquer método de seleção.} Regra
 operacional medida neste experimento:
@@ -48,47 +58,53 @@ $\approx 1$ & $>0.30$      & candidato forte, sobretudo com base fraco \\
 \end{center}
 
 \noindent
-Extremos observados: Thyroid ($\dfe$ entre $6.96$ e $8.58$, folga $0.035$) contra P2
-($\dfe = 1.02$, folga $0.458$).
-
-\noindent
 \textbf{Os cortes foram validados fora da amostra}, porque descobri-los e avaliá-los
-nas mesmas $29$ bases seria circular. Reajustando os dois limiares em $28$ bases e
-prevendo a $29^{\mathrm{a}}$, $29$ vezes: acerto $0.805$ contra $0.736$ da regra
-trivial, e os limiares reajustados caem na mediana em $1.14$ e $4.82$ ---
-praticamente os $\approx 1$ e $\ge 4$ da tabela. A regra generaliza; a margem sobre
-o baseline é de sete pontos, não de uma ordem de grandeza, porque a faixa do meio
-domina o catálogo ($64$ dos $87$ pares base$\times$modo).
+nas mesmas $29$ bases seria circular. Reajustando os dois limiares em $28$
+base$\times$modo e prevendo o $29^{\mathrm{o}}$, $145$ vezes: acerto $0{,}834$ contra
+$0{,}759$ da regra trivial, e os limiares reajustados caem na mediana em $1{,}23$ e
+$4{,}82$ --- praticamente os $\approx 1$ e $\ge 4$ da tabela. A regra generaliza.
 
 \noindent
 \textbf{Sobre o denominador.} $e^{2}$ com $e$ médio só é o valor esperado sob
 independência se todos os classificadores errarem na mesma taxa; o exato é
 $\frac{2}{M(M-1)}\sum_{i<j} e_i e_j$. Recalculado a partir das acurácias individuais
-já gravadas por fold, o índice exato \textbf{não muda a conclusão}: Spearman
-agrupado passa de $-0.8603$ para $-0.8607$. A razão entre os dois tem mediana
-$1.0005$, porque o desvio das acurácias dentro de um pool é pequeno ($0.054$ em
-média). A correção vale por rigor, não por resultado.
+já gravadas por fold, o índice exato desloca a correlação de $-0.8869$ para
+$-0.8878$ e melhora a validação fora da amostra de $0{,}834$ para $0{,}855$, com os
+limiares caindo em $1{,}23$ e $4{,}16$. A razão entre os dois índices tem mediana
+$1{,}0006$, porque o desvio médio das acurácias individuais dentro de um pool é
+pequeno ($0{,}064$). A correção melhora o rigor e, desta vez, também a validação
+fora da amostra --- não é só estética.
 
-\item \textbf{\dfe{} não prevê o que você vai recuperar.} Ele prevê a folga, não a
-fração alcançável (por base $\rho=+0.19$, $p=0.074$; por fold $\rho=+0.02$,
-$p=0.59$). São perguntas distintas. Para prever recuperação, o preditor que
-funcionou é qualitativo: fronteira não-linear em baixa dimensão \emph{mais}
-classificador-base fraco.
+\item \textbf{\dfe{} não prevê sozinho o que você vai recuperar, mas complexidade
+de dados prevê melhor que o acaso.} Um modelo linear (\emph{ridge}) sobre medidas de
+complexidade, $n_{\text{classes}}$, dimensão, desbalanceamento, $\dfe$ e acurácia
+individual média falha fora da amostra ($R^2_{\text{LODO}}=-0{,}018$, pior que prever
+a média). Uma floresta aleatória sobre as mesmas variáveis generaliza
+($R^2_{\text{LODO}}=+0{,}355$, $\rho=+0{,}335$, $p=4\times10^{-5}$, EAM $0{,}109$
+contra $0{,}141$ do \emph{baseline} constante) --- a relação entre complexidade e
+recuperabilidade não é linear, mas existe e é aprendível com $n=29$ bases via
+validação leave-one-dataset-out.
 
-\item \textbf{Se for usar seleção dinâmica, use um método que não pode o pool.}
-OLA, LCA, MCB, Rank e o melhor individual perdem de $0.044$ a $0.069$ contra o \mvr{}
-nos pools de árvores, em $27$--$29$ das $29$ bases, com $p_{\text{Holm}}<0.001$.
-KNORA-U é o único que supera o \mvr{} de forma sustentada em algum modo e nunca perde
-em nenhum.
+\item \textbf{Se for usar seleção dinâmica, use um método que não pode o pool.} A
+fração média selecionada por consulta ($E[S]/M$, medida diretamente sobre
+\texttt{ds.select}, não inferida) correlaciona-se com a margem sobre o \mvr{}
+($\rho=0{,}54$, $n=1566$, $p<10^{-4}$; mais forte nos pools de árvore --- RF
+$\rho=0{,}80$, Bagging $\rho=0{,}74$ --- que nos de Perceptron, $\rho\approx0{,}39$
+a $0{,}41$). OLA, LCA, MCB e Rank selecionam $1\%$ do pool por consulta e perdem de
+$0{,}044$ a $0{,}069$ contra o \mvr{} nos pools de árvore, em $27$--$29$ das $29$
+bases, com $p_{\text{Holm}}<0.001$. KNORA-U ($100\%$ do pool, ponderado) é o único
+que supera o \mvr{} de forma sustentada em algum modo e nunca perde em nenhum.
 
 \item \textbf{Em pool homogêneo forte (Bagging, Random Forest) a decisão padrão é
 não usar DCS/DES.} Nenhum dos $13$ fusores supera a votação majoritária de forma
 significativa em nenhum dos dois modos. O melhor caso é $+0.0019$ (KNOP em Bagging),
 que não sobrevive a Holm. O \mvr{} é grátis; os outros não.
 
-\item \textbf{O custo foi medido, não estimado.} Passar de $5$ para $12$ métodos de
-seleção levou o experimento de $2$h$21$ para $4$h$08$ de relógio nas mesmas $29$
-bases $\times$ $10$ folds $\times$ $3$ modos --- fator $1.76\times$. Combinado com a
-recomendação 6: o custo marginal de DCS/DES é da ordem do custo de gerar os pools, e
-num pool de árvores ele compra zero.
+\item \textbf{O custo foi medido, não estimado, em toda a escala do desenho.}
+Passar de $5$ para $12$ métodos de seleção levou de $2$h$21$ para $4$h$08$ nas
+mesmas $29$ bases $\times$ $10$ folds $\times$ $3$ modos --- fator $1{,}76\times$.
+Acrescentar dois modos de controle (bags aleatórios, PGDCS completo) ao desenho de
+cinco levou o run canônico completo a $16$h$44$ em $1450$ folds, dos quais $10{,}7$h
+($64\%$) foram só a votação de medidas do PGDCS completo --- o custo que a
+recomendação~3 mostra não se pagar em resultado.
 \end{enumerate}

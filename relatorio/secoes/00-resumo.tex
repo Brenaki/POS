@@ -2,22 +2,32 @@
 \noindent
 Este relatório responde, um a um, aos oito objetivos específicos do subprojeto, a
 partir de um experimento de $29$ bases $\times$ $10$ folds estratificados $\times$
-$3$ modos de geração de pool ($870$ folds, $0$ erros), com pools de $M=100$
-classificadores. As medidas \On{1} a \On{M} foram implementadas e verificadas;
-a monotonicidade $\On{1}\ge\On{2}\ge\dots\ge\On{M}$ vale em $870/870$ folds, assim
+$5$ modos de geração de pool ($1450$ folds, $0$ erros), com pools de $M=100$
+classificadores. Três dos cinco modos separam o efeito do classificador-base do
+efeito do método de geração --- um confounder de versões anteriores deste relatório
+--- e um deles reativa a votação de medidas de complexidade do PGDCS completo,
+antes desligada. As medidas \On{1} a \On{M} foram implementadas e verificadas; a
+monotonicidade $\On{1}\ge\On{2}\ge\dots\ge\On{M}$ vale em $1450/1450$ folds, assim
 como $\On{1}\ge$ votação majoritária. Os limites foram confrontados com a acurácia
 individual, a votação majoritária, a média de probabilidades e \emph{doze} métodos
 de seleção dinâmica de classificadores e de \emph{ensembles}.
 
-Os três resultados centrais são: \textbf{(i)} nenhum nível intermediário de \On{N}
-serve como limite superior realista \emph{nos problemas binários} --- o menor $N$ em
-que \On{N} cai abaixo da votação majoritária fica em $N\approx M/2$ nos três modos
-(mediana $52$--$53$, Friedman $p=0.40$), porque aí vale
-$\On{M/2+1}\le\mvr\le\On{M/2}$, verificado em $660$ de $660$ folds binários; \textbf{(ii)} a folga $\On{1}-\mvr$ é previsível
-\emph{antes} de treinar qualquer método de seleção, pelo índice de redundância de
-erros $\dfe$ (Spearman $-0.86$, $n=87$); \textbf{(iii)} mesmo tomando o melhor de
-dez métodos dinâmicos escolhido \emph{a posteriori} no teste, a seleção dinâmica
-recupera apenas $24.0\%$, $15.0\%$ e $14.2\%$ dessa folga --- o \On{1} é um limite
-inatingível na prática, não uma meta. O relatório fecha com sete recomendações
-operacionais.
+Os quatro resultados centrais são: \textbf{(i)} o eixo que organiza os resultados é
+o classificador-base, não o método de geração --- votar as medidas de complexidade
+do PGDCS ou buscar com o algoritmo genético não muda \On{1}, $\mvr$ ou $\dfe$ de
+forma estatisticamente sustentada ($p\ge0.13$ em todos os contrastes), e o padrão
+inteiro (\On{1} alto, $\mvr$ baixo, folga grande) reaparece igual sem busca alguma,
+some apenas quando o classificador-base muda para árvore; \textbf{(ii)} nenhum
+nível intermediário de \On{N} serve como limite superior realista \emph{nos
+problemas binários} --- o menor $N$ em que \On{N} cai abaixo da votação majoritária
+fica em $N\approx M/2$ nos cinco modos (mediana $52$--$53$, Friedman $p=0.48$),
+porque aí vale $\On{M/2+1}\le\mvr\le\On{M/2}$, verificado em $1100$ de $1100$ folds
+binários; \textbf{(iii)} a folga $\On{1}-\mvr$ é previsível \emph{antes} de treinar
+qualquer método de seleção, pelo índice de redundância de erros $\dfe$ (Spearman
+$-0.89$, $n=145$), validado fora da amostra ($85{,}5\%$ de acerto
+\emph{leave-one-dataset-out} contra $75{,}9\%$ da regra trivial); \textbf{(iv)}
+mesmo tomando o melhor de dez métodos dinâmicos escolhido \emph{a posteriori} no
+teste, a seleção dinâmica recupera entre $14{,}2\%$ e $24{,}3\%$ dessa folga,
+conforme o modo --- o \On{1} é um limite inatingível na prática, não uma meta. O
+relatório fecha com oito recomendações operacionais.
 \end{abstract}

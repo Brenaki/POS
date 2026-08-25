@@ -3,21 +3,20 @@
 \textit{Construir pools com algoritmos simples e amplamente conhecidos, como Random
 Forest e Perceptron, induzindo diversidade por variações de treinamento.}
 
-Três modos, todos com $M=100$:
+Cinco modos, todos com $M=100$ (protocolo completo na Seção~1):
 
 \begin{description}
-\item[PGDCS-F1/T1.] Pool de Perceptrons lineares gerado por algoritmo genético que
-otimiza medidas de complexidade dos \emph{bags} --- é a estratégia que induz
-diversidade explicitamente. O nome traz o sufixo porque \textbf{não é o PGDCS
-completo}: a etapa em que o método \emph{vota} quais medidas de complexidade
-convêm a cada base (\texttt{get\_best\_types}) foi desligada, e as medidas ficaram
-fixas em F1 e T1. Chamá-lo apenas de ``PGDCS'' convidaria a comparação errada com
-o artigo original. O efeito dessa simplificação é medido separadamente (ADR 0019).
+\item[PGDCS completo.] Pool de Perceptrons lineares gerado por algoritmo genético
+que otimiza medidas de complexidade dos \emph{bags}, com a etapa de votação das
+medidas (\texttt{get\_best\_types}) ativa --- a especificação original do método.
+\item[PGDCS-F1/T1.] Idêntico, com as medidas fixas em F1 e T1 em vez de votadas por
+base. É a variante já publicada em versões anteriores deste relatório.
+\item[Bags aleatórios.] Controle: mesmos bags, mesmo Perceptron, sem busca genética.
 \item[Bagging.] Árvores de decisão sobre reamostragens \emph{bootstrap}.
 \item[Random Forest.] Árvores com subamostragem adicional de atributos.
 \end{description}
 
-Os três atendem ao objetivo (algoritmos simples; diversidade por variação de
+Os cinco atendem ao objetivo (algoritmos simples; diversidade por variação de
 subconjuntos de dados, de atributos e da própria seleção dos \emph{bags}) e cobrem
 uma faixa larga de força do classificador-base, o que se mostrou determinante nas
 seções seguintes.
@@ -31,15 +30,58 @@ A medida de diversidade merece destaque porque o número bruto inverte a conclus
 \toprule
 Modo & Acc.\ individual & DF bruto & $e^{2}$ esperado & \dfe \\
 \midrule
-GA            & 0.7052 & 0.1566 & 0.0869 & \textbf{2.13} \\
-Random Forest & 0.7806 & 0.1069 & 0.0482 & 2.92 \\
-Bagging       & 0.7931 & 0.1094 & 0.0428 & 3.98 \\
+PGDCS completo & 0.7042 & 0.1571 & 0.0875 & 2.12 \\
+PGDCS-F1/T1    & 0.7052 & 0.1566 & 0.0869 & 2.13 \\
+Bags aleatórios& 0.7046 & 0.1565 & 0.0873 & \textbf{2.10} \\
+Random Forest  & 0.7806 & 0.1069 & 0.0481 & 2.92 \\
+Bagging        & 0.7931 & 0.1094 & 0.0428 & 3.98 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Pelo DF bruto o GA seria o \emph{menos} diverso (maior valor, $0.1566$); pelo índice
-normalizado ele é o \emph{mais} diverso (menor valor, $2.13$; Friedman $p=0.00009$,
-GA e RF empatados em \emph{rank} e ambos à frente do Bagging). O DF absoluto sozinho
-leva ao diagnóstico errado, porque classificadores mais fracos erram mais e portanto
-erram juntos mais.
+Pelo DF bruto os três pools de Perceptron seriam os \emph{menos} diversos (valores
+mais altos, $\approx0.156$--$0.157$); pelo índice normalizado eles são os
+\emph{mais} diversos (valores mais baixos, $2.10$--$2.13$; Friedman
+$p=0.00026$, $k=5$). O DF absoluto sozinho leva ao diagnóstico errado, porque
+classificadores mais fracos erram mais e portanto erram juntos mais.
+
+\paragraph{O confounder geração $\times$ classificador-base, resolvido.} A versão
+anterior deste relatório não podia separar ``o GA gera diversidade útil'' de ``o
+Perceptron é mais fraco individualmente'' --- os dois efeitos andavam juntos.
+Comparando os cinco modos par a par (Wilcoxon pareado por base, $N=29$):
+
+\begin{table}[htbp]
+\centering\small
+\caption{Contrastes entre modos de geração --- nenhuma métrica difere entre PGDCS
+completo, PGDCS-F1/T1 e bags aleatórios; todas diferem entre bags aleatórios e
+Bagging.}
+\begin{tabular}{lrrr}
+\toprule
+Contraste & \On{1} & $\mvr$ & $\dfe$ \\
+\midrule
+PGDCS completo \emph{vs} F1/T1 & $p=0.39$ & $p=0.88$ & $p=0.29$ \\
+F1/T1 \emph{vs} bags aleatórios & $p=0.59$ & $p=0.15$ & $p=0.13$ \\
+Bags aleatórios \emph{vs} Bagging & $p=0.12$ & $\mathbf{p=0.0038}$ & $\mathbf{p=0.0004}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Nenhuma das duas variáveis de geração dentro do Perceptron --- votar as
+medidas de complexidade ou buscar com o GA --- produz uma diferença estatisticamente
+sustentada em \On{1}, $\mvr$ ou $\dfe$.} A diferença aparece inteira no contraste
+seguinte, bags aleatórios \emph{vs} Bagging: mesma ausência de busca dos dois lados,
+único fator restante é o classificador-base, e é aí que $\mvr$ cai $0.066$ e $\dfe$
+cai de $2.10$ para $3.98$. \textbf{O eixo que organiza os resultados deste
+relatório é o classificador-base, não o método de geração.} A tese de que a busca
+do GA por diversidade produz especialistas que a votação desperdiça não se sustenta
+nestes dados: o mesmo padrão (\On{1} altíssimo, $\mvr$ baixo, folga grande) aparece
+igual com ou sem busca, e some quando o classificador-base muda para árvore.
+
+Isso também fecha, por medição, se o atalho \texttt{F1/T1} custa resultado: não
+custa. Reativar a votação completa do PGDCS gastou $10{,}7$h de relógio
+concentradas em duas bases (Magic e WDVG) para produzir um pool
+estatisticamente indistinguível do que as medidas fixas já entregavam. Curiosamente,
+a votação raramente escolhe F1/T1: o par aparece em apenas $4$ dos $290$ folds
+($1{,}4\%$); os pares mais votados são combinações com F3, F4, LSC e N-medidas
+(Seção~8, objetivo~7). O atalho não é uma boa adivinhação da votação --- é uma
+substituição que, apesar de escolher medidas diferentes, chega ao mesmo resultado.

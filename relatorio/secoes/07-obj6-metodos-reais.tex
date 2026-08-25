@@ -4,8 +4,13 @@
 individuais e métodos reais de combinação (votação majoritária, média de
 probabilidades) e, quando viável, DCS/DES.}
 
-Foram medidos $14$ fusores nos mesmos $870$ folds, com DSEL disjunto e $k=7$
-vizinhos.
+Foram medidos $14$ fusores nos $1450$ folds dos cinco modos, com DSEL disjunto e
+$k=7$ vizinhos ($k=6$ nos pools de Perceptron, sem os dois métodos que exigem
+\texttt{predict\_proba}). Esta seção detalha os três modos já publicados
+(PGDCS-F1/T1, Bagging, Random Forest); o objetivo 4 (Seção~5) mostra que PGDCS
+completo e bags aleatórios reproduzem o mesmo padrão do PGDCS-F1/T1 em todas as
+métricas de pool, sem diferença estatística --- a tabela abaixo generaliza para os
+três modos de Perceptron, não apenas o F1/T1.
 
 \begin{table}[htbp]
 \centering
@@ -14,7 +19,7 @@ vizinhos.
 exige \texttt{predict\_proba}, indisponível no Perceptron linear.}
 \begin{tabular}{lrrr}
 \toprule
-Fusor & GA & Bagging & Random Forest \\
+Fusor & PGDCS-F1/T1 & Bagging & Random Forest \\
 \midrule
 Votação majoritária (\mvr)      & 0.7784 & 0.8467 & 0.8549 \\
 Combinação suave                & 0.7738 & 0.8466 & 0.8546 \\
@@ -53,9 +58,10 @@ alcançou. Barra ausente $=$ método inaplicável ao pool.}
 \end{figure}
 
 \paragraph{(a) O melhor pool produz a pior votação.}
-O GA tem o \emph{maior} \On{1} de todos ($0.9976$) e a \emph{menor} votação
-majoritária de todas ($0.7784$). A folga resultante, $0.2192$, é $54\%$ maior que a
-do Random Forest (Friedman $p=0.0045$; GA \emph{vs} RF acima da diferença crítica,
+O PGDCS-F1/T1 tem o \emph{maior} \On{1} entre os pools de árvore e Perceptron
+publicados aqui ($0.9976$) e a \emph{menor} votação majoritária de todas
+($0.7784$). A folga resultante, $0.2192$, é $48\%$ maior que a do Random Forest
+(Friedman $p=0.0022$, $k=5$; PGDCS-F1/T1 \emph{vs} RF acima da diferença crítica,
 Wilcoxon $p=0.0003$). Em P2 o pool contém um classificador correto para
 \emph{toda} amostra de teste ($\On{1}=1.0000$), os erros são praticamente
 independentes ($\dfe=1.02$) e a votação majoritária entrega $0.5420$. Não é falta de
@@ -124,7 +130,7 @@ derrotas e $94$ empates). Nos pools de árvores o mesmo método fica em $+0.0001
 $+0.0015$, sem significância.
 
 A vantagem se concentra nas bases de fronteira não-linear em baixa dimensão: em P2,
-Lithuanian e Banana a recuperação média do GA é $0.766$, contra $0.157$ do Bagging e
+Lithuanian e Banana a recuperação média do PGDCS-F1/T1 é $0.766$, contra $0.157$ do Bagging e
 $0.155$ do Random Forest nas mesmas bases. O mecanismo é geométrico: um Perceptron
 não separa a espiral do P2, mas separa qualquer vizinhança dela, e escolher o
 Perceptron certo por região é exatamente o que falta. Uma árvore já resolve a
@@ -133,15 +139,15 @@ não sobra folga \emph{local} a extrair.
 
 \paragraph{(e) O viés de estimação foi medido, não apenas discutido.}
 Numa versão anterior do protocolo o DSEL da seleção dinâmica era a mesma partição
-que o GA usa na função de \emph{fitness}, o que favorecia o GA por construção. O
+que o PGDCS-F1/T1 usa na função de \emph{fitness}, o que favorecia o PGDCS-F1/T1 por construção. O
 protocolo atual separa as duas partições. Isolar o viés exige separar dois efeitos
-simultâneos --- o viés removido (só afeta o GA) e o DSEL pela metade (afeta os três
+simultâneos --- o viés removido (só afeta o PGDCS-F1/T1) e o DSEL pela metade (afeta os três
 modos) --- e Bagging e RF servem de grupo de controle, porque mantêm os pools
 \emph{bit-idênticos} entre os dois desenhos (verificado: $\max|\Delta| = 0.000000$
 em toda coluna de pool e curva Oracle idêntica em $290/290$ folds de cada modo).
 
 Pela diferença-em-diferenças, restrita aos cinco métodos comuns aos dois desenhos: o
-controle perdeu $-0.0057$ de folga recuperada, o GA perdeu $-0.0003$, logo o viés é
+controle perdeu $-0.0057$ de folga recuperada, o PGDCS-F1/T1 perdeu $-0.0003$, logo o viés é
 $+0.0055$ --- cerca de $3\%$ relativos, e nenhum dos deltas é significativo. O
-desenho anterior \textbf{não} estava inflando materialmente a vantagem do GA; a
+desenho anterior \textbf{não} estava inflando materialmente a vantagem do PGDCS-F1/T1; a
 correção está feita e é a que vale, mas não muda conclusão alguma.

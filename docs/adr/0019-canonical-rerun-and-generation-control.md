@@ -157,3 +157,17 @@ declarado. Os estáticos não têm região de competência: `single_best` é `1/
 **O que muda de significado**: `df_ratio` continua existindo, mas passa a conviver
 com `df_ratio_exact`, que usa o denominador de independência correto quando os
 classificadores têm taxas de erro diferentes.
+
+## Resultado do run
+
+`2026-08-24T09-38-20_5aceb11`: 1450 folds, 0 erros, `git_dirty: false`, 16h44 de
+relógio. O critério de aceitação passou: `ga`/`bagging`/`rf` bit-idênticos contra
+`2286fcc` em 3480/3480 combinações base×fold×modo×métrica de pool
+(`max|Δ|=0.000000000`) — o run sujo fica validado.
+
+O PGDCS completo não superou o `ga` (F1/T1 fixo) em nenhuma métrica de pool
+(`p≥0.29`), e a votação escolheu F1/T1 em só 4/290 folds: as 10.7h de votação não
+compraram resultado detectável. `randbag` também não diferiu de `ga` (`p≥0.13`),
+mas diferiu fortemente de `bagging` (MVR `p=0.0038`, `df_ratio` `p=0.0004`) — o
+confounder geração×base learner que motivou este ADR está resolvido: é o
+classificador-base que organiza os resultados, não o método de geração.
