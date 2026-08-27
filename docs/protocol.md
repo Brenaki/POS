@@ -1,215 +1,206 @@
 # Protocolo Experimental — Oracle_N
 
-> Protocolo formal para os experimentos do subprojeto
+> Protocolo formal dos experimentos do subprojeto
 > `docs/SubProjeto - ANÁLISE DO IMPACTO DE ORACLES EM DIFERENTES NÍVEIS NA ACURÁCIA DE SISTEMAS DE MÚLTIPLOS CLASSIFICADORES.md`.
-> Referências: ADR 0006 (arquitetura Oracle_N), ADR 0009 (reprodutibilidade).
+> Vigente: **ADR 0020** (dois perfis científicos). Referências anteriores:
+> ADR 0006 (arquitetura Oracle_N), ADR 0009 (reprodutibilidade),
+> ADR 0018 (split de três vias), ADR 0019 (run canônico).
+
+Desde o ADR 0020 não existe "o protocolo do POS": existem **dois perfis**,
+escolhidos explicitamente na linha de comando. Um run nunca é uma mistura dos
+dois, e o perfil viaja no `run_manifest.json` e em toda linha do `summary.csv`.
+
+| | `pos-oracle-v2` | `monteiro-2023-dt-compatible-v1` |
+|---|---|---|
+| Objetivo | experimento principal do POS (Oracle_N) | fatia reproduzível de Monteiro 2023 |
+| Partição | 10-fold estratificado + split de três vias | 20 holdouts 50/25/25 independentes |
+| Identificador da linha | `fold` | `replication` |
+| Seed raiz | 42 | 86 (`reproducibility_root_seed`) |
+| Seleção de medidas | por fold (só no treino do fold) | uma vez por dataset (Tabela 4 é por dataset) |
+| DSEL | disjunto da validação | **igual** à validação (como no artigo) |
+| Comparável ao artigo | não | sim (Tabelas 6, 7 e A.10) |
 
 ## 1. Datasets
 
-31 datasets de classificação em formato `.arff` em `POS/Dataset/`:
+- 28 datasets da **Tabela 2 de Monteiro 2023**, em `.arff` sob `POS/Dataset/`.
+- `Australian` está no disco como `Adult.arff` (690/14/2) — alias registrado
+  em `pos/oracle/dataset_reconciliation.py`.
+- Cada snapshot é conferido contra a Tabela 2 (instâncias/atributos/classes) e
+  carimbado com SHA-256 **do snapshot aprovado pelo POS** — o artigo não
+  publica hashes.
+- Estado atual (`docs/dataset_conformance.md`, gerado por
+  `scripts/dataset_conformance.py`): **23 `conformant`, 4
+  `approved_with_note`, 1 `mismatch`**.
+  - `approved_with_note`: Heart, ILPD, Ionosphere, Laryngeal3 — a coluna
+    *Features* da Tabela 2 está deslocada em uma linha nas linhas 09–13.
+  - `mismatch`: P2 (2000 instâncias no snapshot, 5000 no artigo). Fica fora
+    da comparação publicada, salvo `--allow-unverified-data`, que marca o run
+    inteiro como `comparable=false`.
+- Ecoli, Glass e Magic não fazem parte da Tabela 2 e ficam fora dos perfis.
 
-- **Fonte**: repositórios públicos (UCI, KEEL, OpenML) — versão congelada no
-  commit `275f795` do repo.
-- **Metadados**: `results/datasets/catalog.csv` (gerado por
-  `pos.oracle.dataset_catalog.build_catalog`).
-- **Faixa**: 178–19020 amostras, 2–8 classes, 2–60 features, imbalance ratio
-  1.0–71.5 (ver catálogo para detalhes por dataset).
-- **Convenção**: última coluna do `.arff` é o rótulo (`Class`/`class`/`target`/
-  `label` ou última por default). Labels string são label-encoded via
-  `sklearn.LabelEncoder`.
+## 2. Partição dos dados
 
-## 2. Protocolo de validação cruzada
+### 2.1 `pos-oracle-v2`
 
-- **10-fold stratified cross-validation** (`sklearn.model_selection.StratifiedKFold`).
-- `shuffle=True`, `random_state=42` fixo (splits externos idênticos em toda
-  re-execução).
-- Para cada fold `i` ∈ {0, ..., 9}:
-  - **Treino** (9 folds): usado para treinar o pool de classificadores.
-  - **Teste** (1 fold): usado para gerar a matriz de acertos e calcular
-    Oracle_N, majority vote, mean probs.
-- **Split interno treino/validação** (para `poolGeneration.generate()`, que
-  precisa de `X_val`/`y_val` para avaliar fitness):
-  - Do treino do fold, 20% é reservado para validação via
-    `pos.oracle.fold_splitter.stratified_val_split()`, que usa
-    `train_test_split(..., stratify=y_train)`.
-  - Semente `random_state + fold_idx` = 42+i — determinística e independente
-    por fold.
-  - **Estratificado desde o ADR 0014.** Antes era `rng.choice(...)` puro, o
-    que em bases desbalanceadas (Thyroid 12.1, Faults 12.2) podia entregar ao
-    GA uma validação com classes ausentes.
-- **Métricas reportadas**: média ± desvio sobre os 10 folds.
+- `StratifiedKFold(n_splits=10, shuffle=True, random_state=42)`.
+- Do treino de cada fold, split estratificado de três vias e **disjunto**:
+  treino do pool / fitness do PGDCS / DSEL para DCS-DES (ADR 0018).
+- Semente interna `42 + fold`.
 
-### 2.1. Elegibilidade da base (ADR 0014)
+### 2.2 `monteiro-2023-dt-compatible-v1`
 
-Antes de rodar, cada base passa por `check_dataset_viability()`:
+- 20 replicações independentes, **novo holdout a cada replicação**:
+  50% treino / 25% validação / 25% teste, estratificado.
+- Semente da replicação `r` = `86 + r`.
+- Proveniência: 50/25/25 vem do artigo; estratificação e novo split por
+  replicação vêm da tese de 2021 (o artigo omite); validação = DSEL é uma
+  divergência explícita registrada no ADR 0020 §2.2.
 
-1. `min_class_count >= n_folds` — sem isso o `StratifiedKFold` não coloca a
-   classe mais rara em todos os folds.
-2. Para o modo `ga`, a classe mais rara precisa sobreviver à cadeia
-   k-fold → validação → bag com **≥ 2 instâncias** (exigência de
-   `GeneticOperatorsMixin.verify_bag`).
+## 3. Tratamentos — três, todos com árvore de decisão
 
-Bases reprovadas são **puladas explicitamente** e registradas em
-`run_manifest.json` sob `skipped_datasets` (com o motivo). Elas não são
-removidas de `FULL_DATASETS`, para que a exclusão fique auditável.
+A única variável entre eles é **como o pool foi gerado**. Todos entregam 100
+`DecisionTreeClassifier` e passam pelos mesmos Oracles, fusores e métodos de
+seleção dinâmica.
 
-Com o catálogo atual, **Ecoli** (2 instâncias na menor classe) e **Glass**
-(9 < 10 folds) são reprovadas: o protocolo científico roda com **29 das 31
-bases**. Rodá-las exigiria outro protocolo (menos folds ou `tam_bags` maior),
-documentado à parte.
+### 3.1 `pgdcs_a` e `pgdcs_d`
 
-## 3. Pool de classificadores — três modos
+Uma única trajetória evolutiva por split (`shared_evolution_trajectory`), da
+qual saem os dois pools — é exatamente onde Monteiro 2023 separa as variantes:
 
-### 3.1. Modo `ga` (pool via algoritmo genético)
+1. **Votação das medidas** (`pos/pool/monteiro_voter.py`): `T=10` rodadas de
+   `n=100` subamostras aleatórias com reposição (1000 no total). Vence uma
+   medida de *Overlapping* e uma de *Neighborhood*; empate é desfeito pela
+   dispersão média nas 10 rodadas.
+2. **NSGA-II** (`pos/pool/pgdcs_evolution.py`): população 100, 100 filhos,
+   crossover 0.9, mutação 0.1, **20 gerações**, bags aleatórios **com
+   reposição** (não estratificados — a cobertura de classes é responsabilidade
+   dos operadores: o crossover só aceita indivíduo com todas as classes, a
+   mutação troca instância preservando o rótulo).
+3. **Critério de saída**, avaliado em **todas** as gerações 1..20:
+   - `pgdcs_a` = geração de maior acurácia de voto majoritário na validação;
+   - `pgdcs_d` = geração de maior `Gdisp` (dispersão global no espaço 3D de
+     fitness).
+   - A **geração 0 é avaliada mas nunca selecionada**; empate mantém a
+     geração **mais antiga** (atualização com `>` estrito).
+4. O pool final são **os classificadores que o próprio GA treinou** naquela
+   geração (Algoritmo 2 do artigo), não árvores reconstruídas a partir dos
+   bags.
 
-- `poolGeneration.generate() → get_pool()` (tese original, ADR 0008).
-- `classifier="perc"` → **Perceptron linear** em bags gerados pelo GA.
-  É o classificador-base da tese (Monteiro et al. 2022, seç. 5) e está
-  nomeado no Objetivo 4 do SubProjeto. Até o ADR 0015 o código usava
-  `DecisionTreeClassifier` e o caminho `perc` estava quebrado.
-  `--base-classifier tree` mantém a variante com árvore.
-- **Limitação a reportar**: o Perceptron não expõe `predict_proba`, logo a
-  *média das probabilidades preditas* (Objetivo 6) **não é definida** para o
-  pool GA-Perceptron — `mean_probs` fica `None`. A comparação continua
-  disponível nos modos `rf` e `bagging`.
-- `types=["F1", "T1"]` hard-coded (bypassa `get_best_types`, que chamaria
-  pyhard 100×12 = caro — ver `pos/pool/complexity_voter.py`).
-- **F1** = Maximum Fisher's Discriminant Ratio (ECoL dataset-level)
-- **T1** = Fraction of Hyper-spheres Covering Data (ECoL N5)
-- `random_state` propagado para `random.seed()`, `np.random.seed()`,
-  `train_test_split` e `DecisionTreeClassifier(random_state=rs+i)`.
-- `nr_generation`: controla gerações do GA. Smoke test usa 3 (mínimo para
-  exercitar a avaliação de prole além da 1ª geração — ADR 0014); execução
-  científica usa 20.
-- **Gdisp**: `maxdistance` agora seleciona a geração com maior dispersão
-  global (matriz Nx3 de fitness), não a última geração (ADR 0013). A geração
-  registrada em `gen_temp` é a real desde o ADR 0014.
-- **Escopo**: este é um GA com `types=["F1","T1"]` **fixo**. O estágio do
-  PGDCS que vota as medidas de complexidade mais dispersas
-  (`get_best_types`) existe mas está bypassado, portanto o modo `ga` é uma
-  **variante GA-F1/T1** do PGDCS, não sua reprodução integral. Ver ADR 0014.
+### 3.2 `bagging`
 
-### 3.2. Modo `bagging` (baseline controlado — Bagging)
+`BaggingClassifier(n_estimators=100, max_samples=0.5, bootstrap=True,
+random_state=86)` com árvore de decisão default — os únicos hiperparâmetros
+que o artigo publica literalmente.
 
-- `BaggingClassifier(n_estimators=M, random_state=rs, bootstrap=True,
-  max_features=1.0)` — usa TODAS as features por árvore.
-- Isola o efeito do GA do feature subsampling do Random Forest.
-- Retorna `bag.estimators_` — lista de `DecisionTreeClassifier` fitted.
+### 3.3 O que saiu
 
-### 3.3. Modo `rf` (baseline forte — RandomForest)
-
-- `RandomForestClassifier(n_estimators=M, random_state=rs, bootstrap=True)`
-  com **config default** do sklearn (`max_features='sqrt'`).
-- Retorna `forest.estimators_` — mesma interface do pool GA.
-- **Decisão (ADR 0009)**: manter defaults. `max_features='sqrt'` introduz
-  diversidade de features que o GA não explora — diferença *esperada e
-  informativa*.
+`ga` (F1/T1 fixo), `randbag` e `rf` deixam de ser modos científicos, e o
+Perceptron sai do caminho canônico: com árvore nos dois lados, a comparação
+não confunde *gerador do pool* com *classificador-base*.
 
 ## 4. Métricas
 
-Para cada (dataset, fold, modo), calcular:
+### 4.1 Oracle_N — duas leituras, nomes distintos
 
-- **Curva Oracle completa**: `Oracle_1, Oracle_2, ..., Oracle_M` onde M =
-  tamanho do pool. Monotônica não-crescente.
-  - `Oracle_1` = Oracle tradicional (≥1 clf correto).
-  - `Oracle_M` = unanimidade (todos M corretos).
-- **Majority vote**: `scipy.stats.mode` sobre predições hard do pool.
-- **Mean probs**: argmax da média de `predict_proba` sobre o pool.
-- **Acurácias individuais**: acurácia de cada classificador do pool no
-  fold de teste.
-- **Double-fault matrix** (M×M): diversidade par-a-par via
-  `pos.diversity.double_fault` — fração de amostras onde ambos erram.
-- **DCS/DES** (OLA, LCA, Rank, META-DES via DESlib): **futuro** —
-  cronograma Ativ.6 (Fev–Jun/2027), fora desta rodada.
+| Coluna | Definição | Forma |
+|---|---|---|
+| `oracle_<n>` | **pelo menos `n`** dos M classificadores corretos — definição do projeto (README, subprojeto, schema v1) | decrescente, independente de ordem |
+| `oracle_greedy_<n>` | construção gulosa aninhada: a cada passo entra o classificador que cobre mais amostras novas | crescente |
+| `oracle_classic` | `oracle_1` = último ponto da curva gulosa = Oracle clássico do pool | escalar |
+
+- Checkpoints reportados: `1, 5, 10, 15, …, 100` (21 pontos), para as duas
+  leituras. As curvas completas de 100 pontos ficam em `oracle_curve_json` e
+  `oracle_greedy_curve_json`.
+- **Só `oracle_classic` é comparável à Tabela 7.** O resto de qualquer das
+  duas curvas é contribuição do POS; a gulosa ainda depende da ordenação.
+
+### 4.2 Fusão estática
+
+- **MVR** (`mv_*`): voto majoritário — a regra do artigo.
+- **Mean probability** (`mp_*`): média de `predict_proba`. Com árvore nos dois
+  tratamentos, a combinação suave é uma média de probabilidades de verdade; o
+  substituto de margem normalizada do ADR 0016 (que existia por causa do
+  Perceptron) sai do fluxo. Em árvores não podadas as duas regras coincidem
+  por construção, e reportar as duas deixa isso visível.
+- Cada fusor reporta acurácia, precisão/revocação/F1 macro e acurácia
+  balanceada.
+
+### 4.3 Seleção dinâmica
+
+Seis métodos canônicos via DESlib: **LCA, OLA, Rank** (DCS) e **KNORA-E,
+KNORA-U, META-DES** (DES). Região de competência estimada no DSEL do perfil.
+
+### 4.4 Diversidade
+
+`double_fault_mean` (média fora da diagonal da matriz M×M) e as acurácias
+individuais de cada classificador do pool.
 
 ## 5. Reprodutibilidade
 
-- `random_state=42` fixo para `StratifiedKFold` (splits externos).
-- `random_state + fold_idx` para splits internos treino/val.
-- `RandomForestClassifier(random_state=rs)` determinístico.
-- `poolGeneration` herda aleatoriedade do DEAP (ver limitação §3.1).
-- **Manifest por execução** (`run_manifest.json`): timestamp ISO, git SHA,
-  branch, config completa, versões de todas as deps relevantes
-  (`scikit-learn`, `numpy`, `deap`, `deslib`, `pandas`, `scipy`, `pyhard`).
-- **Manifest por fold** (`fold_manifest.json`): seeds, hashes SHA256 dos
-  índices train/test/val, shapes, M, acurácias individuais, oracle_curve,
-  majority, mean_probs, double_fault_mean.
-- Reexecutar o mesmo `config` + mesmo `git_sha` reproduz os mesmos
-  `oracle_curve_mean` (com ressalva DEAP paralelo).
+- Toda semente não publicada é derivada deterministicamente da semente raiz do
+  perfil e registrada como **modernização** — só o `random_state=86` do
+  Bagging é número publicado.
+- Bags carregam semente própria (`random_state + posição`), então `--jobs` não
+  afeta o resultado.
+- `run_manifest.json` (schema v2): perfil, escala, `comparable`, fingerprint da
+  config, git SHA/branch/dirty, versões das deps, plataforma e o **catálogo de
+  conformance** completo.
+- Manifesto por split e tratamento: sementes, tamanhos das partições, M,
+  medidas escolhidas, geração selecionada e critério.
+- `--resume` retoma pelo manifesto em disco e não re-executa a trajetória
+  PGDCS de um split já concluído.
 
-## 6. Artefatos salvos
+## 6. Artefatos
 
-Ver ADR 0009 para layout completo. Resumo:
+| Artefato | Descrição |
+|---|---|
+| `run_manifest.json` | config, proveniência, conformance dos 28 datasets |
+| `summary.csv` | uma linha por (dataset, split, tratamento) — schema v2 |
+| `per_dataset_summary.csv` | mean/std por (dataset, tratamento) — nível das tabelas publicadas |
+| `reference_comparison.csv` | comparação descritiva com o artigo |
+| `fold_manifest_<tratamento>.json` | sementes, tamanhos, geração escolhida |
+| `correctness_matrix_<tratamento>.npy` | (n_test × M) |
+| `predictions_<tratamento>.npz` | predições por classificador |
 
-| Artefato | Versionado | Descrição |
+O schema v1 continua legível via `pos.oracle.summary_v2.load_summary_v1`, que
+mapeia o antigo modo `pgdcs` para `pgdcs_d` e preserva as colunas `soft_*`.
+
+## 7. Execução
+
+```bash
+# experimento principal do POS
+python scripts/run_experiment_v2.py --profile pos-oracle-v2 --full
+
+# fatia comparável ao artigo
+python scripts/run_experiment_v2.py --profile monteiro-2023-dt-compatible-v1 --full
+
+# subconjunto, retomada, comparação e conformance
+python scripts/run_experiment_v2.py --profile <perfil> --full --datasets Wine,Banana
+python scripts/run_experiment_v2.py --resume results/experiments/<dir>
+python scripts/compare_reference.py results/experiments/<dir>
+python scripts/dataset_conformance.py
+```
+
+- `--smoke` reduz folds, gerações e M: valida o pipeline, **nunca** é
+  resultado científico (`comparable=false`).
+- Qualquer override de M, gerações, splits ou métodos marca
+  `comparable=false`.
+- `--jobs` default = núcleos − 1.
+
+## 8. Comparação com o artigo
+
+`scripts/compare_reference.py` produz, por (dataset × tratamento × método):
+média e desvio publicados, média e desvio do POS, delta em pontos
+percentuais, IC 95% do POS, status de conformance do dataset e a tabela de
+origem.
+
+| Método | Tabela | Observação |
 |---|---|---|
-| `run_manifest.json` | sim | config + git sha + versões deps |
-| `summary.csv` | sim | uma linha por (dataset, fold, mode) |
-| `per_dataset_summary.csv` | sim | mean±std por (dataset, mode) |
-| `fold_manifest.json` | sim | seeds, hashes, métricas por fold |
-| `correctness_matrix_<mode>.npy` | não | (n_test × M) — recuperável via manifest |
-| `predictions_<mode>.npz` | não | preds + probs por clf — recuperável via manifest |
+| `mvr` | A.10 | média e desvio publicados |
+| `oracle` | 7 | o artigo publica só a média → `published_std = null` |
+| `generation` | 6 | geração média selecionada; Bagging não tem |
 
-O sufixo `<mode>` foi acrescentado no ADR 0014: sem ele, rodar
-`--mode ga,bagging,rf` fazia cada modo sobrescrever os artefatos do anterior
-no mesmo diretório de fold, e só o último sobrevivia em disco.
-
-## 7. Configurações de execução
-
-| Profile | Datasets | Folds | `nr_generation` | Modos | Uso |
-|---|---|---|---|---|---|
-| `--smoke` | Wine, Banana, Vehicle | 3 | 3 | ga + bagging + rf | validar fluxo |
-| `--full` | 31 listadas, 29 elegíveis | 10 | 20 | ga + bagging + rf | execução científica |
-
-`--jobs` usa por padrão `nº de núcleos - 1` (ADR 0015). Isso é seguro para
-reprodutibilidade porque cada bag carrega semente própria
-(`random_state + posição`), independente da ordem de execução.
-
-`--mode` default = `ga,bagging,rf`. Bagging entrou justamente como baseline
-controlado (ADR 0012), então faz parte da configuração oficial.
-
-Smoke test **não** valida qualidade científica — apenas o pipeline de
-reprodução: manifest, arquivos, monotonicidade da curva Oracle,
-`Oracle_1 ≥ majority_vote`, reprodutibilidade com seed. Desde o ADR 0014 o
-smoke usa `nr_generation=3` e não 1: com uma única geração o GA nunca executa
-o caminho de avaliação de prole a partir da segunda geração, que foi
-exatamente onde estava o bug P0 mais grave do projeto.
-
-### 7.1. Conjunto de bases vs. a tese (ADR 0015)
-
-A Tabela 1 da tese usa **28 bases**, que são exatamente o nosso
-`FULL_DATASETS` menos `{Ecoli, Glass, Magic}` (o `Adult.arff` corresponde ao
-"Australian" da tabela: 690 × 14 × 2).
-
-- **Ecoli** e **Glass** são reprovadas pelo portão de elegibilidade do
-  ADR 0014 (classe minoritária < 10 folds).
-- **Magic** (19.020 instâncias) foi **mantida deliberadamente** como base
-  extra de escalabilidade. Ela está fora do conjunto de comparação direta
-  com o paper, e isso deve ser explicitado no relatório.
-
-Ou seja: as 28 bases da tese estão todas cobertas, e Magic é um acréscimo
-nosso, não uma substituição.
-
-## 8. Foco científico — Oracle_1..5
-
-O subprojeto investiga **Oracles em diferentes níveis** (Oracle_N onde N = 1..M).
-O foco da análise é **N = 1, 2, 3, 4, 5** — níveis intermediários que revelam a
-transição entre o Oracle tradicional (otimista) e limites mais conservadores.
-
-- `oracle_1` = Oracle tradicional (≥1 classificador correto)
-- `oracle_2` = ≥2 classificadores corretos simultaneamente
-- `oracle_3` = ≥3 classificadores corretos
-- `oracle_4` = ≥4 classificadores corretos
-- `oracle_5` = ≥5 classificadores corretos
-- `oracle_M` = unanimidade (todos M corretos) — registrado para referência
-
-A curva completa (Oracle_1..M) é preservada em `oracle_curve_json` no
-`summary.csv` e em `oracle_curve` no `fold_manifest.json` para auditoria.
-As colunas `oracle_1`..`oracle_5` no `summary.csv` e
-`per_dataset_summary.csv` facilitam a análise comparativa com majority vote,
-mean probs e (futuro) DCS/DES.
-
-**Referência experimental**: a tese base (Monteiro et al., 2022) usou 28
-datasets, 20 replicações, pool=100, 20 gerações do GA, 7 métodos de fusão
-(MVR + 6 DCS/DES). Nosso protocolo usa 31 datasets, 10-fold CV (10 folds),
-pool=100, 20 gerações do GA, 3 modos (ga + bagging + rf), focando Oracle_1..5.
+A comparação é **descritiva**: o artigo publica média/desvio, não as 20
+observações nem as sementes, então não cabe teste pareado nem alegação
+automática de equivalência. Friedman/Nemenyi e Wilcoxon-Holm continuam
+restritos aos resultados brutos gerados pelo POS.

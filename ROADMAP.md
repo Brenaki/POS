@@ -276,6 +276,65 @@ pontos a corrigir, mais o PGDCS completo. Dois são bloqueadores de experimento
 - [ ] Bases de imagem via embeddings de CNN (objetivo 5 e o vínculo com o projeto
       maior) — segunda bateria experimental, não uma correção; fica aberto
 
+### Fase 9 — Perfis compatíveis com Monteiro 2023 (ADR 0020)
+
+A revisão do `Monteiro2023.pdf` (o artigo da *Information Fusion* 89, não a
+tese) fechou três questões metodológicas e abriu a reprodução: o PGDCS deve
+percorrer **20 gerações**, avaliar o critério em **cada uma** e devolver a
+melhor — não a última; a geração 0 não pode competir; a votação das medidas é
+**10×100**, não 11×100; e as **20 replicações** do artigo são execuções
+independentes, não `iteration=20` dentro de um mesmo objeto.
+
+- [x] **ADR 0020** — dois perfis (`pos-oracle-v2`,
+      `monteiro-2023-dt-compatible-v1`), núcleo PGDCS alinhado ao artigo,
+      catálogo com portão de conformance, comparador descritivo, schema v2
+- [x] **Motor PGDCS_A/PGDCS_D** (`pos/pool/pgdcs_evolution.py`) — o
+      `PgdcsTracker` existia sem nada que produzisse trajetórias. Agora uma
+      trajetória por split grava `(geração, MVR, Gdisp, pool treinado)` para
+      gen 0..20, exclui a geração 0 da seleção, desempata pela mais antiga e
+      **mantém os classificadores que o próprio GA treinou** (Algoritmo 2) em
+      vez de reconstruí-los a partir dos bags. O MVR sai das predições já
+      cacheadas — nenhum refit por geração
+- [x] **Bags aleatórios com reposição**, não estratificados: a cobertura de
+      classes é dos operadores genéticos (crossover exige todas as classes,
+      mutação preserva o rótulo), como no artigo
+- [x] **20 replicações independentes** (`monteiro_splitter`), holdout 50/25/25
+      refeito a cada replicação
+- [x] **Recorder e CLI v2** — `--profile` / `--treatments` / `--datasets` /
+      `--allow-unverified-data`, retomada que não re-executa trajetória pronta
+- [x] **Reconciliação dos 28 snapshots** (`docs/dataset_conformance.md`):
+      23 `conformant`, 4 `approved_with_note` — a coluna *Features* da Tabela 2
+      está deslocada em uma linha nas linhas 09–13 —, 1 `mismatch` (P2, 2000 vs
+      5000 instâncias), fora da comparação publicada
+- [x] **Oracle_N com nome inequívoco** — `oracle_<n>` é a definição do projeto
+      (pelo menos `n` corretos, como no README e no schema v1) e
+      `oracle_greedy_<n>` a curva gulosa; `oracle_classic` é o único ponto
+      comparável à Tabela 7. Checkpoints passaram de 12 para 21 pontos
+- [x] **Média de probabilidades de volta** (`mp_*`): com árvore nos dois
+      tratamentos ela é uma média de `predict_proba` de verdade, e o substituto
+      de margem do ADR 0016 sai do fluxo
+- [x] **Piloto Wine + Banana** — Bagging/Wine MVR **95.22 vs 95.2 publicado**
+      (+0.02 pp) e Oracle 100 vs 100; a votação escolheu **F3+N3 em Wine**, o
+      par exato da Tabela 4. O PGDCS, porém, fica abaixo do publicado
+      (Wine PGDCS_A 96.33 vs 99.3)
+- [x] **Gap do PGDCS investigado e explicado** (ADR 0020 §11.7): o número
+      publicado do PGDCS é a acurácia no **mesmo** conjunto de validação que
+      escolhe a geração, enquanto o do Bagging é medida honesta em teste. Erro
+      médio do publicado contra a validação daqui ≈1.7 pp; contra o teste
+      ≈6.3 pp. A acurácia de teste sobe até a geração ~4–8 e cai depois,
+      enquanto a MVR de validação sobe até a 20 — sobreajuste ao conjunto de
+      seleção. Nada é alterado no protocolo: fechar o gap exigiria reportar a
+      métrica enviesada
+- [x] **Votação de medidas corrigida** (§11.8): votava na média acumulada dos
+      σ, não no σ da rodada (Eq. 10-11), o que concentrava 9–10 votos de 10 em
+      uma medida e contradizia o espalhamento das Tabelas 3 e 4
+- [x] **`u = 0.4` desambiguado** (§11.9): 0.4 nas sub-amostras da votação
+      (passo 1), 0.5 nos bags do AG (passo 2) — as duas frações vêm de frases
+      diferentes do artigo
+- [ ] **Replicação completa do perfil Monteiro** (28 datasets × 20 replicações)
+- [ ] **Relatório de comparação** sobre o run completo
+- [ ] **Execução do `pos-oracle-v2`** (10 folds × 28 datasets)
+
 ## Decision log (ADRs)
 
 - `docs/adr/0001-python-version-and-deps.md` — pin Python 3.10, deps de requirements.txt
@@ -297,6 +356,7 @@ pontos a corrigir, mais o PGDCS completo. Dois são bloqueadores de experimento
 - `docs/adr/0018-three-way-split-and-metric-suite.md` — split de três vias, suíte de métricas por fusor, 12 métodos de seleção
 - `docs/adr/0017-dcs-des-baselines-deslib.md` — DCS/DES via DESlib (OLA, LCA, KNORA-E/U, META-DES), DSEL = validação, métrica `recovered`
 - `docs/adr/0019-canonical-rerun-and-generation-control.md` — run canônico de árvore limpa, PGDCS completo como quinto modo, controle `randbag`, poda medida
+- `docs/adr/0020-monteiro-2023-compatible-profiles.md` — dois perfis científicos (`pos-oracle-v2`, `monteiro-2023-dt-compatible-v1`), PGDCS aligned com Monteiro 2023, catálogo de conformance, comparador descritivo, remoção de soft fusion, Oracle greedy
 
 ## Notes
 

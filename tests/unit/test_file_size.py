@@ -32,6 +32,7 @@ EXEMPT_FILES = {
     "Cpx.py",  # legacy, will be removed in Fase 2
     "pool_generation.py",  # legacy, will be removed in Fase 2
     "__init__.py",
+    "_paper_tables.py",  # pure data fixtures (ADR 0020 §9), no logic
 }
 
 

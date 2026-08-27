@@ -43,10 +43,18 @@ que revelam a transição entre limites otimistas e realistas de desempenho.
 
 ### Métodos de geração de pool comparados
 
-| Modo | Descrição | Origem |
+Desde o **ADR 0020** a comparação isola uma variável — *como o pool foi
+gerado* — usando pool de 100 árvores de decisão em todos os tratamentos:
+
+| Tratamento | Descrição | Origem |
 |------|-----------|--------|
-| `ga` | Geração de pool via GA com fitness guiado por complexidade (NSGA-II, DEAP) | Monteiro et al., 2022 |
-| `rf` | Baseline RandomForest (sem GA, config default do sklearn) | Novo baseline |
+| `pgdcs_a` | PGDCS: votação das medidas de complexidade + NSGA-II, saída na geração de maior acurácia de voto majoritário | Monteiro 2023 |
+| `pgdcs_d` | Mesma trajetória, saída na geração de maior dispersão global (`Gdisp`) | Monteiro 2023 |
+| `bagging` | `BaggingClassifier(n_estimators=100, max_samples=0.5, random_state=86)` | Monteiro 2023 (seed publicada) |
+
+`ga` (F1/T1 fixo), `randbag` e `rf` deixam de ser modos científicos, e o
+Perceptron sai do caminho canônico: com árvore dos dois lados, uma diferença
+não pode ser atribuída ao classificador-base.
 
 ---
 
@@ -96,48 +104,61 @@ POS/
 
 ## Protocolo experimental
 
+Protocolo completo em [`docs/protocol.md`](docs/protocol.md); o registro da
+decisão é o [ADR 0020](docs/adr/0020-monteiro-2023-compatible-profiles.md).
+Toda execução é **um perfil explícito**, nunca uma mistura:
+
+| | `pos-oracle-v2` | `monteiro-2023-dt-compatible-v1` |
+|---|---|---|
+| Objetivo | experimento Oracle_N do POS | fatia reproduzível de Monteiro 2023 |
+| Partição | 10-fold estratificado + split de três vias disjunto | 20 holdouts 50/25/25 independentes |
+| Seed raiz | 42 | 86 |
+| Votação das medidas | por fold | uma vez por dataset |
+| Comparável ao artigo | não | sim (Tabelas 6, 7 e A.10) |
+
 ### Datasets
 
-**31 datasets de classificação** em formato `.arff` dos repositórios UCI, KEEL e
-OpenML. Faixa: 178–19.020 amostras, 2–8 classes, 2–60 features, razão de
-desbalanceamento 1.0–71.5. Metadados em `results/datasets/catalog.csv`.
-
-### Validação
-
-- **10-fold stratified cross-validation** (`StratifiedKFold`, `random_state=42`).
-- Split interno treino/validação: 20% do treino via
-  `np.random.default_rng(42 + fold_idx)` — determinístico, independente por fold.
-- Resultados reportados como média ± desvio sobre 10 folds.
+Os **28 datasets da Tabela 2** de Monteiro 2023. Cada snapshot é conferido
+contra a tabela e carimbado com o SHA-256 do snapshot aprovado pelo POS (o
+artigo não publica hashes). Estado atual em
+[`docs/dataset_conformance.md`](docs/dataset_conformance.md): **23
+`conformant`, 4 `approved_with_note`, 1 `mismatch`** (P2, 2000 vs 5000
+instâncias, fora da comparação publicada).
 
 ### Configuração do pool
 
 | Parâmetro | Valor |
 |-----------|-------|
 | Tamanho do pool (M) | 100 |
-| Gerações do GA | 20 |
-| Classificador base | DecisionTreeClassifier |
-| Algoritmo GA | NSGA-II (DEAP) |
-| Baseline RF | RandomForestClassifier(n_estimators=100, bootstrap=True) |
-| Modos | `ga` (complexidade guiada), `rf` (baseline) |
-| Medidas de complexidade | F1, F2, F3, F4 (overlapping), N1, N2, kDN, LSC (neighborhood) |
+| Gerações do GA | 20 (geração 0 é avaliada, nunca selecionada; empate mantém a mais antiga) |
+| População / filhos | 100 / 100, crossover 0.9, mutação 0.1 |
+| Classificador base | DecisionTreeClassifier (todos os defaults) |
+| Amostragem dos bags | aleatória **com reposição**, 50% do treino, não estratificada |
+| Votação das medidas | 10 rodadas × 100 subamostras; uma de Overlapping + uma de Neighborhood |
+| Critério de saída | `pgdcs_a` = maior acurácia MVR, `pgdcs_d` = maior `Gdisp` |
 
 ### Métricas
 
-- **Curva Oracle** (Oracle_1..M): monotônica não-crescente.
-- **Oracle_1..5**: níveis de foco para análise.
-- **Votação majoritária**, **média de probabilidades**.
-- **Acurácias individuais** de cada classificador.
-- **Matriz de double-fault** (diversidade par-a-par).
-- DCS/DES (OLA, LCA, Rank, META-DES): planejado para o marco 6.
+- **Oracle_N** (`oracle_<n>`): pelo menos `n` classificadores corretos — a
+  definição do projeto, decrescente. `oracle_classic` = `oracle_1` é o único
+  ponto comparável à Tabela 7 do artigo.
+- **Curva Oracle gulosa** (`oracle_greedy_<n>`): construção aninhada,
+  crescente; contribuição do POS que depende da ordenação.
+- Checkpoints `1, 5, 10, …, 100` (21 pontos) para as duas leituras; curvas
+  completas de 100 pontos em `oracle_curve_json` e `oracle_greedy_curve_json`.
+- **Voto majoritário** (`mv_*`) e **média de probabilidades** (`mp_*`), cada um
+  com acurácia, precisão/revocação/F1 macro e acurácia balanceada.
+- **DCS/DES**: LCA, OLA, Rank, KNORA-E, KNORA-U, META-DES (DESlib).
+- **Double-fault médio** e acurácias individuais.
 
 ### Reprodutibilidade
 
-Cada execução persiste:
-- `run_manifest.json` — config, git SHA, versões de deps, timestamps.
-- `fold_manifest.json` — seeds, hashes dos índices (SHA256), métricas por fold.
-- `summary.csv` — uma linha por (dataset, fold, mode), incluindo `oracle_1..5`.
-- `per_dataset_summary.csv` — média ± desvio por (dataset, mode).
-- `correctness_matrix.npy`, `predictions.npz` — arrays pesados (gitignored, recuperáveis via manifest).
+A única semente publicada é o `random_state=86` do Bagging; todas as outras são
+derivadas deterministicamente da semente raiz do perfil e registradas como
+modernização. Cada execução persiste `run_manifest.json` (config, fingerprint,
+git SHA, versões das deps e o catálogo de conformance completo), `summary.csv`
+(schema v2), `per_dataset_summary.csv`, manifestos por split e as matrizes de
+acerto.
 
 ---
 
@@ -153,32 +174,38 @@ Cada execução persiste:
 > O `fast_adapter` (ADR 0010) substitui pyhard por numpy puro.
 > R permanece opcional apenas para regenerar golden values legados.
 
-### Smoke test (valida o pipeline, ~2 min)
+### Smoke test (valida o pipeline, ~1 min)
 
 ```bash
-python scripts/run_experiment.py --smoke
+python scripts/run_experiment_v2.py --profile pos-oracle-v2 --smoke --datasets Wine,Banana
 ```
 
-Executa 3 datasets (Wine, Banana, Vehicle) × 2 modos (ga, rf) × 3 folds = 18 linhas.
-Valida: geração de manifest, monotonicidade do Oracle, Oracle_1 ≥ votação majoritária.
+Reduz folds, gerações e M. Marcado como `comparable=false` — valida o pipeline,
+nunca é resultado científico.
 
-### Experimento completo (~3 horas com --jobs 4)
+### Experimento completo
 
 ```bash
-python scripts/run_experiment.py --full --jobs 4
+# o experimento do POS
+python scripts/run_experiment_v2.py --profile pos-oracle-v2 --full
+
+# a fatia comparável ao artigo
+python scripts/run_experiment_v2.py --profile monteiro-2023-dt-compatible-v1 --full
 ```
 
-Executa 31 datasets × 10 folds × 2 modos = 620 folds. Saída em
-`results/experiments/<timestamp>_<git_sha>/`.
+Saída em `results/experiments/<timestamp>_<git_sha>/`. `--jobs` usa por padrão
+núcleos − 1; não altera o resultado, porque cada bag carrega semente própria.
 
-### Retomar execução interrompida
+### Retomar, comparar e auditar os dados
 
 ```bash
-python scripts/run_experiment.py --resume results/experiments/<dir> --jobs 4
+python scripts/run_experiment_v2.py --resume results/experiments/<dir>
+python scripts/compare_reference.py results/experiments/<dir>
+python scripts/dataset_conformance.py
 ```
 
-Pula folds já completados (detectados via `fold_manifest_*.json`) e continua
-de onde parou.
+A retomada pula qualquer (dataset, split, tratamento) que já tenha manifesto em
+disco, e nunca re-executa a trajetória PGDCS de um split concluído.
 
 ---
 

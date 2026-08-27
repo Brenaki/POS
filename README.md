@@ -42,10 +42,18 @@ performance ceilings.
 
 ### Pool generation methods compared
 
-| Mode | Description | Source |
+Since **ADR 0020** the comparison isolates one variable — *how the pool was
+generated* — by using a Decision Tree pool of 100 classifiers everywhere:
+
+| Treatment | Description | Source |
 |------|-------------|--------|
-| `ga` | GA-based pool generation with complexity-guided fitness (NSGA-II, DEAP) | Monteiro et al., 2022 |
-| `rf` | RandomForest baseline (no GA, default sklearn config) | New baseline |
+| `pgdcs_a` | PGDCS: complexity-measure vote + NSGA-II, exit at the generation with the highest majority-vote accuracy | Monteiro 2023 |
+| `pgdcs_d` | Same trajectory, exit at the generation with the highest global dispersion (`Gdisp`) | Monteiro 2023 |
+| `bagging` | `BaggingClassifier(n_estimators=100, max_samples=0.5, random_state=86)` | Monteiro 2023 (published seed) |
+
+`ga` (fixed F1/T1), `randbag` and `rf` are no longer scientific modes, and the
+Perceptron leaves the canonical path: with a tree on both sides, a difference
+cannot be blamed on the base classifier.
 
 ---
 
@@ -95,48 +103,60 @@ POS/
 
 ## Experimental protocol
 
+Full protocol in [`docs/protocol.md`](docs/protocol.md); the decision record is
+[ADR 0020](docs/adr/0020-monteiro-2023-compatible-profiles.md). A run is always
+**one explicit profile**, never a mix:
+
+| | `pos-oracle-v2` | `monteiro-2023-dt-compatible-v1` |
+|---|---|---|
+| Purpose | the POS Oracle_N experiment | reproducible slice of Monteiro 2023 |
+| Partition | 10-fold stratified + disjoint three-way split | 20 independent 50/25/25 holdouts |
+| Root seed | 42 | 86 |
+| Measure vote | per fold | once per dataset |
+| Comparable to the paper | no | yes (Tables 6, 7, A.10) |
+
 ### Datasets
 
-**31 classification datasets** in `.arff` format from UCI, KEEL, and OpenML
-repositories. Range: 178–19,020 samples, 2–8 classes, 2–60 features, imbalance
-ratio 1.0–71.5. Metadata in `results/datasets/catalog.csv`.
-
-### Validation
-
-- **10-fold stratified cross-validation** (`StratifiedKFold`, `random_state=42`).
-- Internal train/validation split: 20% of training set via
-  `np.random.default_rng(42 + fold_idx)` — deterministic, independent per fold.
-- Results reported as mean ± std over 10 folds.
+The **28 datasets of Table 2** of Monteiro 2023. Every snapshot is checked
+against the table and stamped with the SHA-256 of the POS-approved snapshot
+(the paper publishes no hashes). Current state — see
+[`docs/dataset_conformance.md`](docs/dataset_conformance.md): **23
+`conformant`, 4 `approved_with_note`, 1 `mismatch`** (P2, 2000 vs 5000
+instances, excluded from the published comparison).
 
 ### Pool configuration
 
 | Parameter | Value |
 |-----------|-------|
 | Pool size (M) | 100 |
-| GA generations | 20 |
-| Base classifier | DecisionTreeClassifier |
-| GA algorithm | NSGA-II (DEAP) |
-| RF baseline | RandomForestClassifier(n_estimators=100, bootstrap=True) |
-| Modes | `ga` (complexity-guided), `rf` (baseline) |
-| Complexity measures | F1, F2, F3, F4 (overlapping), N1, N2, kDN, LSC (neighborhood) |
+| GA generations | 20 (generation 0 evaluated, never selected; ties keep the oldest) |
+| Population / children | 100 / 100, crossover 0.9, mutation 0.1 |
+| Base classifier | DecisionTreeClassifier (all defaults) |
+| Bag sampling | random **with replacement**, 50% of the training set, not stratified |
+| Measure vote | 10 rounds × 100 sub-samples; one Overlapping + one Neighborhood measure |
+| Exit criterion | `pgdcs_a` = max MVR accuracy, `pgdcs_d` = max `Gdisp` |
 
 ### Metrics
 
-- **Oracle curve** (Oracle_1..M): monotonic non-increasing.
-- **Oracle_1..5**: focus levels for analysis.
-- **Majority vote**, **mean probabilities**.
-- **Individual accuracies** of each classifier.
-- **Double-fault matrix** (pairwise diversity).
-- DCS/DES (OLA, LCA, Rank, META-DES): planned for milestone 6.
+- **Oracle_N** (`oracle_<n>`): at least `n` classifiers correct — the project's
+  definition, decreasing. `oracle_classic` = `oracle_1` is the only point
+  comparable to the paper's Table 7.
+- **Greedy Oracle curve** (`oracle_greedy_<n>`): nested construction, increasing;
+  a POS contribution that depends on its ordering.
+- Checkpoints `1, 5, 10, …, 100` (21 points) for both; full 100-point curves in
+  `oracle_curve_json` and `oracle_greedy_curve_json`.
+- **Majority vote** (`mv_*`) and **mean probability** (`mp_*`), each with
+  accuracy, macro precision/recall/F1 and balanced accuracy.
+- **DCS/DES**: LCA, OLA, Rank, KNORA-E, KNORA-U, META-DES (DESlib).
+- **Double-fault mean** and individual accuracies.
 
 ### Reproducibility
 
-Every run persists:
-- `run_manifest.json` — config, git SHA, dep versions, timestamps.
-- `fold_manifest.json` — seeds, index hashes (SHA256), metrics per fold.
-- `summary.csv` — one row per (dataset, fold, mode), including `oracle_1..5`.
-- `per_dataset_summary.csv` — mean ± std per (dataset, mode).
-- `correctness_matrix.npy`, `predictions.npz` — heavy arrays (gitignored, recoverable via manifest).
+Only Bagging's `random_state=86` is a published seed; every other seed is
+derived deterministically from the profile's root seed and recorded as a
+modernization. Each run persists `run_manifest.json` (config, fingerprint, git
+SHA, dep versions and the full conformance catalog), `summary.csv` (schema v2),
+`per_dataset_summary.csv`, per-split manifests and the correctness matrices.
 
 ---
 
@@ -152,32 +172,38 @@ Every run persists:
 > The `fast_adapter` (ADR 0010) replaces pyhard with pure numpy.
 > R remains optional for regenerating legacy golden values only.
 
-### Smoke test (validates pipeline, ~2 min)
+### Smoke test (validates the pipeline, ~1 min)
 
 ```bash
-python scripts/run_experiment.py --smoke
+python scripts/run_experiment_v2.py --profile pos-oracle-v2 --smoke --datasets Wine,Banana
 ```
 
-Runs 3 datasets (Wine, Banana, Vehicle) × 2 modes (ga, rf) × 3 folds = 18 rows.
-Validates: manifest generation, Oracle monotonicity, Oracle_1 ≥ majority vote.
+Reduced folds, generations and M. Marked `comparable=false` — it validates the
+pipeline, never a scientific result.
 
-### Full experiment (~3 hours with --jobs 4)
+### Full experiment
 
 ```bash
-python scripts/run_experiment.py --full --jobs 4
+# the POS experiment
+python scripts/run_experiment_v2.py --profile pos-oracle-v2 --full
+
+# the slice comparable to the paper
+python scripts/run_experiment_v2.py --profile monteiro-2023-dt-compatible-v1 --full
 ```
 
-Runs 31 datasets × 10 folds × 2 modes = 620 folds. Output saved to
-`results/experiments/<timestamp>_<git_sha>/`.
+Output in `results/experiments/<timestamp>_<git_sha>/`. `--jobs` defaults to
+cores − 1; it does not change results, since every bag carries its own seed.
 
-### Resume an interrupted run
+### Resume, compare, audit the data
 
 ```bash
-python scripts/run_experiment.py --resume results/experiments/<dir> --jobs 4
+python scripts/run_experiment_v2.py --resume results/experiments/<dir>
+python scripts/compare_reference.py results/experiments/<dir>
+python scripts/dataset_conformance.py
 ```
 
-Skips completed folds (detected via `fold_manifest_*.json` files) and continues
-from where it left off.
+Resume skips any (dataset, split, treatment) that already has a manifest on
+disk, and never re-runs the PGDCS trajectory of a finished split.
 
 ---
 

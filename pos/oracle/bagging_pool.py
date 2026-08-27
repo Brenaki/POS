@@ -43,3 +43,31 @@ def build_bagging_pool(
     )
     bag.fit(X_train, y_train)
     return list(bag.estimators_)
+
+
+def build_bagging_pool_v2(
+    X_train: np.ndarray,
+    y_train: np.ndarray,
+    M: int = 100,
+    random_state: int = 86,
+) -> list[DecisionTreeClassifier]:
+    """ADR 0020 Bagging baseline (Monteiro 2023).
+
+    Matches the paper exactly:
+    - n_estimators=100 (M)
+    - max_samples=0.5
+    - bootstrap=True
+    - random_state=86 (published)
+    - default Decision Tree (all defaults)
+
+    Returns a list of M fitted DecisionTreeClassifier (bag.estimators_).
+    """
+    bag = BaggingClassifier(
+        n_estimators=M,
+        max_samples=0.5,
+        bootstrap=True,
+        random_state=random_state,
+        n_jobs=1,
+    )
+    bag.fit(X_train, y_train)
+    return list(bag.estimators_)

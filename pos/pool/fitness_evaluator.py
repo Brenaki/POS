@@ -68,15 +68,20 @@ class FitnessEvaluatorMixin:
         100 individuals that were all evaluated already, so half of every
         generation's work was recomputation (ADR 0015).
 
-        Fitted estimators are only retained under the `maxacc` stop criterion,
-        the one path that consumes them — keeping ~2100 fitted trees alive
-        otherwise would cost far more memory than the cache saves.
+        Fitted estimators are only retained under the `maxacc` stop criterion
+        or when `keep_estimators` is set (the ADR 0020 PGDCS path, which keeps
+        the winning generation's own fitted classifiers instead of rebuilding
+        them from bags) — otherwise keeping ~2100 fitted trees alive would
+        cost far more memory than the cache saves.
         """
         indices = list(indices)
         cache = self._eval_cache
         names = [self.bags["name"][i] for i in indices]
         todo = [(i, nm) for i, nm in zip(indices, names) if nm not in cache]
-        keep_estimators = getattr(self, "stop_criteria", None) == "maxacc"
+        keep_estimators = getattr(
+            self, "keep_estimators",
+            getattr(self, "stop_criteria", None) == "maxacc",
+        )
 
         if todo:
             if self.jobs > 1:

@@ -32,37 +32,21 @@ import logging
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-from pos.complexity.base import GROUP_MEASURES
 from pos.complexity.fast_adapter import complexity_data3
 from pos.normalization import min_max_norm
+from pos.pool.voter_common import (  # noqa: F401  (re-exported)
+    MONTEIRO_ROUNDS,
+    MONTEIRO_SAMPLES_PER_ROUND,
+    SAMPLES_PER_ROUND,
+    VOTE_ROUNDS,
+    Seed,
+    _group_slices,
+    _seed_for,
+    measure_names,
+)
+
 
 logger = logging.getLogger(__name__)
-
-VOTE_ROUNDS = 11
-SAMPLES_PER_ROUND = 100
-
-Seed = int | np.random.RandomState | None
-
-
-def measure_names(grupos: list[str]) -> list[str]:
-    """Flat `group.measure` names, in the order complexity_data3 returns them."""
-    return [f"{g}.{m}" for g in grupos for m in GROUP_MEASURES[g]]
-
-
-def _group_slices(grupos: list[str]) -> list[tuple[int, int]]:
-    """(start, stop) of each group inside the flat measure vector."""
-    bounds, start = [], 0
-    for g in grupos:
-        stop = start + len(GROUP_MEASURES[g])
-        bounds.append((start, stop))
-        start = stop
-    return bounds
-
-
-def _seed_for(random_state: Seed, draw: int) -> Seed:
-    """Distinct-but-reproducible seed per sub-sample, as in bag_generator."""
-    return random_state + draw if isinstance(random_state, int) else random_state
-
 
 def complexities(X_train, y_train, tam_bags, grupos,
                  random_state: Seed = None) -> list[float]:
@@ -114,3 +98,11 @@ def get_best_types(X_train, y_train, tam_bags, group, n: int = 2,
     types = [names[ordened[-i]].split(".")[1] for i in range(1, n + 1)]
     logger.info("complexity vote picked %s (votes: %s)", types, text.strip(", "))
     return types
+
+
+# Re-export Monteiro path from the split module (ADR 0020).
+from pos.pool.monteiro_voter import (  # noqa: E402, F401
+    _resolve_winners,
+    monteiro_vote_complexity,
+    monteiro_get_best_types,
+)
