@@ -1,0 +1,132 @@
+run: results/experiments/2026-08-24T09-38-20_5aceb11
+
+linhas: 1450 | bases: 29 | modos: ['bagging', 'ga', 'pgdcs', 'randbag', 'rf']
+
+D1 — normalizacao exata do double fault (ponto 6)
+denominador sob independencia com taxas de erro desiguais:
+  E[DF] = ((sum e)^2 - sum e^2) / (M(M-1))
+
+  df_ratio vs folga Oracle_1-MVR:
+    agrupado   n=145  rho=-0.8869  p=7.96e-50
+    bagging    n= 29  rho=-0.9087  p=9.44e-12
+    ga         n= 29  rho=-0.9325  p=1.85e-13
+    pgdcs      n= 29  rho=-0.9202  p=1.65e-12
+    randbag    n= 29  rho=-0.9286  p=3.89e-13
+    rf         n= 29  rho=-0.7852  p=4.55e-07
+  df_ratio_exact vs folga Oracle_1-MVR:
+    agrupado   n=145  rho=-0.8878  p=4.91e-50
+    bagging    n= 29  rho=-0.9142  p=4.27e-12
+    ga         n= 29  rho=-0.9325  p=1.85e-13
+    pgdcs      n= 29  rho=-0.9291  p=3.55e-13
+    randbag    n= 29  rho=-0.9286  p=3.89e-13
+    rf         n= 29  rho=-0.7877  p=3.96e-07
+
+  razao exact/medio: mediana=1.0006 max=2.6400
+  desvio das acuracias individuais: media=0.0644
+
+D2 — N* por cardinalidade de classes (ponto 3)
+  sanduiche Oracle_(M/2+1) <= MVR <= Oracle_(M/2): vale em 1.000 de 1100 folds binarios
+  igualdade exata MVR == Oracle_(M/2+1): 833/1100 folds
+
+   mode  n_datasets  nstar_median  nstar_mean       group
+bagging           7         48.10       49.60 multiclasse
+     ga           7         44.40       45.21 multiclasse
+  pgdcs           7         45.70       45.27 multiclasse
+randbag           7         44.30       44.96 multiclasse
+     rf           7         47.30       48.69 multiclasse
+bagging          22         53.65       55.90     binaria
+     ga          22         53.35       54.09     binaria
+  pgdcs          22         53.05       54.04     binaria
+randbag          22         53.45       54.29     binaria
+     rf          22         53.45       54.41     binaria
+
+  binaria vs multiclasse: mediana 53.6 vs 47.3  Mann-Whitney p=2.24e-11
+
+D3 — limiares DF/e^2 validados leave-one-dataset-out (ponto 5)
+  df_ratio         LODO=0.834  baseline=0.759  cortes medianos=1.23/4.82  n=145
+  df_ratio_exact   LODO=0.855  baseline=0.759  cortes medianos=1.23/4.16  n=145
+
+D4 — distribuicao de `recovered`, nao um limite superior (ponto 4)
+  modo          n    media  Q50  Q75  Q90  Q95
+  bagging     271   0.1503  0.108  0.222  0.375  0.500
+  ga          288   0.2404  0.167  0.341  0.700  0.803
+  pgdcs       289   0.2431  0.167  0.414  0.727  0.798
+  randbag     288   0.2308  0.167  0.377  0.672  0.797
+  rf          270   0.1424  0.091  0.208  0.335  0.500
+  todos      1406   0.2028  0.138  0.307  0.600  0.750
+
+  arvores: fracao de folds acima de 0.15 = 0.377  |  recovered <= 0 em 0.311
+  cota empirica a 95%: MVR + 0.50 * folga
+
+D5 — o que preve recuperabilidade (ponto 9)
+  ridge     n=144  R2_LODO=-0.0183  rho=+0.4158 (p=2.19e-07)  MAE=0.1654 vs baseline 0.1408
+  floresta  n=144  R2_LODO=+0.3553  rho=+0.3352 (p=4.01e-05)  MAE=0.1092 vs baseline 0.1408
+
+D6 — poda medida: E[S]/M por metodo (ponto 8)
+     method  sel_frac  routed_frac  delta_vs_mvr   n
+        lca    0.0100       0.8324       -0.0523 145
+        mcb    0.0100       0.8324       -0.0214 145
+        ola    0.0100       0.8324       -0.0184 145
+       rank    0.0100       0.8324       -0.0239 145
+single_best    0.0100       1.0000       -0.0302 145
+     desknn    0.3000       0.8324        0.0120 145
+     knorae    0.3027       0.8324       -0.0045 145
+ static_sel    0.5000       1.0000        0.0010 145
+    metades    0.8165       0.7578        0.0005  58
+       desp    0.8583       0.8324        0.0146 145
+       knop    1.0000       1.0000        0.0013  58
+     knorau    1.0000       1.0000        0.0158 145
+
+  correlacao entre fracao selecionada e margem sobre o MVR:
+   mode    n  spearman   p
+  todos 1566    0.5365 0.0
+bagging  348    0.7398 0.0
+     ga  290    0.4104 0.0
+  pgdcs  290    0.3931 0.0
+randbag  290    0.3878 0.0
+     rf  348    0.8034 0.0
+
+D7 — contrastes entre modos de geracao (ponto 2 e ponto 7)
+
+  pgdcs_vs_ga
+             metric  n  pgdcs     ga   delta  wins  losses      p
+           oracle_1 29 0.9972 0.9976 -0.0004     5       7 0.3882
+      majority_vote 29 0.7771 0.7784 -0.0013    17      12 0.8815
+              gap_1 29 0.2201 0.2192  0.0009    13      14 0.7548
+          recovered 29 0.2425 0.2392  0.0034    16      13 0.7493
+mean_individual_acc 29 0.7042 0.7052 -0.0010    12      17 0.2297
+           df_ratio 29 2.1162 2.1274 -0.0112    11      18 0.2941
+
+  ga_vs_randbag
+             metric  n     ga  randbag   delta  wins  losses      p
+           oracle_1 29 0.9976   0.9979 -0.0003     6       5 0.5937
+      majority_vote 29 0.7784   0.7808 -0.0025    12      16 0.1514
+              gap_1 29 0.2192   0.2170  0.0022    16      12 0.1648
+          recovered 29 0.2392   0.2298  0.0094    16      13 0.4294
+mean_individual_acc 29 0.7052   0.7046  0.0005    18      11 0.2132
+           df_ratio 29 2.1274   2.1043  0.0231    19      10 0.1316
+
+  randbag_vs_bagging
+             metric  n  randbag  bagging   delta  wins  losses      p
+           oracle_1 29   0.9979   0.9951  0.0027    14       7 0.1219
+      majority_vote 29   0.7808   0.8467 -0.0659    10      19 0.0038
+              gap_1 29   0.2170   0.1484  0.0686    20       9 0.0013
+          recovered 28   0.2186   0.1491  0.0695    15      13 0.5670
+mean_individual_acc 29   0.7046   0.7931 -0.0885     8      21 0.0010
+           df_ratio 29   2.1043   3.9780 -1.8738     8      21 0.0004
+
+  medidas escolhidas pela votacao do PGDCS:
+ types  folds  share  is_f1_t1
+F3|LSC     21 0.0724     False
+ F4|T1     14 0.0483     False
+ F3|T1     13 0.0448     False
+ F2|N4     13 0.0448     False
+F4|LSC     13 0.0448     False
+ T1|F4     11 0.0379     False
+ F2|N2     10 0.0345     False
+F2|LSC      9 0.0310     False
+ F4|N3      8 0.0276     False
+LSC|F3      8 0.0276     False
+ F3|N3      8 0.0276     False
+ F3|N4      7 0.0241     False
+  folds em que a escolha foi F1/T1: 4
