@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v1",
+  "dataset": "Lithuanian",
+  "fold_idx": 4,
+  "treatment": "bagging",
+  "mode": "bagging",
+  "seed": 90,
+  "n_train": 1000,
+  "n_val": 500,
+  "n_dsel": 500,
+  "n_test": 500,
+  "M": 100,
+  "pgdcs_types": null,
+  "pgdcs_best_generation": null,
+  "pgdcs_best_metric": null,
+  "pgdcs_best_score": null,
+  "k_eff": 7
+}

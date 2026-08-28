@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v1",
+  "dataset": "WDVG",
+  "fold_idx": 13,
+  "treatment": "pgdcs_a",
+  "mode": "pgdcs_a",
+  "seed": 99,
+  "n_train": 2500,
+  "n_val": 1250,
+  "n_dsel": 1250,
+  "n_test": 1250,
+  "M": 100,
+  "pgdcs_types": [
+    "F1v",
+    "N2"
+  ],
+  "pgdcs_best_generation": 17,
+  "pgdcs_best_metric": "mvr",
+  "pgdcs_best_score": 0.8688,
+  "k_eff": 7
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "Australian",
+  "fold_idx": 0,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 42,
+  "n_train": 497,
+  "n_val": 62,
+  "n_dsel": 62,
+  "n_test": 69,
+  "M": 100,
+  "pgdcs_types": [
+    "F4",
+    "N2"
+  ],
+  "pgdcs_best_generation": 8,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6497771401999357,
+  "k_eff": 7
+}

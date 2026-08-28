@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v1",
+  "dataset": "Sonar",
+  "fold_idx": 3,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 89,
+  "n_train": 104,
+  "n_val": 52,
+  "n_dsel": 52,
+  "n_test": 52,
+  "M": 100,
+  "pgdcs_types": [
+    "F1v",
+    "T1"
+  ],
+  "pgdcs_best_generation": 12,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6496412685443521,
+  "k_eff": 7
+}

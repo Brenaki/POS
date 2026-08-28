@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v1",
+  "dataset": "Diabetes",
+  "fold_idx": 5,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 91,
+  "n_train": 383,
+  "n_val": 191,
+  "n_dsel": 191,
+  "n_test": 192,
+  "M": 100,
+  "pgdcs_types": [
+    "F3",
+    "N4"
+  ],
+  "pgdcs_best_generation": 6,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6780382425410378,
+  "k_eff": 7
+}

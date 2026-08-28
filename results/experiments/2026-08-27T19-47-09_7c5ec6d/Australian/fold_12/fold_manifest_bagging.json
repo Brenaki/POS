@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v1",
+  "dataset": "Australian",
+  "fold_idx": 12,
+  "treatment": "bagging",
+  "mode": "bagging",
+  "seed": 98,
+  "n_train": 345,
+  "n_val": 172,
+  "n_dsel": 172,
+  "n_test": 173,
+  "M": 100,
+  "pgdcs_types": null,
+  "pgdcs_best_generation": null,
+  "pgdcs_best_metric": null,
+  "pgdcs_best_score": null,
+  "k_eff": 7
+}

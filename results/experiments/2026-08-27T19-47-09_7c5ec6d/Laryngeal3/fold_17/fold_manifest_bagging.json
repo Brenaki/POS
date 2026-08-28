@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v1",
+  "dataset": "Laryngeal3",
+  "fold_idx": 17,
+  "treatment": "bagging",
+  "mode": "bagging",
+  "seed": 103,
+  "n_train": 176,
+  "n_val": 88,
+  "n_dsel": 88,
+  "n_test": 89,
+  "M": 100,
+  "pgdcs_types": null,
+  "pgdcs_best_generation": null,
+  "pgdcs_best_metric": null,
+  "pgdcs_best_score": null,
+  "k_eff": 7
+}

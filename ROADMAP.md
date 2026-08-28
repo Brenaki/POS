@@ -331,9 +331,15 @@ independentes, não `iteration=20` dentro de um mesmo objeto.
 - [x] **`u = 0.4` desambiguado** (§11.9): 0.4 nas sub-amostras da votação
       (passo 1), 0.5 nos bags do AG (passo 2) — as duas frações vêm de frases
       diferentes do artigo
-- [ ] **Replicação completa do perfil Monteiro** (28 datasets × 20 replicações)
-- [ ] **Relatório de comparação** sobre o run completo
-- [ ] **Execução do `pos-oracle-v2`** (10 folds × 28 datasets)
+- [x] **Replicação completa do perfil Monteiro** — run
+      `2026-08-27T19-47-09_7c5ec6d`, 27 bases × 20 replicações × 3 tratamentos
+      (1620 linhas), 3h14 com `--jobs 4`. P2 fora pelo portão de conformance
+- [x] **Relatório de comparação** (`reference_comparison.csv`): erro médio de
+      4.06 pp em MVR, 0.44 pp em Oracle e 3.19 gerações. O PGDCS erra
+      **−6.19 pp (A) e −5.25 pp (D), negativo em 27/27 bases**, enquanto o
+      Bagging erra 0.75 pp em módulo com média com sinal de −0.16 pp e 14
+      negativos de 27 — ver ADR 0020 §11.7
+- [ ] **Execução do `pos-oracle-v2`** (10 folds × 28 datasets) — em curso
 
 ## Decision log (ADRs)
 

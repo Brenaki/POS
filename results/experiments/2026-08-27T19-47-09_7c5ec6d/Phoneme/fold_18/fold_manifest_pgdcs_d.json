@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v1",
+  "dataset": "Phoneme",
+  "fold_idx": 18,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 104,
+  "n_train": 2702,
+  "n_val": 1351,
+  "n_dsel": 1351,
+  "n_test": 1351,
+  "M": 100,
+  "pgdcs_types": [
+    "F3",
+    "LSC"
+  ],
+  "pgdcs_best_generation": 19,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6535875370004302,
+  "k_eff": 7
+}

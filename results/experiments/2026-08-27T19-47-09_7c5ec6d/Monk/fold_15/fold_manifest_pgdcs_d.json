@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v1",
+  "dataset": "Monk",
+  "fold_idx": 15,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 101,
+  "n_train": 216,
+  "n_val": 108,
+  "n_dsel": 108,
+  "n_test": 108,
+  "M": 100,
+  "pgdcs_types": [
+    "F2",
+    "T1"
+  ],
+  "pgdcs_best_generation": 5,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.8050801543179901,
+  "k_eff": 7
+}

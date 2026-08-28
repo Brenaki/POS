@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v1",
+  "dataset": "Liver",
+  "fold_idx": 8,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 94,
+  "n_train": 172,
+  "n_val": 86,
+  "n_dsel": 86,
+  "n_test": 87,
+  "M": 100,
+  "pgdcs_types": [
+    "F4",
+    "N3"
+  ],
+  "pgdcs_best_generation": 14,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6697076899736045,
+  "k_eff": 7
+}

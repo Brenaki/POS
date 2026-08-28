@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v1",
+  "dataset": "Mammo",
+  "fold_idx": 14,
+  "treatment": "pgdcs_a",
+  "mode": "pgdcs_a",
+  "seed": 100,
+  "n_train": 415,
+  "n_val": 207,
+  "n_dsel": 207,
+  "n_test": 208,
+  "M": 100,
+  "pgdcs_types": [
+    "F2",
+    "T1"
+  ],
+  "pgdcs_best_generation": 19,
+  "pgdcs_best_metric": "mvr",
+  "pgdcs_best_score": 0.8647342995169082,
+  "k_eff": 7
+}

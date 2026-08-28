@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v1",
+  "dataset": "Ionosphere",
+  "fold_idx": 2,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 88,
+  "n_train": 175,
+  "n_val": 88,
+  "n_dsel": 88,
+  "n_test": 88,
+  "M": 100,
+  "pgdcs_types": [
+    "F1",
+    "N3"
+  ],
+  "pgdcs_best_generation": 16,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6270248342921427,
+  "k_eff": 7
+}

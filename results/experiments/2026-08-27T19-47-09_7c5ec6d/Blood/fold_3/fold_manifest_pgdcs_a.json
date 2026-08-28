@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v1",
+  "dataset": "Blood",
+  "fold_idx": 3,
+  "treatment": "pgdcs_a",
+  "mode": "pgdcs_a",
+  "seed": 89,
+  "n_train": 374,
+  "n_val": 187,
+  "n_dsel": 187,
+  "n_test": 187,
+  "M": 100,
+  "pgdcs_types": [
+    "F2",
+    "N3"
+  ],
+  "pgdcs_best_generation": 17,
+  "pgdcs_best_metric": "mvr",
+  "pgdcs_best_score": 0.8235294117647058,
+  "k_eff": 7
+}

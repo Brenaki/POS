@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v1",
+  "dataset": "Faults",
+  "fold_idx": 9,
+  "treatment": "bagging",
+  "mode": "bagging",
+  "seed": 95,
+  "n_train": 970,
+  "n_val": 485,
+  "n_dsel": 485,
+  "n_test": 486,
+  "M": 100,
+  "pgdcs_types": null,
+  "pgdcs_best_generation": null,
+  "pgdcs_best_metric": null,
+  "pgdcs_best_score": null,
+  "k_eff": 7
+}

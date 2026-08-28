@@ -387,6 +387,29 @@ decimal). A magnitude do gap também acompanha o quanto a MVR de validação é
 otimizável: Wine satura (VAL≈100, gap 3 pp), Sonar e Heart não saturam
 (gap 9–10 pp).
 
+**Confirmação sobre as 27 bases comparáveis** (run
+`2026-08-27T19-47-09_7c5ec6d`, perfil completo):
+
+| Tratamento | erro médio \|Δ\| | média com sinal | negativos |
+|------------|----------------|-----------------|-----------|
+| PGDCS_A    | 6.19 pp        | **−6.19 pp**    | **27/27** |
+| PGDCS_D    | 5.25 pp        | **−5.25 pp**    | **27/27** |
+| Bagging    | 0.75 pp        | −0.16 pp        | 14/27     |
+
+O que decide a questão é o **sinal**, não a magnitude. O Bagging erra 0.75 pp
+em módulo com média com sinal de −0.16 pp e 14 negativos de 27 — ruído
+simétrico, como se espera de uma reimplementação fiel. O PGDCS erra sempre
+para baixo: **54 comparações consecutivas** (A e D em 27 bases) sem uma única
+exceção. Um defeito de implementação no PGDCS produziria dispersão nos dois
+sentidos, ainda mais com o Bagging — que compartilha split, semente, indutor,
+M e protocolo de avaliação — reproduzindo sem viés. O que distingue os dois
+braços é exatamente a seleção de geração sobre `V`.
+
+Oracle e geração escolhida, no mesmo run: erro médio de 0.44 pp contra a
+Tabela 7 e 3.19 gerações contra a Tabela 6. A Tabela 7 reproduz porque o
+Oracle não depende do critério de saída — todas as gerações têm cobertura
+quase total.
+
 Ou seja: o número do PGDCS na Tabela A.10 é o máximo de 20 gerações medido no
 **mesmo** conjunto de 25% usado para escolher a geração, enquanto o do Bagging
 é uma medida honesta em teste. A comparação publicada PGDCS × Bagging é entre

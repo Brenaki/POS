@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v1",
+  "dataset": "Thyroid",
+  "fold_idx": 0,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 86,
+  "n_train": 346,
+  "n_val": 173,
+  "n_dsel": 173,
+  "n_test": 173,
+  "M": 100,
+  "pgdcs_types": [
+    "F3",
+    "LSC"
+  ],
+  "pgdcs_best_generation": 8,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6013257020374926,
+  "k_eff": 7
+}
