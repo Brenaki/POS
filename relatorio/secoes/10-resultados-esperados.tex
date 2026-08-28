@@ -40,5 +40,15 @@ Apoiar a decisão sobre usar métodos complexos de seleção.
 validado fora da amostra, um modelo preditivo de recuperabilidade e a constatação de
 que o PGDCS completo não compensa o custo adicional sobre a variante de medidas
 fixas. \\
+\addlinespace
+\emph{Não previsto no projeto:} confrontar o PGDCS com os números publicados na
+fonte que o propõe.
+& Feito, e reconciliado. Sob o protocolo do próprio artigo, o PGDCS erra a
+Tabela~A.10 para baixo em $27/27$ bases nos dois critérios de saída, enquanto o
+Bagging --- mesmo \emph{split}, semente e indutor --- erra $0{,}75$ pp com sinal
+simétrico. A causa é viés de seleção, não implementação: o valor publicado é o
+máximo de $20$ gerações medido no mesmo conjunto que escolheu a geração. Medido em
+teste, o ganho real é $+0{,}39$ ponto. Duas correções de implementação saíram do
+processo (votação das medidas, fração $u$). \\
 \bottomrule
 \end{longtable}

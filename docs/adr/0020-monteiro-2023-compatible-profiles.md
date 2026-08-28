@@ -474,12 +474,71 @@ our MOGA consists of data subsets with **just 50% of the training dataset
 size**". São passos diferentes. Adotado: `measure_fraction = 0.4` (passo 1,
 votação) e `tam_bags = 0.5` (passo 2, bags do AG). Antes ambos eram 0.5.
 
+### 11.10 Phoneme: o único outlier do braço Bagging não é bug
+
+O Bagging reproduz a Tabela A.10 com erro médio de 0,75 pp e média com sinal de
+−0,16 pp (14/27 negativos — ruído simétrico). Phoneme é a única base fora da
+faixa: −4,86 pp, contra máximo de 2,27 pp em qualquer outra. Investigado.
+
+**Não é a base.** O snapshot bate exatamente com a Tabela 2 (5404 × 5, 2
+classes) e com o Phoneme canônico da ELENA: 3818/1586, taxa da classe
+majoritária 0,7065.
+
+**Não é `max_samples`.** O baseline usa `max_samples=0.5`. Rodando as 20
+replicações do perfil com `max_samples` em {0,5; 1,0} sobre Phoneme e nove
+controles, Phoneme fica em −4,86 e −4,17 pp respectivamente — o parâmetro move
+0,7 pp, não 4,9. E `0.5` é a escolha certa para o conjunto: Haberman cai 2,7 pp
+com `1.0`, o resto é indiferente.
+
+**O número publicado está acima do teto da base.** Dando toda vantagem que o
+protocolo nega — 90% de treino (10-fold) em vez de 50%, e indutores mais fortes:
+
+| método (Phoneme, 10-fold, 90% treino) | acurácia |
+|---|---|
+| árvore única | 87,36 ± 1,66 |
+| Bagging `max_samples=0.5`, M=100 | 90,23 ± 1,47 |
+| Bagging `max_samples=1.0`, M=100 | 90,86 ± 1,09 |
+| Random Forest M=100 | 91,10 ± 1,19 |
+| 1-NN | 90,58 ± 1,57 |
+| **Tabela A.10, Bagging (50% treino)** | **93,1 ± 1,0** |
+| **Tabela A.10, PGDCS_A (50% treino)** | **96,8 ± 1,2** |
+
+O melhor alcançável neste snapshot, com quase o dobro dos dados de treino e um
+indutor mais forte, é 91,1%. O Bagging publicado está 2,0 pp acima disso e o
+PGDCS_A publicado, 5,7 pp. Os valores medidos batem com a literatura de Phoneme
+(árvore ≈87%, RF/1-NN ≈90–91%); os publicados, não.
+
+Conclusão: nenhuma configuração do protocolo alcança o número publicado a partir
+do Phoneme canônico. Ou a base do paper difere da ELENA, ou a linha está
+inflada. Registrado como limite de reprodutibilidade por base — não há correção
+de implementação a fazer. Sem Phoneme, o erro do Bagging cai para 0,59 pp médio
+com máximo de 2,27 pp.
+
+### 11.11 P2 entra no `pos-oracle-v2`
+
+O portão de conformance em `run_recorder_v2.py` é global: aplica a Tabela 2 a
+qualquer perfil. O `pos-oracle-v2` não replica ninguém — seu `reference_scope`
+é ele mesmo — e ainda assim perdia P2 por `mismatch` (paper 5000 instâncias,
+snapshot 2000). P2 foi acrescentado ao run existente por `--resume` com
+`allow_unverified_data`, o que marca `comparable=false` no manifesto conforme a
+semântica já documentada em §8.2. O run vai de 810 para 840 linhas (28 bases).
+
+Medido: PGDCS_A 95,05 · PGDCS_D 95,05 · Bagging 94,60 · Oracle₁ 100,00 nas três.
+Não comparável com a Tabela A.10 (91,9 / 91,7 / 88,0), que foi medida sobre
+5000 instâncias geradas com o mesmo procedimento, não sobre estas 2000.
+
+Fazer o portão consultar `reference_scope` do perfil, em vez de aplicar a
+Tabela 2 sempre, continua pendente e merece ADR próprio.
+
 ## Open points
 
-- Full `pos-oracle-v2` execution after the Monteiro comparison report.
+- Portão de conformance por perfil: hoje é global (§11.11). O conserto pede ADR
+  próprio.
 - Reproduzir os vencedores da Tabela 4 exige saber em qual partição de treino o
   paper rodou a votação (§11.8); o paper não informa. Fica registrado como
   limite de reprodutibilidade, não como pendência de implementação.
+- Phoneme (§11.10) e P2 (§11.11) ficam fora de qualquer comparação publicada com
+  a Tabela A.10, cada um pelo motivo registrado acima.
 
 ## Test plan
 

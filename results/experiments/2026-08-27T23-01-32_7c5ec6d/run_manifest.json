@@ -2,7 +2,7 @@
   "schema_version": 2,
   "profile": "pos-oracle-v2",
   "scale": "full",
-  "comparable": true,
+  "comparable": false,
   "fingerprint": "sha256:3a3a672740722258",
   "config": {
     "profile": "pos-oracle-v2",
@@ -64,7 +64,8 @@
       "bagging"
     ],
     "scale": "full",
-    "comparable": true,
+    "comparable": false,
+    "allow_unverified_data": true,
     "fingerprint": "sha256:3a3a672740722258",
     "datasets": [
       "Australian",
@@ -98,7 +99,7 @@
     ],
     "jobs": 4
   },
-  "git_sha": "7c5ec6d5f56db9d8f66d53bf33eb467353ea0f16",
+  "git_sha": "1fbee32b9906d2f798bd8cd47ac14049249d26be",
   "git_branch": "master",
   "git_dirty": true,
   "python": "3.10.21",
@@ -510,12 +511,5 @@
       "snapshot_file": "Wine.arff"
     }
   },
-  "n_summary_rows": 810,
-  "skipped_datasets": [
-    {
-      "dataset": "P2",
-      "reason": "instances: paper=5000 actual=2000",
-      "conformance_status": "mismatch"
-    }
-  ]
+  "n_summary_rows": 840
 }

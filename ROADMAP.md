@@ -340,13 +340,29 @@ independentes, não `iteration=20` dentro de um mesmo objeto.
       Bagging erra 0.75 pp em módulo com média com sinal de −0.16 pp e 14
       negativos de 27 — ver ADR 0020 §11.7
 - [x] **Execução do `pos-oracle-v2`** — run `2026-08-27T23-01-32_7c5ec6d`,
-      27 bases × 10 folds × 3 tratamentos (810 linhas), 5h38. Com os dois
-      perfis na mão dá para medir o ganho honesto do PGDCS sobre o Bagging:
-      **+0.39 pp (22/27) no perfil do artigo e −0.13 pp (12/27) no perfil do
-      POS**, contra os 4–6 pp da Tabela A.10 — ADR 0020 §11.7
+      28 bases × 10 folds × 3 tratamentos (840 linhas), 5h38 + P2 por retomada.
+      Com os dois perfis na mão dá para medir o ganho honesto do PGDCS sobre o
+      Bagging: **+0.39 pp (22/27, Wilcoxon p=0.003) no perfil do artigo e
+      −0.13 pp (12/27, p=0.75) no perfil do POS**, contra os 4–6 pp da
+      Tabela A.10 — ADR 0020 §11.7
+- [x] **P2 dentro do `pos-oracle-v2`** (§11.11) — acrescentado por `--resume`
+      com `allow_unverified_data`, o que marca o run como `comparable=false`
+      conforme §8.2. PGDCS_A 95.05 · PGDCS_D 95.05 · Bagging 94.60 ·
+      Oracle₁ 100.00. Não comparável à Tabela A.10, medida sobre 5000
+      instâncias e não sobre estas 2000
+- [x] **Outlier do Bagging em Phoneme investigado** (§11.10) — não é bug. O
+      snapshot bate com a Tabela 2 e com o Phoneme canônico da ELENA;
+      `max_samples` move 0.7 pp, não 4.9. Com 90% de treino e Random Forest o
+      teto da base é 91.1%, abaixo dos 93.1 publicados para Bagging e 5.7 pp
+      abaixo dos 96.8 do PGDCS_A. Limite de reprodutibilidade por base. Sem
+      Phoneme o erro do Bagging cai para 0.59 pp médio, máximo 2.27 pp
 - [ ] **Portão de conformance por perfil** — hoje o recorder aplica a Tabela 2
-      em qualquer perfil, então P2 fica fora até do `pos-oracle-v2`, que não
-      replica ninguém. Precisa consultar o `reference_scope`; ADR próprio
+      em qualquer perfil; P2 só entra com `--allow-unverified-data`, que
+      derruba `comparable` do run inteiro. Precisa consultar o
+      `reference_scope`; ADR próprio
+- [x] **Relatório atualizado** (`relatorio/`) — nova seção "Replicação do
+      PGDCS contra a fonte", quinto resultado central no resumo, Phoneme e P2
+      nas limitações, Monteiro 2023 nas referências
 
 ## Decision log (ADRs)
 

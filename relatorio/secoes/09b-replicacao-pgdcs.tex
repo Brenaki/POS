@@ -1,0 +1,135 @@
+\section{Replicação do PGDCS contra a fonte}
+
+O objetivo~4 concluiu, dentro do protocolo deste projeto, que votar as medidas de
+complexidade não muda \On{1}, \mvr{} nem \dfe{} de forma sustentada, e o objetivo~8
+traduziu isso numa recomendação: o PGDCS completo não paga o custo que cobra. A fonte do método relata o oposto --- ganhos de $4$ a $6$ pontos percentuais
+sobre Bagging na Tabela~A.10 de \textsc{Monteiro et al.}~(2023). Duas afirmações
+incompatíveis sobre o mesmo método exigem reconciliação, e ela só é possível
+replicando o protocolo do artigo, não o deste relatório.
+
+Esta seção reporta essa replicação. Ela usa árvore de decisão (não Perceptron) e
+duas configurações de protocolo registradas na ADR~0020, executadas em
+\texttt{7c5ec6d}:
+
+\begin{description}
+\item[Perfil do artigo.] \texttt{monteiro-2023-\hspace{0pt}dt-\hspace{0pt}compatible-v1}: $20$
+\emph{holdouts} estratificados independentes $50/25/25$, semente-raiz $86$,
+validação \emph{coincidente} com o DSEL, $M=100$, $20$ gerações. Run
+\texttt{2026-08-27\hspace{0pt}T19\hspace{0pt}-47-09}: $1620$ linhas, $27$ bases, $3$h$14$.
+\item[Perfil do POS.] \texttt{pos-oracle-v2}: $10$-fold estratificado com
+partição interna treino / validação / DSEL \emph{disjunta}, semente $42$, mesmo
+indutor e mesmo $M$. Run \texttt{2026-08-27\hspace{0pt}T23\hspace{0pt}-01-32}: $840$ linhas, $28$ bases,
+$5$h$38$.
+\end{description}
+
+\subsection{O gap, e o que o produz}
+
+Contra a Tabela~A.10, os três tratamentos se comportam de modo qualitativamente
+diferente:
+
+\begin{table}[htbp]
+\centering\small
+\caption{Diferença contra a Tabela~A.10 no perfil compatível com o artigo, $27$
+bases. O que decide a questão é o \emph{sinal}, não a magnitude.}
+\begin{tabular}{lrrr}
+\toprule
+Tratamento & erro médio $|\Delta|$ & média com sinal & negativos \\
+\midrule
+PGDCS\_A & $6{,}19$ pp & $\mathbf{-6{,}19}$ pp & $\mathbf{27/27}$ \\
+PGDCS\_D & $5{,}25$ pp & $\mathbf{-5{,}25}$ pp & $\mathbf{27/27}$ \\
+Bagging  & $0{,}75$ pp & $-0{,}16$ pp & $14/27$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+O Bagging --- que compartilha \emph{split}, semente, indutor, $M$ e protocolo de
+avaliação com os outros dois --- erra $0{,}75$ pp em módulo, com média com sinal de
+$-0{,}16$ pp e $14$ negativos em $27$: ruído simétrico, a assinatura de uma
+reimplementação fiel. O PGDCS erra sempre para baixo, em $54$ comparações
+consecutivas, sem uma exceção. Um defeito de implementação dispersaria nos dois
+sentidos; um viés sistemático, não.
+
+\paragraph{A causa é viés de seleção na medida publicada.} O Algoritmo~1 do artigo
+escolhe a geração final por $\upsilon \leftarrow \text{acurácia}(E^{(t+1)}, V)$, e a
+Tabela~A.10 reporta essa mesma quantidade --- o máximo sobre $20$ gerações, medido
+no \emph{mesmo} conjunto de $25\%$ que fez a escolha. O número do Bagging, que não
+passa por seleção alguma, é uma medida honesta em teste. Gravando as trajetórias
+geração a geração em Wine, Heart, Blood e Sonar ($20$ replicações cada), a
+distinção fica direta: chamando \texttt{VAL@sel} a acurácia da geração escolhida no
+conjunto de validação e \texttt{TEST@sel} a da mesma geração em teste, o publicado
+dista $\approx1{,}7$ pp de \texttt{VAL@sel} e $\approx6{,}3$ pp de
+\texttt{TEST@sel}.
+
+Três verificações independentes fecham o diagnóstico:
+
+\begin{itemize}
+\item \textbf{A trajetória tem a forma de sobreajuste ao conjunto de seleção.} A
+\mvr{} de validação sobe monotonicamente até a geração $20$; a acurácia de teste
+sobe até a geração $\approx4$--$8$ e depois cai (Wine: validação $95{,}0 \to
+99{,}8$, teste $95{,}3 \to 95{,}0$).
+
+\item \textbf{O teto por replicação não alcança o publicado.} Tomando, em cada
+replicação, a \emph{melhor} geração medida em teste --- um oracle sobre gerações,
+inatingível por qualquer critério de parada --- Wine chega a $98{,}0$/$97{,}4$,
+ainda abaixo dos $99{,}3$ publicados. Nenhuma política de seleção fecharia o gap.
+
+\item \textbf{O que não depende do critério de saída reproduz.} \On{1} bate a
+Tabela~7 com erro médio de $0{,}44$ pp e a geração escolhida bate a Tabela~6 com
+$3{,}19$ gerações de erro. O Oracle reproduz porque não passa pela seleção.
+\end{itemize}
+
+\subsection{O tamanho honesto do efeito}
+
+Com os dois perfis executados, dá para medir o que o PGDCS ganha do Bagging quando
+as duas pontas são medidas em teste --- o contraste que a Tabela~A.10 não faz:
+
+\begin{table}[htbp]
+\centering\small
+\caption{PGDCS\_A menos Bagging, acurácia \mvr{} em teste, pareado por base
+(Wilcoxon). O ganho existe, é uma ordem de grandeza menor que o publicado, e
+depende do tamanho do conjunto de validação.}
+\begin{tabular}{llrrr}
+\toprule
+Perfil & Validação & $\Delta$ médio & Vence em & $p$ \\
+\midrule
+\texttt{monteiro-2023-dt} & $25\%$, $=$ DSEL & $\mathbf{+0{,}39}$ pp & $22/27$ & $\mathbf{0{,}0030}$ \\
+\texttt{pos-oracle-v2} & $10\%$, disjunta & $-0{,}13$ pp & $12/27$ & $0{,}75$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+No perfil compatível com o artigo o ganho existe e é consistente, mas vale
+$\approx0{,}4$ pp contra os $4$--$6$ pp anunciados. No perfil deste projeto, cuja
+validação é menor e disjunta do DSEL, ele desaparece: $12$ vitórias em $27$ é
+sorteio ($p=0{,}75$). A seleção de geração precisa de um conjunto de validação
+grande para não escolher ruído, e o que entrega, quando entrega, é marginal.
+
+\textbf{Isto confirma a conclusão do objetivo~4 por um caminho independente.} Lá, o
+PGDCS completo era indistinguível dos bags aleatórios em pools de Perceptron sob o
+protocolo do POS; aqui, com árvore de decisão e sob o protocolo do próprio artigo,
+o ganho publicado se decompõe em viés de seleção mais $0{,}4$ pp reais. As duas
+medições não estavam em conflito com a fonte --- a fonte é que compara uma
+quantidade otimizada com uma não otimizada.
+
+\paragraph{Nenhuma mudança de protocolo foi feita para fechar o gap}, porque
+fechá-lo exigiria reportar a métrica enviesada. A coluna comparável à Tabela~A.10
+(\mvr{} de validação da geração vencedora) fica gravada no manifesto de fold como
+\texttt{pgdcs\_best\_score}; \texttt{mv\_acc} continua sendo acurácia em teste.
+
+\subsection{Duas correções de implementação encontradas no caminho}
+
+A replicação expôs dois defeitos no PGDCS deste projeto, ambos corrigidos por TDD e
+sem efeito sobre o diagnóstico acima:
+
+\begin{description}
+\item[Votação das medidas (Eq.~10--11).] O voto usava a \emph{média acumulada} dos
+$\sigma_j^t$ em vez do $\sigma_j^t$ da própria iteração, o que concentrava $9$ ou
+$10$ dos $10$ votos de uma família numa única medida --- contra o espalhamento que
+as Tabelas~3 e~4 do artigo mostram. Corrigido, o acerto contra a Tabela~4 sobe de
+$1/5$ bases para $4/8$ medidas nas quatro primeiras bases. O efeito na acurácia é
+de $+0{,}6$ a $+1{,}3$ pp, só no PGDCS: a escolha das medidas não é a causa do gap.
+
+\item[A fração $u$.] §5.1 e §5.2 do artigo descrevem passos diferentes na mesma
+frase. Adotado $u=0{,}4$ para as sub-amostras da votação e $0{,}5$ para os
+\emph{bags} do AG; antes ambos valiam $0{,}5$.
+\end{description}

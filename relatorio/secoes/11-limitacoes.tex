@@ -25,6 +25,24 @@ sobre todas as consultas.
 máximo entre métodos escolhido no conjunto de teste. Um seletor de método honesto
 entregaria menos. Os números de recuperação são cotas superiores.
 
+\item \textbf{Duas bases ficam fora da comparação com a Tabela~A.10.} Em Phoneme, o
+número publicado do Bagging ($93{,}1$) está acima do teto do \emph{snapshot}: com
+$90\%$ de treino em vez dos $50\%$ do protocolo e Random Forest no lugar de
+Bagging, o máximo alcançável é $91{,}1\%$ --- e os valores medidos batem com a
+literatura da base (árvore $87{,}4$; RF e $1$-NN $\approx90$--$91$). Não é
+\texttt{max\_samples} (mover de $0{,}5$ para $1{,}0$ vale $0{,}7$ pp) nem a base
+(o \emph{snapshot} bate com a Tabela~2 e com o Phoneme canônico da ELENA).
+Sem Phoneme, o erro do Bagging cai de $0{,}75$ para $0{,}59$ pp médio, com máximo
+de $2{,}27$ pp. P2 fica fora por motivo diferente: o \emph{snapshot} tem $2000$
+instâncias contra $5000$ geradas no artigo, então entra no \texttt{pos-oracle-v2}
+--- que não replica ninguém --- mas não na comparação publicada.
+
+\item \textbf{O portão de conformance é global.} Ele aplica a Tabela~2 de
+\textsc{Monteiro et al.}~(2023) a qualquer perfil, inclusive ao
+\texttt{pos-oracle-v2}, cujo escopo de referência é ele mesmo. P2 só entrou porque
+foi passado \texttt{--allow-unverified-data}, o que marca o run inteiro como não
+comparável. Fazer o portão consultar o escopo do perfil é pendência registrada.
+
 \item \textbf{Poder estatístico com $14$ fusores.} A diferença crítica de Nemenyi
 cresce com o número de colunas a ponto de nada ser significativo. Por isso o
 protocolo mantém um conjunto primário de $7$ métodos para Friedman/Nemenyi e trata os

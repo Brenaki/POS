@@ -12,7 +12,7 @@ como $\On{1}\ge$ votação majoritária. Os limites foram confrontados com a acu
 individual, a votação majoritária, a média de probabilidades e \emph{doze} métodos
 de seleção dinâmica de classificadores e de \emph{ensembles}.
 
-Os quatro resultados centrais são: \textbf{(i)} o eixo que organiza os resultados é
+Os cinco resultados centrais são: \textbf{(i)} o eixo que organiza os resultados é
 o classificador-base, não o método de geração --- votar as medidas de complexidade
 do PGDCS ou buscar com o algoritmo genético não muda \On{1}, $\mvr$ ou $\dfe$ de
 forma estatisticamente sustentada ($p\ge0.13$ em todos os contrastes), e o padrão
@@ -28,6 +28,12 @@ $-0.89$, $n=145$), validado fora da amostra ($85{,}5\%$ de acerto
 \emph{leave-one-dataset-out} contra $75{,}9\%$ da regra trivial); \textbf{(iv)}
 mesmo tomando o melhor de dez métodos dinâmicos escolhido \emph{a posteriori} no
 teste, a seleção dinâmica recupera entre $14{,}2\%$ e $24{,}3\%$ dessa folga,
-conforme o modo --- o \On{1} é um limite inatingível na prática, não uma meta. O
-relatório fecha com oito recomendações operacionais.
+conforme o modo --- o \On{1} é um limite inatingível na prática, não uma meta; e
+\textbf{(v)} uma replicação do PGDCS sob o protocolo do artigo que o propõe
+($2$ perfis, $27$ e $28$ bases, árvore de decisão) mostra que a vantagem de
+$4$--$6$ pontos ali publicada é \emph{viés de seleção} --- o número do PGDCS é o
+máximo de $20$ gerações medido no mesmo conjunto que escolheu a geração, o do
+Bagging não passa por seleção alguma; medidos os dois em teste, o ganho real é de
+$+0{,}39$ ponto ($22/27$, $p=0{,}003$) e some quando a validação é pequena e
+disjunta. O relatório fecha com oito recomendações operacionais.
 \end{abstract}
