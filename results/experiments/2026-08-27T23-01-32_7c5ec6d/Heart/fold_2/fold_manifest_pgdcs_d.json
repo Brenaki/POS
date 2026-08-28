@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "Heart",
+  "fold_idx": 2,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 44,
+  "n_train": 195,
+  "n_val": 24,
+  "n_dsel": 24,
+  "n_test": 27,
+  "M": 100,
+  "pgdcs_types": [
+    "F1v",
+    "N4"
+  ],
+  "pgdcs_best_generation": 6,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6431673155590768,
+  "k_eff": 7
+}

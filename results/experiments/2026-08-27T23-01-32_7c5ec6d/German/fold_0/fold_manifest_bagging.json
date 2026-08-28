@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "German",
+  "fold_idx": 0,
+  "treatment": "bagging",
+  "mode": "bagging",
+  "seed": 42,
+  "n_train": 720,
+  "n_val": 90,
+  "n_dsel": 90,
+  "n_test": 100,
+  "M": 100,
+  "pgdcs_types": null,
+  "pgdcs_best_generation": null,
+  "pgdcs_best_metric": null,
+  "pgdcs_best_score": null,
+  "k_eff": 7
+}

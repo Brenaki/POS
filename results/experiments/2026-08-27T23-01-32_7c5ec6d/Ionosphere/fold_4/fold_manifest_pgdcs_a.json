@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "Ionosphere",
+  "fold_idx": 4,
+  "treatment": "pgdcs_a",
+  "mode": "pgdcs_a",
+  "seed": 46,
+  "n_train": 253,
+  "n_val": 31,
+  "n_dsel": 32,
+  "n_test": 35,
+  "M": 100,
+  "pgdcs_types": [
+    "F1v",
+    "N1"
+  ],
+  "pgdcs_best_generation": 1,
+  "pgdcs_best_metric": "mvr",
+  "pgdcs_best_score": 0.967741935483871,
+  "k_eff": 7
+}

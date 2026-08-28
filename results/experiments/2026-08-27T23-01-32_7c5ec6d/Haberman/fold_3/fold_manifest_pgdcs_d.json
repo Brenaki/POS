@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "Haberman",
+  "fold_idx": 3,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 45,
+  "n_train": 220,
+  "n_val": 27,
+  "n_dsel": 28,
+  "n_test": 31,
+  "M": 100,
+  "pgdcs_types": [
+    "F2",
+    "T1"
+  ],
+  "pgdcs_best_generation": 15,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6222511252792956,
+  "k_eff": 7
+}

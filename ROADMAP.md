@@ -339,7 +339,14 @@ independentes, não `iteration=20` dentro de um mesmo objeto.
       **−6.19 pp (A) e −5.25 pp (D), negativo em 27/27 bases**, enquanto o
       Bagging erra 0.75 pp em módulo com média com sinal de −0.16 pp e 14
       negativos de 27 — ver ADR 0020 §11.7
-- [ ] **Execução do `pos-oracle-v2`** (10 folds × 28 datasets) — em curso
+- [x] **Execução do `pos-oracle-v2`** — run `2026-08-27T23-01-32_7c5ec6d`,
+      27 bases × 10 folds × 3 tratamentos (810 linhas), 5h38. Com os dois
+      perfis na mão dá para medir o ganho honesto do PGDCS sobre o Bagging:
+      **+0.39 pp (22/27) no perfil do artigo e −0.13 pp (12/27) no perfil do
+      POS**, contra os 4–6 pp da Tabela A.10 — ADR 0020 §11.7
+- [ ] **Portão de conformance por perfil** — hoje o recorder aplica a Tabela 2
+      em qualquer perfil, então P2 fica fora até do `pos-oracle-v2`, que não
+      replica ninguém. Precisa consultar o `reference_scope`; ADR próprio
 
 ## Decision log (ADRs)
 

@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "Thyroid",
+  "fold_idx": 4,
+  "treatment": "pgdcs_a",
+  "mode": "pgdcs_a",
+  "seed": 46,
+  "n_train": 499,
+  "n_val": 62,
+  "n_dsel": 62,
+  "n_test": 69,
+  "M": 100,
+  "pgdcs_types": [
+    "F3",
+    "LSC"
+  ],
+  "pgdcs_best_generation": 19,
+  "pgdcs_best_metric": "mvr",
+  "pgdcs_best_score": 0.9838709677419355,
+  "k_eff": 7
+}

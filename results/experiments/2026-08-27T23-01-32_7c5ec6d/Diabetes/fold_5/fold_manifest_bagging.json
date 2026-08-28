@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "Diabetes",
+  "fold_idx": 5,
+  "treatment": "bagging",
+  "mode": "bagging",
+  "seed": 47,
+  "n_train": 552,
+  "n_val": 68,
+  "n_dsel": 69,
+  "n_test": 77,
+  "M": 100,
+  "pgdcs_types": null,
+  "pgdcs_best_generation": null,
+  "pgdcs_best_metric": null,
+  "pgdcs_best_score": null,
+  "k_eff": 7
+}

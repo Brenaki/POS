@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "Weaning",
+  "fold_idx": 5,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 47,
+  "n_train": 218,
+  "n_val": 27,
+  "n_dsel": 27,
+  "n_test": 30,
+  "M": 100,
+  "pgdcs_types": [
+    "F4",
+    "LSC"
+  ],
+  "pgdcs_best_generation": 12,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6327462259265306,
+  "k_eff": 7
+}

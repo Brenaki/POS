@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "German",
+  "fold_idx": 7,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 49,
+  "n_train": 720,
+  "n_val": 90,
+  "n_dsel": 90,
+  "n_test": 100,
+  "M": 100,
+  "pgdcs_types": [
+    "F2",
+    "N2"
+  ],
+  "pgdcs_best_generation": 7,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6853093873478779,
+  "k_eff": 7
+}

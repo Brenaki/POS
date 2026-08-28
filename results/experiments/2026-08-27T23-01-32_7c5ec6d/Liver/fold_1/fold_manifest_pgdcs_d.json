@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "Liver",
+  "fold_idx": 1,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 43,
+  "n_train": 248,
+  "n_val": 31,
+  "n_dsel": 31,
+  "n_test": 35,
+  "M": 100,
+  "pgdcs_types": [
+    "F3",
+    "N4"
+  ],
+  "pgdcs_best_generation": 8,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6925341154544113,
+  "k_eff": 7
+}

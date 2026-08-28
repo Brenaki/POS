@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "Heart",
+  "fold_idx": 9,
+  "treatment": "bagging",
+  "mode": "bagging",
+  "seed": 51,
+  "n_train": 195,
+  "n_val": 24,
+  "n_dsel": 24,
+  "n_test": 27,
+  "M": 100,
+  "pgdcs_types": null,
+  "pgdcs_best_generation": null,
+  "pgdcs_best_metric": null,
+  "pgdcs_best_score": null,
+  "k_eff": 7
+}

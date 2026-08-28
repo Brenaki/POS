@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "Vehicle",
+  "fold_idx": 2,
+  "treatment": "bagging",
+  "mode": "bagging",
+  "seed": 44,
+  "n_train": 609,
+  "n_val": 76,
+  "n_dsel": 76,
+  "n_test": 85,
+  "M": 100,
+  "pgdcs_types": null,
+  "pgdcs_best_generation": null,
+  "pgdcs_best_metric": null,
+  "pgdcs_best_score": null,
+  "k_eff": 7
+}

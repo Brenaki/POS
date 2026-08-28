@@ -421,6 +421,22 @@ até a geração ~4–8 e depois **cai**, enquanto a MVR de validação continua
 subindo monotonicamente até a geração 20 (Wine: VAL 95.0 → 99.8, TEST 95.3 →
 95.0). É o formato clássico de sobreajuste ao conjunto de seleção.
 
+**O tamanho honesto do efeito.** Com os dois perfis executados, dá para medir
+o que o PGDCS realmente ganha do Bagging quando as duas pontas são medidas em
+teste:
+
+| Perfil | validação | PGDCS_A − Bagging | vence em |
+|--------|-----------|-------------------|----------|
+| `monteiro-2023-dt-compatible-v1` | 25% (= DSEL) | **+0.39 pp** | 22/27 |
+| `pos-oracle-v2` | 10% (disjunta) | **−0.13 pp** | 12/27 |
+
+No perfil compatível com o artigo o ganho existe, é consistente (22 de 27) e
+vale ~0.4 pp — uma ordem de grandeza abaixo dos 4–6 pp da Tabela A.10. No
+perfil próprio do POS, cuja validação é menor e disjunta do DSEL, o ganho
+desaparece: 12 vitórias em 27 é sorteio. A seleção de geração precisa de um
+conjunto de validação grande para não escolher ruído, e o que ela entrega,
+quando entrega, é marginal.
+
 **Consequência para este projeto.** O POS mantém `mv_acc` como acurácia em
 teste. `pgdcs_best_score` (MVR de validação da geração vencedora) fica
 registrado no manifesto de fold e é a coluna comparável à Tabela A.10; o

@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "Phoneme",
+  "fold_idx": 4,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 46,
+  "n_train": 3892,
+  "n_val": 486,
+  "n_dsel": 486,
+  "n_test": 540,
+  "M": 100,
+  "pgdcs_types": [
+    "F2",
+    "N3"
+  ],
+  "pgdcs_best_generation": 20,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6885980776615348,
+  "k_eff": 7
+}

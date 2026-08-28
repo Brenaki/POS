@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "Mammo",
+  "fold_idx": 6,
+  "treatment": "pgdcs_a",
+  "mode": "pgdcs_a",
+  "seed": 48,
+  "n_train": 598,
+  "n_val": 74,
+  "n_dsel": 75,
+  "n_test": 83,
+  "M": 100,
+  "pgdcs_types": [
+    "F2",
+    "N3"
+  ],
+  "pgdcs_best_generation": 20,
+  "pgdcs_best_metric": "mvr",
+  "pgdcs_best_score": 0.9594594594594594,
+  "k_eff": 7
+}

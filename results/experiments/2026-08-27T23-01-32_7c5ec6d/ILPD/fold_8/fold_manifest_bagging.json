@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "ILPD",
+  "fold_idx": 8,
+  "treatment": "bagging",
+  "mode": "bagging",
+  "seed": 50,
+  "n_train": 420,
+  "n_val": 52,
+  "n_dsel": 53,
+  "n_test": 58,
+  "M": 100,
+  "pgdcs_types": null,
+  "pgdcs_best_generation": null,
+  "pgdcs_best_metric": null,
+  "pgdcs_best_score": null,
+  "k_eff": 7
+}

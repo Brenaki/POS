@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "Monk",
+  "fold_idx": 0,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 42,
+  "n_train": 311,
+  "n_val": 38,
+  "n_dsel": 39,
+  "n_test": 44,
+  "M": 100,
+  "pgdcs_types": [
+    "F1v",
+    "N2"
+  ],
+  "pgdcs_best_generation": 19,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6566006836397554,
+  "k_eff": 7
+}

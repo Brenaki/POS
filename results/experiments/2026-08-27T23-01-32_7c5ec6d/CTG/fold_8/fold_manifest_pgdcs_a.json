@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "CTG",
+  "fold_idx": 8,
+  "treatment": "pgdcs_a",
+  "mode": "pgdcs_a",
+  "seed": 50,
+  "n_train": 1532,
+  "n_val": 191,
+  "n_dsel": 191,
+  "n_test": 212,
+  "M": 100,
+  "pgdcs_types": [
+    "F3",
+    "N3"
+  ],
+  "pgdcs_best_generation": 14,
+  "pgdcs_best_metric": "mvr",
+  "pgdcs_best_score": 0.9685863874345549,
+  "k_eff": 7
+}

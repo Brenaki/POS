@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "WDVG",
+  "fold_idx": 3,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 45,
+  "n_train": 3600,
+  "n_val": 450,
+  "n_dsel": 450,
+  "n_test": 500,
+  "M": 100,
+  "pgdcs_types": [
+    "F3",
+    "N4"
+  ],
+  "pgdcs_best_generation": 7,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6302871746052825,
+  "k_eff": 7
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "Sonar",
+  "fold_idx": 2,
+  "treatment": "pgdcs_a",
+  "mode": "pgdcs_a",
+  "seed": 44,
+  "n_train": 150,
+  "n_val": 18,
+  "n_dsel": 19,
+  "n_test": 21,
+  "M": 100,
+  "pgdcs_types": [
+    "F4",
+    "N3"
+  ],
+  "pgdcs_best_generation": 3,
+  "pgdcs_best_metric": "mvr",
+  "pgdcs_best_score": 1.0,
+  "k_eff": 7
+}

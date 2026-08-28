@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "Blood",
+  "fold_idx": 1,
+  "treatment": "pgdcs_a",
+  "mode": "pgdcs_a",
+  "seed": 43,
+  "n_train": 539,
+  "n_val": 67,
+  "n_dsel": 67,
+  "n_test": 75,
+  "M": 100,
+  "pgdcs_types": [
+    "F2",
+    "N4"
+  ],
+  "pgdcs_best_generation": 10,
+  "pgdcs_best_metric": "mvr",
+  "pgdcs_best_score": 0.8507462686567164,
+  "k_eff": 7
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "Diabetes",
+  "fold_idx": 7,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 49,
+  "n_train": 552,
+  "n_val": 69,
+  "n_dsel": 69,
+  "n_test": 76,
+  "M": 100,
+  "pgdcs_types": [
+    "F4",
+    "N1"
+  ],
+  "pgdcs_best_generation": 16,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6456141579699357,
+  "k_eff": 7
+}

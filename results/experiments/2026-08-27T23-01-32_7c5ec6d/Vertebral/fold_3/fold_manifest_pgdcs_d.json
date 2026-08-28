@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "Vertebral",
+  "fold_idx": 3,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 45,
+  "n_train": 216,
+  "n_val": 27,
+  "n_dsel": 27,
+  "n_test": 30,
+  "M": 100,
+  "pgdcs_types": [
+    "F2",
+    "N2"
+  ],
+  "pgdcs_best_generation": 6,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6585998412040985,
+  "k_eff": 7
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "Lithuanian",
+  "fold_idx": 7,
+  "treatment": "bagging",
+  "mode": "bagging",
+  "seed": 49,
+  "n_train": 1440,
+  "n_val": 180,
+  "n_dsel": 180,
+  "n_test": 200,
+  "M": 100,
+  "pgdcs_types": null,
+  "pgdcs_best_generation": null,
+  "pgdcs_best_metric": null,
+  "pgdcs_best_score": null,
+  "k_eff": 7
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "Faults",
+  "fold_idx": 6,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 48,
+  "n_train": 1398,
+  "n_val": 174,
+  "n_dsel": 175,
+  "n_test": 194,
+  "M": 100,
+  "pgdcs_types": [
+    "F4",
+    "N3"
+  ],
+  "pgdcs_best_generation": 15,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6210628909525978,
+  "k_eff": 7
+}

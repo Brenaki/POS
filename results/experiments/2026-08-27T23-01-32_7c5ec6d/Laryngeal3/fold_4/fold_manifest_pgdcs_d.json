@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "Laryngeal3",
+  "fold_idx": 4,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 46,
+  "n_train": 255,
+  "n_val": 31,
+  "n_dsel": 32,
+  "n_test": 35,
+  "M": 100,
+  "pgdcs_types": [
+    "F3",
+    "N3"
+  ],
+  "pgdcs_best_generation": 6,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6395790754971089,
+  "k_eff": 7
+}

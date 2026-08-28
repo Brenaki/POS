@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "Mammo",
+  "fold_idx": 3,
+  "treatment": "bagging",
+  "mode": "bagging",
+  "seed": 45,
+  "n_train": 598,
+  "n_val": 74,
+  "n_dsel": 75,
+  "n_test": 83,
+  "M": 100,
+  "pgdcs_types": null,
+  "pgdcs_best_generation": null,
+  "pgdcs_best_metric": null,
+  "pgdcs_best_score": null,
+  "k_eff": 7
+}
