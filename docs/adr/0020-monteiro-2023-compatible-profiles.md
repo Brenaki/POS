@@ -527,13 +527,14 @@ Medido: PGDCS_A 95,05 · PGDCS_D 95,05 · Bagging 94,60 · Oracle₁ 100,00 nas 
 Não comparável com a Tabela A.10 (91,9 / 91,7 / 88,0), que foi medida sobre
 5000 instâncias geradas com o mesmo procedimento, não sobre estas 2000.
 
-Fazer o portão consultar `reference_scope` do perfil, em vez de aplicar a
-Tabela 2 sempre, continua pendente e merece ADR próprio.
+Fazer o portão consultar o escopo do perfil, em vez de aplicar a Tabela 2
+sempre, foi resolvido no **ADR 0021** (portão por perfil): o `pos-oracle-v2`
+passa a verificar cada snapshot contra o catálogo SHA-256 do próprio POS
+(`Dataset/pos_catalog.json`), e P2 entra sem `--allow-unverified-data`.
 
 ## Open points
 
-- Portão de conformance por perfil: hoje é global (§11.11). O conserto pede ADR
-  próprio.
+- ~~Portão de conformance por perfil~~ — resolvido no ADR 0021.
 - Reproduzir os vencedores da Tabela 4 exige saber em qual partição de treino o
   paper rodou a votação (§11.8); o paper não informa. Fica registrado como
   limite de reprodutibilidade, não como pendência de implementação.

@@ -2,9 +2,11 @@
 
 Replaces the `--mode` recorder for the two scientific profiles. Per dataset:
 
-1. conformance-check the snapshot against Table 2 and apply the recorded
-   reconciliation — a `mismatch` is skipped unless `allow_unverified_data`
-   is set, which also marks the whole run `comparable=false`;
+1. gate the snapshot on the profile's dataset reference (ADR 0021): Table 2
+   with the recorded reconciliation for the Monteiro profile, the SHA-256
+   catalog `Dataset/pos_catalog.json` for `pos-oracle-v2`. A dataset that
+   fails is skipped unless `allow_unverified_data` is set, which also marks
+   the whole run `comparable=false`;
 2. vote the complexity measures once per dataset (Monteiro profile, whose
    Table 4 is per dataset) or per fold (POS profile);
 3. run every split x treatment, persisting per-split artifacts as it goes.
@@ -27,9 +29,10 @@ import pandas as pd
 
 from pos.oracle.arff_loader import load_arff_dataset
 from pos.oracle.conformance_catalog import PAPER_TABLE_2
-from pos.oracle.dataset_reconciliation import comparable_statuses
+from pos.oracle.dataset_gate import gate_decision, load_pos_catalog
 from pos.oracle.pgdcs_treatment import select_measures
 from pos.oracle.profile_runner import profile_splits, run_profile_experiment
+from pos.oracle.resume_helpers import completed_folds, load_existing_summary
 from pos.oracle.run_records import save_fold_artifacts
 from pos.oracle.run_records_v2 import (
     build_run_manifest_v2,
@@ -38,7 +41,6 @@ from pos.oracle.run_records_v2 import (
     per_dataset_summary_v2,
     survey_datasets,
 )
-from pos.oracle.resume_helpers import completed_folds, load_existing_summary
 from pos.oracle.summary_v2 import empty_summary_columns_v2
 
 DEFAULT_DATASETS = tuple(d["name"] for d in PAPER_TABLE_2)
@@ -77,9 +79,12 @@ def record_run_v2(config: dict[str, Any], output_dir: Path | str,
     datasets = list(config.get("datasets") or DEFAULT_DATASETS)
     dataset_dir = Path(config.get("dataset_dir", repo_dir / "Dataset"))
     allow_unverified = bool(config.get("allow_unverified_data", False))
-    allowed = comparable_statuses(allow_unverified)
+    catalog = load_pos_catalog(dataset_dir)
 
     conformance = survey_datasets(datasets, dataset_dir)
+    for record in conformance.values():
+        record.update(gate_decision(record, config.get("profile"),
+                                    allow_unverified, catalog))
     manifest = build_run_manifest_v2(config, repo_dir, conformance)
     done = completed_folds(output_dir) if resume else set()
     rows = load_existing_summary(output_dir) if resume else []
@@ -87,12 +92,13 @@ def record_run_v2(config: dict[str, Any], output_dir: Path | str,
         print(f"[resume] {len(done)} (dataset, split, treatment) already done")
 
     for name in datasets:
-        status = conformance[name]["conformance_status"]
-        if status not in allowed:
-            print(f"[skip] {name}: conformance={status}")
+        gate = conformance[name]
+        if not gate["gate_passes"]:
+            print(f"[skip] {name}: {gate['gate_reference']}={gate['gate_status']}")
             manifest.setdefault("skipped_datasets", []).append(
-                {"dataset": name, "reason": conformance[name]["conformance_reason"],
-                 "conformance_status": status})
+                {"dataset": name, "reason": gate["gate_reason"],
+                 "conformance_status": gate["gate_status"],
+                 "gate_reference": gate["gate_reference"]})
             continue
         path = dataset_path(name, dataset_dir)
         X, y = load_arff_dataset(path)

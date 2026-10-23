@@ -24,7 +24,9 @@ discrepancy recorded in the run manifest and the comparison report.
 P2 is a genuine content divergence — the snapshot holds 2000 instances where
 the paper generated 5000 — and stays `mismatch`: excluded from the published
 comparison unless `--allow-unverified-data` is passed, which also sets
-`comparable=false` for the whole run.
+`comparable=false` for the whole run. This Table 2 verdict gates only the
+Monteiro profile; `pos-oracle-v2` gates on its own SHA-256 catalog, where P2
+is conformant (ADR 0021, `pos/oracle/dataset_gate.py`).
 """
 
 from __future__ import annotations

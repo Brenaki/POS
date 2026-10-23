@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "adr": "0021",
+  "datasets": {
+    "Australian": {
+      "file": "Adult.arff",
+      "sha256": "sha256:41a691f09514130e66a964eeb20793d490c2d228dd132ae4029c85252daa5f92",
+      "instances": 690,
+      "features": 14,
+      "classes": 2
+    },
+    "Banana": {
+      "file": "Banana.arff",
+      "sha256": "sha256:0d15f4f3ebf8e376101e225e9c9abdf8becdbee0e41f5c8fdc310ea5c4f6407f",
+      "instances": 2000,
+      "features": 2,
+      "classes": 2
+    },
+    "Blood": {
+      "file": "Blood.arff",
+      "sha256": "sha256:0cd82ac61afac59056162806645343ce4278c43a2f63694a3e796f321af4f815",
+      "instances": 748,
+      "features": 4,
+      "classes": 2
+    },
+    "CTG": {
+      "file": "CTG.arff",
+      "sha256": "sha256:b627829d74416a30fc0529af89d854fc4caddef2547449614b11cf8864650f63",
+      "instances": 2126,
+      "features": 21,
+      "classes": 3
+    },
+    "Diabetes": {
+      "file": "Diabetes.arff",
+      "sha256": "sha256:fb547f66c2ceb1a6b205631d11bcdedb9b970f26bdd6adc3eb2dc72199fac925",
+      "instances": 766,
+      "features": 8,
+      "classes": 2
+    },
+    "Ecoli": {
+      "file": "Ecoli.arff",
+      "sha256": "sha256:6631facf6afd41b96d40065221ca4e922401aa359ca69054018d46aa03e18281",
+      "instances": 336,
+      "features": 7,
+      "classes": 8
+    },
+    "Faults": {
+      "file": "Faults.arff",
+      "sha256": "sha256:94690912293d3c71c93274014a8bb1fb14a205b14f1b8f9588379df2ccd42441",
+      "instances": 1941,
+      "features": 27,
+      "classes": 7
+    },
+    "German": {
+      "file": "German.arff",
+      "sha256": "sha256:ade243c2c9e010624db7233df15f67383554ab616e5d012307909e98e12ca679",
+      "instances": 1000,
+      "features": 24,
+      "classes": 2
+    },
+    "Glass": {
+      "file": "Glass.arff",
+      "sha256": "sha256:e4fff77cd2ac58ff3eea328077525e9172dcfd07876075adaae29955da27005c",
+      "instances": 214,
+      "features": 9,
+      "classes": 6
+    },
+    "Haberman": {
+      "file": "Haberman.arff",
+      "sha256": "sha256:71ab3a850d695ed7cd9c83c99efa409e699214e40b2f16d3c8b41d2f9572b795",
+      "instances": 306,
+      "features": 3,
+      "classes": 2
+    },
+    "Heart": {
+      "file": "Heart.arff",
+      "sha256": "sha256:fe86048ac1e911e05e384688388e434c3ed73123cd14440a242329073cdc02d0",
+      "instances": 270,
+      "features": 13,
+      "classes": 2
+    },
+    "ILPD": {
+      "file": "ILPD.arff",
+      "sha256": "sha256:c6e17799036ad664de6e6a6b5403a1c4839d5a1c3a564e17ad485e1f512c2891",
+      "instances": 583,
+      "features": 10,
+      "classes": 2
+    },
+    "Ionosphere": {
+      "file": "Ionosphere.arff",
+      "sha256": "sha256:56ccbe10eb0fa77fa799ee6ab770f76419bf6acd5997731b434132db5fa9411d",
+      "instances": 351,
+      "features": 34,
+      "classes": 2
+    },
+    "Laryngeal1": {
+      "file": "Laryngeal1.arff",
+      "sha256": "sha256:3e78fb5d07684cbd69d159e44ebe459ac6efeec4d08d1d5e8682ab9d7fa0439d",
+      "instances": 213,
+      "features": 16,
+      "classes": 2
+    },
+    "Laryngeal3": {
+      "file": "Laryngeal3.arff",
+      "sha256": "sha256:eb28a4890bbb5fd7515fbd482652161703550788b4c7d7b2e2c706ec93fad250",
+      "instances": 353,
+      "features": 16,
+      "classes": 3
+    },
+    "Lithuanian": {
+      "file": "Lithuanian.arff",
+      "sha256": "sha256:03caa886b98f29315d908a654035f92ba4994ade2866739f0d4471afd53900fe",
+      "instances": 2000,
+      "features": 2,
+      "classes": 2
+    },
+    "Liver": {
+      "file": "Liver.arff",
+      "sha256": "sha256:218dc94e43057853eb4919fedf97177664cf9848db7efc23b192881dbd377b71",
+      "instances": 345,
+      "features": 6,
+      "classes": 2
+    },
+    "Magic": {
+      "file": "Magic.arff",
+      "sha256": "sha256:d9937ab925693eec87d49b254b324f820a417ecb5c61828352c70c345b55c2a4",
+      "instances": 19020,
+      "features": 10,
+      "classes": 2
+    },
+    "Mammo": {
+      "file": "Mammo.arff",
+      "sha256": "sha256:6b2c9ccf43534b4a44751f542702986e1535c962917f567a8e92f803201288f8",
+      "instances": 830,
+      "features": 5,
+      "classes": 2
+    },
+    "Monk": {
+      "file": "Monk.arff",
+      "sha256": "sha256:247cc54f18cb34868ff2500a44199073c43f2f4c12c2f5f13839fbd5393be62a",
+      "instances": 432,
+      "features": 6,
+      "classes": 2
+    },
+    "P2": {
+      "file": "P2.arff",
+      "sha256": "sha256:2109e2fe995a1d2fea28ba376ee3a206bf8bd955400866f9edcf8b84f944392f",
+      "instances": 2000,
+      "features": 2,
+      "classes": 2
+    },
+    "Phoneme": {
+      "file": "Phoneme.arff",
+      "sha256": "sha256:551fb60ac05788ace9814a9f59772be8c9ab1a849fa253658f851769ff103269",
+      "instances": 5404,
+      "features": 5,
+      "classes": 2
+    },
+    "Segmentation": {
+      "file": "Segmentation.arff",
+      "sha256": "sha256:b3affc1ab2c9e6aaa68b778e3c3ca16d9773e44929e829736d2b254f9f523b27",
+      "instances": 2310,
+      "features": 19,
+      "classes": 7
+    },
+    "Sonar": {
+      "file": "Sonar.arff",
+      "sha256": "sha256:10a6b9f4472cf6edeb14be73791db8485ef59df7bfa85134f6447138fdf70de8",
+      "instances": 208,
+      "features": 60,
+      "classes": 2
+    },
+    "Thyroid": {
+      "file": "Thyroid.arff",
+      "sha256": "sha256:614bc2d754f71378b967a9778b9f6ce5e3f48b9c48f3608c6298922d44880115",
+      "instances": 692,
+      "features": 16,
+      "classes": 2
+    },
+    "Vehicle": {
+      "file": "Vehicle.arff",
+      "sha256": "sha256:4ff49d7ed0d3e46f919b4edf7a3477522788ba10371170edf9d5e7d834b76623",
+      "instances": 846,
+      "features": 18,
+      "classes": 4
+    },
+    "Vertebral": {
+      "file": "Vertebral.arff",
+      "sha256": "sha256:9124a2c8712f3e0901d594458ff9f85d236f2cb90ca04af3b2c9c3f41fa96013",
+      "instances": 300,
+      "features": 6,
+      "classes": 2
+    },
+    "WBC": {
+      "file": "WBC.arff",
+      "sha256": "sha256:a9193ee9bb2e6867d465f506d1b4e3356613e7f67d0b29f9111b565a7c036bd3",
+      "instances": 569,
+      "features": 30,
+      "classes": 2
+    },
+    "WDVG": {
+      "file": "WDVG.arff",
+      "sha256": "sha256:ab17c7ef08c12b422f63e6e5819786f1648ad9e110350548ed6a120d278bd251",
+      "instances": 5000,
+      "features": 21,
+      "classes": 3
+    },
+    "Weaning": {
+      "file": "Weaning.arff",
+      "sha256": "sha256:ef94e880e240e5e1d88af0ba1a4de796b8826b32879347d2db60527fc817c74e",
+      "instances": 302,
+      "features": 17,
+      "classes": 2
+    },
+    "Wine": {
+      "file": "Wine.arff",
+      "sha256": "sha256:c7559add3b27f9b58cfe654806433eff98022d774a580ffe3b51854dfb896fb5",
+      "instances": 178,
+      "features": 13,
+      "classes": 3
+    }
+  }
+}

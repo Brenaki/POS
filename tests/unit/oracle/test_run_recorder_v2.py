@@ -84,6 +84,29 @@ class TestConformanceGate:
         manifest = record_run_v2(cfg, tmp_path)
         assert manifest["n_summary_rows"] == cfg["n_replications"]
 
+    def test_gate_reference_is_recorded_per_dataset(self, cfg, tmp_path):
+        manifest = record_run_v2(cfg, tmp_path)
+        assert manifest["conformance"]["Wine"]["gate_reference"] == "monteiro-2023-table-2"
+
+
+class TestPerProfileGate:
+    """ADR 0021: pos-oracle-v2 gates on its own snapshot catalog."""
+
+    @pytest.fixture
+    def pos_cfg(self):
+        c = materialize_profile("pos-oracle-v2", scale="smoke")
+        c.update(des_methods=[], datasets=["P2"], treatments=["bagging"], jobs=1)
+        return c
+
+    def test_p2_runs_under_pos_without_the_flag(self, pos_cfg, tmp_path):
+        manifest = record_run_v2(pos_cfg, tmp_path)
+        assert manifest["n_summary_rows"] == pos_cfg["n_folds"]
+        assert "skipped_datasets" not in manifest
+        assert manifest["comparable"] == pos_cfg["comparable"]
+        gate = manifest["conformance"]["P2"]
+        assert gate["gate_reference"] == "pos-catalog"
+        assert gate["gate_status"] == "conformant"
+
 
 class TestIncrementalFlush:
     def test_rows_survive_a_failure_on_a_later_dataset(self, cfg, tmp_path, monkeypatch):
