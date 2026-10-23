@@ -1,0 +1,53 @@
+Adult: n=310
+Blood: n=336
+Banana: n=900
+CIFAR10CatDog: n=900
+CIFAR10: n=900
+Diabetes: n=344
+Ecoli: skipped (The least populated class in y has only 1 member, which is too few. The minimum number of groups for any class cannot be less than 2.)
+CTG: n=956
+FashionMNIST: n=900
+FashionTeeShirt: n=900
+German: n=450
+Glass: n=96
+Haberman: n=137
+Heart: n=121
+ILPD: n=262
+Ionosphere: n=157
+Laryngeal1: n=95
+Laryngeal3: n=158
+Faults: n=873
+Liver: n=155
+Lithuanian: n=900
+MNIST: n=900
+Mammo: n=373
+Monk: n=194
+P2: n=900
+Phoneme: n=2431
+Segmentation: n=1039
+Sonar: n=93
+Thyroid: n=311
+Vehicle: n=380
+Vertebral: n=135
+WBC: n=256
+WDVG: n=2250
+Weaning: n=135
+Wine: n=80
+Magic: n=8559
+reference       view measure  n_bags  n_datasets   mae  max_abs  pearson  spearman  kendall_mean  kendall_min  argmin_rate  topk_mean
+  ecol030        raw      T1     700          35 0.734    1.000   -0.366    -0.484        -0.348       -0.692        0.029      0.091
+  ecol030        raw      N1     700          35 0.121    0.266    0.973     0.972         0.587       -0.022        0.457      0.663
+  ecol030        raw     LSC     700          35 0.060    0.376    0.802     0.813         0.939        0.646        0.914      0.954
+  ecol030        raw      F4     700          35 0.119    0.727    0.901     0.899         0.466       -0.340        0.600      0.583
+  ecol030 dispersion      T1     700          35 0.242    1.000    0.237     0.164         0.121       -0.303        0.371      0.297
+  ecol030 dispersion      N1     700          35 0.177    1.000    0.519     0.482         0.364       -0.141        0.400      0.394
+  ecol030 dispersion     LSC     700          35 0.033    0.832    0.959     0.944         0.881        0.313        0.914      0.846
+  ecol030 dispersion      F4     700          35 0.183    1.000    0.415     0.360         0.375       -0.212        0.629      0.440
+  ecol044        raw      T1     700          35 0.173    0.523    0.918     0.953         0.358        0.062        0.314      0.486
+  ecol044        raw      N1     700          35 0.121    0.266    0.973     0.972         0.587       -0.022        0.457      0.663
+  ecol044        raw     LSC     700          35 0.060    0.376    0.802     0.813         0.939        0.646        0.914      0.954
+  ecol044        raw      F4     700          35 0.119    0.727    0.901     0.899         0.466       -0.340        0.600      0.583
+  ecol044 dispersion      T1     700          35 0.243    1.000    0.243     0.171         0.128       -0.294        0.429      0.303
+  ecol044 dispersion      N1     700          35 0.177    1.000    0.519     0.482         0.364       -0.141        0.400      0.394
+  ecol044 dispersion     LSC     700          35 0.033    0.832    0.959     0.944         0.881        0.313        0.914      0.846
+  ecol044 dispersion      F4     700          35 0.183    1.000    0.415     0.360         0.375       -0.212        0.629      0.440
