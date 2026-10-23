@@ -15,7 +15,7 @@
 
 | #  | Atividade                                                              | Meses              | Status |
 |----|------------------------------------------------------------------------|--------------------|--------|
-| 1  | Revisão bibliográfica sobre MCS, DCS/DES, diversidade e Oracle         | Set–Nov/2026       | [~]    |
+| 1  | Revisão bibliográfica sobre MCS, DCS/DES, diversidade e Oracle         | Set–Nov/2026       | [x]    |
 | 2  | Seleção das bases de dados e definição do protocolo experimental       | Out–Nov/2026       | [x]    |
 | 3  | Implementação do pool de classificadores e avaliação individual         | Nov/2026–Jan/2027  | [x]    |
 | 4  | Implementação do Oracle tradicional e dos Oracles em diferentes níveis | Dez/2026–Fev/2027  | [x]    |
@@ -273,8 +273,8 @@ pontos a corrigir, mais o PGDCS completo. Dois são bloqueadores de experimento
       **Floresta generaliza** (`R²=0.355`, ρ=0.335, p=4e-5, EAM 0.109 contra
       0.141 do baseline) — a relação é não-linear mas aprendível. Commit
       `5aceb11`
-- [ ] Bases de imagem via embeddings de CNN (objetivo 5 e o vínculo com o projeto
-      maior) — segunda bateria experimental, não uma correção; fica aberto
+- [~] Bases de imagem via embeddings de CNN (objetivo 5 e o vínculo com o projeto
+      maior) — segunda bateria experimental, em execução na Fase 10 (ADR 0022)
 
 ### Fase 9 — Perfis compatíveis com Monteiro 2023 (ADR 0020)
 
@@ -356,13 +356,43 @@ independentes, não `iteration=20` dentro de um mesmo objeto.
       teto da base é 91.1%, abaixo dos 93.1 publicados para Bagging e 5.7 pp
       abaixo dos 96.8 do PGDCS_A. Limite de reprodutibilidade por base. Sem
       Phoneme o erro do Bagging cai para 0.59 pp médio, máximo 2.27 pp
-- [ ] **Portão de conformance por perfil** — hoje o recorder aplica a Tabela 2
-      em qualquer perfil; P2 só entra com `--allow-unverified-data`, que
-      derruba `comparable` do run inteiro. Precisa consultar o
-      `reference_scope`; ADR próprio
+- [x] **Portão de conformance por perfil** — resolvido no ADR 0021 (Fase 10):
+      o `pos-oracle-v2` verifica cada snapshot contra `Dataset/pos_catalog.json`
+      (SHA-256) e P2 entra sem `--allow-unverified-data`; o perfil Monteiro
+      mantém a Tabela 2
 - [x] **Relatório atualizado** (`relatorio/`) — nova seção "Replicação do
       PGDCS contra a fonte", quinto resultado central no resumo, Phoneme e P2
       nas limitações, Monteiro 2023 nas referências
+
+### Fase 10 — Revisão sistemática, portão por perfil e bateria de imagens
+
+Sessão de 2026-10-23. O levantamento do que faltava mostrou três pendências
+automatizáveis (revisão bibliográfica, portão por perfil, bases de imagem) e as
+que dependem de outra pessoa ou de outro momento (R/ECoL com `sudo`, testes de
+caracterização e remoção do R que dependem dele, relatórios PROPESP).
+
+- [x] **Ambiente** — o `.venv` estava quebrado (symlink para um CPython 3.10 do
+      `uv` que não existia mais); `uv python install 3.10` restaurou. Linha de
+      base: 524 testes verdes, cobertura 83.5%
+- [x] **Revisão sistemática PRISMA 2020** (`docs/revisao-sistematica/`) — Scopus
+      via CAPES/CAFe, IEEE Xplore e OpenAlex; 2021–2026, en/pt/zh, preprints
+      excluídos (critérios do autor). 677 identificados, 329 duplicatas, 348
+      triados, 112 em texto completo, **24 relatos / 22 estudos incluídos**.
+      Achado central: o Oracle é usado como teto descritivo (10 estudos) e não
+      analisado; a única generalização no período é o *Hardness-aware Oracle*
+      (Cordeiro et al., 2023), com eixo de dificuldade, não de redundância;
+      nenhum estudo relaciona diversidade com a folga recuperável. Web of
+      Science não consultado (busca falha pelo EZproxy)
+- [x] **ADR 0021** — portão de conformance por perfil; catálogo SHA-256 dos
+      snapshots, 28 hashes conferidos contra o run canônico
+- [~] **ADR 0022** — bateria de imagens: ResNet-18 congelada, 2000 imagens por
+      base, PCA 32 ajustado em conjunto disjunto; MNIST, FashionMNIST,
+      FashionTeeShirt (run A) e CIFAR10, CIFAR10CatDog (run B)
+- [x] Relatório: nova seção "Revisão sistemática", objetivo 1 com a síntese,
+      limitações e referências atualizadas, lista dos estudos incluídos
+- [ ] Pendências que ficam: R/ECoL (`sudo pacman -S r tk`), validação do
+      `T1_fast` contra ECoL, Fases 1 e 3, relatórios PROPESP (semestral até
+      15/03/2027, final até 11/09/2027), segundo revisor para a triagem PRISMA
 
 ## Decision log (ADRs)
 
@@ -386,6 +416,9 @@ independentes, não `iteration=20` dentro de um mesmo objeto.
 - `docs/adr/0017-dcs-des-baselines-deslib.md` — DCS/DES via DESlib (OLA, LCA, KNORA-E/U, META-DES), DSEL = validação, métrica `recovered`
 - `docs/adr/0019-canonical-rerun-and-generation-control.md` — run canônico de árvore limpa, PGDCS completo como quinto modo, controle `randbag`, poda medida
 - `docs/adr/0020-monteiro-2023-compatible-profiles.md` — dois perfis científicos (`pos-oracle-v2`, `monteiro-2023-dt-compatible-v1`), PGDCS aligned com Monteiro 2023, catálogo de conformance, comparador descritivo, remoção de soft fusion, Oracle greedy
+
+- `docs/adr/0021-per-profile-conformance-gate.md` — portão de conformance por perfil, catálogo SHA-256 dos snapshots do POS
+- `docs/adr/0022-image-battery-cnn-embeddings.md` — segunda bateria: bases de imagem via embeddings de ResNet-18 congelada + PCA disjunto
 
 ## Notes
 

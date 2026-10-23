@@ -1,0 +1,119 @@
+\section{Revisão sistemática da literatura (PRISMA 2020)}
+\label{sec:revisao}
+
+A atividade~1 do cronograma (revisão bibliográfica sobre MCS, DCS/DES,
+diversidade e Oracle) foi conduzida como revisão sistemática segundo o PRISMA
+2020 (Page et al., 2021). Protocolo, strings, exportações brutas, decisões por
+registro e scripts estão em \texttt{docs/revisao-sistematica/}; as contagens do
+fluxograma são recalculadas por script a partir dos CSVs.
+
+\paragraph{Perguntas.} RQ1 --- como o Oracle é definido e usado como limite
+superior em MCS e DCS/DES? RQ2 --- que trabalhos propõem limites mais realistas
+ou generalizações do Oracle? RQ3 --- como diversidade e redundância de acertos se
+relacionam com a folga entre o Oracle e os combinadores reais? RQ4 --- que
+protocolos e bases são usados?
+
+\paragraph{Elegibilidade.} Publicado entre $2021$ e $2026$; em inglês, português
+ou chinês; trata do Oracle ou de limite superior em MCS/DCS/DES, \emph{ou} mede
+diversidade $\times$ desempenho do ensemble empiricamente. Exclusão: preprints,
+``oracle'' em outro sentido (blockchain, oráculo de teste, banco de dados),
+texto inacessível, duplicatas. Os trabalhos fundadores anteriores a $2021$
+(Kuncheva e Whitaker, 2003; Souza e Cavalcanti, 2017; Cruz et al., 2017, 2018)
+ficam fora do corpus por construção e aparecem nas demais seções como
+referencial teórico.
+
+\paragraph{Fontes e buscas.} Scopus (pelo Portal de Periódicos CAPES, acesso
+CAFe), IEEE Xplore e OpenAlex, com quatro strings --- S1 Oracle e limites, S2
+diversidade $\times$ acurácia, S3 seleção dinâmica, S4 geração de pool --- e
+snowballing para frente pelo campo \texttt{REF} do Scopus (quem cita Monteiro et
+al., 2023, e Souza e Cavalcanti, 2017). O Web of Science estava planejado e não
+foi consultado: toda busca devolve erro pelo proxy da CAPES. ScienceDirect e
+SpringerLink entram pela indexação do Scopus e serviram ao acesso ao texto
+completo. Buscas executadas em $23$ de outubro de $2026$.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  node distance=13mm and 8mm,
+  box/.style={draw, rounded corners=2pt, align=left, font=\footnotesize,
+              text width=6.2cm, inner sep=4pt},
+  side/.style={draw, rounded corners=2pt, align=left, font=\footnotesize,
+               text width=5.6cm, inner sep=4pt, fill=black!4},
+  arr/.style={-{Stealth[length=2mm]}}]
+\node[box] (id) {\textbf{Identificação:} $677$ registros\\
+  Scopus $319$ $\cdot$ IEEE Xplore $108$ $\cdot$ OpenAlex $250$};
+\node[side, right=of id] (dup) {Duplicatas removidas: $329$};
+\node[box, below=of id] (scr) {\textbf{Triagem} (título e resumo): $348$};
+\node[side, right=of scr] (exs) {Excluídos: $236$\\
+  aplicação sem análise $148$; fora do tema ou ``oracle'' em outro sentido
+  $42$; não-classificação $31$; não revisado por pares $10$; sem informação $5$};
+\node[box, below=of scr] (sou) {Buscados em texto completo: $112$};
+\node[side, right=of sou] (nr) {Não recuperados: $10$};
+\node[box, below=of sou] (ass) {\textbf{Elegibilidade} (texto completo): $102$};
+\node[side, right=of ass] (exf) {Excluídos: $78$\\
+  não usa o Oracle nem relaciona diversidade e acurácia $74$; ``oracle'' em
+  outro sentido $2$; retratado ou outro relato $2$};
+\node[box, below=of ass] (inc) {\textbf{Incluídos:} $24$ relatos, $22$ estudos\\
+  generaliza o Oracle $1$ $\cdot$ Oracle como referência $10$ $\cdot$
+  diversidade $\times$ acurácia $13$};
+\draw[arr] (id) -- (scr); \draw[arr] (scr) -- (sou);
+\draw[arr] (sou) -- (ass); \draw[arr] (ass) -- (inc);
+\draw[arr] (id) -- (dup); \draw[arr] (scr) -- (exs);
+\draw[arr] (sou) -- (nr); \draw[arr] (ass) -- (exf);
+\end{tikzpicture}
+\caption{Fluxograma PRISMA 2020 da revisão. As contagens saem de
+\texttt{fluxo\_prisma.json} e fecham por construção: $677-329=348$,
+$348-236=112$, $102-78=24$.}
+\label{fig:prisma}
+\end{figure}
+
+\subsection{Síntese por pergunta}
+
+\paragraph{RQ1 --- o Oracle é reportado, não analisado.} Dez estudos usam o
+Oracle como referência experimental de teto, quase sempre como uma coluna a mais
+na tabela de resultados (FH-DES, MLS, GNN-DES, Monteiro et al., entre outros). Em
+parte deles o Oracle é retirado dos testes estatísticos por ser ``uma
+abstração''; só um deixa a folga visível por base (MLS: Balance-Scale $0{,}910$
+contra $0{,}987$ do Oracle). Duas linhas o usam como rótulo de meta-aprendizado
+(o seletor é treinado para imitar o Oracle no treino), e um estudo o apresenta
+como ``meta-classificador'' implantável --- o que é vazamento de rótulo, já que o
+Oracle consulta a classe verdadeira. Com pools de $100$ classificadores o Oracle
+fica perto de $1$ (Monteiro et al.: $\approx99\%$ para quase todo gerador), o que
+confirma, fora deste projeto, que \On{1} pouco discrimina entre pools
+(Seção~\ref{sec:obj1}).
+
+\paragraph{RQ2 --- uma única generalização, com outro eixo.} O
+\emph{Hardness-aware Oracle} (Cordeiro, Cavalcanti e Cruz, 2023) pondera o acerto pela
+dificuldade da instância para escolher, a posteriori, entre métodos de DES.
+Nenhum trabalho do período propõe níveis ``pelo menos $N$ de $M$ corretos'', uma
+curva de Oracles ou a ligação $\On{M/2+1}\le\mvr\le\On{M/2}$. O \On{N} preenche
+uma lacuna documentada, e é complementar ao HaO: um conta a redundância de
+acertos, o outro pesa a dificuldade da instância.
+
+\paragraph{RQ3 --- diversidade medida contra a acurácia, nunca contra a folga.}
+Doze estudos relacionam diversidade e acurácia, e a maioria propõe uma medida
+nova (\emph{double-fault disagreement}, diversidade de interpretabilidade,
+distância de ranking, volume em embeddings aprendidos, ambiguidade). A relação
+encontrada é fraca e depende do contexto: correlação positiva fraca em
+sensoriamento remoto, sinal que muda com a taxa de amostragem, efeito
+condicionado ao combinador em ensembles heterogêneos. Nenhum estudo relaciona
+diversidade ou redundância com a fração do teto que um combinador real recupera
+--- que é onde este projeto encontra sinal forte ($\dfe$, Spearman $-0{,}89$ com
+a folga, Seção~\ref{sec:obj8}).
+
+\paragraph{RQ4 --- protocolos.} O padrão é $20$--$35$ bases UCI/KEEL, pools de
+$100$ Perceptrons (o mesmo do PGDCS), holdout replicado ou $k$-fold, e Wilcoxon,
+Friedman ou Quade com o Oracle fora do teste. Imagens aparecem só via atributos
+profundos (CNNs em CIFAR, ViT/CNN em texturas), o que respalda a bateria do
+ADR~0022 (Seção~\ref{sec:obj5}). Nenhum estudo discute os dois vieses que este
+projeto mediu: escolher o melhor método no teste e medir no mesmo conjunto que
+seleciona.
+
+\paragraph{Limitações da revisão.} A triagem foi feita por um revisor assistido
+por IA, com critérios idênticos por lote e sem segundo revisor independente (sem
+kappa). A elegibilidade em texto completo usou os trechos ao redor de cada
+ocorrência de ``oracle'' e contagens de termos, com recheck integral dos
+artigos excluídos que tinham muitas ocorrências. O Web of Science, as bases
+chinesas (CNKI, Wanfang) e o snowballing para trás ficaram de fora. Recomenda-se
+que o orientador revise uma amostra das exclusões. Os $24$ relatos incluídos
+estão listados ao final, em ``Estudos incluídos na revisão sistemática''.
