@@ -32,8 +32,13 @@ from pos.oracle.arff_loader import list_datasets, load_arff_dataset  # noqa: E40
 
 def one_dataset(path: Path, n_bags: int) -> pd.DataFrame:
     X, y = load_arff_dataset(path)
+    try:
+        bags = frozen_bags(X, y, n_bags, max_bag=10**9)
+    except ValueError as e:  # a class too rare to stratify (Ecoli; ADR 0014 gate)
+        print(f"{path.stem}: skipped ({e})", flush=True)
+        return pd.DataFrame()
     rows = []
-    for b, (Xb, yb) in enumerate(frozen_bags(X, y, n_bags, max_bag=10**9)):
+    for b, (Xb, yb) in enumerate(bags):
         Xn = _normalize(Xb)
         for m, fast, e030, e044 in (
                 ("T1", _t1_fast(Xn, yb), t1_ecol(Xb, yb, "0.3.0"), t1_ecol(Xb, yb, "0.4.4")),

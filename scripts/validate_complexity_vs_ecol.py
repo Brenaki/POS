@@ -52,7 +52,11 @@ def frozen_bags(X, y, n_bags: int, max_bag: int):
 
 def one_dataset(path: Path, n_bags: int, max_bag: int) -> pd.DataFrame:
     X, y = load_arff_dataset(path)
-    bags = frozen_bags(X, y, n_bags, max_bag)
+    try:
+        bags = frozen_bags(X, y, n_bags, max_bag)
+    except ValueError as e:  # a class too rare to stratify (Ecoli; ADR 0014 gate)
+        print(f"{path.stem}: skipped ({e})", flush=True)
+        return pd.DataFrame()
     rows = []
     for b, (Xb, yb) in enumerate(bags):
         t0 = time.perf_counter()
