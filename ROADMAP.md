@@ -273,8 +273,8 @@ pontos a corrigir, mais o PGDCS completo. Dois são bloqueadores de experimento
       **Floresta generaliza** (`R²=0.355`, ρ=0.335, p=4e-5, EAM 0.109 contra
       0.141 do baseline) — a relação é não-linear mas aprendível. Commit
       `5aceb11`
-- [~] Bases de imagem via embeddings de CNN (objetivo 5 e o vínculo com o projeto
-      maior) — segunda bateria experimental, em execução na Fase 10 (ADR 0022)
+- [x] Bases de imagem via embeddings de CNN (objetivo 5 e o vínculo com o projeto
+      maior) — segunda bateria experimental, concluída na Fase 10 (ADR 0022)
 
 ### Fase 9 — Perfis compatíveis com Monteiro 2023 (ADR 0020)
 
@@ -385,11 +385,17 @@ caracterização e remoção do R que dependem dele, relatórios PROPESP).
       Science não consultado (busca falha pelo EZproxy)
 - [x] **ADR 0021** — portão de conformance por perfil; catálogo SHA-256 dos
       snapshots, 28 hashes conferidos contra o run canônico
-- [~] **ADR 0022** — bateria de imagens: ResNet-18 congelada, 2000 imagens por
-      base, PCA 32 ajustado em conjunto disjunto; MNIST, FashionMNIST,
-      FashionTeeShirt (run A) e CIFAR10, CIFAR10CatDog (run B)
+- [x] **ADR 0022** — bateria de imagens: ResNet-18 congelada, 2000 imagens por
+      base, PCA 32 ajustado em conjunto disjunto. Runs `2026-10-23T01-02-10_8a9d9bd`
+      (MNIST, FashionMNIST, FashionTeeShirt) e `2026-10-23T03-58-14_1e2c140`
+      (CIFAR10, CIFAR10CatDog): 150 folds, 0 erros, `comparable: true`.
+      Invariantes 150/150, sanduíche binário 60/60; N* multiclasse em
+      0.33–0.37·M (tabular 0.50·M, p=0.017); o melhor DES recupera 3.4% da folga
+      (tabular 10.4%, p=0.002); a curva `DF/e²`→folga ajustada nas tabulares
+      prevê as imagens com MAE 0.026 (trivial 0.057)
 - [x] Relatório: nova seção "Revisão sistemática", objetivo 1 com a síntese,
-      limitações e referências atualizadas, lista dos estudos incluídos
+      limitações e referências atualizadas, lista dos estudos incluídos; objetivo 5 com a
+      bateria de imagens (tabela, figura 9), resumo e resultados esperados
 - [ ] Pendências que ficam: R/ECoL (`sudo pacman -S r tk`), validação do
       `T1_fast` contra ECoL, Fases 1 e 3, relatórios PROPESP (semestral até
       15/03/2027, final até 11/09/2027), segundo revisor para a triagem PRISMA

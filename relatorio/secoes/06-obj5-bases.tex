@@ -8,18 +8,87 @@ Foram usadas $29$ bases públicas (UCI, KEEL e as sintéticas clássicas da lite
 de MCS: P2, Banana, Lithuanian), com $178$ a $19\,020$ amostras, $2$ a $8$ classes e
 razão de desbalanceamento de $1.0$ a $71.5$.
 
-\paragraph{Ressalva explícita.} O objetivo 5 menciona preferência por \emph{bases de
-imagens} públicas. O catálogo atual privilegia comparabilidade direta com a
-literatura de referência (as $28$ bases de Monteiro et al., 2022, mais Magic) em vez
-de bases de imagens. É um desvio consciente do enunciado, registrado aqui e nas
-pendências do \texttt{ROADMAP}; incorporar bases de imagens é trabalho futuro
-imediato, e não altera nenhum dos mecanismos identificados, que dependem da geometria
-da fronteira e não do domínio.
-
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.92\textwidth]{figuras/fig4_gap_per_dataset.png}
 \caption{Folga $\On{1}-\mvr$ por base. A dispersão entre bases ($0.017$ a $0.458$) é
 muito maior que a dispersão entre modos ($0.142$ a $0.220$): o potencial não
 explorado é sobretudo uma propriedade do problema, não da estratégia de geração.}
+\end{figure}
+
+\paragraph{Bateria de imagens.} O objetivo 5 pede, de preferência, bases de
+imagem públicas. Pixels crus classificados por Perceptrons mediriam a falta de
+representação, não o Oracle. Por isso cada imagem vira o vetor de $512$ atributos
+de uma ResNet-18 congelada com pesos do ImageNet, projetado por PCA para $32$
+dimensões. O PCA é ajustado num conjunto disjunto do treino oficial, de modo que
+nenhum fold participa da projeção (ADR~0022). São $2000$ imagens estratificadas do
+teste oficial por base, em cinco bases: MNIST, Fashion-MNIST e CIFAR-10 ($10$
+classes), mais dois pares binários difíceis --- gato $\times$ cachorro (CIFAR-10) e
+camiseta $\times$ camisa (Fashion-MNIST). O protocolo é o \texttt{pos-oracle-v2}
+sem alteração: $10$ folds, $M=100$, três tratamentos e seis métodos de DES, em
+$150$ folds com $0$ erros, árvore limpa e \texttt{comparable=true} (runs
+\texttt{2026-10-23T01-02-10\_8a9d9bd} e \texttt{2026-10-23T03-58-14\_1e2c140},
+$4$h$26$ de CPU em $4$ núcleos). Os contrastes abaixo usam uma linha por base
+(tratamentos agregados) contra as $28$ bases tabulares do mesmo perfil, com
+Mann-Whitney.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{lrrrrrrr}
+\toprule
+Base & classes & \On{1} & \mvr & melhor DES & recuperado & $N^{*}$ & \dfe \\
+\midrule
+MNIST           & $10$ & $0{,}997$ & $0{,}812$ & $0{,}821$ & $4{,}6\%$ & $32{,}6$ & $1{,}59$ \\
+FashionMNIST    & $10$ & $0{,}998$ & $0{,}783$ & $0{,}787$ & $1{,}9\%$ & $36{,}7$ & $1{,}65$ \\
+CIFAR10         & $10$ & $0{,}997$ & $0{,}707$ & $0{,}712$ & $1{,}6\%$ & $33{,}4$ & $1{,}28$ \\
+CIFAR10CatDog   & $2$  & $1{,}000$ & $0{,}811$ & $0{,}817$ & $3{,}4\%$ & $51{,}6$ & $1{,}65$ \\
+FashionTeeShirt & $2$  & $0{,}999$ & $0{,}833$ & $0{,}839$ & $3{,}5\%$ & $51{,}7$ & $1{,}94$ \\
+\bottomrule
+\end{tabular}
+\caption{Bateria de imagens, médias de $10$ folds e três tratamentos. ``Melhor
+DES'' é o máximo por fold entre os seis métodos dinâmicos, escolhido no teste
+(cota otimista); ``recuperado'' é a fração da folga $\On{1}-\mvr$ que ele
+recupera.}
+\label{tab:imagens}
+\end{table}
+
+Os mecanismos das bases tabulares se mantêm, e a seleção dinâmica rende ainda
+menos:
+\begin{itemize}
+\item \textbf{Invariantes e sanduíche.} A monotonicidade e $\On{1}\ge\mvr$ valem em
+$150/150$ folds. Nas duas binárias, $\On{M/2+1}\le\mvr\le\On{M/2}$ vale em
+$60/60$ folds, com igualdade exata em $29$. Por isso $N^{*}\approx M/2$ nelas
+($51{,}6$), como nas tabulares.
+\item \textbf{Multiclasse cruza mais cedo.} Com $10$ classes, a votação por
+pluralidade acerta com menos de metade dos votos, e $N^{*}$ cai para
+$0{,}33$--$0{,}37\,M$, contra mediana $0{,}50\,M$ nas $7$ multiclasse tabulares
+($p=0{,}017$). Não há sanduíche fora do caso binário, e a curva confirma isso.
+\item \textbf{A folga é grande e quase nada dela é recuperado.} \On{1} fica em pelo menos
+$0{,}995$ em todas as bases, enquanto a acurácia individual média é baixa ($0{,}64$
+contra $0{,}76$ nas tabulares, $p=0{,}022$). A folga mediana é $0{,}19$
+($0{,}15$ nas tabulares, $p=0{,}25$). O melhor DES recupera $3{,}4\%$ dela (mediana), contra
+$10{,}4\%$ nas tabulares ($p=0{,}002$). No CIFAR-10 com PGDCS-A, o melhor dos seis
+métodos fica abaixo do \mvr{}. Em embeddings genéricos, a vizinhança em que os
+métodos de DES estimam competência é pouco informativa.
+\item \textbf{\dfe{} prevê a folga das imagens sem reajuste.} Uma curva
+isotônica decrescente ajustada só nas $84$ combinações base$\times$tratamento
+tabulares ($\rho=-0{,}92$) prevê a folga das $15$ combinações de imagem com erro
+absoluto médio de $0{,}026$, contra $0{,}057$ da mediana tabular. As imagens têm
+\dfe{} entre $1{,}27$ e $1{,}96$, na faixa de ``candidato forte'' da regra da
+Seção~\ref{sec:obj8}. É a primeira validação do índice fora do domínio em que foi
+descoberto. Ela também mostra o limite do índice: a folga é grande, como a regra
+prevê, mas a recuperação real é ainda menor que nas tabulares.
+\item \textbf{O tratamento não importa.} As curvas de Bagging, PGDCS-A e PGDCS-D
+se sobrepõem em todas as bases (Figura~\ref{fig:imagens}), como no resultado (i)
+das bases tabulares.
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figuras/fig9_image_oracle_curves.png}
+\caption{Curva \On{N}, $N=1..100$, nas cinco bases de imagem, média dos $10$ folds
+por tratamento; pontilhado: \mvr. Nas binárias (duas à direita) a curva cruza o
+\mvr{} em $N\approx50$; nas de $10$ classes, entre $N\approx33$ e $37$.}
+\label{fig:imagens}
 \end{figure}

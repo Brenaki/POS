@@ -532,6 +532,48 @@ esconder a minoria.
 
 ---
 
+## Achado 7 — os mecanismos valem em imagens, e a seleção dinâmica rende menos (objetivo 5, ADR 0022)
+
+Segunda bateria: cinco bases de imagem, 2000 imagens estratificadas do teste
+oficial, embeddings de 512-d de uma ResNet-18 congelada (ImageNet) projetados por
+PCA para 32-d (PCA ajustado num conjunto disjunto do treino oficial). Perfil
+`pos-oracle-v2` sem alteração, 150 folds, 0 erros, `git_dirty: false`,
+`comparable: true`. Runs `2026-10-23T01-02-10_8a9d9bd` (MNIST, FashionMNIST,
+FashionTeeShirt, 2h56) e `2026-10-23T03-58-14_1e2c140` (CIFAR10, CIFAR10CatDog,
+1h30). Análise: `scripts/analyze_image_battery.py <runA> <runB>` →
+`analysis_images.txt` no run A.
+
+| base | classes | Oracle_1 | MVR | melhor DES | recuperado | N* | DF/e² | var. PCA |
+|---|---|---|---|---|---|---|---|---|
+| MNIST | 10 | 0.997 | 0.812 | 0.821 | 4.6% | 32.6 | 1.59 | 0.80 |
+| FashionMNIST | 10 | 0.998 | 0.783 | 0.787 | 1.9% | 36.7 | 1.65 | 0.73 |
+| CIFAR10 | 10 | 0.997 | 0.707 | 0.712 | 1.6% | 33.4 | 1.28 | 0.60 |
+| CIFAR10CatDog | 2 | 1.000 | 0.811 | 0.817 | 3.4% | 51.6 | 1.65 | 0.59 |
+| FashionTeeShirt | 2 | 0.999 | 0.833 | 0.839 | 3.5% | 51.7 | 1.94 | 0.74 |
+
+(médias de 10 folds e 3 tratamentos; "melhor DES" escolhido no teste, cota otimista)
+
+- **Invariantes**: monotonicidade e Oracle_1 ≥ MVR em 150/150 folds. **Sanduíche**
+  `Oracle_51 ≤ MVR ≤ Oracle_50` em 60/60 folds binários (igualdade exata em 29).
+- **N* multiclasse cai abaixo de M/2**: 0.33–0.37·M nas três de 10 classes, contra
+  mediana 0.50·M nas 7 multiclasse tabulares (Mann-Whitney p=0.017). A pluralidade
+  acerta com menos de metade dos votos.
+- **Recuperação**: mediana 3.4% da folga contra 10.4% nas 28 tabulares do mesmo
+  perfil (p=0.002). No CIFAR10/pgdcs_a o melhor DES fica abaixo do MVR (−0.4%).
+  A acurácia individual é menor (0.64 vs 0.76, p=0.022); a folga mediana é
+  maior, mas sem significância (0.19 vs 0.15, p=0.25).
+- **DF/e² fora do domínio**: curva isotônica decrescente ajustada só nas 84
+  base×tratamento tabulares (Spearman −0.92) prevê a folga das 15 de imagem com
+  MAE 0.026, contra 0.057 da mediana tabular. Dentro das imagens, Spearman −0.63.
+  O índice transfere para a folga, não para a recuperação.
+- **Tratamento**: as curvas de Bagging, PGDCS-A e PGDCS-D se sobrepõem (figura
+  `fig9_image_oracle_curves.png`), como no Achado 0b.
+
+Limitações: extrator genérico congelado, 2000 imagens por base, PCA retendo
+59–80% da variância, e só cinco bases contra 28 nos contrastes.
+
+---
+
 ## Recomendações consolidadas (objetivo 8)
 
 Estas são as recomendações que o objetivo 8 pede — quando usar Oracle_N como
@@ -612,13 +654,10 @@ DCS/DES é da ordem do custo de gerar os pools, e num pool de árvores ele compr
 
 ## Pendências
 
-**Bases de imagens (objetivo 5).** O protocolo usa as 28 bases da tese de referência
-mais Magic. O objetivo 5 menciona preferência por bases de imagens públicas; a
-escolha atual privilegia comparabilidade direta com Monteiro et al. (2022). Item
-aberto da Fase 8 — segunda bateria experimental, não uma correção.
-
 **Validação de `T1_fast` contra ECoL/R.** Pendente de instalação do R (Fase 0).
 
 Resolvidas nesta rodada (ADR 0019, run `5aceb11`): proveniência do run (árvore
 limpa, run sujo anterior validado bit a bit) e `GA-F1/T1` vs PGDCS completo
 (Achado 0b — indistinguíveis; use F1/T1).
+
+Resolvida na Fase 10 (ADR 0022): bases de imagem (Achado 7).

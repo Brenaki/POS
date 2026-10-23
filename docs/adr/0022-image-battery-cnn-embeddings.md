@@ -78,3 +78,22 @@ A análise fica em `pos/analysis/v2_battery.py` e
   descarta parte da variância (registrada por base). As conclusões valem para
   "imagens representadas por um extrator genérico", que é o uso comum de MCS
   sobre imagens.
+
+## Resultados (2026-10-23)
+
+Dois runs de árvore limpa, `comparable: true`, 0 erros, 150 folds no total:
+`2026-10-23T01-02-10_8a9d9bd` (MNIST, FashionMNIST, FashionTeeShirt; 2h56 com
+`--jobs 4`) e `2026-10-23T03-58-14_1e2c140` (CIFAR10, CIFAR10CatDog; 1h30). O
+smoke projetava menos de 10 h, então a amostra de 2000 imagens e as 32
+dimensões foram mantidas. Variância retida pelo PCA: MNIST 0.796,
+FashionMNIST 0.732, FashionTeeShirt 0.737, CIFAR10 0.597, CIFAR10CatDog 0.590.
+
+- Invariantes em 150/150 folds. Sanduíche binário em 60/60 (igualdade em 29).
+- N* nas multiclasse: 0.33–0.37·M, abaixo da mediana tabular de 0.50·M (p=0.017).
+- O melhor DES recupera 3.4% da folga (mediana), contra 10.4% nas tabulares
+  (p=0.002).
+- `DF/e²` transfere: a curva isotônica das 84 base×tratamento tabulares prevê
+  a folga das 15 de imagem com MAE 0.026 (mediana tabular: 0.057).
+
+Detalhes no Achado 7 de `docs/resultados-oracle-n.md` e na Seção do objetivo 5
+do relatório.

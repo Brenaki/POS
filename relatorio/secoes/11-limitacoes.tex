@@ -1,9 +1,13 @@
 \section{Limitações}
 
 \begin{itemize}
-\item \textbf{Bases de imagens.} O objetivo 5 as menciona como preferência; o
-catálogo atual privilegia comparabilidade com a literatura de referência. É a
-pendência mais direta.
+\item \textbf{As imagens entram por um extrator genérico.} A bateria de imagens
+(ADR~0022) usa embeddings de uma ResNet-18 congelada com pesos do ImageNet, sem
+ajuste às bases, $2000$ imagens por base em vez do conjunto inteiro, e PCA para
+$32$ dimensões que retém só $59\%$--$80\%$ da variância. Os resultados valem para
+``imagens representadas por um extrator genérico'', que é o uso comum de MCS
+sobre imagens, e não para pools treinados ponta a ponta. Com cinco bases, os
+contrastes contra as $28$ tabulares têm pouco poder estatístico.
 
 \item \textbf{$M=100$ fixo.} Todas as conclusões sobre $N^{*}$ são relativas a
 $M=100$. O argumento estrutural ($\On{M/2+1}\le\mvr\le\On{M/2}$ em problema binário)
@@ -41,7 +45,7 @@ instâncias contra $5000$ geradas no artigo, então entra no \texttt{pos-oracle-
 comparável.} O portão de conformance passou a ser por perfil (ADR~0021): o
 \texttt{pos-oracle-v2} verifica cada snapshot contra o catálogo SHA-256 do
 próprio POS, e P2 entra sem \texttt{--allow-unverified-data}. O manifesto do run
-\texttt{2026-08-27T23-01-32\_7c5ec6d}, gravado antes da mudança, não foi
+\texttt{2026-08-27T23-01-32\_\allowbreak 7c5ec6d}, gravado antes da mudança, não foi
 reescrito e continua com \texttt{comparable=false}. Os $28$ hashes batem com o
 catálogo, então um rerun daria os mesmos dados com \texttt{comparable=true}.
 

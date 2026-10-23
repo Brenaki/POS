@@ -9,7 +9,9 @@ first one); TAB_RUN_DIR (by
 default the canonical tabular run of the same profile) supplies the 28
 tabular datasets. Writes into RUN_DIR:
   analysis_images.txt / .json  per-dataset table, binary sandwich check,
-                               image-vs-tabular contrasts (Mann-Whitney)
+                               image-vs-tabular contrasts (Mann-Whitney),
+                               DF/e^2 -> gap curve fitted on tabular, applied
+                               to images
   figures/fig9_image_oracle_curves.png
 """
 
@@ -31,7 +33,12 @@ REPO_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_DIR))
 
 from pos.analysis.nstar_split import sandwich_check  # noqa: E402
-from pos.analysis.v2_battery import battery_table, contrast, load_v2_run  # noqa: E402
+from pos.analysis.v2_battery import (  # noqa: E402
+    battery_table,
+    contrast,
+    dfe_transfer,
+    load_v2_run,
+)
 from pos.images.embedding_dataset import IMAGE_DATASETS  # noqa: E402
 
 TABULAR = REPO_DIR / "results" / "experiments" / "2026-08-27T23-01-32_7c5ec6d"
@@ -82,10 +89,12 @@ def main() -> None:
               "invariants": {
                   "monotone": int(sum(np.all(np.diff(c) <= 1e-12) for c in img["curve"])),
                   "oracle1_ge_mvr": int((img["oracle_1"] >= img["majority_vote"] - 1e-12).sum()),
-                  "n_folds": int(len(img))}}
+                  "n_folds": int(len(img))},
+              "dfe_transfer": dfe_transfer(tt, ti)}
     lines = ["# Bateria de imagens (ADR 0022)", "", ti.round(4).to_string(index=False), "",
              f"invariantes: {report['invariants']}",
-             f"sanduiche (binarias): {report['sandwich_binary']}", ""]
+             f"sanduiche (binarias): {report['sandwich_binary']}",
+             f"DF/e2 tabular -> imagem: {report['dfe_transfer']}", ""]
     for label, mask_i, mask_t in (("todas", None, None),
                                   ("multiclasse", ci["n_classes"] > 2, ct["n_classes"] > 2),
                                   ("binarias", ci["n_classes"] == 2, ct["n_classes"] == 2)):

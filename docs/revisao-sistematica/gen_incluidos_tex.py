@@ -14,7 +14,8 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 OUT = HERE.parents[1] / "relatorio" / "secoes" / "12b-estudos-incluidos.tex"
-TEX = {"&": r"\&", "%": r"\%", "_": r"\_", "#": r"\#", "$": r"\$"}
+TEX = {"&": r"\&", "%": r"\%", "_": r"\_", "#": r"\#", "$": r"\$",
+       "–": "--", "—": "---", "Ş": r"\c{S}"}
 
 
 def esc(s: str) -> str:

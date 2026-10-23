@@ -9,6 +9,9 @@ report relies on is recomputed here with the same definitions:
 * `df_ratio`  — double fault over e^2, e = 1 - mean individual accuracy;
 * `des_best` / `recovered` — via `loader._attach_des`, dynamic methods only.
 
+`dfe_transfer` checks whether the DF/e^2 -> gap relation fitted on one
+battery predicts another without refitting.
+
 Class cardinality comes from the run manifest's conformance survey, so the
 binary/multiclass split needs nothing outside the run directory.
 """
@@ -20,7 +23,8 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-from scipy.stats import mannwhitneyu
+from scipy.stats import mannwhitneyu, spearmanr
+from sklearn.isotonic import IsotonicRegression
 
 from pos.analysis.loader import _attach_des
 
@@ -65,3 +69,19 @@ def contrast(a: pd.DataFrame, b: pd.DataFrame, metrics: list[str]) -> pd.DataFra
         rows[m] = {"median_a": x.median(), "median_b": y.median(),
                    "n_a": len(x), "n_b": len(y), "p_mannwhitney": p}
     return pd.DataFrame(rows).T
+
+
+def dfe_transfer(ref: pd.DataFrame, new: pd.DataFrame) -> dict[str, float]:
+    """Fit gap ~ DF/e^2 (decreasing isotonic on log DF/e^2) on `ref`, predict `new`.
+
+    Both frames hold one row per dataset x mode with `df_ratio` and `gap`. The
+    trivial baseline predicts the median gap of `ref` for every new point.
+    """
+    iso = IsotonicRegression(increasing=False, out_of_bounds="clip")
+    iso.fit(np.log(ref["df_ratio"]), ref["gap"])
+    pred = iso.predict(np.log(new["df_ratio"]))
+    return {"spearman_ref": float(spearmanr(ref["df_ratio"], ref["gap"])[0]),
+            "spearman_new": float(spearmanr(new["df_ratio"], new["gap"])[0]),
+            "mae_isotonic": float(np.mean(np.abs(pred - new["gap"]))),
+            "mae_trivial": float(np.mean(np.abs(ref["gap"].median() - new["gap"]))),
+            "n_ref": len(ref), "n_new": len(new)}

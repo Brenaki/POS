@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from pos.analysis.v2_battery import battery_table, contrast, load_v2_run
+from pos.analysis.v2_battery import battery_table, contrast, dfe_transfer, load_v2_run
 
 
 def _row(dataset, fold, treatment, curve, mv, des, n_classes_hint=None):
@@ -71,3 +71,16 @@ class TestTables:
         assert out.loc["nstar", "median_b"] == pytest.approx(4.5)
         assert 0 <= out.loc["recovered", "p_mannwhitney"] <= 1
         assert np.isfinite(out.loc["nstar", "p_mannwhitney"])
+
+
+def test_dfe_transfer_predicts_new_points_from_the_reference_curve():
+    # Reference: gap falls as DF/e^2 rises. New points sit on the same curve,
+    # so the isotonic fit beats the reference median.
+    ref = pd.DataFrame({"df_ratio": [1.0, 1.5, 2.0, 3.0, 5.0],
+                        "gap": [0.40, 0.30, 0.20, 0.10, 0.03]})
+    new = pd.DataFrame({"df_ratio": [1.5, 3.0], "gap": [0.31, 0.09]})
+    r = dfe_transfer(ref, new)
+    assert r["spearman_ref"] == pytest.approx(-1.0)
+    assert r["mae_isotonic"] == pytest.approx(0.01)
+    assert r["mae_trivial"] == pytest.approx((0.11 + 0.11) / 2)
+    assert (r["n_ref"], r["n_new"]) == (5, 2)
