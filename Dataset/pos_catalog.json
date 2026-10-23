@@ -44,6 +44,22 @@
       "features": 7,
       "classes": 8
     },
+    "FashionMNIST": {
+      "file": "FashionMNIST.arff",
+      "sha256": "sha256:5e9e8a56ebcaf4c6594c1057b771b835555d3fb83d6b237a79ad58c807829190",
+      "instances": 2000,
+      "features": 32,
+      "classes": 10,
+      "provenance": "FashionMNIST.json"
+    },
+    "FashionTeeShirt": {
+      "file": "FashionTeeShirt.arff",
+      "sha256": "sha256:f3eb7cacf77f655fafc41abf13f0b445f6ab5a620cbc3ef2fdc39f65dddf7c14",
+      "instances": 2000,
+      "features": 32,
+      "classes": 2,
+      "provenance": "FashionTeeShirt.json"
+    },
     "Faults": {
       "file": "Faults.arff",
       "sha256": "sha256:94690912293d3c71c93274014a8bb1fb14a205b14f1b8f9588379df2ccd42441",
@@ -120,6 +136,14 @@
       "instances": 345,
       "features": 6,
       "classes": 2
+    },
+    "MNIST": {
+      "file": "MNIST.arff",
+      "sha256": "sha256:0455314e007aa2d4381db426cbfa698c55429f860df6a3df6ff01fab294a7bb5",
+      "instances": 2000,
+      "features": 32,
+      "classes": 10,
+      "provenance": "MNIST.json"
     },
     "Magic": {
       "file": "Magic.arff",
