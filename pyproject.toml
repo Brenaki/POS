@@ -58,7 +58,7 @@ addopts = [
     # "--cov-fail-under=80",  # enabled once characterization suite is complete
 ]
 markers = [
-    "requires_r: needs R + ECoL + R_HOME (skipped automatically if R unavailable)",
+    "requires_r: needs Rscript + cluster/e1071/MASS; ECoL source comes from the pinned tarball (ADR 0023)",
     "requires_pyhard: needs pyhard installed (skipped automatically if unavailable)",
     "slow: marks tests as slow (deselect with '-m \"not slow\"')",
     "characterization: golden-value tests capturing current behavior before refactor",

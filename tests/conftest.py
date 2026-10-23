@@ -13,6 +13,7 @@ from __future__ import annotations
 import importlib
 import os
 import shutil
+import subprocess
 import sys
 import types
 from pathlib import Path
@@ -30,15 +31,22 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 # ---------------------------------------------------------------------------
 
 def _r_is_available() -> bool:
-    """Return True iff the R executable is on PATH (and thus R_HOME can be resolved)."""
-    return shutil.which("R") is not None
+    """Return True iff `Rscript` runs and has the packages ECoL's code needs.
+
+    `requires_r` tests go through `pos.complexity.ecol_bridge` (a subprocess,
+    ADR 0023), not rpy2, so the rpy2 mock below does not interfere with them.
+    """
+    if shutil.which("Rscript") is None:
+        return False
+    probe = 'quit(status=!all(sapply(c("cluster","e1071","MASS"), requireNamespace)))'
+    return subprocess.run(["Rscript", "-e", probe], capture_output=True).returncode == 0
 
 
 def pytest_collection_modifyitems(config, items):
     """Auto-skip `requires_r` tests when R is not installed."""
-    if _r_is_available():
+    if not any("requires_r" in item.keywords for item in items) or _r_is_available():
         return
-    skip_r = pytest.mark.skip(reason="R not installed on PATH (run `sudo pacman -S r tk`)")
+    skip_r = pytest.mark.skip(reason="Rscript or R packages cluster/e1071/MASS missing")
     for item in items:
         if "requires_r" in item.keywords:
             item.add_marker(skip_r)
