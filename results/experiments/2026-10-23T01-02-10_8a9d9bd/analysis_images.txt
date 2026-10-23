@@ -1,0 +1,47 @@
+# Bateria de imagens (ADR 0022)
+
+        dataset    mode  n_classes  oracle_1  majority_vote  des_best  recovered  nstar  df_ratio  mean_individual_acc    gap  nstar_rel
+        CIFAR10 bagging       10.0    0.9990         0.6985    0.7090     0.0346   33.6    1.2743               0.5041 0.3005      0.336
+        CIFAR10 pgdcs_a       10.0    0.9960         0.7140    0.7130    -0.0042   33.0    1.2876               0.5069 0.2820      0.330
+        CIFAR10 pgdcs_d       10.0    0.9970         0.7090    0.7140     0.0176   33.7    1.2894               0.5068 0.2880      0.337
+  CIFAR10CatDog bagging        2.0    1.0000         0.8105    0.8165     0.0332   51.8    1.6228               0.7168 0.1895      0.518
+  CIFAR10CatDog pgdcs_a        2.0    0.9995         0.8105    0.8175     0.0375   51.6    1.6649               0.7203 0.1890      0.516
+  CIFAR10CatDog pgdcs_d        2.0    0.9995         0.8115    0.8170     0.0298   51.5    1.6532               0.7197 0.1880      0.515
+   FashionMNIST bagging       10.0    0.9995         0.7845    0.7880     0.0146   35.5    1.6325               0.6327 0.2150      0.355
+   FashionMNIST pgdcs_a       10.0    0.9975         0.7865    0.7915     0.0203   37.1    1.6606               0.6374 0.2110      0.371
+   FashionMNIST pgdcs_d       10.0    0.9980         0.7765    0.7815     0.0224   37.5    1.6548               0.6358 0.2215      0.375
+FashionTeeShirt bagging        2.0    0.9995         0.8330    0.8390     0.0357   51.9    1.9008               0.7546 0.1665      0.519
+FashionTeeShirt pgdcs_a        2.0    0.9985         0.8350    0.8385     0.0227   51.6    1.9630               0.7576 0.1635      0.516
+FashionTeeShirt pgdcs_d        2.0    0.9995         0.8300    0.8385     0.0473   51.5    1.9512               0.7564 0.1695      0.515
+          MNIST bagging       10.0    0.9970         0.8150    0.8240     0.0463   32.7    1.5655               0.6229 0.1820      0.327
+          MNIST pgdcs_a       10.0    0.9950         0.8080    0.8170     0.0464   32.5    1.5978               0.6268 0.1870      0.325
+          MNIST pgdcs_d       10.0    0.9980         0.8120    0.8205     0.0457   32.7    1.5956               0.6270 0.1860      0.327
+
+invariantes: {'monotone': 150, 'oracle1_ge_mvr': 150, 'n_folds': 150}
+sanduiche (binarias): {'n_folds': 60, 'holds_lower': 60, 'holds_upper': 60, 'exact_equality': 29, 'holds_both_frac': 1.0}
+DF/e2 tabular -> imagem: {'spearman_ref': -0.921912572750847, 'spearman_new': -0.6321428571428571, 'mae_isotonic': 0.025895481335378622, 'mae_trivial': 0.05693333333333331, 'n_ref': 84, 'n_new': 15}
+
+## imagem (a) vs tabular (b) — todas
+                     median_a  median_b  n_a   n_b  p_mannwhitney
+gap                    0.1888    0.1486  5.0  28.0         0.2465
+recovered              0.0335    0.1035  5.0  28.0         0.0021
+nstar_rel              0.3670    0.5302  5.0  28.0         0.0065
+df_ratio               1.6470    2.3406  5.0  28.0         0.0833
+mean_individual_acc    0.6353    0.7627  5.0  28.0         0.0219
+
+## imagem (a) vs tabular (b) — multiclasse
+                     median_a  median_b  n_a  n_b  p_mannwhitney
+gap                    0.2158    0.1605  3.0  7.0         0.3833
+recovered              0.0191    0.0488  3.0  7.0         0.5167
+nstar_rel              0.3343    0.4973  3.0  7.0         0.0167
+df_ratio               1.5863    1.6994  3.0  7.0         0.2667
+mean_individual_acc    0.6255    0.7369  3.0  7.0         0.0333
+
+## imagem (a) vs tabular (b) — binarias
+                     median_a  median_b  n_a   n_b  p_mannwhitney
+gap                    0.1777    0.1367  2.0  21.0         0.7115
+recovered              0.0344    0.1094  2.0  21.0         0.0158
+nstar_rel              0.5165    0.5343  2.0  21.0         0.1265
+df_ratio               1.7927    2.5226  2.0  21.0         0.4427
+mean_individual_acc    0.7376    0.7633  2.0  21.0         0.5692
+

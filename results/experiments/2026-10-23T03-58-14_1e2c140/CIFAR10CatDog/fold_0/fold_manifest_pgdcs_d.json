@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "pos-oracle-v2",
+  "dataset": "CIFAR10CatDog",
+  "fold_idx": 0,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 42,
+  "n_train": 1440,
+  "n_val": 180,
+  "n_dsel": 180,
+  "n_test": 200,
+  "M": 100,
+  "pgdcs_types": [
+    "F3",
+    "T1"
+  ],
+  "pgdcs_best_generation": 17,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.643541951505643,
+  "k_eff": 7
+}
