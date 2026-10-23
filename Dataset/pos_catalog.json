@@ -23,6 +23,22 @@
       "features": 4,
       "classes": 2
     },
+    "CIFAR10": {
+      "file": "CIFAR10.arff",
+      "sha256": "sha256:5c2f6036282febbf334ce4a94bdf51149085190ff242d157a146b2332e5de161",
+      "instances": 2000,
+      "features": 32,
+      "classes": 10,
+      "provenance": "CIFAR10.json"
+    },
+    "CIFAR10CatDog": {
+      "file": "CIFAR10CatDog.arff",
+      "sha256": "sha256:cf9e4eb6a0d29d2176ccf219e0b6947298c0b212d92b21f787b8ef00824a3c53",
+      "instances": 2000,
+      "features": 32,
+      "classes": 2,
+      "provenance": "CIFAR10CatDog.json"
+    },
     "CTG": {
       "file": "CTG.arff",
       "sha256": "sha256:b627829d74416a30fc0529af89d854fc4caddef2547449614b11cf8864650f63",
