@@ -21,3 +21,10 @@ saida/
 
 # run logs (stdout do GA; o registro reprodutível é results/**/run_manifest.json)
 logs/
+/docs/Marcos_Monteiro_Junior_2021.pdf
+/docs/Monteiro2023.pdf
+/results/driver.log
+/results/monteiro_comparison.log
+/results/monteiro_full.log
+/results/p2_resume.log
+/results/pos_oracle_v2.log
