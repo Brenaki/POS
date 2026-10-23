@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v2",
+  "dataset": "Australian",
+  "fold_idx": 14,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 100,
+  "n_train": 345,
+  "n_val": 172,
+  "n_dsel": 172,
+  "n_test": 173,
+  "M": 100,
+  "pgdcs_types": [
+    "F1",
+    "N4"
+  ],
+  "pgdcs_best_generation": 6,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6622909583058632,
+  "k_eff": 7
+}

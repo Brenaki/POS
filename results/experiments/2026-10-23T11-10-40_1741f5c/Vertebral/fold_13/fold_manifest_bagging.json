@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v2",
+  "dataset": "Vertebral",
+  "fold_idx": 13,
+  "treatment": "bagging",
+  "mode": "bagging",
+  "seed": 99,
+  "n_train": 150,
+  "n_val": 75,
+  "n_dsel": 75,
+  "n_test": 75,
+  "M": 100,
+  "pgdcs_types": null,
+  "pgdcs_best_generation": null,
+  "pgdcs_best_metric": null,
+  "pgdcs_best_score": null,
+  "k_eff": 7
+}

@@ -112,7 +112,8 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
       Magic: 8,05 h → 0,71 h
 - [x] Validar `T1_fast` contra ECoL/R em bags congelados (ranking dos bags) —
       ADR 0023: não equivale a nenhuma versão (τ −0.36 contra a 0.3.0 do legado,
-      0.37 contra a 0.4.4); porta exata `t1_ecol` disponível; troca em aberto
+      0.37 contra a 0.4.4); porta exata `t1_ecol` disponível; troca testada no
+      perfil Monteiro v2 (ADR 0024)
 - [x] Decidir formalmente: `GA-F1/T1` vs PGDCS completo (`get_best_types` reativado)
       — decidido no **ADR 0019**: em vez de escolher no papel, os dois viram modos
       do run canônico (`ga` e `pgdcs`) e a diferença é medida. Ver Fase 8.
@@ -407,8 +408,11 @@ caracterização e remoção do R que dependem dele, relatórios PROPESP).
       F1–F3, N2, N3, C1, C2, T2–T4 exatas; LSC preserva a ordem (τ 0.94); N1, F4
       em parte; `T1_fast` inverte a ordem do T1 da 0.3.0. Portas exatas de T1, N1,
       LSC e F4 provadas iguais ao R. Fases 1 e 3 fechadas
-- [ ] Decidir se GA/votação passam a usar as portas exatas (opção por perfil,
-      ADR 0023 §6)
+- [x] **ADR 0024** — perfil `monteiro-2023-dt-compatible-v2` (v1 + backend
+      `ecol-0.3.0`: T1, N1, LSC e F4 exatos na votação e no GA; v1 intacto).
+      Run `2026-10-23T11-10-40_1741f5c`: Tabela 4 12→13 / 7→8 acertos, MVR do
+      PGDCS_A ainda −6.4 pp da A.10, PGDCS_A − Bagging +0.39 → +0.20 pp
+      (p 0.003 → 0.058). As definições das medidas não explicam a distância
 - [ ] Pendências que ficam: relatórios PROPESP (semestral até 15/03/2027, final
       até 11/09/2027), segundo revisor para a triagem PRISMA
 
@@ -438,6 +442,7 @@ caracterização e remoção do R que dependem dele, relatórios PROPESP).
 - `docs/adr/0021-per-profile-conformance-gate.md` — portão de conformance por perfil, catálogo SHA-256 dos snapshots do POS
 - `docs/adr/0022-image-battery-cnn-embeddings.md` — segunda bateria: bases de imagem via embeddings de ResNet-18 congelada + PCA disjunto
 - `docs/adr/0023-complexity-backend-validated-against-ecol.md` — `fast_adapter` validado contra ECoL 0.3.0/0.4.4, portas exatas, R só em desenvolvimento
+- `docs/adr/0024-monteiro-profile-with-ecol-measures.md` — perfil Monteiro v2 com as medidas do ECoL 0.3.0 na votação e no GA; não aproxima do artigo
 
 ## Notes
 

@@ -1,0 +1,160 @@
+{
+  "runs": {
+    "v1": "2026-08-27T19-47-09_7c5ec6d",
+    "v2": "2026-10-23T11-10-40_1741f5c"
+  },
+  "table4_hits": {
+    "v1": {
+      "overlapping": 12,
+      "neighborhood": 7,
+      "n": 27
+    },
+    "v2": {
+      "overlapping": 13,
+      "neighborhood": 8,
+      "n": 27
+    }
+  },
+  "same_pair": 9,
+  "v2_minus_v1": {
+    "pgdcs_a": {
+      "n": 27,
+      "mean_delta_pp": -0.19696385211279985,
+      "wins": 11,
+      "losses": 12,
+      "p": 0.33041490332462453
+    },
+    "pgdcs_d": {
+      "n": 27,
+      "mean_delta_pp": -0.03537128877634655,
+      "wins": 11,
+      "losses": 12,
+      "p": 0.5633423630007264
+    },
+    "bagging": {
+      "n": 27,
+      "mean_delta_pp": 0.0,
+      "wins": 0,
+      "losses": 0,
+      "p": 1.0
+    }
+  },
+  "pgdcs_a_minus_bagging": {
+    "v1": {
+      "n": 27,
+      "mean_delta_pp": 0.39464620213415275,
+      "wins": 22,
+      "losses": 5,
+      "p": 0.0029667913913726807
+    },
+    "v2": {
+      "n": 27,
+      "mean_delta_pp": 0.1976823500213529,
+      "wins": 18,
+      "losses": 9,
+      "p": 0.05847424268722534
+    }
+  },
+  "reference": {
+    "v1": {
+      "bagging/mvr": {
+        "mean": -0.15865925925925925,
+        "mae": 0.7454444444444446,
+        "negatives": 14,
+        "n": 27
+      },
+      "bagging/oracle": {
+        "mean": 0.6239,
+        "mae": 0.6239,
+        "negatives": 0,
+        "n": 27
+      },
+      "pgdcs_a/generation": {
+        "mean": 1.2796296296296295,
+        "mae": 4.068518518518518,
+        "negatives": 9,
+        "n": 27
+      },
+      "pgdcs_a/mvr": {
+        "mean": -6.193637037037036,
+        "mae": 6.193637037037036,
+        "negatives": 27,
+        "n": 27
+      },
+      "pgdcs_a/oracle": {
+        "mean": 0.24085185185185184,
+        "mae": 0.3431037037037037,
+        "negatives": 12,
+        "n": 27
+      },
+      "pgdcs_d/generation": {
+        "mean": -1.6111111111111112,
+        "mae": 2.311111111111111,
+        "negatives": 21,
+        "n": 27
+      },
+      "pgdcs_d/mvr": {
+        "mean": -5.250588888888889,
+        "mae": 5.250588888888889,
+        "negatives": 27,
+        "n": 27
+      },
+      "pgdcs_d/oracle": {
+        "mean": 0.2068074074074074,
+        "mae": 0.3591111111111111,
+        "negatives": 11,
+        "n": 27
+      }
+    },
+    "v2": {
+      "bagging/mvr": {
+        "mean": -0.15865925925925925,
+        "mae": 0.7454444444444446,
+        "negatives": 14,
+        "n": 27
+      },
+      "bagging/oracle": {
+        "mean": 0.6239,
+        "mae": 0.6239,
+        "negatives": 0,
+        "n": 27
+      },
+      "pgdcs_a/generation": {
+        "mean": 0.7888888888888888,
+        "mae": 3.7814814814814817,
+        "negatives": 8,
+        "n": 27
+      },
+      "pgdcs_a/mvr": {
+        "mean": -6.390603703703705,
+        "mae": 6.390603703703705,
+        "negatives": 27,
+        "n": 27
+      },
+      "pgdcs_a/oracle": {
+        "mean": 0.26208148148148147,
+        "mae": 0.3127777777777777,
+        "negatives": 8,
+        "n": 27
+      },
+      "pgdcs_d/generation": {
+        "mean": -0.9629629629629628,
+        "mae": 2.166666666666667,
+        "negatives": 14,
+        "n": 27
+      },
+      "pgdcs_d/mvr": {
+        "mean": -5.285959259259259,
+        "mae": 5.285959259259259,
+        "negatives": 27,
+        "n": 27
+      },
+      "pgdcs_d/oracle": {
+        "mean": 0.22799999999999998,
+        "mae": 0.35013333333333324,
+        "negatives": 8,
+        "n": 27
+      }
+    }
+  }
+}

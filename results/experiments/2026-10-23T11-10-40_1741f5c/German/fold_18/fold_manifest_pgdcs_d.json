@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v2",
+  "dataset": "German",
+  "fold_idx": 18,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 104,
+  "n_train": 500,
+  "n_val": 250,
+  "n_dsel": 250,
+  "n_test": 250,
+  "M": 100,
+  "pgdcs_types": [
+    "F1",
+    "N2"
+  ],
+  "pgdcs_best_generation": 6,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6640282521314931,
+  "k_eff": 7
+}

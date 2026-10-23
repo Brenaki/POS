@@ -116,6 +116,38 @@ fechá-lo exigiria reportar a métrica enviesada. A coluna comparável à Tabela
 (\mvr{} de validação da geração vencedora) fica gravada no manifesto de fold como
 \texttt{pgdcs\_best\_score}; \texttt{mv\_acc} continua sendo acurácia em teste.
 
+\subsection{As medidas exatas do ECoL não mudam o quadro}
+
+O backend rápido de complexidade não reproduz quatro das onze medidas do ECoL
+0.3.0, a versão que o artigo usou: T1, N1, F4 e LSC (ADR~0023). Para testar se
+isso explica parte do gap, o perfil \texttt{monteiro-2023-dt-compatible-v2}
+repete o v1 com as portas exatas dessas quatro medidas na votação e no fitness
+do AG (ADR~0024); \emph{splits}, sementes e o resto do protocolo são os mesmos.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Perfil compatível com o artigo com as medidas do backend rápido (v1) e
+com as do ECoL 0.3.0 (v2), $27$ bases, $20$ replicações.}
+\begin{tabular}{lrr}
+\toprule
+ & v1 & v2 \\
+\midrule
+Vencedor overlapping da Tabela~4 acertado & $12/27$ & $13/27$ \\
+Vencedor neighborhood da Tabela~4 acertado & $7/27$ & $8/27$ \\
+\mvr{} PGDCS\_A $-$ Tabela~A.10 & $-6{,}19$ pp & $-6{,}39$ pp \\
+\mvr{} PGDCS\_D $-$ Tabela~A.10 & $-5{,}25$ pp & $-5{,}29$ pp \\
+PGDCS\_A $-$ Bagging (teste) & $+0{,}39$ pp, $p=0{,}003$ & $+0{,}20$ pp, $p=0{,}058$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A votação muda em $18$ das $27$ bases, mas a concordância com a Tabela~4 quase
+não se move, e o PGDCS continua $\approx6$ pp abaixo do publicado em todas as
+bases. As definições das medidas ficam descartadas como causa do gap. O ganho do
+PGDCS sobre o Bagging cai pela metade e deixa de ser significativo a $5\%$; a
+diferença entre v2 e v1 por base não é significativa ($-0{,}20$ pp, $p=0{,}33$),
+mas o $+0{,}4$ pp da tabela anterior depende da definição das medidas.
+
 \subsection{Duas correções de implementação encontradas no caminho}
 
 A replicação expôs dois defeitos no PGDCS deste projeto, ambos corrigidos por TDD e

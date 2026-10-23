@@ -1,6 +1,6 @@
 # ADR 0023 — Backend de complexidade validado contra o ECoL; R só para desenvolvimento
 
-- **Status**: Accepted (a troca das medidas do GA pelas portas exatas está em aberto, ver §6)
+- **Status**: Accepted (§6 resolvido pelo ADR 0024)
 - **Date**: 2026-10-23
 - **Supersedes**: ADR 0003 (remoção do R via pyhard)
 - **Related**: ADR 0010 (`fast_adapter`), 0011 (KD-tree), 0013 (T1 = N5),
@@ -120,7 +120,7 @@ os números quase não mudam: T1 −0.348/0.121 contra a 0.3.0 e 0.358/0.128 con
 4. Custo: o grupo neighborhood do ECoL somou ≈ 470 s nos 700 bags de até 500
    instâncias; o `fast_adapter` somou 3,8 s nos mesmos bags.
 
-### 6. Em aberto: qual T1/N1/LSC/F4 o GA e a votação usam
+### 6. Qual T1/N1/LSC/F4 o GA e a votação usam (resolvido no ADR 0024)
 
 Os runs publicados no relatório usam as definições do `fast_adapter`. O GA-F1/T1
 otimiza a dispersão de T1, e o PGDCS vota sobre as 11 medidas. Trocar pelas
@@ -128,6 +128,10 @@ portas exatas aproxima o perfil `monteiro-2023-dt-compatible-v1` do código que
 Monteiro et al. rodaram, mas muda os resultados dos próximos runs em relação aos
 já relatados. A troca só deve entrar como opção do perfil (uma chave nova muda
 o `_fingerprint` só dos perfis que a usarem), e depende de decisão do autor.
+
+**Resolução (ADR 0024):** o autor decidiu pela opção de perfil. O
+`monteiro-2023-dt-compatible-v2` usa as portas exatas na votação e no GA; o v1
+fica como estava. O run completo do v2 não aproxima os resultados do artigo.
 
 ## Consequências
 

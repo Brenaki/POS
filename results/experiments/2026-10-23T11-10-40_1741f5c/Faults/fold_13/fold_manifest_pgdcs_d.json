@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v2",
+  "dataset": "Faults",
+  "fold_idx": 13,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 99,
+  "n_train": 970,
+  "n_val": 485,
+  "n_dsel": 485,
+  "n_test": 486,
+  "M": 100,
+  "pgdcs_types": [
+    "F3",
+    "LSC"
+  ],
+  "pgdcs_best_generation": 14,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6411926271026512,
+  "k_eff": 7
+}

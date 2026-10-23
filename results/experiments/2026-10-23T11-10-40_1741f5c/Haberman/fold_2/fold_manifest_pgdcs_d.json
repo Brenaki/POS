@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v2",
+  "dataset": "Haberman",
+  "fold_idx": 2,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 88,
+  "n_train": 153,
+  "n_val": 76,
+  "n_dsel": 76,
+  "n_test": 77,
+  "M": 100,
+  "pgdcs_types": [
+    "F2",
+    "N4"
+  ],
+  "pgdcs_best_generation": 9,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6556907530644412,
+  "k_eff": 7
+}

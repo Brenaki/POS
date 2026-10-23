@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v2",
+  "dataset": "Heart",
+  "fold_idx": 2,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 88,
+  "n_train": 135,
+  "n_val": 67,
+  "n_dsel": 67,
+  "n_test": 68,
+  "M": 100,
+  "pgdcs_types": [
+    "F4",
+    "N2"
+  ],
+  "pgdcs_best_generation": 10,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.6356591446007868,
+  "k_eff": 7
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v2",
+  "dataset": "Wine",
+  "fold_idx": 17,
+  "treatment": "pgdcs_a",
+  "mode": "pgdcs_a",
+  "seed": 103,
+  "n_train": 89,
+  "n_val": 44,
+  "n_dsel": 44,
+  "n_test": 45,
+  "M": 100,
+  "pgdcs_types": [
+    "F3",
+    "N3"
+  ],
+  "pgdcs_best_generation": 4,
+  "pgdcs_best_metric": "mvr",
+  "pgdcs_best_score": 1.0,
+  "k_eff": 7
+}

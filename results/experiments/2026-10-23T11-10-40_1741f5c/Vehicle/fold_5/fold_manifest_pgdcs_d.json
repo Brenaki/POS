@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v2",
+  "dataset": "Vehicle",
+  "fold_idx": 5,
+  "treatment": "pgdcs_d",
+  "mode": "pgdcs_d",
+  "seed": 91,
+  "n_train": 423,
+  "n_val": 211,
+  "n_dsel": 211,
+  "n_test": 212,
+  "M": 100,
+  "pgdcs_types": [
+    "F3",
+    "LSC"
+  ],
+  "pgdcs_best_generation": 6,
+  "pgdcs_best_metric": "gdisp",
+  "pgdcs_best_score": 0.605416562641798,
+  "k_eff": 7
+}

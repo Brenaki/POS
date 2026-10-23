@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "profile": "monteiro-2023-dt-compatible-v2",
+  "dataset": "Weaning",
+  "fold_idx": 7,
+  "treatment": "pgdcs_a",
+  "mode": "pgdcs_a",
+  "seed": 93,
+  "n_train": 151,
+  "n_val": 75,
+  "n_dsel": 75,
+  "n_test": 76,
+  "M": 100,
+  "pgdcs_types": [
+    "F2",
+    "N1"
+  ],
+  "pgdcs_best_generation": 17,
+  "pgdcs_best_metric": "mvr",
+  "pgdcs_best_score": 0.88,
+  "k_eff": 7
+}
