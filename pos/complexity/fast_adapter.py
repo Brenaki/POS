@@ -1,8 +1,8 @@
 """Fast complexity adapter: dispatches to overlapping/neighborhood modules.
 
-Drop-in replacement for pos.complexity.pyhard_adapter.complexity_data3.
-Only computes the 8 measures the GA uses (F1-F4, N1/N2/N4/LSC).
-Placeholders (F1v, N3, T1) return 0.0.
+Default complexity backend (ADR 0023). Computes overlapping, neighborhood,
+balance and dimensionality; linearity and network return 0.0. Which values
+match R/ECoL 0.3.0 exactly is pinned by tests/characterization/test_ecol_golden.py.
 """
 
 from __future__ import annotations
@@ -14,6 +14,7 @@ import numpy as np
 from pos.complexity.base import GROUP_MEASURES
 from pos.complexity.neighborhood_fast import neighborhood_measure_fast
 from pos.complexity.overlapping_measures import overlapping_measures
+from pos.complexity.simple_measures import simple_measure
 
 
 def complexity_data3(
@@ -44,7 +45,7 @@ def complexity_data3(
             elif grp == "neighborhood":
                 result.append(neighborhood_measure_fast(X, y, m_name))
             else:
-                result.append(0.0)
+                result.append(simple_measure(X, y, grp, m_name))
         return result
 
     for grp in group:
@@ -54,5 +55,5 @@ def complexity_data3(
             elif grp == "neighborhood":
                 result.append(neighborhood_measure_fast(X, y, m_name))
             else:
-                result.append(0.0)
+                result.append(simple_measure(X, y, grp, m_name))
     return result

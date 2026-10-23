@@ -1,9 +1,9 @@
-"""Characterization tests for complexity_data3 (pyhard backend, Fase 3).
+"""Characterization tests for complexity_data3 (default backend, Fase 3).
 
-As of ADR 0003, complexity_data3 uses pyhard instead of R/ECoL. These tests
-assert PROPERTIES (shape, finiteness, range) rather than exact ECoL values,
-because pyhard measures differ from ECoL. The legacy ECoL golden values are
-captured separately in test_cpx_complexity_data3_ecol.py (requires R).
+As of ADR 0023 (closing ADR 0003), complexity_data3 uses `fast_adapter`
+instead of R/ECoL. These tests assert PROPERTIES (shape, finiteness, range)
+of the legacy `Cpx` facade; exact agreement with ECoL 0.3.0 is pinned
+measure by measure in test_ecol_golden.py.
 """
 
 from __future__ import annotations
@@ -11,11 +11,11 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-# conftest.py rpy2 mock is irrelevant now (pyhard doesn't use R), but harmless.
+# conftest.py rpy2 mock is irrelevant now (no backend uses rpy2), but harmless.
 import Cpx  # noqa: E402
 
 
-class TestComplexityData3Pyhard:
+class TestComplexityData3Default:
     def test_overlapping_group_returns_5_values(self, wine_split):
         X, y = wine_split["X_train"], wine_split["y_train"]
         result = Cpx.complexity_data3(X, y, ["overlapping"])
@@ -28,17 +28,17 @@ class TestComplexityData3Pyhard:
         assert len(result) == 6
 
     def test_linearity_group_returns_3_zeros(self, wine_split):
-        # pyhard has no linearity equivalent → 0.0 placeholders
+        # linearity needs ECoL's e1071 SVM → 0.0 placeholders (ADR 0023)
         X, y = wine_split["X_train"], wine_split["y_train"]
         result = Cpx.complexity_data3(X, y, ["linearity"])
         assert len(result) == 3
         assert result == [0.0, 0.0, 0.0]
 
-    def test_dimensionality_group_returns_3_zeros(self, wine_split):
+    def test_dimensionality_group_returns_3_positive_values(self, wine_split):
         X, y = wine_split["X_train"], wine_split["y_train"]
         result = Cpx.complexity_data3(X, y, ["dimensionality"])
         assert len(result) == 3
-        assert result == [0.0, 0.0, 0.0]
+        assert all(v > 0 for v in result)
 
     def test_balance_group_returns_2_values(self, wine_split):
         X, y = wine_split["X_train"], wine_split["y_train"]
@@ -69,8 +69,8 @@ class TestComplexityData3Pyhard:
         result = Cpx.complexity_data3(X, y, ["overlapping", "neighborhood", "balance"])
         assert all(np.isfinite(result))
 
-    def test_pyhard_measures_are_in_reasonable_range(self, wine_split):
-        # pyhard measures are aggregated instance-hardness values in [0, 1]
+    def test_measures_are_in_reasonable_range(self, wine_split):
+        # overlapping, neighborhood and balance measures all live in [0, 1]
         X, y = wine_split["X_train"], wine_split["y_train"]
         result = Cpx.complexity_data3(X, y, ["overlapping", "neighborhood", "balance"])
         assert all(0.0 <= v <= 1.0 for v in result)

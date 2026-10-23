@@ -4,9 +4,9 @@ This file preserves backwards compatibility for `sample.ipynb` and any code
 that does `import Cpx` or `from Cpx import ...`. The actual implementations
 live in the `pos/` package (see ADR 0004). Do not add new code here.
 
-As of Fase 3 (ADR 0003), complexity_data3 uses pyhard by default — R/ECoL is
-no longer required. The `ecol` symbol is kept as None for compat (it was an
-R package handle; pyhard has no equivalent).
+As of Fase 3 (ADR 0023, closing ADR 0003), complexity_data3 uses the numpy
+`fast_adapter` by default — R/ECoL is no longer required. The `ecol` symbol is
+kept as None for compat (it was an R package handle).
 """
 
 from pos.normalization import min_max_norm
@@ -18,7 +18,7 @@ from pos.io_csv import save_bag
 from pos.complexity.base import HEADER as header
 from pos.complexity import complexity_data3
 
-# `ecol` was the R ECoL package handle imported via rpy2. With the pyhard
+# `ecol` was the R ECoL package handle imported via rpy2. With the Python
 # backend (Fase 3), there is no R handle. We expose `None` for backwards
 # compat so `hasattr(Cpx, 'ecol')` still works without crashing on import.
 ecol = None
