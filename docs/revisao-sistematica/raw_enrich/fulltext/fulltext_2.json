@@ -1,0 +1,386 @@
+{
+ "R0101": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/11343304",
+  "chars": 26051,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 23,
+  "n_double_fault": 2,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0110": {
+  "status": "ok",
+  "final_url": "https://journals.tubitak.gov.tr/elektrik/vol32/iss4/10/",
+  "chars": 3923,
+  "has_references": false,
+  "n_oracle": 2,
+  "n_upper_bound": 0,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "r combination. As a consequence, DCS methods exhibit superior efficiency in terms of processing time and memory usage compared to DES methods. Moreover, a substantial performance gap exists between the performance of Oracle and both DES and DCS methods. In this study, we introduce a novel method termed dynamic classifier selection technique-decision quotient (DCS-DQ) for text classification based on dynamic classifier selection. Our exp",
+   " with an accuracy value of 77.02% for 3000 features compared to the maximum accuracy value of 72.74% achieved by the DCS method MCB. Additionally, the performance of the proposed DCS-DQ method closely aligns with the oracle performance compared to the other methods. In conclusion, our proposed DCS-DQ method holds promise for significantly improving classification accuracy in text classification literature. DOI 10.55730/1300-0632.4092 "
+  ]
+ },
+ "R0112": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S1566253521002244?via%3Dihub",
+  "chars": 100478,
+  "has_references": true,
+  "n_oracle": 8,
+  "n_upper_bound": 0,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "S), in an attempt to supplant the ENN algorithm on the filtering step. We find that almost all methods based on Dynamic Selection are severely affected by the presence of label noise, with the exception of the K-Nearest Oracles-Union algorithm. We also find that our proposed method can alleviate the issues caused by noise in some scenarios. We have made the code for our method available at https://github.com/fnw/baggingds. Keywords Ense",
+   " the class borders, with non-zero probability. The results for our proposal are compared not only against the method of [13], but also against the traditional Overall Local Accuracy, Local Class Accuracy [16], K-Nearest Oracles-Eliminate and K-Nearest Oracles-Union [17] algorithms. Our results show that the performance of most Dynamic Selections algorithms is heavily degraded by the presence of noise, to the point of losing to a simple ",
+   "d Dynamic Selection to be superior to the alternatives. The authors include established Dynamic Selection algorithms such as the Overall Local Accuracy (OLA) and Local Class Accuracy (LCA) algorithms [16], the K-Nearest Oracles-Union (KNORAU) and K-Nearest Oracles-Eliminate (KNORAE) algorithms [17] and the Multiple Classifier Behavior (MCB) algorithm, as well as more recent algorithms, such as the META-DES [18], META-DES Oracle [19] and",
+   "lection framework using meta-learning Pattern Recognit., 48 (5) (2015), pp. 1925-1935, 10.1016/j.patcog.2014.12.003 View PDF View articleView in ScopusGoogle Scholar [19] Cruz R.M., Sabourin R., Cavalcanti G.D. META-DES.Oracle: Meta-learning and feature selection for dynamic ensemble selection Inf. Fusion, 38 (2017), pp. 84-103, 10.1016/j.inffus.2017.02.010 View PDF View articleView in ScopusGoogle Scholar [20] Woloszynski T., Kurzynski"
+  ]
+ },
+ "R0113": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/article/10.1007/s12351-023-00813-6",
+  "chars": 84542,
+  "has_references": true,
+  "n_oracle": 37,
+  "n_upper_bound": 1,
+  "n_diversity": 1,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "Skip to main content Log in Find a journal Publish with us Track your research Search Cart Home Operational Research Article Customer purchase prediction in electronic markets from clickstream data using the Oracle meta-classifier Original Paper Published: 27 February 2024 Volume 24, article number 11 (2024) Cite this article Access provided by Universidade Estadual de Ponta Grossa Download PDF Save article View saved rese",
+   "dure to select the most practical features, thus achieving the highest accuracy. Additionally, we applied hyperparameter optimization and tuning to select the best parameters for prediction. Furthermore, we chose to use Oracle as a static ensemble meta-classifier method. The results demonstrate that using the Oracle algorithm in combination with supervised classifiers and RFECV feature selection achieves higher precision and a lower err",
+   "earchCV hyperparameter optimization method. We selected logistic regression, decision tree, random forest, and XGBoost for our analysis because they support both GridSearchCV and RFECV. Additionally, we introduced the Oracle as a static meta-classifier algorithm to evaluate the performance of purchase predictions. When compared to other supervised classifiers, this algorithm achieved higher accuracy and lower error rates. 2 Related w",
+   "ed method for measuring predictor importance. In such cases, the area under the ROC curve is used to estimate the rank of each predictor. We chose algorithms that support feature selection methods to exploit them in the Oracle meta-classifier model. 6 Resampling methods Resampling methods aim to modify the composition of the training dataset by either adding or removing examples, with the goal of altering the class distribution. Once ",
+   "run of the tuning program. Therefore, we chose Grid Search for selecting the hyperparameters of logistic regression, decision tree, random forest, and XGboost, as they support RFECV feature selection and are used in the Oracle meta-classifier algorithm. For other classifiers, we opted for RandomizedSearchCV. This enables us to ascertain the effectiveness of CV.\"CV\" stands for cross-validation, which is also carried out during the optimi",
+   "ext{j}}}\\) is a test example with n indistinct class label. In the generalization, \\({\\text{C}}^{\\prime }\\) predicts the class labels (Cruz et al. 2018). The static ensemble selection includes four unique processes: (1) Oracle meta-classifier, (2) Single Best, (3) Static Selection, and (4) Stacked Generalization Classifier (Cruz et al. 2020). Fig. 5 Full size image Static ensemble selection procedure 10 Oracle meta-classifier Oracle"
+  ]
+ },
+ "R0118": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/chapter/10.1007/978-3-032-03708-4_25",
+  "chars": 15371,
+  "has_references": true,
+  "n_oracle": 1,
+  "n_upper_bound": 0,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   " and the Describable Texture Dataset (DTD). We first evaluated individual features and found that Visual Transformers (ViT) performed exceptionally well compared to other architectures. However, the significantly higher Oracle accuracy for the ensemble of classifiers suggests room for improvement in investigations concerning classifier combination and selection techniques. We observed enhanced performance when combining the top-performi"
+  ]
+ },
+ "R0119": {
+  "status": "no_locator"
+ },
+ "R0120": {
+  "status": "ok",
+  "final_url": "https://dl-acm-org.ez82.periodicos.capes.gov.br/doi/10.1145/3805689.3806539",
+  "chars": 19810,
+  "has_references": true,
+  "n_oracle": 1,
+  "n_upper_bound": 0,
+  "n_diversity": 3,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "med ‘discriminative risk‘ by only perturbing protected attributes in instances, to express both individual and group fairness aspects. Furthermore, we investigate its properties and establish the first- and second-order oracle bounds and their relaxations, which show that fairness is possibly improved via ensemble combination with margin-dependent bounds. The analysis is suitable for both binary and multi-class classification. A few ens"
+  ]
+ },
+ "R0125": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S1000936125004455?via%3Dihub",
+  "chars": 92860,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 218,
+  "n_double_fault": 0,
+  "n_kappa": 4,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0126": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/article/10.1007/s42979-022-01063-7",
+  "chars": 79136,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 76,
+  "n_double_fault": 0,
+  "n_kappa": 2,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0127": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S0957417426021196?via%3Dihub",
+  "chars": 100488,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 14,
+  "n_diversity": 157,
+  "n_double_fault": 0,
+  "n_kappa": 5,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0128": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/chapter/10.1007/978-3-030-72699-7_40",
+  "chars": 11763,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 21,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0129": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S0031320321006695?via%3Dihub",
+  "chars": 90784,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 32,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0130": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S0957417423003469?via%3Dihub",
+  "chars": 87736,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 1,
+  "n_diversity": 62,
+  "n_double_fault": 1,
+  "n_kappa": 2,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0131": {
+  "status": "ok",
+  "final_url": "https://cys.cic.ipn.mx/index.php/CyS/article/view/3416",
+  "chars": 2373,
+  "has_references": false,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 7,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0132": {
+  "status": "ok",
+  "final_url": "https://www.hindawi.com/journals/misy/2021/5549300/",
+  "chars": 263,
+  "has_references": false,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0133": {
+  "status": "error",
+  "error": "Error: page.goto: NS_BINDING_ABORTED; maybe frame was detached?\nCall log:\n\u001b[2m  - navigating to \"https://doi-org.ez82.periodicos.capes.gov.br/10.1117/12.2671159\", waiting until \"domcontentloaded\"\u001b[22m"
+ },
+ "R0134": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/article/10.1007/s11192-025-05265-7",
+  "chars": 114976,
+  "has_references": true,
+  "n_oracle": 1,
+  "n_upper_bound": 1,
+  "n_diversity": 111,
+  "n_double_fault": 6,
+  "n_kappa": 2,
+  "paywall": false,
+  "snippets": [
+   "ssifier, by (70.78 − 66.16 =) 4.62% on the 11-class scheme, by (76.85 − 74.03 =) 2.82% on the 6-class scheme, by (89.53 − 86.65 =) 2.88% on the 2-grade scheme respectively. Note that, these performances were regarded as oracle values (imprecisely speaking upper-bounds), as they were directly obtained from the test set through cross-validation. Table 6 Meta-classifier performance of fivefold cross validation on 11-class scheme on test s"
+  ]
+ },
+ "R0135": {
+  "status": "ok",
+  "final_url": "https://www.techscience.com/CMES/v135n1/50084",
+  "chars": 4717,
+  "has_references": false,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 3,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0136": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/article/10.1007/s13042-022-01690-9",
+  "chars": 54459,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 85,
+  "n_double_fault": 4,
+  "n_kappa": 22,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0138": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S1566253522001427?via%3Dihub",
+  "chars": 99457,
+  "has_references": true,
+  "n_oracle": 8,
+  "n_upper_bound": 0,
+  "n_diversity": 26,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "ingle Inconstant Generation, Aggregation [23] Clustering and selection Clustering Single Inconstant Selection [19] Clustering with accuracy/diversity-based selection Clustering Single Inconstant Selection [24] K-nearest oracles union KNN Single Constant Selection, Aggregation [25] K-nearest oracles eliminate KNN Single Inconstant Selection [25] K-nearest output profiles KNN Single Constant Selection, Aggregation [28] Online local pool K",
+   "nts to the query [7]. The exact same RF ensemble is used as the pool of classifiers in four of the DS techniques included in the comparative analysis, namely Dynamic Ensemble Selection-Clustering (DES-C) [24], K-Nearest Oracles Union (KNU) [25], K-Nearest Oracles Eliminate (KNE) [25], K-Nearest Output Profiles (KNOP) [28], and Randomized Reference Classifier (RRC) [26]. Because of that, and due to the very limited number of instances in",
+   "nodes=𝑁⁢𝑜⁢𝑛⁢𝑒 Dynamic Ensemble Selection-Clustering (DES-C) clustering=K-means(𝐾=5 ) pct_accuracy=0.5 pct_diversity=0.33 metric_performance=𝑎⁢𝑐⁢𝑐⁢𝑢⁢𝑟⁢𝑎⁢𝑐⁢𝑦_𝑠⁢𝑐⁢𝑜⁢𝑟⁢𝑒 metric_diversity=𝑑⁢𝑓 K-Nearest Oracles Union (KNU) K = 7 K-Nearest Oracles Eliminate (KNE) K = 7 K-Nearest Output Profiles (KNOP) K = 7 Randomized Reference Classifier (RRC) mode=𝑠⁢𝑒⁢𝑙⁢𝑒⁢𝑐⁢𝑡⁢𝑖⁢𝑜⁢𝑛 Forest of Local Trees (FLT) max_depth=𝑁⁢",
+   "n method for imbalance learning 2019 International Joint Conference on Neural Networks (IJCNN), IEEE (2019), pp. 1-8 Google Scholar [14] Souza M.A., Cavalcanti G.D., Cruz R.M., Sabourin R. On the characterization of the oracle for dynamic classifier selection 2017 International Joint Conference on Neural Networks (IJCNN), IEEE (2017), pp. 332-339 View in ScopusGoogle Scholar [15] Valentini G. An experimental bias-variance analysis of sv",
+   "lar [37] Benavoli A., Corani G., Mangili F. Should we really use post-hoc tests based on mean-ranks? J. Mach. Learn. Res., 17 (1) (2016), pp. 152-161 Google Scholar [38] Cruz R.M., Sabourin R., Cavalcanti G.D. META-DES. Oracle: Meta-learning and feature selection for dynamic ensemble selection Inf. Fusion, 38 (2017), pp. 84-103 View PDF View articleView in ScopusGoogle Scholar [39] François D., Wertz V., Verleysen M. The concentration o"
+  ]
+ },
+ "R0140": {
+  "status": "no_locator"
+ },
+ "R0141": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/chapter/10.1007/978-981-99-4761-4_53",
+  "chars": 13635,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 1,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0142": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/article/10.1007/s10489-023-04770-7",
+  "chars": 62925,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 6,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0143": {
+  "status": "ok",
+  "final_url": "https://scholarworks.gsu.edu/handle/20.500.14694/4088",
+  "chars": 0,
+  "has_references": false,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0145": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/article/10.1007/s13042-022-01751-z",
+  "chars": 71593,
+  "has_references": true,
+  "n_oracle": 6,
+  "n_upper_bound": 0,
+  "n_diversity": 5,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   " Selection step. Some DS methods focus on enhancing the performance corresponding to the standard steps of MCS mechanism. Overall Local Accuracy (OLA) [39], Dynamic Ensemble Selection Performance (DES-P) [39], K-Nearest Oracles Union (KNORA-U) and K-Nearest Oracles Eliminate (KNORA-E) [23] are notable techniques that fall into this category. However, some other dynamic selection techniques develop a deeper and more precise mechanism by ",
+   "o DCS and DES categories. Since DS techniques have shown a favorable performance in classification problems, a variety of these techniques have been utilized by very many researchers in recent years. As such, K-Nearest Oracles Union (KNORA-U) [23], K-Nearest Oracles Eliminate (KNORA-E) [23], DES Performance (DES-P) [39], Overall Local Accuracy (OLA) [39] and Multiple-Classifier Behavior (MCB) [17] can be mentioned. In the following, a",
+   "mances are considered equivalent. In this technique, the KNN and accuracy criteria are used respectively to define the local region in the feature space and to measure the competence level of classifiers. 2. K-Nearest Oracles Union (KNORA-U) [23]: In this method, those classifiers are selected whose accuracy is equal to or more than the selection threshold \\(T_{sel}\\). It employs KNN to determine the local region in the feature space."
+  ]
+ },
+ "R0146": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S1566253523003524?via%3Dihub",
+  "chars": 143587,
+  "has_references": true,
+  "n_oracle": 17,
+  "n_upper_bound": 1,
+  "n_diversity": 5,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "ehavior OB 2001 MLA [42] KNN Generalization Accuracy OB 2002 DES-Cluster [11] Clustering Training Accuracy & Diversity TB 2006 DES-KNN [11] KNN Generalization Accuracy & Diversity TB 2006 KNORA-U [43] KNN Generalization Oracle TB 2008 KNORA-E [43] KNN Generalization Oracle TB 2008 DES-RRC [12] Potential function Generalization Probabilistic TB 2011 DES-P [44] Potential function Generalization Probabilistic TB 2012 DES-KL [44] Potential ",
+   " [46] KNN Accuracy & Complexity Generalization TB 2016 CHADE [47] Potential function Generalization Meta-learning TB 2016 PCC-DES [48] Potential function Generalization Meta-learning TB 2017 DISi [49] KNN Generalization Oracle TB 2018 DDES [50] KNN Generalization Oracle TB 2021 DES-hesitant [8] KNN Generalization Multi criteria TB 2020 MLS [51] Multi technique Generalization Multi criteria TB, OB, PB 2021 DES-ML [52] A multi-label class",
+   "te the competence of classifiers. Most state-of-the-art DS approaches define a subset of DSEL samples that are more related to the query sample. For example, KNORA-U [43], KNORA-E [43], KNOP [45], META-DES [5], META-DES-Oracle [4], DSOC [46], DISi [49], DDES [50], DES-hesitant [8], and MLS [51], cluster-based DS approaches like [11], and Graph-Based approaches [53], [54] define a fixed RoC over the query sample that is used to measure t",
+   "sed approach was compared with the state-of-the-art DS techniques, which have been selected based on their performance according to a recent experimental study [3], different selection criteria (e.g., ranking, behavior, oracle, meta-learning), and also regarding the availability of their implementation. These approaches including KNORA-U [43], KNORA-E [43], MCB [41], DES-KNN [44], OLA [40], Rank [39], KNOP [45], and META-DES [5]. All th",
+   "mpetence and use different selection criteria to select the final ensemble of classifiers [72]. In addition, the Majority Voting (MV), Single Best (SB), and GFMM algorithm are considered as lower-bound DS baselines. The Oracle concept [73] as an upper-bound for DS methods in our experiments. Results of the GFMM algorithm (that uses the hyperboxes for classification directly) are reported in order to investigate whether using the hyperbo",
+   "tional complexity dynamic selection systems. 6.2. State-of-the-art comparison In Table 6, the results of the selected variant (FH_4-M) alongside the baseline methods including majority voting (MV), single best (SB), and Oracle are reported. The Oracle approach [73] is a conceptual method that selects the base classifier that correctly labels the query sample (if it exists). This concept is known as an upper limit to dynamic selection ap"
+  ]
+ },
+ "R0148": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S0031320324006502?via%3Dihub",
+  "chars": 91958,
+  "has_references": true,
+  "n_oracle": 6,
+  "n_upper_bound": 0,
+  "n_diversity": 39,
+  "n_double_fault": 1,
+  "n_kappa": 1,
+  "paywall": false,
+  "snippets": [
+   " [24]. • Individual-based methods measure competence independently and can be further divided into subgroups in terms of the information type, such as ranking [14], accuracy [25], meta-learning [23], probabilistic [21], Oracle [15] and data complexity [21]. For example, DES based on performance (DES-P) [26] selects classifiers that achieve better classification accuracy than the random classifier in RoC. AutoDES [27] defines a novel dyn",
+   "es classifier. 5.3. Baseline models For a comparative analysis, we select eight popular DES models, two widely adopted DCS models, and three classic static combination models as the baseline. Among DES models, K-Nearest Oracles Union (KNU) [48] and K-Nearest Oracles Eliminate (KNE) [48] are chosen as baseline since they are the most famous DES models with the highest citations; RRC [21], META-DES [23] and FH-DES [49] are the latest and ",
+   "ingle Best (SB) None Kuncheva [51] Static Selection (SS) 𝑝=0.5 Kuncheva [51] DCS Overall Local Accuracy (OLA) 𝑘 = 7 Woods et al. [25] Multiple Classifier Behavior (MCB) 𝑘 = 7 Giacinto and Roli [22] DES K-Nearests Oracles Eliminate (KNE) 𝑘 = 7 Ko et al. [48] K-Nearests Oracles Union (KNU) 𝑘 = 7 Ko et al. [48] DES-KNN 𝑘 = 7, 𝑝𝑎 = 0.5, 𝑝𝑑 = 0.3 Souto et al. [50] Randomized Reference Classifier (RRC) 𝑘 = 7 Woloszynski [21] ME",
+   "s, 9 (3) (2021), p. 52 CrossrefView in ScopusGoogle Scholar [42] García S., Luengo J., Herrera F. Data Preprocessing in Data Mining, Springer (2015) Google Scholar [43] Cruz R.M., Sabourin R., Cavalcanti G.D. META-DES. Oracle: Meta-learning and feature selection for dynamic ensemble selection Inf. Fusion, 38 (2017), pp. 84-103 View PDF View articleView in ScopusGoogle Scholar [44] Breiman L. Bagging predictors Mach. Learn., 24 (2) (1996"
+  ]
+ },
+ "R0151": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S1568494626008732?via%3Dihub",
+  "chars": 103124,
+  "has_references": true,
+  "n_oracle": 8,
+  "n_upper_bound": 0,
+  "n_diversity": 34,
+  "n_double_fault": 1,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "roup-based measures [8]. Individual-based criteria evaluate each classifier independently and include techniques such as ranking [26], local accuracy measures [22], probabilistic approaches [15], behavior analysis [27], oracle-based methods [25], meta-learning strategies [18], [28], and fuzzy-based approaches [29]. In contrast, group-based measures evaluate classifiers based on the performance of the final ensemble and typically incorpo",
+   "anking OB OLA [22] KNN Accuracy OB LCA [22] KNN Accuracy OB MCB [27] KNN Behavior OB MLA [23] KNN Accuracy OB DES-Cluster [24] Clustering Accuracy & Diversity TB DES-KNN [24] KNN Accuracy & Diversity TB KNORA-U [25] KNN Oracle TB KNORA-E [25] KNN Oracle TB DES-RRC [16] Potential Function Probabilistic TB DES-P [15] Potential Function Probabilistic TB DES-KL [15] Potential Function Probabilistic TB KNOP [17] KNN Behavior TB CLAG [20] Gra",
+   " TB META-DES [18] KNN Meta-Learning TB META-DES.Oracle [19] KNN Meta-Learning TB DSOC [32] KNN Accuracy & Complexity TB CHADE [33] Meta-Learning Meta-Learning TB PCC-DES [34] Meta-Learning Meta-Learning TB DISi [35] KNN Oracle TB DDES [36] KNN Oracle TB DES-hesitant [29] KNN Multi criteria TB MLS [31] Multi technique Multi criteria TB, OB, PB DES-ML [37] A multi-label classifier Output of classifier OB OLP+ + [38] Recursive partitionin",
+   "ion framework using meta-learning Pattern Recognit., 48 (5) (2015), pp. 1925-1935, 10.1016/J.PATCOG.2014.12.003 View PDF View articleView in ScopusGoogle Scholar [19] R.M.O. Cruz, R. Sabourin, G.D.C. Cavalcanti META-DES.Oracle: meta-learning and feature selection for dynamic ensemble selection Inf. Fusion, 38 (2017), pp. 84-103, 10.1016/J.INFFUS.2017.02.010 View PDF View articleView in ScopusGoogle Scholar [20] C. Hou, Y. Xia, Z. Xu, J.",
+   "er chains Lect. Notes Comput. Sci., 10534 (2017), pp. 169-186, 10.1007/978-3-319-71249-9_11 View in ScopusGoogle Scholar [35] M. Pereira, A. Britto, L. Oliveira, R. Sabourin Dynamic ensemble selection by K-nearest local oracles with discrimination index IEEE International Conference on Tools with Artificial Intelligence (ICTAI) (2018), pp. 765-771, 10.1109/ICTAI.2018.00120 View in ScopusGoogle Scholar [36] Y.R. Choi, D.J. Lim DDES: a di"
+  ]
+ }
+}

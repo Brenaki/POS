@@ -1,0 +1,1 @@
+REF("On the characterization of the oracle for dynamic classifier selection") AND PUBYEAR > 2020 AND PUBYEAR < 2027 AND (LANGUAGE(english) OR LANGUAGE(portuguese) OR LANGUAGE(chinese))

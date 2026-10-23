@@ -1,0 +1,63 @@
+{
+ "query": "REF(\"On the characterization of the oracle for dynamic classifier selection\") AND PUBYEAR > 2020 AND PUBYEAR < 2027 AND (LANGUAGE(english) OR LANGUAGE(portuguese) OR LANGUAGE(chinese))",
+ "total": 6,
+ "got": 6,
+ "shown": 6,
+ "retrieved": "2026-10-23T03:21:02.824Z",
+ "rows": [
+  {
+   "eid": "85194532729",
+   "title": "Recent advances in applications of machine learning in reward crowdfunding success forecasting",
+   "authors": "Cavalcanti, G.D.C. , Mendes-Da-Silva, W. , dos Santos Felipe, I.J. , Santos, L.A.",
+   "source": "Neural Computing and Applications , 36(26), pp. 16485–16501",
+   "year": "2024",
+   "cited": "5",
+   "abstract": "Hide abstract Entrepreneurs and small businesses have increasingly used reward-based crowdfunding to raise capital for their creative projects, whose success is central to this industry. Thus, predicting the success of crowdfunding campaigns is a topic of great importance for entrepreneurs and platform managers. The literature that employs monolithic classifiers and static ensemble learning for crowdfunding success prediction are scarce. In contrast, the dynamic selection (DS) algorithm, which belongs to the ensemble learning category, deserves a particular remark since it has overcome traditional monolithic classifiers and static ensembles in many applications. This paper proposes a dynamic selection framework for reward crowdfunding prediction. DS algorithms select a competent subset of the classifier per query instance. This procedure is performed during the generalization, and the subset is composed of local experts, favoring an increase in accuracy. Fifteen machine learning models are evaluated using three metrics (accuracy, area under the ROC curve and F-score), and ensemble learning obtained better results than traditional classifiers. In particular, Meta-DES, which performs dynamic selection, obtains the best overall results among the evaluated models. Furthermore, since usually interpreting the output of ML models is considered to be very difficult due to their complex “black box” architecture, we also use Shapley additive explanations to interpret the perdition’s outputs. Among variables evaluated in our models, the textual sentiment of the mass media, the number of pledges, and the target amount of the campaign deserve a highlight when predicting the campaign’s success. The source-code and further details about the experimental analysis are available at https://github.com/las33/Crowdfunding. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85205017963",
+   "title": "MLRS-PDS: A Meta-learning recommendation of dynamic ensemble selection pipelines",
+   "authors": "Jalalian, H. , Cruz, R.M.O.",
+   "source": "Proceedings of the International Joint Conference on Neural Networks",
+   "year": "2024",
+   "cited": "6",
+   "abstract": "Hide abstract Dynamic Selection (DS), where base classifiers are chosen from a classifier's pool for each new instance at test time, has shown to be highly effective in pattern recognition. However, instability and redundancy in the classifier pools can impede computational efficiency and accuracy in dynamic ensemble selection. This paper introduces a meta-learning recommendation system (MLRS) to recommend the optimal pool generation scheme for DES methods tailored to individual datasets. The system employs a meta-model built from dataset meta-features to predict the most suitable pool generation scheme and DES method for a given dataset. Through an extensive experimental study encompassing 288 datasets, we demonstrate that this meta-learning recommendation system outperforms traditional fixed pool or DES method selection strategies, highlighting the efficacy of a meta-learning approach in refining DES method selection. The source code, datasets, and supplementary results can be found in this project's GitHub repository: https://github.com/Menelau/MLRS-PDS. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85151971507",
+   "title": "Ensemble Meta-Labeling",
+   "authors": "Thumm, D. , Barucca, P. , Joubert, J.F.",
+   "source": "Journal of Financial Data Science , 5(1), pp. 10–26",
+   "year": "2023",
+   "cited": "2",
+   "abstract": "Hide abstract This study systematically investigates different ensemble methods for meta-labeling in finance and presents a framework to facilitate the selection of ensemble learning models for this purpose. Experiments were conducted on the components of information advantage and modeling for false positives to discover whether ensembles were better at extracting and detecting regimes and whether they increased model efficiency. The authors demon-strate that ensembles are especially beneficial when the underlying data consist of multiple regimes and are nonlinear in nature. The authors’ framework serves as a starting point for further research. They suggest that the use of different fusion strategies may foster model selection. Finally, the authors elaborate on how additional applications, such as position sizing, may benefit from their framework. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85163724130",
+   "title": "Weighting Approaches in Data Mining and Knowledge Discovery: A Review",
+   "authors": "Hajirahimi, Z. , Khashei, M.",
+   "source": "Neural Processing Letters , 55(8), pp. 10393–10438",
+   "year": "2023",
+   "cited": "6",
+   "abstract": "Hide abstract Modeling and forecasting are impressive and active research areas, which have been widely used in diverse theoretical and practical applications, successfully. Accuracy is the most important and at the same time is the most challenging feature of modeling and forecasting approaches that considerable efforts have been made in the literature for improving it. However, despite all interminable endeavors done in this regard, improving accuracy is yet often a problematic task. Weighting are among the most fundamental and critical parts of modeling and forecasting approaches, which have a significant impact on the performance and accuracy. Nevertheless, despite of the substantial importance of weighting algorithms, they have not been appropriately/comprehensively investigated in the literature. This fact that there are no such comprehensive review papers in this field is the core literature gap of modelling and forecasting that construct the main contribution of this paper. In this way, the main core objective of this paper is to comprehensively review and classify the most frequently applied weighting algorithms in various modeling and forecasting approaches. Motivated by this goal, in this review paper, different weighting algorithms, commonly used in the modelling and forecasting field, are classified based on the type of their function (i.e., Continuous/Discrete and Static/Dynamic) into four main categories. After that, the most related works done in these categorizes, including (1) discrete and static, (2) discrete and dynamic, (3) continuous and static, and (4) continuous and dynamic, are systematically reviewed to offer practical as well as theoretical guides for researchers. For this purpose, in each category, the most popular weighting algorithms, their potential limitations, and some highlighted advantages/disadvantages of them are briefly discussed. The weighting reviewed works, investigated in this paper, totally contain 350 paper that have been published since 2016 up to 2020. This is the first study that provides a comprehensive overview of the most frequently used weighting approaches employed in modeling and forecasting. The deep analysis and classification represented in this review paper revealed that the modeling and forecasting methods come from a unique unit which is named the weighting approach. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85138482266",
+   "title": "OLP++: An online local classifier for high dimensional data",
+   "authors": "Souza, M.A. , Sabourin, R. , Cavalcanti, G.D.C. , Cruz, R.M.O.",
+   "source": "Information Fusion , 90, pp. 120–137",
+   "year": "2023",
+   "cited": "13",
+   "abstract": "Hide abstract Ensemble diversity is an important characteristic of Multiple Classifier Systems (MCS), which aim at improving the overall performance of a classification system by combining the response of several models. While diversity may be introduced through various manipulations at the data level and the model level, some MCSs incorporate local information in order to increase it and/or take advantage of it, based on the idea that the different classifiers in the ensemble may have expertise in distinct areas of the feature space.1 a similar reasoning, we introduced in a previous work an ensemble method which produces in test time a few experts in the local region where each given query sample is located. These local experts, which are generated with slightly differing views of the target area, are then used to label the corresponding unknown instance. While the framework was shown to perform well especially over imbalanced problems, the locality definition in the method is based on the nearest neighbors rule and Euclidian distance, as is the case of various local-based ensembles, which may suffer from the effects of the curse of dimensionality over high dimensional problems. Thus, in this work, we propose a local ensemble method in which we leverage the data partitions given by decision trees for locality definition. More specifically, the partitions defined at different levels of the decision path that a given query instance traverses in the tree(s) are used as the regions over which the local experts are produced. By using different node levels from the path, each classifier in the local pool has a moderately distinct view of the target region without resorting to a dissimilarity metric, which might be susceptible to high dimensional spaces. Experimental results over 39 high dimensional problems showed that the proposed approach was significantly superior to our previous, distance-based framework in balanced accuracy rate. Compared to other six local-based ensemble methods, including dynamic selection and weighting schemes, the proposed method achieved competitive results, outperforming the random forest baseline and two state-of-the-art dynamic ensemble selection techniques. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85168258650",
+   "title": "Dynamic Ensemble Algorithm Post-Selection Using Hardness-Aware Oracle",
+   "authors": "Cordeiro, P.R.G. , Cavalcanti, G.D.C. , Cruz, R.M.O.",
+   "source": "IEEE Access , 11, pp. 86056–86070",
+   "year": "2023",
+   "cited": "6",
+   "abstract": "Hide abstract Dynamic Ensemble Selection (DES) algorithms have obtained better performance in many tasks compared to monolithic classifiers and static ensembles. However, it is reasonable to assume that no DES algorithm is the optimal solution in different scenarios since diversity plays an important role. Thus, this paper addresses this research gap by proposing a novel approach called Hardness-aware Oracle with Dynamic Ensemble Selection (HaO-DES) that operates as a post-selection strategy, evaluating and selecting the best DES techniques per instance. Each DES technique ensemble is evaluated using a new measure called Hardness-aware Oracle (HaO). HaO extends the traditional Oracle concept by assessing a DES technique based on how the classifiers in the selected ensemble work together, contrasting with the individual classifier evaluation in the traditional assessment. We performed experiments over 30 databases, using three base classifiers (Perceptron, Logistic Regression, and Naive Bayes) in homogeneous and heterogenous pools' configurations, to assess HaO-DES with four DES approaches (KNORA-U, KNOP, DES-P, and META-DES). We use three performance metrics to evaluate the experiments: accuracy, F-score, and Matthews Correlation Coefficient (MCC). The results show that our approach outperforms or obtains similar results against the four individual DES approaches, mainly when considering heterogeneous pool settings. We also demonstrated the HaO-DES efficiency in choosing suitable DES techniques in different situations. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  }
+ ]
+}

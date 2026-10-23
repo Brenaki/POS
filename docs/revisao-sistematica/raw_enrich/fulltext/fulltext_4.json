@@ -1,0 +1,367 @@
+{
+ "R0246": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S1568494621001800?via%3Dihub",
+  "chars": 87331,
+  "has_references": true,
+  "n_oracle": 10,
+  "n_upper_bound": 0,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "ion of this paper, it should be noted that research on DS techniques can be split into two major areas. Some techniques use only one measurement method to calculate the competence level of classifiers, such as K-Nearest Oracles Union (KNORA-U) [24], K-Nearest Oracles Eliminate (KNORA-E) [24], DES Performance (DES-P) [25], Overall Local Accuracy (OLA) [25] and Multiple Classifier Behavior (MCB) [26]. On the other hand, in some other meth",
+   "d of K nearest neighbors of the input data. Note that if the value of accuracy corresponding to more than one classifier hits the highest number of the range, one of these classifiers is selected at random. 2. K-Nearest Oracles Eliminate (KNORA-E) and K-Nearest Oracles Union (KNORA-U) [24]: These methods are very similar to each other since the local region in both methods, includes the nearest neighbors of the input data, and also the ",
+   ". A pool of 100 perceptrons as base classifiers is used for all techniques. For each data set, the best results are highlighted in bold face. Datasets MLSOB6 MLSPB14 MLSTB0 MLSH6 KNA-U KNA-E DES-P OLA MCB META Hesitant Oracle Balance-Scale 0.8854 0.8834 0.8818 0.8943 0.8885 0.8975 0.8879 0.8936 0.8939 0.9099 0.9006 0.9873 Car-Evaluation 0.9025 0.9115 0.9044 0.9177 0.9089 0.936 0.9016 0.9204 0.9091 0.9249 0.93 0.9979 Cardiotocography 0.",
+   "high-res image (274KB) Download: Download full-size image 5.3. Results and discussion In Table 12, the average accuracy of four MLSs and seven state-of-the-art DS methods are shown. The last column of Table 12 shows the Oracle values for different datasets. Oracle is an abstract model which can be used as an upper limit for the accuracy of MCSs [1]. Based on average ranks obtained by each method in the Quade test (Table 13), the average",
+   "lection techniques for dynamic classifier and ensemble selection (2017), 10.1109/IJCNN.2017.7966355 Google Scholar [31] Pereira M., Jr A., Soares de Oliveira L., Sabourin R. Dynamic ensemble selection by k-nearest local oracles with discrimination index (2018), 10.1109/ICTAI.2018.00120 Google Scholar [32] R.M.O. Cruz, D.V.R. Oliveira, G.D.C. Cavalcanti, R. Sabourin, FIRE-DES++: enhanced online pruning of base classifiers for dynamic ens",
+   "Article 102036 Citation Excerpt: Most state-of-the-art DS approaches define a subset of DSEL samples that are more related to the query sample. For example, KNORA-U [43], KNORA-E [43], KNOP [45], META-DES [5], META-DES-Oracle [4], DSOC [46], DISi [49], DDES [50], DES-hesitant [8], and MLS [51], cluster-based DS approaches like [11], and Graph-Based approaches [53,54] define a fixed RoC over the query sample that is used to measure the "
+  ]
+ },
+ "R0247": {
+  "status": "ok",
+  "final_url": "https://www-nature-com.ez82.periodicos.capes.gov.br/articles/s41598-026-42940-y",
+  "chars": 59504,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 1,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0250": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S0950705121005529?via%3Dihub",
+  "chars": 81462,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 4,
+  "n_double_fault": 0,
+  "n_kappa": 18,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0277": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S1566253522001336?via%3Dihub",
+  "chars": 103262,
+  "has_references": true,
+  "n_oracle": 7,
+  "n_upper_bound": 0,
+  "n_diversity": 47,
+  "n_double_fault": 8,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "5) WDVG 9.2 (6.0) 11.3 (2.6) 11.6 (3.0) 11.3 (2.6) Weaning 10.6 (1.6) 11.9 (1.6) 18.1 (4.8) 11.9 (1.6) Wine 11.2 (0.9) 12.8 (1.9) 14.8 (5.6) 12.8 (1.9) Average 10.3 (3) 11.9 (2.8) 10.7 (2.8) 11.9 (2.9) Table 7. Average Oracle of each pool of classifiers over 20 iterations. Dataset Perceptron Decision Tree Empty Cell PGDCS_A PGDCS_D Bagg. AdaB. RF DSOC PGDCS_A PGDCS_D Bagg. AdaB. RF DSOC Australian 99 99 99 100 100 99 99 99 99 81 100",
+   "on dynamic selection methods. With this in mind, we have evaluated our method in the context of dynamic classifier selection (DCS) and dynamic ensemble selection (DES). Table 7 presents the performance (accuracy) of the oracle considering each pool generator evaluated in our experiments. It is essential to mention that the concept of oracle in dynamic selection methods is the upper limit in performance that a given pool can reach. Accor",
+   "heva [3], Oracle is an abstract concept of fusion. In this model, if at least one of the classifiers produces the correct class label, the pool can also make it. As we can see, except for Adaboost, most of the time, the oracle is at least 99%. Given the generated pools, to answer our second research question (RQ2), we first applied three dynamic classifier selection methods, considering an experimental protocol with 20 replications. The",
+   ". META-DES: A dynamic ensemble selection framework using meta-learning Pattern Recognit., 48 (5) (2015), pp. 1925-1935 View PDF View articleView in ScopusGoogle Scholar [40] Cruz R., Sabourin R., Cavalcanti G. META-DES. Oracle: meta-learning and feature selection for dynamic ensemble selection Inform. Fusion (38) (2017), pp. 84-103 View PDF View articleView in ScopusGoogle Scholar [41] Cruz R.M., Sabourin R., Cavalcanti G.D. A DEEP anal",
+   " recommendation of dynamic ensemble selection pipelines Jalalian H., Cruz R.M.O. Proceedings of the International Joint Conference on Neural Networks • 2024 Dynamic Ensemble Algorithm Post-Selection Using Hardness-Aware Oracle Cordeiro P.R.G., …, Cruz R.M.O. IEEE Access • Volume 11 • 2023 Complexity-Driven Sampling for Bagging Lancho C., …, Martín De Diego I. Lecture Notes in Computer Science (including subseries Lecture Notes in Artifi"
+  ]
+ },
+ "R0281": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/article/10.1007/s00530-023-01227-2",
+  "chars": 71503,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 17,
+  "n_double_fault": 0,
+  "n_kappa": 3,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0287": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/chapter/10.1007/978-3-031-48232-8_2",
+  "chars": 9379,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 3,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0296": {
+  "status": "no_locator"
+ },
+ "R0297": {
+  "status": "no_locator"
+ },
+ "R0299": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/article/10.1007/s44443-025-00030-5",
+  "chars": 79892,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 58,
+  "n_double_fault": 2,
+  "n_kappa": 4,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0300": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/article/10.1007/s10489-023-04572-x",
+  "chars": 70121,
+  "has_references": true,
+  "n_oracle": 4,
+  "n_upper_bound": 0,
+  "n_diversity": 68,
+  "n_double_fault": 2,
+  "n_kappa": 2,
+  "paywall": false,
+  "snippets": [
+   "\\vdots} \\\\ pre_{1N} & pre_{2N} & {\\cdots} & pre_{LN} \\end{array}\\right) \\end{array} $$ (5) These prediction results {prei1,prei2,⋯ ,preiN} of samples can be expressed in two ways: the label-based representation and the Oracle-based representation. The label-based representation method considers the classifier’s predictions as its features. The Oracle-based-representation method uses 1 to represent the identicality between the classifie",
+   "o three categories. In D, xi ∈ R1×d represents the data sample and yi is its label. Suppose the label set Y = {y1 = 1,y2 = 2,y3 = 2,y4 = 3,y5 = 1,y6 = 1,y7 = 2} is the data’s true label. The label representation and the oracle-based method are shown in Table 3. Table 3 Typical classifier representations Full size table The above two representation methods can be regarded as the original features of the classifier. To better characteri",
+   "is paper, we proposed a novel classifier-representation-based classifier selection and ensemble method called CRCEEP. We discussed the limitations of pairwise classifier-similarity calculation caused by the classifier’s Oracle- and prediction-based representations. Motivated by that, two novel classifier-representation methods, local-space- and relative-transformation-based classifier-representation methods, were proposed. To the best o"
+  ]
+ },
+ "R0302": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S0925231221017227?via%3Dihub",
+  "chars": 84579,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 27,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0303": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/article/10.1007/s11629-021-7130-7",
+  "chars": 27546,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 13,
+  "n_double_fault": 0,
+  "n_kappa": 1,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0304": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S1568494621006104?via%3Dihub",
+  "chars": 64095,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 80,
+  "n_double_fault": 6,
+  "n_kappa": 9,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0305": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/article/10.1007/s10462-020-09922-6",
+  "chars": 74708,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 23,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0308": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S095741742300204X?via%3Dihub",
+  "chars": 109582,
+  "has_references": true,
+  "n_oracle": 4,
+  "n_upper_bound": 0,
+  "n_diversity": 7,
+  "n_double_fault": 1,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "usters. For each cluster, the most accurate classifiers are first selected. Then, the most diverse classifiers from the most accurate classifiers are selected to form the final ensemble. Given a test instance, k-nearest-oracles (KNORA) (Ko, Sabourin, & Britto Jr., 2008) compute the region of competence, 𝜃𝑗 , in a validation set by KNN and select base classifiers or local oracles which correctly classify all the neighbors in 𝜃𝑗 to f",
+   "ROC definition based on clustering, KNN and potential functions, respectively. S[A], S[A+D], S[B], S[M], S[O], S[P], S[R] denote the selection criteria based on accuracy, accuracy and diversity, behavior, meta-learning, oracle, probabilistic and ranking, respectively. A ✓indicates a method has a property of interest. For example, SB has a ✓for the SE property. Method/Property SE DCS DES ROC[C] ROC[KNN] ROC[P] S[A] S[A+D] S[B] S[M] S[O]"
+  ]
+ },
+ "R0309": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/article/10.1007/s11063-022-11017-y",
+  "chars": 72351,
+  "has_references": true,
+  "n_oracle": 5,
+  "n_upper_bound": 0,
+  "n_diversity": 3,
+  "n_double_fault": 0,
+  "n_kappa": 1,
+  "paywall": false,
+  "snippets": [
+   " compared with a number of typical semi-supervised ensemble anomaly detection models, including a theoretical dynamic ensemble model, three static ensemble models and two dynamic ensemble models with existing measures. Oracle: Oracle can correctly classify a test instance as long as at least one of the base classifiers can correctly classify this test instance. It should be noted that Oracle is the theoretical upper limit of dynamic en",
+   "performs other models in terms of average ranks and average F1. More convictive conclusions can be drawn from statistical tests and the Wilcoxon signed-rank test [8] with \\(\\alpha =0.05\\) is conducted on all models but Oracle in pairs. Table 6 presents results of the Wilcoxon signed-rank test on DESST-OOS and other models. Table 7 presents results of the Wilcoxon signed-rank test on DESST-CSOS and other models. As shown in Tables 6 and",
+   "res improve the performance of models on outliers at the cost of their ability to identify normal instances, which causes the increment on False Positive Rate, and there is still a significant gap between our models and Oracle, the theoretical upper-limit of dynamic ensemble models. Dynamic ensemble models for semi-supervised anomaly detection are still worth further study. k for KNN to decide the region of competence is an important p"
+  ]
+ },
+ "R0313": {
+  "status": "no_locator"
+ },
+ "R0315": {
+  "status": "ok",
+  "final_url": "https://www-eurekaselect-com.ez82.periodicos.capes.gov.br/article/111059",
+  "chars": 5629,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 1,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": true,
+  "snippets": []
+ },
+ "R0317": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/article/10.1007/s13042-020-01270-9",
+  "chars": 54191,
+  "has_references": true,
+  "n_oracle": 2,
+  "n_upper_bound": 0,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 9,
+  "paywall": false,
+  "snippets": [
+   "les of the most suitable classifiers for each new sample. Some works such as [34] show that these ensembles can be more accurate than single classifiers for certain classification tasks with techniques such as K-Nearest Oracles (KNORA). KNORA explore the properties of the Oracle concept, which is an abstract model that always selects the classifier that will predict the correct label for the new sample if that classifier exists [36]. D"
+  ]
+ },
+ "R0318": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S1566253520303869?via%3Dihub",
+  "chars": 118776,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 1,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0319": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/article/10.1007/s11047-020-09791-6",
+  "chars": 41459,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 37,
+  "n_double_fault": 0,
+  "n_kappa": 2,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0320": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S1566253520303663?via%3Dihub",
+  "chars": 80135,
+  "has_references": true,
+  "n_oracle": 6,
+  "n_upper_bound": 0,
+  "n_diversity": 5,
+  "n_double_fault": 0,
+  "n_kappa": 1,
+  "paywall": false,
+  "snippets": [
+   "sed by Woloszynski and Kurzynski in [48]. Lysiak et al. [49] showed that employing diversity measures during the classifier selection leads to smaller ensembles but does not improve the classification accuracy. meta-des.Oracle, which uses feature selection and meta-learning over numerous datasets to improve the selection process, was proposed by Cruz et al. in [50]. Oliveira et al. [51] described a two-step ensemble forming using a pre-",
+   "of research carried out in this work, was presented in [53]. Pinagé et al. proposed a concept drift detection method based on dynamic classifier selection [54]. We may also consider the following des strategies based on oracle information: • knora-eliminate (knora-e) [55], which creates an ensemble consisting only of the local oracles, i.e., models that classify correctly all data samples located in the local region of competence. In th",
+   "n observe a significantly better response to the concept drift when the knorae method is used (both at the level of bagging and base models). This may be because this algorithm can select base classifiers that are local oracles in a given fragment of the feature space, which in the event of a concept change allows us to keep only the models already trained on the given concept. In the case of the svm classifier (Fig. 2b), the use of des",
+   "lassifiers using measures of competence and diversity of base classifiers Neurocomputing, 126 (2014), pp. 29-35 View PDF View articleView in ScopusGoogle Scholar [50] Cruz R.M.O., Sabourin R., Cavalcanti G.D.C. META-DES.Oracle: Meta-learning and feature selection for dynamic ensemble selection Inf. Fusion, 38 (2017), pp. 84-103 View PDF View articleView in ScopusGoogle Scholar [51] Oliveira D.V.R., Cavalcanti G.D.C., Sabourin R. Online "
+  ]
+ },
+ "R0321": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/article/10.1007/s13042-020-01183-7",
+  "chars": 57438,
+  "has_references": true,
+  "n_oracle": 3,
+  "n_upper_bound": 0,
+  "n_diversity": 8,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "n [32]. Clustering techniques k-means has been used in this method to determine the validation set for each test pattern. A different probabilistic methods has been used to compute competence of base detectors. 7. OR: Oracle. The oracle works as follows: assign the correct class label to the test point if and only if at least one individual OC classifier produces the correct class label. Two series of experiments are carried out in t",
+   "les 5 and 6, respectively. Each row lists AUC values of all methods on this data set. The subscript of each AUC value denotes its rank among all methods on this data set. The best result is in bold. Note that the method oracle has been excluded from the comparison since it is an abstraction rather than a real ensemble model. The bottom row contains averaging ranks on all data sets of all methods. Table 5 Results of the first series of "
+  ]
+ },
+ "R0323": {
+  "status": "ok",
+  "final_url": "https://dl-acm-org.ez82.periodicos.capes.gov.br/doi/10.1145/3770855.3818121",
+  "chars": 16635,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 1,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0328": {
+  "status": "ok",
+  "final_url": "https://dl-acm-org.ez82.periodicos.capes.gov.br/doi/10.1145/3746252.3761072",
+  "chars": 23314,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 8,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0330": {
+  "status": "no_locator"
+ },
+ "R0336": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/chapter/10.1007/978-3-031-79029-4_25",
+  "chars": 10303,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 2,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0340": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S156625352300461X?via%3Dihub",
+  "chars": 123515,
+  "has_references": true,
+  "n_oracle": 15,
+  "n_upper_bound": 0,
+  "n_diversity": 12,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "decision borders (in blue). In Step 1 of the proposed method (Fig. 4a) we perform the meta-label assignment procedure, thus identifying which classifiers are able to label each instance correctly. That is, we obtain the Oracle information of the ensemble with respect to (w.r.t.) the training data, as the Oracle is the abstract model that always selects the correct classifiers for each instance [36]. Considering the input ensemble 𝐶 , t",
+   "). In terms of performance, the proposed method correctly labeled 15 of the 17 test samples, surpassing the AdaBoost combination rule (labeling correctly 11 test samples), the feature space-based DES technique K-Nearest Oracles Union [39] (labeling correctly 12 test samples), and the decision space-based DES techniques K-Nearest Output Profiles [40] (labeling correctly 11 test samples), both with neighborhood size 𝐾=7 . Download: Downl",
+   "l DES techniques. The column Acronym indicates the acronym adopted in this work. Name Acronym RoC definition RoC definition space Multilabel learning DES-Clustering [41] DES-KMEANS Clustering Feature space No K-Nearest Oracles Eliminate [39] KNE Nearest neighbors Feature space No K-Nearest Oracles Union [39] KNU Nearest neighbors Feature space No Dynamic Ensemble Selection-KNN [41] DKNN Nearest neighbors Feature space No Online Local P",
+   "each set of classifiers is, in order to analyze how they impact the techniques’ behavior over the HDSSS datasets. The DES techniques used in the comparative analysis which use the two linear ensembles were the K-Nearest Oracles Union (KNU) [39], K-Nearest Oracles Eliminate (KNE) [39], Dynamic Ensemble Selection-KNN (DKNN) [41], K-Nearest Output Profiles (KNOP) [40], META-DES [9], Randomized Reference Classifier (RRC) [10], Chained Dynam",
+   "alysis. The hyperparameters were set as recommended in their papers if no implementation is available in the DESLib [68] library, or otherwise to their default value. In addition to those, we include in the analysis the Oracle model, an abstract selector which always chooses the correct classifier for each instance, and we use as baselines two static combination approaches, the majority voting (MV) for the Bagging ensemble, and the AdaB",
+   "eral issues may be at play to obtain such results. First, distinguishing between very similar classifiers might be in general more difficult during the selection process. We can also see that in only 10 datasets did the Oracle accuracy rate reach a perfect score, suggesting that the bagged ensemble was not able to fully cover the data, possibly as a consequence of its lack of diversity. Moreover, we already expected the local region def"
+  ]
+ }
+}

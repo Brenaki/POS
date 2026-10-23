@@ -1,0 +1,927 @@
+{
+ "query": "TITLE-ABS-KEY(\"dynamic classifier selection\" OR \"dynamic ensemble selection\" OR \"dynamic selection of classifiers\") AND PUBYEAR > 2020 AND PUBYEAR < 2024 AND (LANGUAGE(english) OR LANGUAGE(portuguese) OR LANGUAGE(chinese))",
+ "total": 102,
+ "got": 102,
+ "shown": 102,
+ "retrieved": "2026-10-23T03:20:00.140Z",
+ "rows": [
+  {
+   "eid": "85162255577",
+   "title": "A classification algorithm based on dynamic ensemble selection to predict mutational patterns of the envelope protein in HIV-infected patients",
+   "authors": "Fili, M. , Hu, G. , Han, C. ,... Trettin, J. , Haim, H.",
+   "source": "Algorithms for Molecular Biology , 18(1), 4",
+   "year": "2023",
+   "cited": "3",
+   "abstract": "Hide abstract Background: Therapeutics against the envelope (Env) proteins of human immunodeficiency virus type 1 (HIV-1) effectively reduce viral loads in patients. However, due to mutations, new therapy-resistant Env variants frequently emerge. The sites of mutations on Env that appear in each patient are considered random and unpredictable. Here we developed an algorithm to estimate for each patient the mutational state of each position based on the mutational state of adjacent positions on the three-dimensional structure of the protein. Methods: We developed a dynamic ensemble selection algorithm designated k-best classifiers. It identifies the best classifiers within the neighborhood of a new observation and applies them to predict the variability state of each observation. To evaluate the algorithm, we applied amino acid sequences of Envs from 300 HIV-1-infected individuals (at least six sequences per patient). For each patient, amino acid variability values at all Env positions were mapped onto the three-dimensional structure of the protein. Then, the variability state of each position was estimated by the variability at adjacent positions of the protein. Results: The proposed algorithm showed higher performance than the base learner and a panel of classification algorithms. The mutational state of positions in the high-mannose patch and CD4-binding site of Env, which are targeted by multiple therapeutics, was predicted well. Importantly, the algorithm outperformed other classification techniques for predicting the variability state at multi-position footprints of therapeutics on Env. Conclusions: The proposed algorithm applies a dynamic classifier-scoring approach that increases its performance relative to other classification methods. Better understanding of the spatiotemporal patterns of variability across Env may lead to new treatment strategies that are tailored to the unique mutational patterns of each patient. More generally, we propose the algorithm as a new high-performance dynamic ensemble selection technique. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85178099992",
+   "title": "An Efficient Selective Ensemble Learning with Rejection Approach for Classification",
+   "authors": "Xu, H. , Chetia, C.",
+   "source": "International Conference on Information and Knowledge Management Proceedings, pp. 2816–2825",
+   "year": "2023",
+   "cited": "3",
+   "abstract": "Hide abstract Recent studies found that selective ensemble learning (e.g., dynamic ensemble selection) shows better predictive performance for classification tasks, compared to traditional static ensemble. However, there are some limitations of the available methods, such as high computational cost and multiple restrictions in base model ranking and aggregation (especially for class-imbalanced data modeling). Besides, the current methods make predictions for all data without measuring the credibility regarding different data patterns. This paper proposes a selective ensemble learning with rejection approach that aggregates base models from a different perspective. The approach introduces rejection measures to quantify base model credibility, and learns how to use the models according to their credibility on different sample patterns. It avoids the complexity in base model ranking and therefore is computationally more efficient than current methods. Any common evaluation metrics can be adopted in the selective ensemble strategy, which allows the developed model to handle class-imbalanced data properly. Also, a global rejection region is developed which indicates whether the ensemble model can provide reliable predictions for the targets. We implement the approach in the modeling of 12 datasets, including both class-imbalanced and class-balanced cases. Results show that the approach significantly reduces the inference time while showing promising performance, compared to 8 dynamic ensemble selection methods in the literature. Feature contributions and impacts of different rejection ratios on performance are also investigated to better demonstrate the approach. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85164680327",
+   "title": "Automated machine learning with dynamic ensemble selection",
+   "authors": "Zhu, X. , Ren, J. , Wang, J. , Li, J.",
+   "source": "Applied Intelligence , 53(20), pp. 23596–23612",
+   "year": "2023",
+   "cited": "12",
+   "abstract": "Hide abstract Automated machine learning (AutoML) has been developed for automatically building effective machine learning pipelines. However, existing AutoML frameworks use a single individual pipeline or a weighted ensemble of several pipelines to create the final predictive model, which ignores the difference between the unseen instances and leads to undesirable performance. To construct customized models for different unseen instances, we propose a novel AutoML method based on dynamic ensemble selection of machine learning pipelines, where the most competent combination of base pipelines is selected and aggregated to predict a specific unseen instance. First, an effective base pipeline pool is generated by filtering out the underperforming pipelines. Second, when an unseen instance appears, we deploy a new dynamic balanced accuracy criterion to select the most competent ensemble of base pipelines according to its local region. Finally, the outputs of the selected pipelines are integrated to give the final prediction. Comprehensive experiments on 39 publicly available datasets demonstrate the superiority of the proposed method compared to some state-of-the-art AutoML frameworks. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85166616918",
+   "title": "Detecting financial statement fraud using dynamic ensemble machine learning",
+   "authors": "Achakzai, M.A.K. , Peng, J.",
+   "source": "International Review of Financial Analysis , 89, 102827",
+   "year": "2023",
+   "cited": "60",
+   "abstract": "Hide abstract Our study uses Machine learning to develop an advanced fraud detection model that can detect fraudulent firms. We build our model using raw financial and non-financial variables following prior literature. In addition, we introduce the Dynamic Ensemble Selection algorithm to the fraud detection literature, which combines individual classifiers dynamically to make a final prediction. Using several performance evaluation metrics, we find that our model can outperform several machine learning models used in recent studies. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85172929492",
+   "title": "A Dynamic Ensemble Selection of Deepfake Detectors Specialized for Individual Face Parts",
+   "authors": "Kawabe, A. , Haga, R. , Tomioka, Y. , Shin, J. , Okuyama, Y.",
+   "source": "Electronics Switzerland , 12(18), 3932",
+   "year": "2023",
+   "cited": "8",
+   "abstract": "Hide abstract The development of deepfake technology, based on deep learning, has made it easier to create images of fake human faces that are indistinguishable from the real thing. Many deepfake methods and programs are publicly available and can be used maliciously, for example, by creating fake social media accounts with images of non-existent human faces. To prevent the misuse of such fake images, several deepfake detection methods have been proposed as a countermeasure and have proven capable of detecting deepfakes with high accuracy when the target deepfake model has been identified. However, the existing approaches are not robust to partial editing and/or occlusion caused by masks, glasses, or manual editing, all of which can lead to an unacceptable drop in accuracy. In this paper, we propose a novel deepfake detection approach based on a dynamic configuration of an ensemble model that consists of deepfake detectors. These deepfake detectors are based on convolutional neural networks (CNNs) and are specialized to detect deepfakes by focusing on individual parts of the face. We demonstrate that a dynamic selection of face parts and an ensemble of selected CNN models is effective at realizing highly accurate deepfake detection even from partly edited and occluded images. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85166008830",
+   "title": "An automated classification framework for glaucoma detection in fundus images using ensemble of dynamic selection methods",
+   "authors": "Pathan, S. , Kumar, P. , Pai, R.M. , Bhandary, S.V.",
+   "source": "Progress in Artificial Intelligence , 12(3), pp. 287–301",
+   "year": "2023",
+   "cited": "27",
+   "abstract": "Hide abstract Glaucoma is an optic neuropathy, which leads to vision loss and is irreversible due to damage in the optic nerve head mainly caused by increased intra-ocular pressure. Retinal fundus photography facilitates ophthalmologist in detection of glaucoma but is subjective to human intervention and is time-consuming. Computational methods such as image processing and machine learning classifiers can aid in computer-based glaucoma detection which helps in mass screening of glaucoma. In this context, the proposed method develops an automated glaucoma detection system, in the following steps: (i) pre-processing by segmenting the blood vessels using directional filter; (ii) segmenting the region of interest by using statistical features; (iii) extracting the clinical and texture-based features; and (iv) developing ensemble of classifier models using dynamic selection techniques. The proposed method is evaluated on two publically available datasets and 300 fundus images collected from a hospital. The best results are obtained using ensemble of random forest using META-DES dynamic ensemble selection technique, and the average specificity, sensitivity and accuracy for glaucoma detection on hospital dataset are 100%, respectively. For RIM-ONE dataset, the average specificity, sensitivity and accuracy for glaucoma detection are 100%, 93.85% and 97.86%, respectively. For Drishti dataset, the average specificity, sensitivity and accuracy for glaucoma detection are 90%, 100% and 97%, respectively. The quantitative results and comparative study indicate the ability of the developed method, and thus, it can be deployed in mass screening and also as a second opinion in decision making by the ophthalmologist for glaucoma detection. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85153764484",
+   "title": "CIS feature selection based dynamic ensemble selection model for human stress detection from EEG signals",
+   "authors": "Malviya, L. , Mal, S.",
+   "source": "Cluster Computing , 26(4), pp. 2367–2381",
+   "year": "2023",
+   "cited": "25",
+   "abstract": "Hide abstract Stress has an impact not only on a person’s physical health but also on his or her ability to perform at work, passion, and attitude in day-to-day life. It is one of the most difficult challenges to assess and monitor an individual’s stress level because everyone experiences stress differently. This paper proposes a CIS-based KNORA-U dynamic ensemble selection (DES) model for stress level identification in humans. The UCI machine learning repository’s physiological electroencephalogram (EEG) dataset is used for this research. The dataset has thirty-six subjects, with nineteen channels of EEG signals considered for each subject. In the first stage, channel signals are decomposed and extracted into five frequency bands using the discrete wavelet transform (DWT). The second stage features selection performed using a combination of statistical importance (CIS). In the third stage of extreme gradient boosting (XGBoost), linear discriminant analysis (LDA) and extra tree (ET) models are used to create a pool of classifiers for the K-Nearest Oracles Union (KNORA-U) dynamic ensemble selection (DES) classifying technique. The proposed model outperformed others on the classification of stress and relaxation levels using EEG signals and achieved 99.14% accuracy. KNORA-U DES is able to produce more accurate results as compared to KNORA-E and METADES models with different feature selection algorithms. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85159607650",
+   "title": "Diagnosis and classification of Parkinson's disease using ensemble learning and 1D-PDCovNN",
+   "authors": "Nour, M. , Senturk, U. , Polat, K.",
+   "source": "Computers in Biology and Medicine , 161, 107031",
+   "year": "2023",
+   "cited": "54",
+   "abstract": "Hide abstract In this paper, we proposed a novel approach to diagnose and classify Parkinson's Disease (PD) using ensemble learning and 1D-PDCovNN, a novel deep learning technique. PD is a neurodegenerative disorder; early detection and correct classification are essential for better disease management. The primary aim of this study is to develop a robust approach to diagnosing and classifying PD using EEG signals. As the dataset, we have used the San Diego Resting State EEG dataset to evaluate our proposed method. The proposed method mainly consists of three stages. In the first stage, the Independent Component Analysis (ICA) method has been used as the pre-processing method to filter out the blink noises from the EEG signals. Also, the effect of the band showing motor cortex activity in the 7–30 Hz frequency band of EEG signals in diagnosing and classifying Parkinson's disease from EEG signals has been investigated. In the second stage, the Common Spatial Pattern (CSP) method has been used as the feature extraction to extract useful information from EEG signals. Finally, an ensemble learning approach, Dynamic Classifier Selection (DCS) in Modified Local Accuracy (MLA), has been employed in the third stage, consisting of seven different classifiers. As the classifier method, DCS in MLA, XGBoost, and 1D-PDCovNN classifier has been used to classify the EEG signals as the PD and healthy control (HC). We first used dynamic classifier selection to diagnose and classify Parkinson's disease (PD) from EEG signals, and promising results have been obtained. The performance of the proposed approach has been evaluated using the classification accuracy, F-1 score, kappa score, Jaccard score, ROC curve, recall, and precision values in the classification of PD with the proposed models. In the classification of PD, the combination of DCS in MLA achieved an accuracy of 99,31%. The results of this study demonstrate that the proposed approach can be used as a reliable tool for early diagnosis and classification of PD. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85149858769",
+   "title": "MOBIPCR: Efficient, accurate, and strict ML-based mobile malware detection",
+   "authors": "Liu, C. , Lu, J. , Feng, W. ,... Di, L. , Song, Z.",
+   "source": "Future Generation Computer Systems , 144, pp. 140–150",
+   "year": "2023",
+   "cited": "21",
+   "abstract": "Hide abstract Mobile devices have been and will be continuously prevalent as rich applications are provided for various demands. However, the mobile operating system lacks efficient malware detection tools, which puts personal data at risk. This paper presents MOBIPCR, a trict, accurate, efficient mobile-oriented malware detection system. MOBIPCR basically integrates a (n) (edge) cloud-based architecture, a powerful yet efficient machine learning-based detection model, and a neat detection process. We implemented the MOBIPCR prototype system and conducted rigorous experiments to evaluate its performance from different perspectives. We implemented the MOBIPCR prototype system on the Android platform (Installer Hooker part) consiering considering that Android is an open-source platform that (i) can be easily modified and (ii) provides rich documentation. We used LineageOS 13 (a widespread Android distribution) to provide the necessary drivers to support communication and the camera for casual usage. Experimental results prove that MOBIPCR can strictly and accurately detect malwares and outperform existing similar applications without extra operations. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85149169604",
+   "title": "An empirical study of dynamic selection and random under-sampling for the class imbalance problem",
+   "authors": "Liu, S.M. , Chen, J.-H. , Liu, Z.",
+   "source": "Expert Systems with Applications , 221, 119703",
+   "year": "2023",
+   "cited": "38",
+   "abstract": "Hide abstract A detailed and extensive empirical study of dynamic selection (DS) and random under-sampling (RUS) for the class imbalance problem is conducted in this paper. Total 20 state of the art DS methods are compared on 54 datasets. The empirical results clearly answer the following six key research questions in this direction, (1) how performances of ensembles with and without RUS compare with respect to different DS and static ensemble (SE) methods (2) how whether RUS is used affects performances of ensembles with respect to different DS/SE methods (3) how performances of different DS/SE methods compare with respect to ensembles with and without RUS (4) whether DS methods perform better than SE methods no matter whether RUS is used and what types of ensembles are used (5) how numbers of base classifiers affect how performances of ensembles with and without RUS compare with respect to different DS/SE methods (6) how numbers of base classifiers affect how performances of different DS/SE methods compare with respect to ensembles with and without RUS. The answers to the six research questions based on the experimental results in this study and the experimental findings are the main contributions of this work. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85145391610",
+   "title": "A novel framework based on the multi-label classification for dynamic selection of classifiers",
+   "authors": "Elmi, J. , Eftekhari, M. , Mehrpooya, A. , Ravari, M.R.",
+   "source": "International Journal of Machine Learning and Cybernetics , 14(6), pp. 2137–2154",
+   "year": "2023",
+   "cited": "14",
+   "abstract": "Hide abstract Multi-classifier systems (MCSs) are some kind of predictive models that classify instances by combining the output of an ensemble of classifiers given in a pool. With the aim of enhancing the performance of MCSs, dynamic selection (DS) techniques have been introduced and applied to MCSs. Dealing with each test sample classification, DS methods seek to perform the task of classifier selection so that only the most competent classifiers are selected. The principal subject regarding DS techniques is how the competence of classifiers corresponding to every new test sample classification task can be estimated. In traditional dynamic selection methods, for classifying an unknown test sample x, first, a local region of data that is similar to x is detected. Then, those classifiers that efficiently classify the data in the local region are also selected so as to perform the classification task for x. Therefore, the main effort of these methods is focused on one of the two following tasks: (i) to provide a measure for identifying a local region, or (ii) to provide a criterion for measuring the efficiency of classifiers in the local region (competence measure). This paper proposes a new version of dynamic selection techniques that does not follow the aforementioned approach. Our proposed method uses a multi-label classifier in the training phase to determine the appropriate set of classifiers directly (without applying any criterion such as a competence measure). In the generalization phase, the suggested method is employed efficiently so as to predict the appropriate set of classifiers for classifying the test sample x. It is remarkable that the suggested multi-label-based framework is the first method that uses multi-label classification concepts for dynamic classifier selection. Unlike the existing meta-learning methods for dynamic ensemble selection in the literature, our proposed method is very simple to implement and does not need meta-features. As the experimental results indicate, the suggested technique produces a good performance in terms of both classification accuracy and simplicity which is fairly comparable with that of the benchmark DS techniques. The results of conducting the Quade non-parametric statistical test corroborate the clear dominance of the proposed method over the other benchmark methods. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85166387082",
+   "title": "Long-term traffic pattern forecasting using dynamic classifier selection",
+   "authors": "Kianifar, M.A. , Motallebi, H. , Bardsiri, V.K.",
+   "source": "Journal of Intelligent and Fuzzy Systems , 44(6), pp. 9783–9797",
+   "year": "2023",
+   "cited": "1",
+   "abstract": "Hide abstract Dynamic Classifier Selection (DCS) techniques aim to select the most competent classifiers from an ensemble per test sample. For each test sample, only a subset of the most competent classifiers is used to estimate its target value. The performance of the DCS highly depends on how we define the local region of competence, which is a local region in the feature space around the test sample. In this paper, we propose a new definition of region of competence based on a new proximity measure. We exploit the observed similarities between traffic profiles at different links, days and hours to obtain similarities between different values. Furthermore, long-term traffic pattern prediction is a complex problem and most of the traffic prediction literature are based on time-series and regression approaches and their prediction time is limited to next few hours or days. We tackle the long-term traffic pattern prediction as a classification of discretized traffic indicators to improve the accuracy of urban traffic pattern forecasting of next weeks by using DCS. We also employ two different link clustering methods, for grouping traffic links. For each cluster, we train a dynamic classifier system for predicting the traffic variables (flow, speed and journey time). Our results on strategic road network data shows that the proposed method outperforms the existing ensemble and baseline models in long-term traffic prediction. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85137206968",
+   "title": "Two Outlier-Sensitive Measures for Semi-supervised Dynamic Ensemble Anomaly Detection Models",
+   "authors": "Fu, S. , Gao, X. , Li, B. ,... Zhang, G. , Huang, X.",
+   "source": "Neural Processing Letters , 55(3), pp. 3429–3470",
+   "year": "2023",
+   "cited": "1",
+   "abstract": "Hide abstract Semi-supervised anomaly detection has received wide interest because of not requiring counterexamples during training. Existing competence measures for semi-supervised dynamic ensemble anomaly detection models do not consider the imbalance characteristic of training samples, which will result in serious overfitting on normal samples. This paper proposes two outlier-sensitive measures to estimate the competence of base classifiers for dynamic ensemble models. When a normal sample is correctly classified, both measures give a higher positive score to base classifiers with confidence closer to 0.5, which is different from the conventional idea that base classifiers with higher confidence should obtain higher scores. When a sample is misclassified, the Output-based Outlier-Sensitive measure calculates a negative score based on the confidence outputted by the base classifier, while the Cost-Sensitive-based Outlier-Sensitive measure gives a negative score based on the category of this sample. Multiple experiments are carried out on 30 datasets from public repositories under the unified framework proposed in this paper, and results show that dynamic ensemble models with our competence measures can outperform a number of typical ensemble models in terms of G-mean and F1, regardless of the pseudo outlier labeling methods and base classifier selection methods used in the model. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85147312681",
+   "title": "A hybrid intelligent model for early validation of infectious diseases: An explorative study of machine learning approaches",
+   "authors": "Bahaj, S.A.",
+   "source": "Microscopy Research and Technique , 86(5), pp. 507–515",
+   "year": "2023",
+   "cited": "2",
+   "abstract": "Hide abstract Literature reports several infectious diseases news validation approaches, but none is economically effective for collecting and classifying information on different infectious diseases. This work presents a hybrid machine-learning model that could predict the validity of the infectious disease's news spread on the media. The proposed hybrid machine learning (ML) model uses the Dynamic Classifier Selection (DCS) process to validate news. Several machine learning models, such as K-Neighbors-Neighbor (KNN), AdaBoost (AB), Decision Tree (DT), Random Forest (RF), SVC, Gaussian Naïve Base (GNB), and Logistic Regression (LR) are tested in the simulation process on benchmark dataset. The simulation employs three DCS process methods: overall Local Accuracy (OLA), Meta Dynamic ensemble selection (META-DES), and Bagging. From seven ML classifiers, the AdaBoost with Bagging DCS method got a 97.45% high accuracy rate for training samples and a 97.56% high accuracy rate for testing samples. The second high accuracy was obtained at 96.12% for training and 96.45% for testing samples from AdaBoost with the Meta-DES method. Overall, the AdaBoost with Bagging model obtained higher accuracy, AUC, sensitivity, and specificity rate with minimum FPR and FNR for validation. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85146050790",
+   "title": "Selective Feature Bagging of one-class classifiers for novelty detection in high-dimensional data",
+   "authors": "Wang, B. , Wang, W. , Meng, G. ,... Qiao, Z. , Mao, Z.",
+   "source": "Engineering Applications of Artificial Intelligence , 120, 105825",
+   "year": "2023",
+   "cited": "7",
+   "abstract": "Hide abstract Novelty detection in high-dimensional data is a challenging task due to the masking effect of irrelevant attributes. A common solution is to discover feature subspace, of which attributes are relevant to novelties. Due to the high uncertainty of novelties in practical applications, ensemble models that combine results from multiple subspaces are proved to be more effective than single models. According to the theory of bias–variance tradeoff, existing ensembles are often developed based on variance reduction. However, it is argued that the combination of poor detectors will deteriorate the performance of ensembles. To this end, this paper proposes an ensemble detector that takes into account variance and bias reduction simultaneously. Our ensemble is referred to as Selective Feature Bagging (SFB) since it is developed on the basis of Feature Bagging (FB). In order to improve the accuracy without deterioration of diversity of base detectors in FB, we resort to the notion of dynamic classifier selection which is proved be effective in classification. During the ensemble generation phase, base detectors are produced and categorized into different groups that are distinguished by the dimensionality of subspace used for training. The purpose of such a design is to maintain the diversity. During the generation phase, the most competent base detector from each of groups is dynamically selected and used to make decision on the test pattern. The purpose of such a design is to enhance the accuracy. We verify the effectiveness of SFB on 15 data sets from KEEL repository. Experimental results have shown that SFB can statistically outperform FB. In addition, several state-of-the-art have also been outperformed by SFB. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85163820124",
+   "title": "A novel approach for ball screw condition identification with AdaBoost and local class accuracy | 基于 AdaBoost 与 LCA 的滚珠丝杠副状态识别方法",
+   "authors": "Wen, J.",
+   "source": "Gaojishu Tongxin Chinese High Technology Letters , 33(3), pp. 332–338",
+   "year": "2023",
+   "cited": "0",
+   "abstract": "Hide abstract The ball screw is one of the important components of a numerical control tool, and its working condition is critical for the performance of the machine tool and the product quality. Therefore, identifying the health state of the ball screw accurately can enhance the reliability and safety of the entire machine tool and reduce the maintenance cost. To improve the condition recognition accuracy, a novel approach is proposed to identify the ball screw performance based on AdaBoost and local class accuracy(LCA). First, a classifier ensemble is created with AdaBoost according to the failure history data. Second, once the new condition monitoring data is obtained for ball screw in unknow state, the LCA is utilized to select the most suited classifier to recognize the current state of the ball screw. Experimental results show that the proposed method can identify the ball screw condition effectively with an accuracy of 96. 3%, which is higher than the traditional techniques. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85142753560",
+   "title": "Dynamic ensemble selection classification algorithm based on window over imbalanced drift data stream",
+   "authors": "Han, M. , Zhang, X. , Chen, Z. , Wu, H. , Li, M.",
+   "source": "Knowledge and Information Systems , 65(3), pp. 1105–1128",
+   "year": "2023",
+   "cited": "18",
+   "abstract": "Hide abstract Data stream classification is an important research direction in the field of data mining, but in many practical applications, it is impossible to collect the complete training set at one time, and the data may be in an imbalanced state and interspersed with concept drift, which will greatly affect the classification performance. To this end, an online dynamic ensemble selection classification algorithm based on window over imbalanced drift data stream (DESW-ID) is proposed. The algorithm employs various balancing measures, first resampling the data stream using Poisson distribution, and if it is in a highly imbalanced state then secondary sampling is performed using a window storing a minority class instances to achieve the current balanced state of the data. To improve the processing efficiency of the algorithm, a classifier selection ensemble is proposed to dynamically adjust the number of classifiers, and the algorithm runs with an ADWIN detector to detect the presence of concept drift. The experimental results show that the proposed algorithm ranks first on average in all five classification performance metrics compared to the state-of-the-art methods. Therefore, the proposed algorithm has better classification performance for imbalanced data streams with concept drift and also improves the operation efficiency of the algorithm. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85138482266",
+   "title": "OLP++: An online local classifier for high dimensional data",
+   "authors": "Souza, M.A. , Sabourin, R. , Cavalcanti, G.D.C. , Cruz, R.M.O.",
+   "source": "Information Fusion , 90, pp. 120–137",
+   "year": "2023",
+   "cited": "13",
+   "abstract": "Hide abstract Ensemble diversity is an important characteristic of Multiple Classifier Systems (MCS), which aim at improving the overall performance of a classification system by combining the response of several models. While diversity may be introduced through various manipulations at the data level and the model level, some MCSs incorporate local information in order to increase it and/or take advantage of it, based on the idea that the different classifiers in the ensemble may have expertise in distinct areas of the feature space.1 a similar reasoning, we introduced in a previous work an ensemble method which produces in test time a few experts in the local region where each given query sample is located. These local experts, which are generated with slightly differing views of the target area, are then used to label the corresponding unknown instance. While the framework was shown to perform well especially over imbalanced problems, the locality definition in the method is based on the nearest neighbors rule and Euclidian distance, as is the case of various local-based ensembles, which may suffer from the effects of the curse of dimensionality over high dimensional problems. Thus, in this work, we propose a local ensemble method in which we leverage the data partitions given by decision trees for locality definition. More specifically, the partitions defined at different levels of the decision path that a given query instance traverses in the tree(s) are used as the regions over which the local experts are produced. By using different node levels from the path, each classifier in the local pool has a moderately distinct view of the target region without resorting to a dissimilarity metric, which might be susceptible to high dimensional spaces. Experimental results over 39 high dimensional problems showed that the proposed approach was significantly superior to our previous, distance-based framework in balanced accuracy rate. Compared to other six local-based ensemble methods, including dynamic selection and weighting schemes, the proposed method achieved competitive results, outperforming the random forest baseline and two state-of-the-art dynamic ensemble selection techniques. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85166345725",
+   "title": "Multi-Modal Music Mood Classification with Dynamic Classifier Selection",
+   "authors": "Vitorio, J.G.B. , Junior, A.S.B. , Yandre, M.G.C. , Silla, C.N.",
+   "source": "International Conference on Systems Signals and Image Processing , 2023-June",
+   "year": "2023",
+   "cited": "0",
+   "abstract": "Hide abstract In this paper we investigate the suitability of different types of Dynamic Classifier Selection approaches for the task of multimodal music mood classification. The dynamic selection methods evaluated were: KNORA-UNION, KNORAELIMINATE, Dynamic Ensemble Selection Performance, Overall Local Accuracy, Local Class Accuracy, Multiple Classifier Behaviour, A Priori and A Posteriori. The experiments were performed using the Brazilian Music Mood Database, which is a multimodal database, containing the audio signal itself, beyond their visual representation (i.e. spectrogram) and the lyrics. The obtained results have shown that the use of dynamic classifier selection methods can improve the classification results for the task at hand. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85171562799",
+   "title": "A Novel Semi-Supervised Dynamic Classifier Selection Method for HSI Classification Based on SP Segmentation",
+   "authors": "Ge, X. , Yu, X. , Yang, X.",
+   "source": "IEEE Access , 11, pp. 98830–98844",
+   "year": "2023",
+   "cited": "2",
+   "abstract": "Hide abstract This paper proposes a novel hyperspectral image classification method that combines dynamic semi-supervised multiple-kernel collaborative representation ensemble selection with superpixel (SP) consistency constraints. The method is based on the consistency principle of labels within SP blocks, where the hyperspectral image is divided into different SP blocks, and each block is treated as an independent classification task. It applies a dynamic ensemble selection strategy to select high-confidence samples from the unlabeled data and assigns pseudo-labels to expand the available training sample set. Additionally, it employs a multiple-kernel collaborative representation classifier as the base classifier to better capture sample similarities and correlations, thereby improving the classification performance. Experimental results demonstrate that the proposed method achieves superior classification accuracy on various datasets such as Indian Pines, Purdue, and KSC, outperforming the traditional Meta-DES method significantly. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85174051602",
+   "title": "Imbalanced Data Stream Classification using Dynamic Ensemble Selection",
+   "authors": "Priya, S. , Haribharathi, S. , Vijay Arvind, R.",
+   "source": "International Conference on Electrical Computer Communications and Mechatronics Engineering Iceccme 2023",
+   "year": "2023",
+   "cited": "1",
+   "abstract": "Hide abstract Modern streaming data categorization faces significant challenges from concept drift and class imbalanced data. This negatively impacts the output of the classifier, leading to improper classification. Furthermore, other factors such as the overlapping of multiple classes limit the extent of the correctness of the output. This work proposes a novel framework for integrating data pre-processing and dynamic ensemble selection, by formulating the classification framework for the nonstationary drifting imbalanced data stream, which employs the data pre-processing and dynamic ensemble selection techniques. The proposed framework was evaluated using six artificially generated data streams with differing imbalance ratios in combination with two different types of concept drifts. Each stream is composed of 200 chunks of 500 objects described by eight features and contains five concept drifts. Seven pre-processing techniques and two dynamic ensemble selection methods were considered. According to experimental results, data pre-processing combined with Dynamic Ensemble Selection techniques significantly delivers more accuracy when dealing with imbalanced data streams. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85187249005",
+   "title": "A Post-Selection Algorithm for Improving Dynamic Ensemble Selection Methods",
+   "authors": "Cordeiro, P.R.G. , Cavalcanti, G.D.C. , Cruz, R.M.O.",
+   "source": "Conference Proceedings IEEE International Conference on Systems Man and Cybernetics , pp. 1142–1147",
+   "year": "2023",
+   "cited": "1",
+   "abstract": "Hide abstract Dynamic Ensemble Selection (DES) is a Multiple Classifier Systems (MCS) approach that aims to select an ensemble for each query sample during the selection phase. Even with the proposal of several DES approaches, no particular DES technique is the best choice for different problems. Thus, we hypothesize that selecting the best DES approach per query instance can lead to better accuracy. To evaluate this idea, we introduce the Post-Selection Dynamic Ensemble Selection (PS-DES) approach, a post-selection scheme that evaluates ensembles selected by several DES techniques using different metrics. Experimental results show that using accuracy as a metric to select the ensembles, PS-DES performs better than individual DES techniques. PS-DES source code is available in a GitHub repository44https://github.com/prgc/ps-des. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85171580154",
+   "title": "GNN-DES: A New End-to-End Dynamic Ensemble Selection Method Based on Multi-label Graph Neural Network",
+   "authors": "de Araujo Souza, M. , Sabourin, R. , da Cunha Cavalcanti, G.D. , e Cruz, R.M.O.",
+   "source": "Lecture Notes in Computer Science Including Subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics , 14121 LNCS, pp. 59–69",
+   "year": "2023",
+   "cited": "1",
+   "abstract": "Hide abstract Most dynamic ensemble selection (DES) techniques rely solely on local information to single out the most competent classifiers. However, data sparsity and class overlap may hinder the region definition step, yielding an unreliable local context for performing the selection task. Thus, we propose in this work a DES technique that uses both the local information and classifiers’ interactions to learn the ensemble combination rule. To that end, we encode the local information into a graph structure and the classifiers’ information into multiple meta-labels, and learn the DES technique end-to-end using a multi-label graph neural network (GNN). Experimental results over 35 high-dimensional problems show the proposed method outperforms most evaluated DES techniques as well as the static baseline, suggesting its suitability for dealing with sparse overlapped data. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85174692788",
+   "title": "Dynamic Ensemble Selection with Reinforcement Learning",
+   "authors": "Liu, L. , Wu, J. , Li, X. , Huang, H.",
+   "source": "Lecture Notes in Computer Science , 14090 LNAI, pp. 629–640",
+   "year": "2023",
+   "cited": "5",
+   "abstract": "Hide abstract In this work, we propose a novel approach to ensemble learning, referred to as Dynamic Ensemble Selection using Reinforcement Learning. Traditional ensemble learning methods rely on static combinations of base models, which may not be optimal for diverse inputs and contexts. Our proposed method addresses this limitation by dynamically selecting the most appropriate ensemble member based on the current input and context, utilizing reinforcement learning algorithms. We formulate the ensemble member selection problem as a Markov Decision Process and employ Q-learning to learn a selection policy. The learned policy is then used to adaptively choose the best ensemble member for a given input, potentially improving the overall performance of the ensemble learning system. The proposed method demonstrates the potential for increased accuracy and robustness in various learning data sets. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85151511821",
+   "title": "An Enhanced Dynamic Ensemble Selection Classifier for Imbalance Classification With Application to China Corporation Bond Default Prediction",
+   "authors": "Wang, Y. , Zhang, J. , Yan, W.",
+   "source": "IEEE Access , 11, pp. 32082–32094",
+   "year": "2023",
+   "cited": "8",
+   "abstract": "Hide abstract China corporation bond default prediction is important and can be formulated as an imbalance classification problem solved by static ensemble classifiers. However, dynamic ensemble selection (DES) classifiers have not been applied to this typical problem in the context of business research. DES classifiers are capable of selecting an ensemble classifier for each test sample, leading to better classification performance than static ensemble classifiers. Most existing DES classifiers can not address imbalance classification optimally and only use single criteria of competent for classifier selection, resulting in sub-optimal classification performance. In this paper, we propose an enhanced DES classifier, named META-DES-Diversity, that inherits strengths of data sampling, meta-learning, criteria of diversity, and dynamic weighting fusion scheme to alleviate such limitations. Specifically, the synthetic minority over-sampling technique is initially used to balance the training set before generating a candidate classifier pool. To select an ensemble classifier with a highly competent, the meta-learning framework META-DES is utilized to consider multiple criteria of competence. In complement with the meta-leaning framework, a two-phase selection strategy is utilized to perform competence and diverse ensemble classifier selection. Note that a competence-driven decision fusion scheme is employed to effectively fuse classification results from selected ensemble classifiers. Experiments on 14 two-class imbalanced data sets from the KEEL repository and one self-collected China corporation bond data set show the effectiveness and superiority of the proposed enhanced DES classifier. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85190677900",
+   "title": "Data Stream Classification Framework for Data Streams using Dynamic Ensemble Selection",
+   "authors": "Priya, S. , Dorathi Jayaseeli, D. , Biswajit, S.",
+   "source": "Proceedings of the 2023 6th International Conference on Recent Trends in Advance Computing Icrtac 2023, pp. 491–496",
+   "year": "2023",
+   "cited": "1",
+   "abstract": "Hide abstract With the progressive advancement in the area of information technology, an huge amount of data is produced and transmitted every second in the real world. To address imbalanced data with idea drift for data streams, a novel framework for data stream classification is proposed. The class imbalance problem in data stream is handled using the proposed Adaptive Synthetic Oversampling (ASYNO) algorithm and if the concept drift occurs in data streams, then there is a possibility of sudden decrease in the balanced accuracy score. A novel dynamic classification framework based on the Dynamic Ensemble Selection (DES) was proposed in order to address the deteriorated balanced accuracy score and geometric mean in the incoming data stream. The classifiers which classify minimum one example from the competence region is chosen by KNORA-U. The number of votes obtained from each classifier is equal to the number of instances in its competence region for which, it predicts the target class. In case to arrive at the last ensemble decisionmaking, the votes received by each dynamically selected base classifiers are merged using majority voting. The proposed framework using DES, provides high balanced accuracy of 98.4% and geometric mean of 99.4% when compared to existing methods used for balancing the classes and for handling concept drift in data streams. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85163951372",
+   "title": "Prediction of posttraumatic functional recovery in middle-aged and older patients through dynamic ensemble selection modeling",
+   "authors": "Nhu, N.T. , Kang, J.-H. , Yeh, T.-S. ,... Piravej, K. , Lam, C.",
+   "source": "Frontiers in Public Health , 11, 1164820",
+   "year": "2023",
+   "cited": "4",
+   "abstract": "Hide abstract Introduction: Age-specific risk factors may delay posttraumatic functional recovery; complex interactions exist between these factors. In this study, we investigated the prediction ability of machine learning models for posttraumatic (6 months) functional recovery in middle-aged and older patients on the basis of their preexisting health conditions. Methods: Data obtained from injured patients aged ≥45 years were divided into training–validation (n = 368) and test (n = 159) data sets. The input features were the sociodemographic characteristics and baseline health conditions of the patients. The output feature was functional status 6 months after injury; this was assessed using the Barthel Index (BI). On the basis of their BI scores, the patients were categorized into functionally independent (BI >60) and functionally dependent (BI ≤60) groups. The permutation feature importance method was used for feature selection. Six algorithms were validated through cross-validation with hyperparameter optimization. The algorithms exhibiting satisfactory performance were subjected to bagging to construct stacking, voting, and dynamic ensemble selection models. The best model was evaluated on the test data set. Partial dependence (PD) and individual conditional expectation (ICE) plots were created. Results: In total, nineteen of twenty-seven features were selected. Logistic regression, linear discrimination analysis, and Gaussian Naive Bayes algorithms exhibited satisfactory performances and were, therefore, used to construct ensemble models. The k-Nearest Oracle Elimination model outperformed the other models when evaluated on the training–validation data set (sensitivity: 0.732, 95% CI: 0.702–0.761; specificity: 0.813, 95% CI: 0.805–0.822); it exhibited compatible performance on the test data set (sensitivity: 0.779, 95% CI: 0.559–0.950; specificity: 0.859, 95% CI: 0.799–0.912). The PD and ICE plots showed consistent patterns with practical tendencies. Conclusion: Preexisting health conditions can predict long-term functional outcomes in injured middle-aged and older patients, thus predicting prognosis and facilitating clinical decision-making. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85151048710",
+   "title": "A Dynamic Machine Learning Scheme for Reliable Network-Based Intrusion Detection",
+   "authors": "Viegas, E.K. , de Matos, E. , de Oliveira, P.R. , Santin, A.O.",
+   "source": "Lecture Notes in Networks and Systems , 654 LNNS, pp. 439–451",
+   "year": "2023",
+   "cited": "0",
+   "abstract": "Hide abstract Several works have proposed highly accurate machine learning (ML) techniques for network-based intrusion detection over the past years. However, despite the promising results, proposed schemes must address the high variability of network traffic and need more reliability when facing new network traffic behavior. This paper proposes a new dynamic and reliable network-based intrusion detection model implemented in two phases. First, the behavior of to-be-classified events is assessed through an outlier detection scheme to reject potentially new network traffic, thus, keeping the system reliable as time passes. Second, classification is performed through a dynamic selection of classifier to address the high variability of network traffic. Experiments performed in a new dataset composed of over 60 GB of network traffic have shown that our proposed scheme can improve detection accuracy by up to 33% when compared with traditional approaches. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85168258650",
+   "title": "Dynamic Ensemble Algorithm Post-Selection Using Hardness-Aware Oracle",
+   "authors": "Cordeiro, P.R.G. , Cavalcanti, G.D.C. , Cruz, R.M.O.",
+   "source": "IEEE Access , 11, pp. 86056–86070",
+   "year": "2023",
+   "cited": "6",
+   "abstract": "Hide abstract Dynamic Ensemble Selection (DES) algorithms have obtained better performance in many tasks compared to monolithic classifiers and static ensembles. However, it is reasonable to assume that no DES algorithm is the optimal solution in different scenarios since diversity plays an important role. Thus, this paper addresses this research gap by proposing a novel approach called Hardness-aware Oracle with Dynamic Ensemble Selection (HaO-DES) that operates as a post-selection strategy, evaluating and selecting the best DES techniques per instance. Each DES technique ensemble is evaluated using a new measure called Hardness-aware Oracle (HaO). HaO extends the traditional Oracle concept by assessing a DES technique based on how the classifiers in the selected ensemble work together, contrasting with the individual classifier evaluation in the traditional assessment. We performed experiments over 30 databases, using three base classifiers (Perceptron, Logistic Regression, and Naive Bayes) in homogeneous and heterogenous pools' configurations, to assess HaO-DES with four DES approaches (KNORA-U, KNOP, DES-P, and META-DES). We use three performance metrics to evaluate the experiments: accuracy, F-score, and Matthews Correlation Coefficient (MCC). The results show that our approach outperforms or obtains similar results against the four individual DES approaches, mainly when considering heterogeneous pool settings. We also demonstrated the HaO-DES efficiency in choosing suitable DES techniques in different situations. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85169568428",
+   "title": "Mass-Based Short Term Selection of Classifiers in Data Streams",
+   "authors": "Assis, D.N. , Enembreck, F. , Barddal, J.P.",
+   "source": "Proceedings of the International Joint Conference on Neural Networks, 2023-June",
+   "year": "2023",
+   "cited": "1",
+   "abstract": "Hide abstract Dynamic classifier selection (DCS) regards well-known machine learning techniques in the batch setting that leverage ensemble performance. Most of the methods use similarity-based methods as a proxy, culminating in high computation costs and becoming unfeasible in many streaming scenarios. In this paper, we propose a DCS method able to cope with the high-speed streaming setting, which is based on the performance of base learners in the most recent instances. The impact of our method is evaluated with different ensembles for data streams. We also propose modifications to an Online Boosting method, which has its performance improved with DCS. Our method increases the accuracy and kappa statistic of state-of-the-art ensembles with low overhead of time processing and memory. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85171539776",
+   "title": "13th IAPR-TC-15 International Workshop on Graph-Based Representations in Pattern Recognition, GbRPR 2023",
+   "authors": "[No Authors Found]",
+   "source": "Lecture Notes in Computer Science Including Subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics , 14121 LNCS",
+   "year": "2023",
+   "cited": "0",
+   "abstract": "Hide abstract The proceedings contain 16 papers. The special focus in this conference is on . The topics include: Maximal Independent Sets for Pooling in Graph Neural Networks; detecting Abnormal Communication Patterns in IoT Networks Using Graph Neural Networks; cell Segmentation of in situ Transcriptomics Data Using Signed Graph Partitioning; graph-Based Representation for Multi-image Super-Resolution; reducing the Computational Complexity of the Eccentricity Transform of a Tree; graph-Based Deep Learning on the Swiss River Network; minimum Spanning Set Selection in Graph Kernels; graph-Based vs. Vector-Based Classification: A Fair Comparison; a Practical Algorithm for Max-Norm Optimal Binary Labeling of Graphs; an Efficient Entropy-Based Graph Kernel; GNN-DES: A New End-to-End Dynamic Ensemble Selection Method Based on Multi-label Graph Neural Network; C2N-ABDP: Cluster-to-Node Attention-Based Differentiable Pooling; splitting Structural and Semantic Knowledge in Graph Autoencoders for Graph Regression; graph Normalizing Flows to Pre-image Free Machine Learning for Regression."
+  },
+  {
+   "eid": "85164400531",
+   "title": "Effective Software Effort Estimation Leveraging Machine Learning for Digital Transformation",
+   "authors": "Jadhav, A. , Shandilya, S.K. , Izonin, I. , Gregus, M.",
+   "source": "IEEE Access , 11, pp. 83523–83536",
+   "year": "2023",
+   "cited": "23",
+   "abstract": "Hide abstract Software effort estimation is a necessary component of software development projects that belong to industrial software systems and digital transformation initiatives. Digital transformation refers to the process of integrating digital technology into various components of a company or organization in order to improve operations, procedures, customer experiences, and overall performance. Industrial software systems are trained software packages designed for use in industrial and manufacturing processes. The paper deals with the machine learning based effort estimation in order to create an effective and robust model for predicting effort. The paper proposes an Omni-Ensemble Learning (OEL) approach, which is a combination of static ensemble selection along with genetic algorithm and dynamic ensemble selection. The paper identifies the impact of software effort estimation in industrial software system, and works on the these attributes to implement a robust ensemble model. The proposed Omni-Ensemble Selection (OES) provides better overall performance (in terms of evaluation metrics) and on comparing with multiple machine learning models over Finnish and Maxwell datasets. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85187326798",
+   "title": "Ensemble Learning Approaches for Big Data Classification Tasks",
+   "authors": "Aswini, K. , Reddy, U. , Nagpal, A. ,... Praveen , Abood, B.S.Z.",
+   "source": "2023 10th IEEE Uttar Pradesh Section International Conference on Electrical Electronics and Computer Engineering Upcon 2023, pp. 1545–1550",
+   "year": "2023",
+   "cited": "2",
+   "abstract": "Hide abstract Ensemble learning has emerged as a potent method for improving prediction accuracy in Big Data classification tasks. This paper presents a comprehensive study of ensemble learning techniques, specifically focusing on their applicability and performance in handling vast and complex datasets. A detailed exploration of various ensemble methodologies such as bagging, boosting, and stacking is conducted, with a particular emphasis on their adaptability to Big Data challenges. The study further delves into novel hybrid ensemble models that synergize multiple learning algorithms to capitalize on their individual strengths. A quantitative analysis is performed on several benchmark datasets to evaluate the performance of these ensemble strategies against standalone classifiers. The results indicate a significant enhancement in classification accuracy, robustness, and error reduction, underlining the efficacy of ensemble approaches in the Big Data domain. The paper also introduces a framework for dynamic ensemble selection, which intelligently chooses a subset of models tailored to the specific characteristics of the dataset in question. This adaptability showcases the potential of ensemble methods in evolving data landscapes, making them invaluable tools for Big Data practitioners. The implications of these findings suggest a paradigm shift in predictive modeling, steering future research towards more adaptive, scalable, and accurate ensemble systems. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85218428716",
+   "title": "Alzheimer’s Disease Detection Using Ensemble of Classifiers",
+   "authors": "Satyanarayana, B.V.V. , Kumar, G.P. , Varma, A.K.C. ,... Srinivas, Y. , Budumuru, P.R.",
+   "source": "Lecture Notes of the Institute for Computer Sciences Social Informatics and Telecommunications Engineering Lnicst , 472 LNICST, pp. 55–65",
+   "year": "2023",
+   "cited": "10",
+   "abstract": "Hide abstract Alzheimer’s disease is a major intellectual deficit that makes it impossible for a person to carry out daily tasks. Finding the people with Alzheimer’s and mild cognitive impairment is a difficult task. In order to arrange healthy, mildly cognitively impaired patients at the model stage itself using multimodal features. This paper will consider the presentation of cutting-edge Dynamic Ensemble Selection of Classifier computations. The review’s data came from the Alzheimer’s Disease Neuroimaging Initiative Dataset. For the purpose of expectation, the patients’ clinical imaging, cerebrospinal fluid, cognitive test, and socioeconomic data are taken into consideration at the routine appointments. The demonstration of the most recent dynamic En-semble of Classifier Selection calculations is reviewed with the aid of these highlights in terms of Accuracy, Specificity and Sensitivity. Calculations for the Classifier Selection use the pool of machine learning classifiers that are used the most frequently as a contribution. Additionally, the display of the machine learning classifiers without using the computations for the Selection of Classifiers is also examined. Classifier selection calculations performed on the majority of the classifier pool to identify individuals with moderate cognitive impairment, Alzheimer’s disease, and hearing loss have expanded presentation metrics including balanced classification accuracy, sensitivity, and specificity. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85169665290",
+   "title": "A New Multi-Class Rebalancing Framework for Imbalance Medical Data",
+   "authors": "Edward, J. , Rosli, M.M. , Seman, A.",
+   "source": "IEEE Access , 11, pp. 92857–92874",
+   "year": "2023",
+   "cited": "21",
+   "abstract": "Hide abstract Class imbalance exists in many data domains, posing numerous challenges to the data research community. Medical datasets, in most cases, are predominantly imbalanced in nature. Through tackling multi-class issues, most researchers preferred the conventional method of decomposing it into binary classes for a more convenient solution. This method is not applicable for solving sensitive and crucial domains, such as medical data. Classifying medical datasets require all the classes to retain their form and maintain clinical validity. In this article, we develop a rebalancing framework for the multi-classification of imbalanced medical data using SCUT (SMOTE and Cluster-based Undersampling Technique) to rebalance the imbalanced class distribution, a feature selection method using a combination of SHapley Additive exPlanations (SHAP) and Recursive Feature Elimination (RFE), and DES-MI (Dynamic Ensemble Selection for multi-class) for improved multi classification performance. Two novelties contribute to the performance of our framework: improvised SCUT by implementing two clustering algorithms, and our proposed pool classifier selection for DES-MI. The performance of the proposed framework was compared with other state-of-the-art imbalanced frameworks using eight imbalanced datasets, each with varying degrees of imbalance. The experimental results indicate that our proposed framework performed better with average performance of 81.77%, 73.57%, and 75.87% in terms of Macro Average accuracy, extended G-mean, and Macro Average AUC, respectively. Our framework drastically increases the overall performance, owing to its ability to significantly handles the multi-class imbalance problem. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85163605307",
+   "title": "An intelligent flower classification framework: optimal hybrid flower pattern extractor with adaptive dynamic ensemble transfer learning-based convolutional neural network",
+   "authors": "Suresh Anand, M. , Swaroopa, K. , Nainwal, M. , Therasa, M.",
+   "source": "Imaging Science Journal , 72(1), pp. 52–75",
+   "year": "2023",
+   "cited": "5",
+   "abstract": "Hide abstract The rapid development in computer technology plays an essential role in the research works for performing fast and accurate identification of flower species through the processing of flower images with the support of mobile devices that seeks more attention in the research areas. It is highly significant for maintaining the sensitivity of ecological balance, and therefore, the image-processing approaches have provided improved outcomes in recent days. To rectify these existing problems and improve the accuracy attains the flower classification, the CNN variants of ensemble techniques can be used for the dynamic ensemble selection of the CNN networks. This paper develops an enhanced ensemble deep learning-based flower classification model to get efficient classification results with optimal models. The pre-processing is done through the Contrast Limited Adaptive Histogram Equalization (CLAHE) and filtering techniques. The pre-processed images are considered for the optimal pattern extraction phase, where optimal hybrid patterns are extracted from the Local Binary Pattern (LBP) and Local Vector Pattern (LVP). Here, the optimal hybrid pattern extraction phase contains the optimization in it using the enhanced heuristic algorithm named Improved Rat Swarm Optimizer (IRSO). The flower classification is performed with an Adaptive Dynamic Ensemble Transfer learning-based Convolutional Neural Network (ADET-CNN). Here, the optimal models are selected with the support of the same RSO algorithm. The experimental results show a better efficacy of the developed flower classification framework. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85169570800",
+   "title": "Adaptive Linear Regression for Data Stream",
+   "authors": "Paim, A.M. , Enembreck, F.",
+   "source": "Proceedings of the International Joint Conference on Neural Networks, 2023-June",
+   "year": "2023",
+   "cited": "2",
+   "abstract": "Hide abstract The approaches that currently constitute the state-of-the-art for the task of regression on continuous data streams usually involve ensembles, regression trees, and regression rules. They have been found to work very well for certain situations but generally consume computational resources to a prohibitive extent. In this paper, we propose a new method based on an ensemble of linear regressions for the regression task adapted to handle continuous data streams. The technique has been named Adaptive Linear Regression (ALR). The algorithm combines strategies that contribute to high prediction accuracy using (i) distinct sliding window sizes for training each ensemble element, and (ii) a dynamic regressor selection method for final ensemble voting. After an extensive experimental study, ALR was found to exhibit high predictive performance and outperform state-of-the-art ensemble regressors on data streams for real and synthetic datasets. Moreover, it exhibits low processing time in its parallel version and is faster than ARF-Reg in its serial version. The paper also presents an analysis of how the choice of sliding window size for training favors accuracy. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85144828097",
+   "title": "Prediction of Aircraft Go-Around during Wind Shear Using the Dynamic Ensemble Selection Framework and Pilot Reports",
+   "authors": "Khattak, A. , Chan, P.-W. , Chen, F. , Peng, H.",
+   "source": "Atmosphere , 13(12), 2104",
+   "year": "2022",
+   "cited": "14",
+   "abstract": "Hide abstract Pilots typically implement the go-around protocol to avoid landings that are hazardous due to wind shear, runway excursions, or unstable approaches. Despite its rarity, it is essential for safety. First, in this study, we present three Dynamic Ensemble Selection (DES) frameworks: Meta-Learning for Dynamic Ensemble Selection (META-DES), Dynamic Ensemble Selection Performance (DES-P), and K-Nearest Oracle Elimination (KNORAE), with homogeneous and heterogeneous pools of machine learning classifiers as base estimators for the prediction of aircraft go-around in wind shear (WS) events. When generating a prediction, the DES approach automatically selects the subset of machine learning classifiers which is most probable to perform well for each new test instance to be classified, thereby making it more effective and adaptable. In terms of Precision (86%), Recall (83%), and F1-Score (84%), the META-DES model employing a pool of Random Forest (RF) classifiers outperforms other models. Environmental and situational factors are subsequently assessed using SHapley Additive exPlanations (SHAP). The wind shear magnitude, corridor, time of day, and WS altitude had the greatest effect on SHAP estimation. When a strong tailwind was present at low altitude, runways 07R and 07C were highly susceptible to go-arounds. The proposed META-DES with a pool of RF classifiers and SHAP for predicting aircraft go-around in WS events may be of interest to researchers in the field of air traffic safety. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85137152384",
+   "title": "Boosting the prediction of molten steel temperature in ladle furnace with a dynamic outlier ensemble",
+   "authors": "Wang, B. , Wang, W. , Meng, G. ,... Wang, W. , Mao, Z.",
+   "source": "Engineering Applications of Artificial Intelligence , 116, 105359",
+   "year": "2022",
+   "cited": "11",
+   "abstract": "Hide abstract Molten steel temperature prediction is a critical step in the development of level-two control systems for ladle furnace. Many machine learning algorithms have been employed to complete such a work. Whereas data-driven predictors often deteriorate due to the presence of outliers in practical applications. This paper proposes to boost the predictive performance via outlier detection. Specifically, a dynamic outlier ensemble is developed inspired by the superiority of dynamic classifier selection in classification. Clustering analysis is used to determine the region of competence, on which base detectors are selected with the dedicated measure. The reason for the usage of clustering analysis lies in its efficiency during online detection. One attribute weighting algorithm is used to enhance the capability of clustering in outlier detection. The information behind regression is used to facilitate the measure of competence, results of which can promote the performance of predictors. Such a strategy can achieve double-win from the perspective of regression and outlier detection. Extensive experiments on real-world data sets show that results of all 4 predictive models with respect to accuracy and hit rate can be improved. Moreover, the detection performance in terms of G-mean and F1 score of our detector has also been confirmed via the comparison with 8 competitors. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85141705502",
+   "title": "Dynamic Regressor/Ensemble Selection for a Multi-Frequency and Multi-Environment Path Loss Prediction",
+   "authors": "Sani, U.S. , Malik, O.A. , Lai, D.T.C.",
+   "source": "Information Switzerland , 13(11), 519",
+   "year": "2022",
+   "cited": "9",
+   "abstract": "Hide abstract Wireless network parameters such as transmitting power, antenna height, and cell radius are determined based on predicted path loss. The prediction is carried out using empirical or deterministic models. Deterministic models provide accurate predictions but are slow due to their computational complexity, and they require detailed environmental descriptions. While empirical models are less accurate, Machine Learning (ML) models provide fast predictions with accuracies comparable to that of deterministic models. Most Empirical models are versatile as they are valid for various values of frequencies, antenna heights, and sometimes environments, whereas most ML models are not. Therefore, developing a versatile ML model that will surpass empirical model accuracy entails collecting data from various scenarios with different environments and network parameters and using the data to develop the model. Combining datasets of different sizes could lead to lopsidedness in accuracy such that the model accuracy for a particular scenario is low due to data imbalance. This is because model accuracy varies at certain regions of the dataset and such variations are more intense when the dataset is generated from a fusion of datasets of different sizes. A Dynamic Regressor/Ensemble selection technique is proposed to address this problem. In the proposed method, a regressor/ensemble is selected to predict a sample point based on the sample’s proximity to a cluster assigned to the regressor/ensemble. K Means Clustering was used to form the clusters and the regressors considered are K Nearest Neighbor (KNN), Extreme Learning Trees (ET), Random Forest (RF), Gradient Boosting (GB), and Extreme Gradient Boosting (XGBoost). The ensembles are any combinations of two, three or four of the regressors. The sample points belonging to each cluster were selected from a validation set based on the regressor that made prediction with lowest absolute error per individual sample point. Implementation of the proposed technique resulted in accuracy improvements in a scenario described by a few sample points in the training data. Improvements in accuracy were also observed on datasets in other works compared to the accuracy reported in the works. The study also shows that using features extracted from satellite images to describe the environment was more appropriate than using a categorical clutter height value. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85136617919",
+   "title": "An integrated approach explaining the detection of distributed denial of service attacks",
+   "authors": "Batchu, R.K. , Seetha, H.",
+   "source": "Computer Networks , 216, 109269",
+   "year": "2022",
+   "cited": "27",
+   "abstract": "Hide abstract In recent years, several machine learning and deep learning models have been designed to detect various DDoS attacks, but the presence of irrelevant features, lack of transparency and class imbalance make these models less efficient. In this paper, we developed a novel efficient model to address these issues in detecting DDOS attacks. To begin with, data preprocessing is performed to improve the quality of the training data. The minority class samples are then generated using the Adaptive Synthetic oversampling technique to overcome the class imbalance. Following that, feature selection is performed by embedding SHAP feature importance within recursive feature elimination with five base classifiers. In addition, the hyperparameter of these classifiers is tuned to determine the most contributed features. Furthermore, global and local explanations for extracted features are provided to ensure transparency. Finally, these features are fed to the dynamic ensemble selection techniques such as KNORA-E and KNORA-U for classification by varying k values. These evaluations are analyzed using the CICDDoS2019 dataset. The evaluations are carried out in balanced and imbalanced data scenarios. The results indicate that the balanced data scenario outperformed the imbalanced data scenario as well as existing approaches. An accuracy of 99.9878% using KNORA-E and 99.9886% using KNORA-U is obtained utilizing the five most contributed features. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85139940169",
+   "title": "Interpretable Dynamic Ensemble Selection Approach for the Prediction of Road Traffic Injury Severity: A Case Study of Pakistan’s National Highway N-5",
+   "authors": "Khattak, A. , Almujibah, H. , Elamary, A. , Matara, C.M.",
+   "source": "Sustainability Switzerland , 14(19), 12340",
+   "year": "2022",
+   "cited": "39",
+   "abstract": "Hide abstract Road traffic accidents are among the top ten major causes of fatalities in the world, taking millions of lives annually. Machine-learning ensemble classifiers have been frequently used for the prediction of traffic injury severity. However, their inability to comprehend complex models due to their “black box” nature may lead to unrealistic traffic safety judgments. First, in this research, we propose three state-of-the-art Dynamic Ensemble Learning (DES) algorithms including Meta-Learning for Dynamic Ensemble Selection (META-DES), K-Nearest Oracle Elimination (KNORAE), and Dynamic Ensemble Selection Performance (DES-P), with Random Forest (RF), Adaptive Boosting (AdaBoost), Classification and Regression Tree (CART), and Binary Logistic Regression (BLR) as the base learners. The DES algorithm automatically chooses the subset of classifiers most likely to perform well for each new test instance to be classified when generating a prediction, making it more efficient and flexible. The META-DES model using RF as the base learner outperforms other models with accuracy (75%), recall (69%), precision (71%), and F1-score (72%). Afterwards, the risk factors are analyzed with SHapley Additive exPlanations (SHAP). The driver’s age, month of the year, day of the week, and vehicle type influence SHAP estimation the most. Young drivers are at a heightened risk of fatal accidents. Weekends and summer months see the most fatal injuries. The proposed novel META-DES-RF algorithm with SHAP for predicting injury severity may be of interest to traffic safety researchers. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85118892568",
+   "title": "A DES-based group decision model for group decision making with large-scale alternatives",
+   "authors": "Xu, C. , Liu, W. , Chen, Y.",
+   "source": "Applied Intelligence , 52(12), pp. 13456–13477",
+   "year": "2022",
+   "cited": "3",
+   "abstract": "Hide abstract To solve group decision making problems with large-scale alternatives, this paper proposes a dynamic ensemble selection (DES) based group decision model by using historical decision data. The historical decision data of a group of experts are collected from the same multi-criteria decision framework and are mixed to train a set of base classifiers (BCs) to learn group preferences. For each new alternative, the predictions derived from BCs are used to determine its similar historical alternatives from historical data, and the BC with the highest accuracy in predicting the similar historical alternatives is identified as the best individual BC for the new alternative. By iteratively comparing the accuracy of an ensemble of randomly selected BCs and the best individual BC in predicting the similar historical alternatives of the new alternative, a novel DES method is developed to select a competent subset of BCs for the new alternative. The developed DES method effectively avoids the error-independence assumption to a certain extent. Based on the similar historical alternatives determined by the ensemble of selected BCs, a group decision optimization model is developed to learn criterion weights from their assessments on criteria and ensemble predictions derived from the selected BCs. With the learned criterion weights, the understandable group decision result is generated for the new alternative. Case study validates the superiority of the proposed model in diagnosing thyroid nodules using group capabilities. Empirical comparisons on thirty real datasets examine the competence of the proposed DES method against five representative DES methods. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85137818323",
+   "title": "Anomaly Detection for Power Dispatching Data Based on Meta-learning Dynamic Ensemble Selection | 基于元学习动态选择集成的电力调度数据异常检测方法",
+   "authors": "Fu, S. , Gao, X. , Zhang, H. ,... Li, J. , Xu, J.",
+   "source": "Dianwang Jishu Power System Technology , 46(8), pp. 3248–3256",
+   "year": "2022",
+   "cited": "19",
+   "abstract": "Hide abstract Timely and accurate detection of the abnormal operation in a power dispatching automation system is of great significance for maintaining the safe and stable operation of the AC/DC hybrid large power grid system with \"double high\" characteristics. The anomaly patterns in the monitoring data for a dispatching system are diversified due to the variety of services, monitoring dimensions and the complex interactions among the services. The existing dynamic ensemble selection methods for unsupervised anomaly detection bears inaccurate evaluation benchmark and using single competence measure when evaluating the base detectors, which makes it hard to maintain high performance on different anomaly patterns. This paper proposes an anomaly detection method for the power dispatching data based on the meta-learning dynamic ensemble selection. Aiming at the inaccurate evaluation benchmark, an idea of hybrid ensemble selection is proposed. The accuracy of pseudo ground truth is improved by using a static selection method based on the isolation forest to eliminate incompetent base detectors before the dynamic selection of base detectors. For the poor universality caused by the single competence measure, a dynamic ensemble selection method based on the meta-learning is put forward to convert the dynamic selection of base detectors into a binary classification. The multiple competence measures are designed as the meta-features to train a meta-classifier, whose output is used to select the competent base detectors. The universality is improved by those complementary measures. A large number of experiments are conducted on 30 datasets from the authoritative public repositories and a provincial power grid dispatch center. The advanced performance of the proposed method in terms of the AUC(area under curve) and its effectiveness in the actual application comparing to the typical ensemble anomaly detection methods are verified. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85131049586",
+   "title": "A framework of dynamic selection method for user classification in touch-based continuous mobile device authentication",
+   "authors": "Zaidi, A.Z. , Chong, C.Y. , Parthiban, R. , Sadiq, A.S.",
+   "source": "Journal of Information Security and Applications , 67, 103217",
+   "year": "2022",
+   "cited": "11",
+   "abstract": "Hide abstract Continuous authentication can provide a mechanism to continuously monitor mobile devices while a user is actively using it, after passing the initial-login authentication phase. Touch biometric is one of the promising modality to realise continuous authentication on mobile devices by distinguishing between the touch strokes performed by the legitimate and illegitimate users through classification algorithms. While the benefit of the scheme is promising, the effectiveness of different classification methods are not thoroughly understood. Little consideration has been given on the combination of multiple classifiers to perform continuous authentication. In this paper, we propose a novel classification framework for touch-based continuous mobile device authentication (CMDA), utilising dynamic selection of classifiers (DS). Instead of classifying all touch strokes using the same classifier, the proposed framework classifies each touch sample using the most promising classifier(s) from a pool of classifiers. Based on the proposed framework, we evaluated various DS methods in multiple scenarios across four touch datasets. The aim of this evaluation is to assess the feasibility of DS on touch-based CMDA. We then compared these DS methods with well-known single classifiers and static ensemble methods. The experimental results show the potential and feasibility of the DS methods to improve the authentication performance of touch-based CMDA against the benchmark methods. We found that DS methods are capable of producing promising results with relatively low equal error rate (EER) in many scenarios of the datasets, with relatively high consistencies. The obtained results would be valuable for further enhancement of existing user classification methods and the development of new DS methods in touch-based CMDA. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85127314489",
+   "title": "Dynamic ensemble selection based improved random forests for fault classification in industrial processes",
+   "authors": "Zheng, J. , Liu, Y. , Ge, Z.",
+   "source": "IFAC Journal of Systems and Control , 20, 100189",
+   "year": "2022",
+   "cited": "22",
+   "abstract": "Hide abstract Fault classification is an important part in industrial process for process monitoring and control. As an ensemble learning approach for classification, random forests has been widely used in different areas. Taking into account the performance of individual decision tree, the diversity between trees and the difference between process data, a k nearest neighbors-hierarchical clustering (KNN-HC) method is proposed in this paper for dynamic ensemble selection (DES) in random forests. In addition, a weighted probability fusion strategy is developed as an alternative of majority voting rule. The experimental evaluation of the proposed method is carried out through the Tennessee Eastman (TE) benchmark process. Results show that the proposed method outperforms three conventional methods, the original random forests (RF) and the static selection based random forests. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85123891811",
+   "title": "Adaptive ensemble of self-adjusting nearest neighbor subspaces for multi-label drifting data streams",
+   "authors": "Alberghini, G. , Barbon Junior, S. , Cano, A.",
+   "source": "Neurocomputing , 481, pp. 228–248",
+   "year": "2022",
+   "cited": "40",
+   "abstract": "Hide abstract Multi-label data streams are sequences of multi-label instances arriving over time to a multi-label classifier. The properties of the stream may continuously change due to concept drift. Therefore, algorithms must constantly adapt to the new data distributions. In this paper we propose a novel ensemble method for multi-label drifting streams named Adaptive Ensemble of Self-Adjusting Nearest Neighbor Subspaces (AESAKNNS). It leverages a self-adjusting kNN as a base classifier with the advantages of ensembles to adapt to concept drift in the multi-label environment. To promote diverse knowledge within the ensemble, each base classifier is given a unique subset of features and samples to train on. These samples are distributed to classifiers in a probabilistic manner that follows a Poisson distribution as in online bagging. Accompanying these mechanisms, a collection of ADWIN detectors monitor each classifier for the occurrence of a concept drift on the subspace. Upon detection, the algorithm automatically trains additional classifiers in the background to attempt to capture new concepts on new subspaces of features. The dynamic classifier selection chooses the most accurate classifiers from the active and background ensembles to replace the current ensemble. Our experimental study compares the proposed approach with 30 other classifiers, including problem transformation, algorithm adaptation, kNNs, and ensembles on 30 diverse multi-label datasets and 12 performance metrics. Results, validated using non-parametric statistical analysis, support the better performance of the AESAKNNS and highlight the contribution of its components in improving the performance of the ensemble. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85128694627",
+   "title": "Exploring Early Prediction of Chronic Kidney Disease Using Machine Learning Algorithms for Small and Imbalanced Datasets",
+   "authors": "da Silveira, A.C.M. , Sobrinho, Á. , da Silva, L.D. ,... Pinheiro, M.E. , Perkusich, A.",
+   "source": "Applied Sciences Switzerland , 12(7), 3673",
+   "year": "2022",
+   "cited": "66",
+   "abstract": "Hide abstract Chronic kidney disease (CKD) is a worldwide public health problem, usually diagnosed in the late stages of the disease. To alleviate such issue, investment in early prediction is necessary. The purpose of this study is to assist the early prediction of CKD, addressing problems related to imbalanced and limited-size datasets. We used data from medical records of Brazilians with or without a diagnosis of CKD, containing the following attributes: hypertension, diabetes mellitus, creatinine, urea, albuminuria, age, gender, and glomerular filtration rate. We present an oversampling approach based on manual and automated augmentation. We experimented with the synthetic minority oversampling technique (SMOTE), Borderline-SMOTE, and Borderline-SMOTE SVM. We implemented models based on the algorithms: decision tree (DT), random forest, and multi-class AdaBoosted DTs. We also applied the overall local accuracy and local class accuracy methods for dynamic classifier selection; and the k-nearest oracles-union, k-nearest oracles-eliminate, and META-DES for dynamic ensemble selection. We analyzed the models’ performances using the hold-out validation, multiple stratified cross-validation (CV), and nested CV. The DT model presented the highest accuracy score (98.99%) using the manual augmentation and SMOTE. Our approach can assist in designing systems for the early prediction of CKD using imbalanced and limited-size datasets. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85128175736",
+   "title": "Solar Irradiance Forecasting Using Dynamic Ensemble Selection",
+   "authors": "Santos, D.S.O. , de Mattos Neto, P.S.G. , de Oliveira, J.F.L. ,... de Melo Filho, J.B. , Marinho, M.H.N.",
+   "source": "Applied Sciences Switzerland , 12(7), 3510",
+   "year": "2022",
+   "cited": "39",
+   "abstract": "Hide abstract Solar irradiance forecasting has been an essential topic in renewable energy generation. Forecasting is an important task because it can improve the planning and operation of photovoltaic systems, resulting in economic advantages. Traditionally, single models are employed in this task. However, issues regarding the selection of an inappropriate model, misspecification, or the presence of random fluctuations in the solar irradiance series can result in this approach underperforming. This paper proposes a heterogeneous ensemble dynamic selection model, named HetDS, to forecast solar irradiance. For each unseen test pattern, HetDS chooses the most suitable forecasting model based on a pool of seven well-known literature methods: ARIMA, support vector regression (SVR), multilayer perceptron neural network (MLP), extreme learning machine (ELM), deep belief network (DBN), random forest (RF), and gradient boosting (GB). The experimental evaluation was performed with four data sets of hourly solar irradiance measurements in Brazil. The proposed model attained an overall accuracy that is superior to the single models in terms of five well-known error metrics. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85116891377",
+   "title": "A dynamic ensemble selection method for bank telemarketing sales prediction",
+   "authors": "Feng, Y. , Yin, Y. , Wang, D. , Dhamotharan, L.",
+   "source": "Journal of Business Research , 139, pp. 368–382",
+   "year": "2022",
+   "cited": "36",
+   "abstract": "Hide abstract We propose a dynamic ensemble selection method, META-DES-AAP, to predict the success of bank telemarketing sales of time deposits. Unlike existing machine learning-based marketing sales prediction methods focusing only on prediction accuracy, META-DES-AAP considers the accuracy and average profit maximization. In META-DES-AAP, to consider both accuracy and average profit in the framework of dynamic ensemble selection using meta-training, a multi-objective optimization algorithm is designed to maximize the accuracy and average profit for base classifiers selection. Base classifiers suitable for each test telemarketing campaign are integrated according to the dynamic-based base classifiers integration method. Experimental results on bank telemarketing data show that META-DES-AAP achieves the best accuracy and the largest average profit when compared across several state-of-the-art machine learning methods. In addition, the factors influencing telemarketing on the average predicted probability of telemarketing success and average profit obtained by META-DES-AAP are analyzed. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85128182660",
+   "title": "Improving Depression Prediction Accuracy Using Fisher Score-Based Feature Selection and Dynamic Ensemble Selection Approach Based on Acoustic Features of Speech",
+   "authors": "Janardhan, N. , Kumaresh, N.",
+   "source": "Traitement Du Signal, 39(1), pp. 87–107",
+   "year": "2022",
+   "cited": "18",
+   "abstract": "Hide abstract Depression affects over 322 million people, and it is the most common source of disability worldwide. Literature in speech processing revealed that speech could be used for detecting depression. Depressed individuals exhibit varied acoustic characteristics compared to non-depressed. A four-staged machine learning classification system is developed to investigate the acoustic parameters to detect depression. Stage one uses speech recordings from a publicly available and clinically validated dataset DAIC-WOZ. The baseline acoustic feature vector, eGeMAPS, is extracted from the dataset in stage two. Adaptive synthetic (ADASYN) is performed along with data preprocessing to overcome the class imbalance. In stage three, we conducted feature selection (FS) using three techniques; Boruta FS, recursive feature elimination using support vector machine (SVM-RFE), and the fisher score-based FS. Experimentation with various machine learning base classifiers like gaussian naïve bayes (GNB), support vector machine (SVM), k-nearest neighbors (KNN), logistic regression (LR), and random forest classifier (RF) is performed in stage four. The hyperparameters of the classifiers are tuned using the GridSearchCV technique throughout the 10-fold stratified cross-validation (CV). Then we employed multiple dynamic ensemble selection of classifier algorithms (DES) with k=3 and k=5 utilizing the pool of aforementioned four base classifiers to improve the accuracy. We present a comparative study using eGeMAPS features against the base classifiers and the experimented DES classifiers. Our results on the DAIC-WOZ benchmark dataset suggested that K-Nearest Oracles Union (KNORA-U) DES with k=3 has superior accuracy using a subset of 15 features selected by fisher score-based FS than the individual base classifiers. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85156152649",
+   "title": "Dynamic selection of classifiers based on complexity measures",
+   "authors": "Schmeing, E. , Brun, A.L. , Silva, R.A.",
+   "source": "Proceedings International Conference on Tools with Artificial Intelligence Ictai, 2022-October, pp. 82–89",
+   "year": "2022",
+   "cited": "2",
+   "abstract": "Hide abstract Multiple Classifier Systems (MCS) have been an alternative to the monolithic approach to improve the performance of the classification task and increase the accuracy of pattern recognition. The dynamic selection (DS) has shown to be a promising strategy. The architecture in which classification systems are built influences their performance. However, the difficulty of the classification problem is usually neglected. Studies show that a better understanding of data complexity can be interesting for classifier selection. Thus, in this work, we evaluate the complexity measures as selection criteria for the dynamic selection of classifiers. Modifying classical literature approaches results in higher accuracy of 39.51% of the cases by adding the complexity measures while maintaining the original approach corresponds to 28.4%. Ties were present in 35.8%. This work also presents the information gain of 14 complexity measures, which suggest some drawbacks of using some of them. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85138568188",
+   "title": "A machine learning-based dynamic ensemble selection algorithm for microwave retrieval of surface soil freeze/thaw: A case study across China",
+   "authors": "Li, X. , Zhang, K. , Niu, J. , Liu, L.",
+   "source": "Giscience and Remote Sensing , 59(1), pp. 1550–1569",
+   "year": "2022",
+   "cited": "13",
+   "abstract": "Hide abstract The surface soil freeze/thaw (FT) cycle serves as a “switch” for land surface processes; accurate retrieval of surface FT dynamics based on satellite passive microwave remote sensing is critical for studies on climate change and dynamics of the cryosphere. This study aims to improve FT retrieval accuracy by developing a new FT retrieval algorithm that applies the K-Nearest Oracle Union (KNORA-UNION) dynamic ensemble selection algorithm. This algorithm can optimally integrate three machine learning models on a grid cell scale, namely Random Forests, Extra-Trees, and Extreme Gradient Boosting. We applied our developed freeze/thaw dynamic ensemble selection retrieval algorithm (FT-DESA) to retrieve China’s daily surface FT states from 2009 to 2020 based on multiband Special Sensor Microwave Imager/Sounder (SSMIS) brightness temperatures. We then evaluated our FT-DESA results by comparing the observations of 2398 stations and three other existing FT algorithms, including the modified seasonal threshold algorithm (MSTA), decision tree algorithm (DTA), and dual-index algorithm (DIA) across China. Our results show that FT-DESA has the highest retrieval accuracy and the lowest biases across China among the four algorithms. The mean classification accuracy for the PM and AM overpasses of FT-DESA is 89% and 84%, respectively. The evaluations further indicate that some of the existing algorithms do not reflect the temporal and spatial heterogeneity in selecting thresholds for FT classification. This study demonstrates that the freeze/thaw dynamic ensemble selection algorithm can provide daily estimates of surface FT states across China, improve FT states’ retrieval accuracy, and provide a valuable multi-decadal record for daily FT states. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85152213917",
+   "title": "Cost-sensitive Hierarchical Clustering for Dynamic Classifier Selection",
+   "authors": "Sellmann, M. , Shah, T.",
+   "source": "Proceedings 21st IEEE International Conference on Machine Learning and Applications Icmla 2022, pp. 782–787",
+   "year": "2022",
+   "cited": "1",
+   "abstract": "Hide abstract Given an ensemble of classifiers, dynamic classifier selection (DCS) selects one classifier depending on the particular input vector that we get to classify. DCS is a special case of algorithm selection (AS) where we can choose from multiple different algorithms to process a given input. We investigate if cost-sensitive hierarchical clustering (CSHC), a method originally developed for AS, is suited for DCS. We tailor CSHC for the special case of choosing a classification algorithm and compare with state-of-the-art DCS methods. We then show how the new methodology can be used for stacking. Experimental results show that CSHC-based DCS outperforms the best methods to date. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85146583151",
+   "title": "Dynamic Selection Classification for Chest X-Ray Images",
+   "authors": "Ignat, A.",
+   "source": "2022 10th E Health and Bioengineering Conference Ehb 2022",
+   "year": "2022",
+   "cited": "0",
+   "abstract": "Hide abstract In this article, we investigate how well combinations of classifiers work on chest X-ray images when using classical extracted features and deep learning generated features. We employed four methods for classical feature extraction and seven types of features generated with some well-known pre-trained neural networks. A dynamic selection of classifiers method based on accuracy is used for mixing these eleven classification results. The classification results are computed with a linear SVM (Support Vector Machine) using these eleven sets of features. For experiments, we employed the Kermany dataset that contains chest X-ray images of the lungs. In all situations, the combination of classifiers improved the individual results (up to 7% in the best case). Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85141634426",
+   "title": "An Empirical study and assessment of minority oversampling with Dynamic Ensemble Selection on COVID-19 utilizing Blood Sample",
+   "authors": "Srikanth, P. , Behera, C.K.",
+   "source": "Proceedings 2022 International Conference on Engineering and MIS Icemis 2022",
+   "year": "2022",
+   "cited": "2",
+   "abstract": "Hide abstract The COVID-19 virus disease outbreak that erupted in China at the end of 2019 has had a tremendous and disastrous impact on the rest of the world. It has struck the globe to its core, and the destruction has substantially increased the diagnostic burden. In the pandemic zone, clinicians will be able to cut down on their workload and get the right diagnosis of the new disease great to the use of machine learning. A blood test has emerged as a critical tool for identifying false-positive or false-negative real-time rRT-PCR diagnostics. Notably, this is mostly because it is such a cost-effective and convenient method of detecting probable COVID-19 patients. Among the numerous hard consequences associated with COVID-19 illness has been established as one of the most prevalent among COVID-19 patients. The impetus for this research is the scarcity of post-COVID-19 dataset. Following pre-processing to manage address missing values, oversampling with SMOTE ENN is used to generate several instances and model training is carried out on these data sets. However, it has been demonstrated that normatively dynamic ensemble selection outperforms static selection and dynamic selection. The DI+SMOTEENN+DESKNU exceed existing benchmark Classification algorithms and obtain the best accuracy of 99.6%, according the results. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85126909865",
+   "title": "Novel Noise Filter Techniques and Dynamic Ensemble Selection for Classification",
+   "authors": "Nguyen, T.N.A. , Nhu, Q.P. , Solanki, V.K.",
+   "source": "Recent Advances in Computer Science and Communications , 15(1), pp. 48–59",
+   "year": "2022",
+   "cited": "2",
+   "abstract": "Hide abstract Background: Ensemble selection is one of the most researched topics for ensemble learning. Researchers have been attracted to selecting a subset of base classifiers that may perform more helpful than the whole ensemble system classifiers. Dynamic Ensemble Selection (DES) is one of the most effective techniques in classification problems. DES systems select the most appropriate classifiers from the candidate classifier pool. Ensemble models that balance diversity and accuracy in the training process improve performance than the whole classifiers. Objective: In this paper, novel techniques are proposed by combining Noise Filter (NF) and Dynamic Ensemble System (DES) to have better predictive accuracy. In other words, a noise filter and DES make the data cleaner and DES improves the performance of classification. Methods: The proposed NF-DES model, which was demonstrated on twelve datasets, especially has three credit scoring datasets and a performance measure accuracy. Results: The results show that our proposed model is better than other models. Conclusion: The novel noise filer and dynamic ensemble learning with the aim to improve the classification ability are presented. To improve the performance of classification, noise filter with dynamic ensemble learning makes the noise data toward the correct class. Then, novel dynamic ensemble learning chooses the appropriate subset classifiers in the pool of base classifiers. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85140795953",
+   "title": "Dynamic Ensemble Selection Using Fuzzy Hyperboxes",
+   "authors": "Davtalab, R. , Cruz, R.M.O. , Sabourin, R.",
+   "source": "Proceedings of the International Joint Conference on Neural Networks",
+   "year": "2022",
+   "cited": "9",
+   "abstract": "Hide abstract Most dynamic ensemble selection (DES) methods utilize the K-Nearest Neighbors (KNN) algorithm to estimate the competence of classifiers in a small region surrounding the query sample. However, KNN is very sensitive to the local distribution of the data. Moreover, it also has a high computational cost as it requires storing the whole data in memory and performing multiple distance calculations during inference. Hence, the de-pendency on the KNN algorithm ends up limiting the use of DES techniques for large-scale problems. This paper presents a new DES framework based on fuzzy hyperboxes called FH-DES. Each hyperbox can represent a group of samples using only two data points (Min and Max corners). Thus, the hyperbox-based system will have less computational complexity than other dynamic se-lection methods. In addition, despite the KNN-based approaches, the fuzzy hyperbox is not sensitive to the local data distribution. Therefore, the local distribution of the samples does not affect the system's performance. Furthermore, in this research, for the first time, misclassified samples are used to estimate the competence of the classifiers, which has not been observed in previous fusion approaches. Experimental results demonstrate that the proposed method has high classification accuracy while having a lower complexity when compared with the state-of-the-art dynamic selection methods. The implemented code is available at https://github.com/redavtalab/FH-DES_IJCNN.git. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85125798221",
+   "title": "Dynamic ensemble selection of convolutional neural networks and its application in flower classification",
+   "authors": "Wang, Z. , Wang, K. , Wang, X. , Pan, S. , Qiao, X.",
+   "source": "International Journal of Agricultural and Biological Engineering , 15(1), pp. 216–223",
+   "year": "2022",
+   "cited": "15",
+   "abstract": "Hide abstract In recent years, convolutional neural networks (CNNs) have achieved great success in image classification. However, CNN models usually have complex network structures that tend to cause some related problems, such as redundancy of network parameters, low training efficiency, overfitting, and weak generalization ability. To solve these problems and improve the accuracy of flower classification, the advantages of CNNs were combined with those of ensemble learning and a method was developed for the dynamic ensemble selection of CNNs. First, MobileNet models pre-trained on a public dataset were transferred to flower datasets to train thirteen different MobileNet classifiers, and a resampling strategy was used to enhance the diversity of individual models. Second, the thirteen classifiers were sorted by a classifier sorting algorithm, before ensemble selection, to avoid an exhaustive search. Finally, with the credibility of recognition results, a classifier subset was dynamically selected and integrated to identify the flower species from their images. To verify the effectiveness, the proposed method was used to classify the images of five flower species. The accuracy of the proposed method was 95.50%, an improvement of 1.62%, 3.94%, 22.04%, 13.77%, and 0.44%, over those of MobileNet, Inception-v1, ResNet-50, Inception-ResNet-v2, and the linear ensemble method, respectively. In addition, the performance of the proposed method was compared with five other methods for flower classification. The experimental results demonstrated the accuracy and robustness of the proposed method. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85156127913",
+   "title": "Proceedings - International Conference on Tools with Artificial Intelligence, ICTAI",
+   "authors": "[No Authors Found]",
+   "source": "Proceedings International Conference on Tools with Artificial Intelligence Ictai, 2022-October",
+   "year": "2022",
+   "cited": "0",
+   "abstract": "Hide abstract The proceedings contain 211 papers. The topics discussed include: two-stage modeling for prediction with confidence; privacy-preserving cost-sensitive federated learning from imbalanced data; NCCR: neighbor and cluster consistency regularization for improving graph node classification; a chunked local aggregation strategy in federated learning; transfer learning for regression through adaptive gaussian process; a dilated transformer network for time series anomaly detection; sequential recommendation with dual learning; towards interpretable feature representation for domain adaptation problem; distributed support vector machine based on distributed loss; dual-neighborhood feature aggregation network for point cloud semantic segmentation; dynamic selection of classifiers based on complexity measures; attention constraint mechanism through auxiliary attention; argumentation-based adversarial regression with multiple learners; multi-branch selection fusion fine-grained classification algorithm based on coordinate attention localization; a novel efficient unclick behavior modeling framework for click-through rate prediction; a generative adversarial active learning method for effective outlier detection; and bilateral-branch network for imbalanced visual regression."
+  },
+  {
+   "eid": "85140760057",
+   "title": "Evaluation of Self-taught Learning-based Representations for Facial Emotion Recognition",
+   "authors": "Delazeri, B.R. , Vera, L.L. , Barddal, J.P. , Koerich, A.L. , Alceu De, S.B.",
+   "source": "Proceedings of the International Joint Conference on Neural Networks",
+   "year": "2022",
+   "cited": "2",
+   "abstract": "Hide abstract This work describes different strategies to generate unsupervised representations obtained through the concept of self-taught learning for facial emotion recognition (FER). The idea is to create complementary representations promoting diver-sity by varying the autoencoders' initialization, architecture, and training data. SVM, Bagging, Random Forest, and a dynamic ensemble selection method are evaluated as final classification methods. Experimental results on JAFFE and Cohn-Kanade datasets using a leave-one-subject-out protocol show that FER methods based on the proposed diverse representations compare favorably against state-of-the-art approaches that also explore unsupervised feature learning. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85150676769",
+   "title": "An Adaptive Approach for defect Prediction using Dynamic Classifiers Selection",
+   "authors": "Upadhyay, A. , Pandey, S.K. , Tripathi, A.K.",
+   "source": "IEEE International Conference on Knowledge Engineering and Communication Systems Ickes 2022",
+   "year": "2022",
+   "cited": "0",
+   "abstract": "Hide abstract Software Defect Prediction (SDP) approaches use learning methods to classify classes/module/files into the defective or non-defective or provide the possibility that a class can show faulty behaviors in the future. Since there are several classifiers that can give optimal results using ensemble learning methods, they are developed to estimate the defect-proneness of a class by combining prediction outcomes obtained from different classifiers. We are employing an ensemble learning technique and building an adaptive approach for performing bug prediction by dynamically selecting one classifier from a set of machine learning classifiers, that predicts if a class is bug prone or not based on characteristics of static software metrics captured for class. We are proposing a new Adaptive Approach for Bug Prediction using Dynamically Classifier Selection (ADCS) which dynamically selects the best base learning that better predicts bug-proneness of a class based on characteristics of the class. We have used datasets obtained from the PROMISE repository (developed by NASA) for 30 Software system. Our results indicates that ADCS perform better compared to 5 different classifiers which are used to predict bug-proneness independently and when Validation and Voting (VV) ensemble technique used to combine classifiers output with majority voting. We found that the ADCS outperforms in 26 projects and avoids class imbalance and overfitting problems. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85140709847",
+   "title": "Local overlap reduction procedure for dynamic ensemble selection",
+   "authors": "Souza, M.A. , Sabourin, R. , Cavalcanti, G.D.C. , Cruz, R.M.O.",
+   "source": "Proceedings of the International Joint Conference on Neural Networks",
+   "year": "2022",
+   "cited": "3",
+   "abstract": "Hide abstract Class imbalance is a characteristic known for making learning more challenging for classification models as they may end up biased towards the majority class. A promising approach among the ensemble-based methods in the context of imbalance learning is Dynamic Selection (DS). DS techniques single out a subset of the classifiers in the ensemble to label each given unknown sample according to their estimated competence in the area surrounding the query. Because only a small region is taken into account in the selection scheme, the global class disproportion may have less impact over the system's performance. However, the presence of local class overlap may severely hinder the DS techniques' performance over imbalanced distributions as it not only exacerbates the effects of the under-representation but also introduces ambiguous and possibly unreliable samples to the competence estimation process. Thus, in this work, we propose a DS technique which attempts to minimize the effects of the local class overlap during the classifier selection procedure. The proposed method iteratively removes from the target region the instance perceived as the hardest to classify until a classifier is deemed competent to label the query sample. The known samples are characterized using instance hardness measures that quantify the local class overlap. Experimental results show that the proposed technique can significantly outperform the baseline as well as several other DS techniques, suggesting its suitability for dealing with class under-representation and overlap. Furthermore, the proposed technique still yielded competitive results when using an under-sampled, less overlapped version of the labelled sets, specially over the problems with a high proportion of minority class samples in overlap areas. Code available at https://github.com/marianaasouza/lords. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85125783750",
+   "title": "Dynamic Ensemble Selection Based on Hesitant Fuzzy Multiple Criteria Decision-Making",
+   "authors": "Eftekhari, M. , Mehrpooya, A. , Saberi-Movahed, F. , Torra, V.",
+   "source": "Studies in Fuzziness and Soft Computing , 416, pp. 107–117",
+   "year": "2022",
+   "cited": "0",
+   "abstract": "Hide abstract One of the robust approaches in supervised classification learning is Multi Classifier Systems (MCSs). These systems combine predictions of some weak classifiers in a way that the overall accuracy of the system is better than the one of a weak classifier. In order to boost the performance of MCSs methods, in this chapter a fuzzy hesitant approach is described. It can be considered an application of hesitant fuzzy sets to MCSs. It employs some selection criteria to calculate the competence level of the candidate classifiers, and then employs a Hesitant fuzzy Multiple Criteria Decision-Making (HMCDM) method to select the most suitable ensemble of classifiers. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85147446384",
+   "title": "Distributed Decision Fusion for Large Scale IoT- Ecosystem",
+   "authors": "Raut, A. , Kumar, D. , Chaurasiya, V.K. , Kumar, M.",
+   "source": "Proceedings 2022 IEEE 15th International Symposium on Embedded Multicore Many Core Systems on Chip Mcsoc 2022, pp. 112–119",
+   "year": "2022",
+   "cited": "3",
+   "abstract": "Hide abstract IoT data analytics have numerous applications that generate huge data to gain new insights and information. How-ever, this work remains challenging due to the heterogeneity of IoT data sources, unnecessary data processing, uncertainty in decision-making, data biasness, and ever-increasing data size. To overcome these challenges, we propose distributed decision fusion framework for the large-scale IoT ecosystem. The proposed framework has divided into three-level. The first and second level provides the local decision of the small individual ecosystem using the filter method-based feature selection and dynamic classifier selection criteria for decision making; whereas the third level fuses the collected decision from the small ecosystems using Majority voting, Weighted majority voting and distributed Naive Bayes classifier. Lastly, we illustrate performance of the proposed solution on the US-Accidents dataset. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85135015601",
+   "title": "MEOD: A Robust Multi-stage Ensemble Model Based on Rank Aggregation and Stacking for Outlier Detection",
+   "authors": "Jiang, Z. , Zhang, F. , Xu, H. , Tao, L. , Zhang, Z.",
+   "source": "Lecture Notes in Computer Science Including Subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics , 13370 LNAI, pp. 205–218",
+   "year": "2022",
+   "cited": "1",
+   "abstract": "Hide abstract In ensemble-based unsupervised outlier detection, the lack of ground truth makes the combination of basic outlier detectors a challenging task. The existing outlier ensembles usually use certain fusion rules (majority voting, averaging) to aggregate base detectors, which results in relatively low model accuracy and robustness. To overcome this problem, in this research, we propose a robust Multi-stage Ensemble model based on rank aggregation and stacking for Outlier Detection (MEOD). The proposed model uses multiple unsupervised outlier detection algorithms to form a base detector pool. Such a pool can be utilized for extracting useful representations from the train set and integrating base detector results using a ranking aggregation-based approach. To further optimize the proposed model, a stacking-based dynamic classifier selection ensemble model is also proposed, and the best-behaved classifier is adaptively selected as the base learner in the stacking stage on different datasets. Some extensive experiments are also committed to prove that MEOD outperforms the other seven state-of-the-art benchmarks in most cases. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85115131991",
+   "title": "Building an Ensemble of Classifiers via Randomized Models of Ensemble Members",
+   "authors": "Trajdos, P. , Kurzynski, M.",
+   "source": "Lecture Notes in Networks and Systems , 255, pp. 3–13",
+   "year": "2022",
+   "cited": "0",
+   "abstract": "Hide abstract Many dynamic ensemble selection (DES) methods are known in the literature. A previously-developed by the authors, method consists in building a randomized classifier which is treated as a model of the base classifier. The model is equivalent to the base classifier in a certain probabilistic sense. Next, the probability of correct classification of randomized classifier is taken as the competence of the evaluated classifier. In this paper, a novel randomized model of base classifier is developed. In the proposed method, the random operation of the model results from a random selection of the learning set from the family of learning sets of a fixed size. The paper presents the mathematical foundations of this approach and shows how, for a practical application when learning and validation sets are given, one can determine the measure of competence and build a MC system with the DES scheme. The DES scheme with the proposed model of competence was experimentally evaluated on the collection of 67 benchmark datasets and compared in terms of eight quality criteria with two ensemble classifiers which use the previously-proposed concepts of randomized model. The proposed approach achieved the lowest ranks for almost all investigated quality criteria. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85124671305",
+   "title": "A novel multi-stage ensemble model for credit scoring based on synthetic sampling and feature transformation",
+   "authors": "He, F. , Zhang, W. , Yan, Z.",
+   "source": "Journal of Intelligent and Fuzzy Systems , 42(3), pp. 2127–2142",
+   "year": "2022",
+   "cited": "2",
+   "abstract": "Hide abstract Credit scoring has become increasingly important for financial institutions. With the advancement of artificial intelligence, machine learning methods, especially ensemble learning methods, have become increasingly popular for credit scoring. However, the problems of imbalanced data distribution and underutilized feature information have not been well addressed sufficiently. To make the credit scoring model more adaptable to imbalanced datasets, the original model-based synthetic sampling method is extended herein to balance the datasets by generating appropriate minority samples to alleviate class overlap. To enable the credit scoring model to extract inherent correlations from features, a new bagging-based feature transformation method is proposed, which transforms features using a tree-based algorithm and selects features using the chi-square statistic. Furthermore, a two-layer ensemble method that combines the advantages of dynamic ensemble selection and stacking is proposed to improve the classification performance of the proposed multi-stage ensemble model. Finally, four standardized datasets are used to evaluate the performance of the proposed ensemble model using six evaluation metrics. The experimental results confirm that the proposed ensemble model is effective in improving classification performance and is superior to other benchmark models. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85126548120",
+   "title": "Dynamic Ensemble Learning with Multi-View Kernel Collaborative Subspace Clustering for Hyperspectral Image Classification",
+   "authors": "Lu, H. , Su, H. , Hu, J. , Du, Q.",
+   "source": "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing , 15, pp. 2681–2695",
+   "year": "2022",
+   "cited": "20",
+   "abstract": "Hide abstract Recently, a series of collaborative representation (CR) methods have attracted much attention for hyperspectral images classification. In this article, two CR-based dynamic ensemble selection (DES) methods using multiview kernel collaborative subspace clustering (MVKCSC) and random subspace MVKCSC (RSMVKCSC) are proposed. In order to combine spectral and spatial information to construct a region of competence (RoC), the multiview learning strategy is used in the general DES method. Compared with traditional clustering methods, the MVC can more effectively utilize multifeature information. Moreover, a new method of constructing the Laplacian matrix using kernel CR coefficients is proposed for clustering based on subspace clustering and CR theory. This method is called MVKCSC, which can obtain the clustering results by using kernel CR self-representation coefficients. In addition, to increase the diversity of samples, the random subspace method (RSM) and MVKCSC are combined for RMVKCSC. Moreover, the algorithm can obtain better clustering results by constraining samples and features simultaneously. The effectiveness of the proposed methods is validated using three hyperspectral data sets with few samples. The experimental results show that both DES-MVKCSC and DES-RSMVKCSC outperform their single classifier counterparts. In particular, the proposed methods provide superior performance compared with the state-of-the-art DES methods. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85142276029",
+   "title": "Meta Learning-Based Dynamic Ensemble Model for Crop Selection",
+   "authors": "Swaminathan, B. , Palani, S. , Vairavasundaram, S.",
+   "source": "Applied Artificial Intelligence , 36(1), 2145646",
+   "year": "2022",
+   "cited": "21",
+   "abstract": "Hide abstract Agricultural sector is working for optimal crop yield toward securing a sustainable food supply for the world. Fast growth in precision agriculture helps farmers to increase their yields by extending the era of machine-learning techniques. However, in organic and inorganic farming, predicting yield is an open issue that dominantly depends on the presence of soil nutrients. The lack of knowledge about the richness of land nutrients deals with the crop selection problem. Therefore, the proposed work extended the idea of a dynamic ensemble model for imbalanced multi-class nutrient data. In this work, an attempt is being made to include a novel customized voting strategy for deciding the final class output from the ensemble model. As an initial step, a well-known ranking technique, VIKOR, is applied over land nutrients to extract the most informative land samples. The rationale is to reduce the complexity of the ensemble model by determining only informative land samples for further classification. Furthermore, the meta-learning approach of dynamic ensemble selection accounts for multi-criterion-based competent classifier selection as meta-classifiers. These meta-classifiers decide on ensemble formation with the customized voting strategy to classify the right crop for the test land. To investigate nutrient richness, real-time soil and water nutrient data are collected from the soil testing laboratory, which covers different spatial data. Our experiments on six popular DES algorithms over nutrient data reveal the proposed algorithm’s outperformance in specificity, sensitivity, BCA, Multi-Area under Curve, and precision. Moreover, the lesser computational time of the proposed work indicates the model’s efficiency toward suitable crop selection. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85142743729",
+   "title": "Adaptive Deep Belief Neural Networks for Pre-Term Birth Clinical Record to Sense Neonatal Apnea Level Classification",
+   "authors": "Vishwa Priya, V. , Devi, R.R.",
+   "source": "International Conference on Edge Computing and Applications Icecaa 2022 Proceedings, pp. 1416–1422",
+   "year": "2022",
+   "cited": "3",
+   "abstract": "Hide abstract A Deep learning method has been presented to identify the risk factors for Pre-term Birth (PTB). Premature birth is one of the most important factors that affect the death of the infant. The existing methodanalyzes the Very low birth weight and preterm infants more than 1500 grams is a high risk of developing intraventricular bleeding, which is a major cause of brain damage in premature infants. The previous method shows time complexity, and feature selection is being provided the highest error rate taken. To overcome the issues in this work proposed the method, Adaptive Deep Belief Neural Networks (ADBNNs) algorithm analysis to using the Softmax Late-Onset Sepsis (SLOS) function for utilizing the risk factors. Initially, the Preprocessing for non-redundant data from data begins to function using the Dynamic Ensemble Selection (DES) algorithm, which reduces the relevant values of the dataset. The proposed method Adaptive Deep Belief Neural Networks (ADBNNs) algorithm, was used to classify results based on the feature extracting information contained in the original set of features. The classification results show the Neonatal Apnea Level Classification should be calculated and combined with the Risk factors analysis based on the Softmax activation function classified the hidden layer function called Autoencoders Deep Belief Network. Hidden layers or invisible layers are not connected and are conditionally independent. Experimental results show that to perform a defect classification with the proposed method, an ADBNNs would isolate the optimal features of the individual with minimal network training time, and ultimately, the individual in the prediction and reducing the error rate, time complexity, and time complexity improving the accuracy. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85146684054",
+   "title": "Forecasting of Solar Energy Generation via Dynamic Model Ensemble",
+   "authors": "Sun, X. , Wu, D. , Jia, M. , Xiao, Y. , Boulet, B.",
+   "source": "2022 IEEE Electrical Power and Energy Conference Epec 2022, pp. 109–115",
+   "year": "2022",
+   "cited": "3",
+   "abstract": "Hide abstract Solar energy is one of the primary renewable energy sources. The usage of solar energy generation can help reduce carbon emissions and thus help address the challenge of global climate change. In the power system, we would like to maintain the balance between power generation and power usage. How-ever, solar energy generation is quite intermittent and will be affected by many uncontrollable factors, such as temperature, cloud cover, and humidity levels. Hence, the accurate forecasting of solar energy generation is of significant importance for the secure operation of power grids. Different types of methods have been developed for solar power generation forecasting, including statistical methods and machine learning methods. In this work, we propose a hybrid dynamic ensemble framework for solar energy generation forecasting. Specifically, a set of base forecasting learners will be first learned. Then, a set of weights will be dynamically updated for the base learners based on the expectation of the contributions of the base learners. Extensive experiment results on the real-world dataset have been implemented and demonstrated the effectiveness and robustness of our proposed method. The proposed forecasting method consistently outperforms all single-model baselines and the static ensemble model. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85152213366",
+   "title": "An exploratory analysis of a dynamic ensemble structure using an automatic decision process",
+   "authors": "Dantas, C.A. , Canuto, A.M.P. , Xavier-Júnior, J.C. , De Oliveira Nunes, R.",
+   "source": "Proceedings 21st IEEE International Conference on Machine Learning and Applications Icmla 2022, pp. 872–875",
+   "year": "2022",
+   "cited": "1",
+   "abstract": "Hide abstract The use of dynamic selection techniques in classifier ensembles, for attributes or member selection, has appeared in several studies in the literature as a mechanism to increase accuracy of classifier ensembles. In order to present an efficient classification structure, in this paper, we propose an automatic decision process to select the best classification structure for a testing instance. In order to do this, the decision process is capable of defining if a testing instance should be classified by a dynamic classifier ensemble (result of the integrated dynamic technique) or by a single classifier. The empirical analysis presents a substantial decrease in the processing time without deteriorating the performance of the classifier ensembles of the proposed technique. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85117214126",
+   "title": "Segmentation technique and dynamic ensemble selection to enhance glaucoma severity detection",
+   "authors": "Zulfira, F.Z. , Suyanto, S. , Septiarini, A.",
+   "source": "Computers in Biology and Medicine , 139, 104951",
+   "year": "2021",
+   "cited": "28",
+   "abstract": "Hide abstract The severity of glaucoma can be observed by categorising glaucoma diseases into several classes based on a classification process. The two most suitable parameters, cup-to-disc ratio (CDR) and peripapillary atrophy (PPA), which are commonly used to identify glaucoma are utilized in this study to strengthen the classification. First, an active contour snake (ACS) is employed to retrieve both optic disc (OD) and optic cup (OC) values, which are required to calculate the CDR. Moreover, Otsu segmentation and thresholding techniques are used to identify PPA, and the features are then extracted using a grey-level co-occurrence matrix (GLCM). An advanced segmentation technique, combined with an improved classifier called dynamic ensemble selection (DES), is proposed to classify glaucoma. Because DES is generally used to handle an imbalanced dataset, the proposed model is expected to detect glaucoma severity and determine the subsequent treatment accurately. The proposed model obtains a higher mean accuracy (0.96) than the deep learning-based U-Net (0.90) when evaluated using three datasets of 250 retinal fundus images (200 training, 50 testings) based on the 5-fold cross-validation scheme. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85116096500",
+   "title": "A novel combined dynamic ensemble selection model for imbalanced data to detect COVID-19 from complete blood count",
+   "authors": "Wu, J. , Shen, J. , Xu, M. , Shao, M.",
+   "source": "Computer Methods and Programs in Biomedicine , 211, 106444",
+   "year": "2021",
+   "cited": "27",
+   "abstract": "Hide abstract Background: As blood testing is radiation-free, low-cost and simple to operate, some researchers use machine learning to detect COVID-19 from blood test data. However, few studies take into consideration the imbalanced data distribution, which can impair the performance of a classifier. Method: A novel combined dynamic ensemble selection (DES) method is proposed for imbalanced data to detect COVID-19 from complete blood count. This method combines data preprocessing and improved DES. Firstly, we use the hybrid synthetic minority over-sampling technique and edited nearest neighbor (SMOTE-ENN) to balance data and remove noise. Secondly, in order to improve the performance of DES, a novel hybrid multiple clustering and bagging classifier generation (HMCBCG) method is proposed to reinforce the diversity and local regional competence of candidate classifiers. Results: The experimental results based on three popular DES methods show that the performance of HMCBCG is better than only use bagging. HMCBCG+KNE obtains the best performance for COVID-19 screening with 99.81% accuracy, 99.86% F1, 99.78% G-mean and 99.81% AUC. Conclusion: Compared to other advanced methods, our combined DES model can improve accuracy, G-mean, F1 and AUC of COVID-19 screening. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85108092573",
+   "title": "Ensemble selection with joint spectral clustering and structural sparsity",
+   "authors": "Wang, Z. , Zhao, S. , Li, Z. ,... Li, C. , Shen, Y.",
+   "source": "Pattern Recognition , 119, 108061",
+   "year": "2021",
+   "cited": "20",
+   "abstract": "Hide abstract Generally, ensemble selection techniques are split into two categories: dynamic and static. Static ensemble selection selects a fixed subset of the original ensemble which improves the space complexity but is not flexible to each test instance. Dynamic ensemble selection selects base learners on-the-fly according to each test instance but it does not significantly improve the complexity. Currently, there is no ensemble selection technique that is robust to the test instances as well as improves space complexity. To narrow this gap, we propose a novel static ensemble selection method, called Ensemble Selection with Joint Spectral Clustering and Structural Sparsity. This method integrates spectral clustering and structural sparsity into a joint framework whose ensemble selection result is robust to test instances and consumes less space. Using 25 datasets from KEEL and UCI, we demonstrate the effectiveness of our proposed algorithm and its promising performance compared to that of other state-of-the-art algorithms. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85114384700",
+   "title": "Novel ensemble of optimized CNN and dynamic selection techniques for accurate Covid-19 screening using chest CT images",
+   "authors": "Pathan, S. , Siddalingaswamy, P.C. , Kumar, P. ,... Ali, T. , Acharya, U.R.",
+   "source": "Computers in Biology and Medicine , 137, 104835",
+   "year": "2021",
+   "cited": "36",
+   "abstract": "Hide abstract The world is significantly affected by infectious coronavirus disease (covid-19). Timely prognosis and treatment are important to control the spread of this infection. Unreliable screening systems and limited number of clinical facilities are the major hurdles in controlling the spread of covid-19. Nowadays, many automated detection systems based on deep learning techniques using computed tomography (CT) images have been proposed to detect covid-19. However, these systems have the following drawbacks: (i) limited data problem poses a major hindrance to train the deep neural network model to provide accurate diagnosis, (ii) random choice of hyperparameters of Convolutional Neural Network (CNN) significantly affects the classification performance, since the hyperparameters have to be application dependent and, (iii) the generalization ability using CNN classification is usually not validated. To address the aforementioned issues, we propose two models: (i) based on a transfer learning approach, and (ii) using novel strategy to optimize the CNN hyperparameters using Whale optimization-based BAT algorithm + AdaBoost classifier built using dynamic ensemble selection techniques. According to our second method depending on the characteristics of test sample, the classifier is chosen, thereby reducing the risk of overfitting and simultaneously produced promising results. Our proposed methodologies are developed using 746 CT images. Our method obtained a sensitivity, specificity, accuracy, F-1 score, and precision of 0.98, 0.97, 0.98, 0.98, and 0.98, respectively with five-fold cross-validation strategy. Our developed prototype is ready to be tested with huge chest CT images database before its real-world application. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85109822524",
+   "title": "Dynamic selection and combination of one-class classifiers for multi-class classification",
+   "authors": "Fragoso, R.C.P. , Cavalcanti, G.D.C. , Pinheiro, R.H.W. , Oliveira, L.S.",
+   "source": "Knowledge Based Systems , 228, 107290",
+   "year": "2021",
+   "cited": "8",
+   "abstract": "Hide abstract A natural solution to tackle multi-class problems is employing multi-class classifiers. However, in specific situations, such as imbalanced data or high number of classes, it is more effective to decompose the multi-class problem into several and easier to solve problems. One-class decomposition is an alternative, where one-class classifiers (OCCs) are trained for each class separately. However, fitting the data optimally is a challenge for OCCs, especially when it presents a complex intra-class distribution. The literature shows that multiple classifier systems are inherently robust in such cases. Thus, the adoption of multiple OCCs for each class can lead to an improvement for one-class decomposition. With that in mind, in this work we introduce the method called One-class Classifier Dynamic Ensemble Selection for Multi-class problems (MODES, for short), which provides competent classifiers for each region of the feature space by decomposing the original multi-class problem into multiple one-class problems. So, each class is segmented using a set of cluster validity indices, and an OCC is trained for each cluster. The rationale is to reduce the complexity of the classification task by defining a region of the feature space where the classifier is supposed to be an expert. The classification of a test example is performed by dynamically selecting an ensemble of competent OCCs and the final decision is given by the reconstruction of the original multi-class problem. Experiments carried out with 25 databases, 4 OCC models, and 3 aggregation methods showed that the proposed architecture outperforms the literature. When compared with the state-of-the-art, MODES obtained better results, especially for databases with complex decision regions. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85105032000",
+   "title": "The design of dynamic ensemble selection strategy for the error-correcting output codes family",
+   "authors": "Zou, J.-Y. , Sun, M.-X. , Liu, K.-H. , Wu, Q.-Q.",
+   "source": "Information Sciences , 571, pp. 1–23",
+   "year": "2021",
+   "cited": "20",
+   "abstract": "Hide abstract Error-Correcting Output Codes (ECOC) is widely deployed to tackle the multiclass classification problem by reducing the original multi-class problem to several binary sub-problems. This study attempts to design a dynamic ensemble selection strategy to promote the performance of ECOC algorithms. Concretely, each column in a coding matrix is matched with a set of feature subsets generated by various feature selection methods. In the decoding process, a novel criterion based on the data complexity theory is proposed to pick up an optimal feature subset from the candidate subsets, so as to better distinguish unknown samples. As this strategy can be embedded in all types of ECOC algorithms, seven classical ECOC algorithms are deployed to verify the effectiveness of our strategy. Experiments are carried out on a set of UCI data sets, and the results confirm that despite different working principle, the proposed strategy can further improve the performance of various ECOC algorithms in most cases. Our python source code is available at: https://github.com/MLDMXM2017/ECOC_DES. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85103057459",
+   "title": "DEP-TSPmeta: a multiple criteria Dynamic Ensemble Pruning technique ad-hoc for time series prediction",
+   "authors": "Zhang, J. , Dai, Q. , Yao, C.",
+   "source": "International Journal of Machine Learning and Cybernetics , 12(8), pp. 2213–2236",
+   "year": "2021",
+   "cited": "8",
+   "abstract": "Hide abstract Time series prediction (TSP) is a process of using data collected at different times in the past for statistical analysis, so as to speculate on the trend of things, where the non-stationary and non-linear characteristics of data portray a hard setting for predictive tasks. Obviously, there will be no single model that could perform the best for all TSP issues. Dynamic Ensemble Selection (DES) technique achieves more accurate and robust performance than a single model, due to that it aims to select an ensemble of the most competent models in a dynamic fashion according to each test sample. A variety of DES approaches have been proposed to address pattern classification problems, but little work has been conducted on the research of TSP adopting the DES paradigm. Commonly, the DES approaches work by the definition of a single criterion to evaluate the capability of base classifiers. However, only one criterion is often inadequate for the comprehensive evaluation of classifier power. Thus, in this paper, a multiple criteria Dynamic Ensemble Pruning (DEP) technique exploiting meta-learning ad-hoc for TSP, termed DEP-TSPmeta, based on the inspiration from a state-of-the-art META-DES framework specifically presented for classification tasks, is developed. Within DEP-TSPmeta, Extreme Learning Machines (ELMs) and Hierarchical Extreme Learning Machines (H-ELMs) are integrated as the base models, and four distinct meta-attributes collections, i.e., hard prediction, local accuracy, global accuracy, and prediction confidence, are presented. Each set of meta-attributes corresponds to a specific assessment criterion, i.e., the prediction accuracy in local area of the eigenspace, the overall local accuracy, the prediction accuracy in global area of the decision space, and the confidence level of predictor. A desirable meta-predictor, obtained by training on the strength of these meta-attributes, is the key to deciding whether a base predictor is capable of predicting the unseen instance well or not. Those incapable base predictors determined by the meta-predictor will be pruned and the capable predictors will be expanded into the final dynamic ensemble system. The size of the sets of meta-attributes is specified dynamically by genetic algorithm for different time series benchmark datasets. Empirical results on eight benchmark datasets with different time granularities have verified that, the proposed DEP-TSPmeta algorithm possesses dramatically improved prediction performance at different granularities, when compared against three other DES approaches and four static selective ensemble learning methods. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85116459402",
+   "title": "Dynamic selection of classifiers for Content Based Image Retrieval",
+   "authors": "Hamreras, S. , Boucheham, B. , Molina-Cabello, M.A. , Benitez-Rochel, R. , Lopez-Rubio, E.",
+   "source": "Proceedings of the International Joint Conference on Neural Networks , 2021-July",
+   "year": "2021",
+   "cited": "1",
+   "abstract": "Hide abstract In this paper, we present a new framework for Content Based Image Retrieval (CBIR), based on Dynamic Ensemble Selection (DES) of classifiers. Herein, the classifiers consist of Convolutional Neural Networks (CNNs) that output the class probability vector of each input image. First, a diverse ensemble is built by training several weak classifiers on different training subsets, from the retrieval database. Then, each training image is passed throughout all the candidate classifiers to extract its class probability vector. These extracted vectors are then combined to make its final representation. When a new query image is input, the level of competence of all the candidate classifiers is measured on the region of competence of this image, in the training set. Then, only the most competent classifiers are selected to extract the class probability vectors from each query image. They are then combined to make a more discriminant image representation. To the best of our knowledge DES has never been applied to the CBIR area, which is the novelty of our research. The obtained results demonstrate the effectiveness of the dynamic selection, compared to the use of all the ensemble members, in terms of precision, recall, and mean average precision. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85116505174",
+   "title": "Dynamically Selected Ensemble for Data Stream Classification",
+   "authors": "Cavalheiro, L.P. , De Souza Britto, A. , Barddal, J.P. , Heutte, L.",
+   "source": "Proceedings of the International Joint Conference on Neural Networks , 2021-July",
+   "year": "2021",
+   "cited": "6",
+   "abstract": "Hide abstract Mining data streams is a hot topic in the machine learning (ML) community. In addition to learning and updating accurate models over time, these techniques must respect constraints that are not necessarily as strong in batch mode, such as time processing and memory consumption efficiency. A successful family of techniques in batch ML is dynamic classifier selection (DCS). However, these are roughly overlooked in data stream mining. In this paper, we propose a novel dynamic classifier selection framework for data streams called Double Dynamic Classifier Selection (DDCS). We compare DDCS against state-of-art methods for mining data streams in both synthetic and realworld datasets. Results depict that DDCS not only outperforms the state-of-art ensemble methods for data stream classification in terms of accuracy but is also significantly more efficient in terms of processing time and memory consumption. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85106269999",
+   "title": "Alzheimer's classification using dynamic ensemble of classifiers selection algorithms: A performance analysis",
+   "authors": "K. P., M.N. , Thiyagarajan, P.",
+   "source": "Biomedical Signal Processing and Control , 68, 102729",
+   "year": "2021",
+   "cited": "25",
+   "abstract": "Hide abstract Alzheimer's is a type of severe cognitive impairment where an individual cannot do their daily day-to-day activities. It is a challenging task to find out the Alzheimer's and Mild Cognitive Impairment patients. This study aims to compare the performance of the state of the art Dynamic Ensemble Selection of Classifier algorithms for classifying healthy, Mild Cognitive Impairment, and Alzheimer's disease participants at the baseline stage itself using multimodal features. The data used in the study is from Alzheimer's Disease Neuroimaging Initiative-TADPOLE dataset. The medical imaging, Cerebro-spinal fluid, cognitive test, and demographics data of the patients at the baseline visits are considered for the prediction purpose. The performance of the state-of-the-art Dynamic Ensemble of Classifier Selection algorithms is compared using these features in terms of Balanced Classification Accuracy, Sensitivity, and Specificity. The most commonly used pool of Machine Learning classifiers is used as the input for Dynamic Ensemble of Classifier Selection algorithms. Moreover, the performance of the pool of Machine Learning classifiers without using the Dynamic Ensemble Selection of Classifiers algorithms are also compared. The performance metrics such as Balanced Classification Accuracy, Sensitivity, and Specificity are increased after using the Dynamic Ensemble of Classifier Selection algorithms on most of the pool of classifiers for classifying healthy, Alzheimer's, and Mild Cognitive Impairment patients is promising. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85102032066",
+   "title": "Multi-Layer Selector(MLS): Dynamic selection based on filtering some competence measures",
+   "authors": "Elmi, J. , Eftekhari, M.",
+   "source": "Applied Soft Computing , 104, 107257",
+   "year": "2021",
+   "cited": "12",
+   "abstract": "Hide abstract Multi-Classifier Systems (MCSs) have been widely studied as committee methods for increasing accuracy in pattern recognition. Recently, dynamic selection (DS) techniques have attracted undivided attention as effective types of MCSs in application. In DS techniques, the selection process is accomplished in two steps including measurement and selection. Normally, most DS methods in the literature have tried to focus on approaches adopted based on only one of the two options that are to offer a new measurement or a new selection method. On the other hand, some other papers have proposed frameworks in which both options were applied in combination with each other making use of previously existing measurement methods. For the first time, the idea of combining DS methods via multi-layer selectors is offered in this paper. In specific, two main tasks are performed in each layer of the multi-layer selector. First, the competence-level of classifiers are calculated. Then, the classifiers with high competence-level are passed to the next layer, and this way, best classifiers will be passed to the output in the last layer. During this procedure, some competence criteria are combined to measure the competence-level of classifiers. Furthermore, this paper introduces a novel taxonomy for dynamic selection methods and a new technique, called Probability Based (PB) method, to find the competence level of classifier. Experimental results show that the suggested framework improves the classification accuracy when compared against current state-of-the-art dynamic ensemble selection techniques. The Quade non-parametric statistical test confirms the capability of our proposed method to deal with classification problems. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85099926594",
+   "title": "Problems selection under dynamic selection of the best base classifier in one versus one: PSEUDOVO",
+   "authors": "Goienetxea, I. , Mendialdua, I. , Rodríguez, I. , Sierra, B.",
+   "source": "International Journal of Machine Learning and Cybernetics , 12(6), pp. 1721–1735",
+   "year": "2021",
+   "cited": "6",
+   "abstract": "Hide abstract Class binarization techniques are used to decompose multi-class problems into several easier-to-solve binary sub-problems. One of the most popular binarization techniques is One versus One (OVO), which creates a sub-problem for each pair of classes of the original problem. Different versions of OVO have been developed to try to solve some of its problems, such as DYNOVO, which dynamically tries to select the best classifier for each sub-problem. In this paper, a new extension that has been made for DYNOVO, called PSEUDOVO, is presented. This extension also tries to avoid the non-competent sub-problems. An empirical study has been carried out over several UCI data sets, as well as a new data set of musical pieces of well-known classical composers. Promising results have been obtained, from which can be concluded that the PSEUDOVO extension improves the performance of DYNOVO. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85106732038",
+   "title": "Accessing imbalance learning using dynamic selection approach in water quality anomaly detection",
+   "authors": "Dogo, E.M. , Nwulu, N.I. , Twala, B. , Aigbavboa, C.",
+   "source": "Symmetry , 13(5), 818",
+   "year": "2021",
+   "cited": "25",
+   "abstract": "Hide abstract Automatic anomaly detection monitoring plays a vital role in water utilities’ distribution systems to reduce the risk posed by unclean water to consumers. One of the major problems with anomaly detection is imbalanced datasets. Dynamic selection techniques combined with ensemble models have proven to be effective for imbalanced datasets classification tasks. In this paper, water quality anomaly detection is formulated as a classification problem in the presences of class imbalance. To tackle this problem, considering the asymmetry dataset distribution between the majority and minority classes, the performance of sixteen previously proposed single and static ensemble classification methods embedded with resampling strategies are first optimised and compared. After that, six dynamic selection techniques, namely, Modified Class Rank (Rank), Local Class Accuracy (LCA), Overall-Local Accuracy (OLA), K-Nearest Oracles Eliminate (KNORA-E), K-Nearest Oracles Union (KNORA-U) and Meta-Learning for Dynamic Ensemble Selection (META-DES) in combination with homogeneous and heterogeneous ensemble models and three SMOTE-based resampling algorithms (SMOTE, SMOTE+ENN and SMOTE+Tomek Links), and one missing data method (missForest) are proposed and evaluated. A binary real-world drinking-water quality anomaly detection dataset is utilised to evaluate the models. The experimental results obtained reveal all the models benefitting from the combined optimisation of both the classifiers and re-sampling methods. Considering the three performance measures (balanced accuracy, F-score and G-mean), the result also shows that the dynamic classifier selection (DCS) techniques, in particular, the missForest+SMOTE+RANK and missForest+SMOTE+OLA models based on homogeneous ensemble-bagging with decision tree as the base classifier, exhibited better performances in terms of balanced accuracy and G-mean, while the Bg+mF+SMENN+LCA model based on homogeneous ensemble-bagging with random forest has a better overall F1-measure in comparison to the other models. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85100640534",
+   "title": "A Dynamic Ensemble Learning Algorithm based on K-means for ICU mortality prediction",
+   "authors": "Guo, C. , Liu, M. , Lu, M.",
+   "source": "Applied Soft Computing , 103, 107166",
+   "year": "2021",
+   "cited": "37",
+   "abstract": "Hide abstract This research proposes a Dynamic Ensemble Learning Algorithm based on K-means (DELAK) for intensive care unit (ICU) mortality prediction. Nowadays, the widely applied traditional scoring systems, which predict the mortality risk with some scores reflecting the severity of disease and physiological states of patients in ICU, have shown insufficient predictive performance when faced with large volume of data. Although taking advantage of large volume of data, single machine learning model and ensemble learning methods show an inadequate ability to make personalized predictions for each new patient. Dynamic ensemble selection (DES) methods which are widely studied in pattern recognition field can make personalized prediction but they only select a single classifier instead of ensemble of the results from a pool of classifiers. To overcome the limitations mentioned above, this research proposes an ensemble learning algorithm based on K-means sampling and distance-based dynamic ensemble. K-means sampling helps to achieve the diversity of base classifiers and the distance-based dynamic ensemble is a flexible fusion method which creates a personalized combination of results from base classifiers for each new test sample. To evaluate the performance for mortality prediction of the proposed algorithm, comprehensive experiments are conducted on MIMIC-III dataset. The experimental results show that DELAK achieves outstanding performance in term of AUROC and AUPRC compared with other six fusion strategies, traditional scoring systems, classical ensemble models, i.e. AdaBoost, Bagging and random forest, and dynamic ensemble selection methods in most mortality prediction tasks. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85100624983",
+   "title": "Ensemble Effort Estimation using dynamic selection",
+   "authors": "de A. Cabral, J.T.H. , Oliveira, A.L.I.",
+   "source": "Journal of Systems and Software , 175, 110904",
+   "year": "2021",
+   "cited": "35",
+   "abstract": "Hide abstract The Software Effort Estimation (SEE) process has been approached in different ways in the literature, including models built from Machine Learning (ML). The combination of these models (Ensemble) is an important research topic in ML, and has lead to improvements in accuracy compared to individual models. This paper proposes heterogeneous and dynamic ensemble selection (DES) models, composed by a set of regressors dynamically selected by classifiers to estimate software development effort. In the training phase, a pool of regression algorithms is trained using training data and a validation data set to validate the models. Next, some classifiers are trained to identify the best regression model from the pool for each training instance. In the test phase each trained classifier is used to dynamically select a regressor model from the pool for predicting the effort for each test instance. The final prediction is given by the combination of the predictions of the regressors selected by the classifiers. An experimental analysis considering a relevant set of software effort estimation problems is reported. The experiments demonstrate that the proposed method outperforms individual regressors and some state of the art models of the literature. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85097716877",
+   "title": "Adaptive ensemble of classifiers with regularization for imbalanced data classification",
+   "authors": "Wang, C. , Deng, C. , Yu, Z. ,... Gong, X. , Luo, R.",
+   "source": "Information Fusion , 69, pp. 81–102",
+   "year": "2021",
+   "cited": "27",
+   "abstract": "Hide abstract The dynamic ensemble selection of classifiers is an effective approach for processing label-imbalanced data classifications. However, such a technique is prone to overfitting, owing to the lack of regularization methods and the dependence on local geometry of data. In this study, focusing on binary imbalanced data classification, a novel dynamic ensemble method, namely adaptive ensemble of classifiers with regularization (AER), is proposed, to overcome the stated limitations. The method solves the overfitting problem through a new perspective of implicit regularization. Specifically, it leverages the properties of stochastic gradient descent to obtain the solution with the minimum norm, thereby achieving regularization; furthermore, it interpolates the ensemble weights by exploiting the global geometry of data to further prevent overfitting. According to our theoretical proofs, the seemingly complicated AER paradigm, in addition to its regularization capabilities, can actually reduce the asymptotic time and memory complexities of several other algorithms. We evaluate the proposed AER method on seven benchmark imbalanced datasets from the UCI machine learning repository and one artificially generated GMM-based dataset with five variations. The results show that the proposed algorithm outperforms the major existing algorithms based on multiple metrics in most cases, and two hypothesis tests (McNemar's and Wilcoxon tests) verify the statistical significance further. In addition, the proposed method has other preferred properties such as special advantages in dealing with highly imbalanced data, and it pioneers the researches on regularization for dynamic ensemble methods. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85085506420",
+   "title": "Ensemble learning based on fitness Euclidean-distance ratio differential evolution for classification",
+   "authors": "Liang, J. , Wei, Y. , Qu, B. , Yue, C. , Song, H.",
+   "source": "Natural Computing , 20(1), pp. 77–87",
+   "year": "2021",
+   "cited": "14",
+   "abstract": "Hide abstract Ensemble learning is a system that combines a set of base learners to improve the performance in machine learning, where accuracy and diversity of base learners are two important factors. However, these two factors are usually contradictory. To address this problem, in this paper, we propose a novel ensemble learning algorithm based on fitness Euclidean-distance ratio differential evolution, to train the neural network ensemble. FEFERR_ELA employs a multimodal evolutionary algorithm that is capable of producing diverse solutions to search for optimal solutions corresponding to parameters of base learners, where each optimal solution leads to one trained model. A dynamic ensemble selection scheme is applied to select appropriate individuals for the ensemble. The proposed algorithm is evaluated on several benchmark problems and compared with some related ensemble learning models. The experimental results demonstrate that the proposed algorithm outperforms the related works and can produce the neural network ensembles with better generalization. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85090968725",
+   "title": "Preprocessed dynamic classifier ensemble selection for highly imbalanced drifted data streams",
+   "authors": "Zyblewski, P. , Sabourin, R. , Woźniak, M.",
+   "source": "Information Fusion , 66, pp. 138–154",
+   "year": "2021",
+   "cited": "106",
+   "abstract": "Hide abstract This work aims to connect two rarely combined research directions, i.e., non-stationary data stream classification and data analysis with skewed class distributions. We propose a novel framework employing stratified bagging for training base classifiers to integrate data preprocessing and dynamic ensemble selection methods for imbalanced data stream classification. The proposed approach has been evaluated based on computer experiments carried out on 135 artificially generated data streams with various imbalance ratios, label noise levels, and types of concept drift as well as on two selected real streams. Four preprocessing techniques and two dynamic selection methods, used on both bagging classifiers and base estimators levels, were considered. Experimentation results showed that, for highly imbalanced data streams, dynamic ensemble selection coupled with data preprocessing could outperform online and chunk-based state-of-art methods. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85102496203",
+   "title": "Ensemble selection in one-versus-one scheme – case study for cutting tools classification",
+   "authors": "Rojek, I. , Burduk, R. , Heda, P.",
+   "source": "Bulletin of the Polish Academy of Sciences Technical Sciences , 69(1), e136044",
+   "year": "2021",
+   "cited": "4",
+   "abstract": "Hide abstract The binary classifiers are appropriate for classification problems with two class labels. For multi-class problems, decomposition techniques, like one-vs-one strategy, are used because they allow the use of binary classifiers. The ensemble selection, on the other hand, is one of the most studied topics in multiple classifier systems because a selected subset of base classifiers may perform better than the whole set of base classifiers. Thus, we propose a novel concept of the dynamic ensemble selection based on values of the score function used in the one-vs-one decomposition scheme. The proposed algorithm has been verified on a real dataset regarding the classification of cutting tools. The proposed approach is compared with the static ensemble selection method based on the integration of base classifiers in geometric space, which also uses the one-vs-one decomposition scheme. In addition, other base classification algorithms are used to compare results in the conducted experiments. The obtained results demonstrate the effectiveness of our approach. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85089259505",
+   "title": "Using multiple classifier behavior to develop a dynamic outlier ensemble",
+   "authors": "Yuan, P. , Wang, B. , Mao, Z.",
+   "source": "International Journal of Machine Learning and Cybernetics , 12(2), pp. 501–513",
+   "year": "2021",
+   "cited": "8",
+   "abstract": "Hide abstract Outlier ensembles that use more base detectors recently become an attractive approach to solving problems of single detectors. However, existing outlier ensembles often assume that base detectors make independent errors, which is difficult to satisfy in practical applications. To this end, this paper proposes a dynamic outlier ensemble to loose this error independence assumption. In our method, it is desired that the most competent base detector(s) can be singled out by the dynamic selection mechanism for each test pattern. The usage of the concept of multiple classifier behavior (MCB) has two purposes. One is to generate artificial outlier examples used for competence estimates. This strategy is different from other methods since we do not make any assumption regarding the data distribution. On the other hand, MCB is used to refine validation sets initialized by the K-nearest neighbors (KNN) rule. It is desired that objects in the refined validation sets are more representative than those found by KNN. With the refined validation sets, competences of all base detectors will be estimated by a probabilistic method, before which we have transformed outputs of base detectors into a probabilistic form. Finally, a switching mechanism that determines whether one detector should be nominated to make the decision or a fusion method should be applied instead is proposed in order to achieve a robust detection result. We carry out experiments on 20 benchmark data sets to verify the effectiveness of our detection method. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85116921592",
+   "title": "Imbalanced Data Mining Using Oversampling and Cellular GEP Ensemble",
+   "authors": "Jȩdrzejowicz, J. , Jȩdrzejowicz, P.",
+   "source": "Lecture Notes in Computer Science Including Subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics , 12876 LNAI, pp. 360–372",
+   "year": "2021",
+   "cited": "1",
+   "abstract": "Hide abstract The paper proposes a novel classifier for mining imbalanced datasets. The approach integrates three techniques – oversampling, cellular Gene Expression Programming, and dynamic selection of classifiers. The oversampling algorithm is based on the Local Distribution-Based Adaptive Minority Oversampling technique. Cellular GEP is an extension of cellular genetic algorithms. In the first step of the approach minority and majority datasets are balanced by replicating or synthesizing minority class examples. Next, cellular GEP is used to produce a set of base classifiers in the form of expression trees. Finally, a dynamic selection of classifiers is used during testing. To validate the approach an extensive computational experiment has been carried out. Its results show that the proposed classifier outperforms classic learners used for mining imbalanced datasets and is comparable with the state-of-the-art ensemble classifiers. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85096519370",
+   "title": "SMOTE–ENN-Based Data Sampling and Improved Dynamic Ensemble Selection for Imbalanced Medical Data Classification",
+   "authors": "Lamari, M. , Azizi, N. , Hammami, N.E. ,... Dendani, N. , Benzebouchi, N.E.",
+   "source": "Advances in Intelligent Systems and Computing, 1188, pp. 37–49",
+   "year": "2021",
+   "cited": "65",
+   "abstract": "Hide abstract During the last few years, the classification of imbalanced datasets is one of the crucial issues in medical diagnosis since it is related to the distribution of normal and abnormal cases which can potentially affect the performance of the diagnosis system. For solving this problem, various techniques have been designed in order to achieve acceptable quality. Ensemble systems are one of those techniques, and they have proven their ability to be more accurate than single classifier models. Classifier selection is related to the choice of an optimal subset within a pool of classifiers. Selection of classifier can be broadly split into two classes: static and dynamic. This paper proposes a novel set selection scheme for the classification of imbalanced medical datasets. The suggested approach is based on the combination of an improved dynamic ensemble selection called META-DES framework combined with a hybrid sampling method called SMOTE–ENN. The experimental results prove the superiority of the proposed ensemble learning system using three UCI datasets. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85103753393",
+   "title": "DDES: A Distribution-Based Dynamic Ensemble Selection Framework",
+   "authors": "Choi, Y.-R. , Lim, D.-J.",
+   "source": "IEEE Access , 9, pp. 40743–40754, 9366872",
+   "year": "2021",
+   "cited": "12",
+   "abstract": "Hide abstract Dynamic Ensemble Selection (DES) is a special type of ensemble modeling that selects different subsets of base classifiers for different test sample cases. In this process, multiple base classifiers are compared in terms of their competence as an ensemble to the best possible prediction for a given test sample case. Traditional DES methods rely on the Euclidean distance-based k-Nearest Neighbor (kNN) algorithm to identify the most relevant reference data points in such a way that the base classifiers correctly classifying them can be considered for an optimal ensemble. However, this approach is sensitive to the local structure of the data and the presence of noisy or irrelevant attributes. This study proposes a novel distribution-based DES (DDES) framework that takes the data structure into consideration when selecting reference data points. The experimental results for 30 classification problems indicate that the proposed approach yielded the best accuracy among the competing DES methods. Additionally, we discuss the correlation between the data complexity and the improvement in classification performance. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85117692522",
+   "title": "Dynamic Ensemble Selection for Imbalanced Data Stream Classification with Limited Label Access",
+   "authors": "Zyblewski, P. , Woźniak, M.",
+   "source": "Lecture Notes in Computer Science Including Subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics , 12855 LNAI, pp. 217–226",
+   "year": "2021",
+   "cited": "1",
+   "abstract": "Hide abstract Real data streams often, in addition to the possibility of concept drift occurrence, can display a high imbalance ratio. Another important problem with real classification tasks, often overlooked in the literature, is the cost of obtaining labels. This work aims to connect three rarely combined research directions i.e., data stream classification, imbalanced data classification, and limited access to labels. For this purpose, the behavior of the desisc-sb framework proposed by the authors in earlier works for the classification of highly imbalanced data stream was examined under the scenario of limited label access. Experiments conducted on synthetic and real streams confirmed the potential of using desisc-sb to classify highly imbalanced data streams even in the case of low label availability. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85123926793",
+   "title": "RMkNN and KNORA-IU: Combining Imbalanced Dynamic Selection Techniques for Credit Scoring",
+   "authors": "Melo, L. , Fernandes MacEdo, J. , Nardini, F.M. , Renso, C.",
+   "source": "Proceedings International Conference on Tools with Artificial Intelligence Ictai, 2021-November, pp. 823–830",
+   "year": "2021",
+   "cited": "1",
+   "abstract": "Hide abstract Credit scoring has become a critical tool for financial institutions to discriminate \"bad\"applicants from \"good\"ones. One common characteristic of the credit datasets is the imbalance between good and bad applicants, with low defaults (no paid loans). Ensemble classification methodology is widely used in this field. However, dynamic ensemble selection approaches to imbalanced datasets have drawn little consideration. This study aims to measure the performance of the combination of two recent dynamic selection techniques for imbalanced credit scoring datasets, Reduced Minority k-NN (RMkNN) and KNORA-Imbalanced Union (KNORA-IU). We comprehensively evaluate the proposed combination against state-of-the-art competitors on six real-world public datasets and one private one. Experiments show that this combination improves the classification performance on the evaluated datasets in terms of AUC, balanced accuracy, H-measure, G-mean, F-measure, and Recall. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85103596263",
+   "title": "An Adaptive Heterogeneous Online Learning Ensemble Classifier for Nonstationary Environments",
+   "authors": "Museba, T. , Nelwamondo, F. , Ouahada, K.",
+   "source": "Computational Intelligence and Neuroscience, 2021, 6669706",
+   "year": "2021",
+   "cited": "8",
+   "abstract": "Hide abstract In recent years, the prevalence of technological advances has led to an enormous and ever-increasing amount of data that are now commonly available in a streaming fashion. In such nonstationary environments, the underlying process generating the data stream is characterized by an intrinsic nonstationary or evolving or drifting phenomenon known as concept drift. Given the increasingly common applications whose data generation mechanisms are susceptible to change, the need for effective and efficient algorithms for learning from and adapting to evolving or drifting environments can hardly be overstated. In dynamic environments associated with concept drift, learning models are frequently updated to adapt to changes in the underlying probability distribution of the data. A lot of work in the area of learning in nonstationary environments focuses on updating the learning predictive model to optimize recovery from concept drift and convergence to new concepts by adjusting parameters and discarding poorly performing models while little effort has been dedicated to investigate what type of learning model is suitable at any given time for different types of concept drift. In this paper, we investigate the impact of heterogeneous online ensemble learning based on online model selection for predictive modeling in dynamic environments. We propose a novel heterogeneous ensemble approach based on online dynamic ensemble selection that accurately interchanges between different types of base models in an ensemble to enhance its predictive performance in nonstationary environments. The approach is known as Heterogeneous Dynamic Ensemble Selection based on Accuracy and Diversity (HDES-AD) and makes use of models generated by different base learners to increase diversity to circumvent problems associated with existing dynamic ensemble classifiers that may experience loss of diversity due to the exclusion of base learners generated by different base algorithms. The algorithm is evaluated on artificial and real-world datasets with well-known online homogeneous online ensemble approaches such as DDD, AFWE, and OAUE. The results show that HDES-AD performed significantly better than the other three homogeneous online ensemble approaches in nonstationary environments. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85116865108",
+   "title": "Framework for imbalanced data classification",
+   "authors": "Błaszczyk, M. , Jedrzejowicz, J.",
+   "source": "Procedia Computer Science , 192, pp. 3477–3486",
+   "year": "2021",
+   "cited": "11",
+   "abstract": "Hide abstract Classifying imbalanced data remains a challenging task. The paper presents a framework for imbalanced datasets classification which makes use of different methods of oversampling and methods of dynamical selection of classifiers. The framework allows to perform extensive experiments to determine best possible configuration for the examined dataset in terms of geometric mean metric (g-mean). The results on benchmark datasets are presented. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85092190385",
+   "title": "Automated segmentation and classifcation of retinal features for glaucoma diagnosis",
+   "authors": "Pathan, S. , Kumar, P. , Pai, R.M. , Bhandary, S.V.",
+   "source": "Biomedical Signal Processing and Control , 63, 102244",
+   "year": "2021",
+   "cited": "65",
+   "abstract": "Hide abstract Glaucoma is a progressive optic neuropathy, which damages the optic nerve head and causes irreversible visual field loss. It is considered as one of the major cause of blindness. Clinical diagnosis of glaucoma involves fundus photography for examining the changes occurring due to glaucoma. Fundus images are capable of being processed by computational algorithms. Thus, development of an automated diagnostic system using image processing techniques is of great importance for detection of glaucoma during mass screening. The proposed method aims to develop a computer aided diagnostic (CAD) system for glaucoma detection. First, automated segmentation algorithms for optic disc and optic cup are developed which overcomes the reduced variability present between the region of interest and the background. Second, the segmented regions are used to obtain the clinical and textural features. Finally an efficient classification model is developed by considering the dynamic classifier selection methods. The proposed method is tested on a hospital dataset and publically available Drishti dataset. The quantitative results proves the efficiency of the adopted methodology and thus, can be incorporated in CAD of glaucoma. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85111611711",
+   "title": "A dynamic predictor selection method based on recent temporal windows for time series forecasting",
+   "authors": "Silva, E.G. , de Mattos Neto, P.S.G. , Cavalcanti, G.D.C.",
+   "source": "IEEE Access , 9, pp. 108466–108479, 9502692",
+   "year": "2021",
+   "cited": "11",
+   "abstract": "Hide abstract The development of accurate forecasting systems for real-world time series modeling is a challenging task. Due to the presence of temporal patterns that change over time, the adoption of a single model can lead to underperformed forecasts. In this scenario, Multiple Predictor Systems (MPS) emerge as an alternative to adopting single models since they struggle to learn in the presence of temporal patterns that change over time. Dynamic prediction/ensemble selection is a special case of MPS where each model is an expert in the time series's specific patterns. In dynamic selection, instead of combining all models, the most competent models per test pattern are selected. A criterion commonly used is to evaluate the models' performance in the region of competence, formed by the patterns present in the in-sample set (training or validation sets) more similar to the test pattern. Thus, the region of competence's quality is a key factor in the precision of the MPS. However, adequately defining the similarity criterion and the size of the region of competence is challenging and problem-dependent. Furthermore, there is no guarantee that similar data exist in the in-sample set. This paper proposes a dynamic selection approach entitled Dynamic Selection based on the Nearest Windows (DSNAW) that selects one or more competent models according to their performance in the region of competence composed of the nearest antecedent windows to the new target time window. This strategy assumes that the temporal windows closer to a test pattern have a behavior more similar to the target than in-sample data. The experimental study using ten well-known time series showed that the DSNAW outperforms the literature approaches. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  }
+ ]
+}

@@ -1,0 +1,88 @@
+uid,decision,code,reason
+R0088,EXCLUDE,E3,"Software effort estimation (regression) with ""Omni-Ensemble"" static+dynamic selection; no Oracle/diversity analysis"
+R0089,EXCLUDE,E2,IoT decision fusion using DCS and majority voting applied to US-Accidents dataset
+R0090,MAYBE,M,"New DCS method for high-speed data streams based on recent base-learner performance, evaluated with stream ensembles"
+R0091,EXCLUDE,E2,Thyroid disease classification with AdaBoost/Q-learning and dynamic classifier selection; application
+R0092,EXCLUDE,E2,"DES with multiview subspace clustering for hyperspectral image classification; domain application, no Oracle"
+R0093,EXCLUDE,E2,"Imbalanced medical data framework with SCUT, SHAP-RFE and DES-MI; application framework"
+R0094,EXCLUDE,E2,Neonatal apnea classification with deep belief networks; DES used only in preprocessing
+R0095,EXCLUDE,E2,Dynamic model selection for pediatric drug-induced liver injury prediction from EHRs; application
+R0096,EXCLUDE,E2,"Generic big-data ensemble study (bagging, boosting, stacking, DES framework); no Oracle or diversity-accuracy analysis"
+R0097,EXCLUDE,E2,Two-stage voting + Meta-DES for credit scoring on loan dataset; application
+R0098,EXCLUDE,E2,Combining RMkNN and KNORA-IU for imbalanced credit scoring datasets; application
+R0099,MAYBE,M,"Optimized ensemble via class-pure clusters creating ""diverse base classifiers"", 31 UCI datasets; pool generation method"
+R0100,EXCLUDE,E2,Ensemble classification with evidence theory for anomaly detection on Tennessee Eastman; application
+R0101,MAYBE,M,"Classifier selection via ""pairwise diversity"" hierarchical clustering, pools of distinct diversity vs accuracy; fake news"
+R0102,EXCLUDE,E2,AdaBoost+GA ensemble for cancer gene expression classification; diversity only as design goal
+R0103,EXCLUDE,E2,Multi-step DES (KNORA) for discretized software effort estimation; application
+R0104,EXCLUDE,E2,KNORA-U DES for EEG stress detection; application
+R0105,EXCLUDE,E2,DES (KNORA-E) for predicting posttraumatic functional recovery; clinical application
+R0106,EXCLUDE,E2,META-DES/DES-P/KNORA-E for aircraft go-around prediction; application
+R0107,EXCLUDE,E2,META-DES/KNORA-E for road traffic injury severity prediction; application
+R0108,EXCLUDE,E2,KNORA-U DES for depression detection from speech; application
+R0109,EXCLUDE,E2,KNORA-Union DES for microwave soil freeze/thaw retrieval; remote sensing application
+R0110,INCLUDE,I-b,"New DCS-DQ method; notes ""performance gap"" with Oracle and ""closely aligns with the oracle performance"""
+R0111,EXCLUDE,E2,Dynamic selection techniques for imbalanced water quality anomaly detection; application
+R0112,MAYBE,M,"Investigates label noise effects on Dynamic Selection algorithms, proposes MSDS; methodological DS study"
+R0113,MAYBE,M,"No abstract; title ""using the Oracle meta-classifier"" suggests Oracle-based selection; full text needed"
+R0114,EXCLUDE,E1,"Oracle bone character recognition; ""oracle"" in another sense"
+R0115,EXCLUDE,E1,Blockchain oracle selection with deep reinforcement learning; unrelated sense of oracle
+R0116,EXCLUDE,E2,"Chronic kidney disease prediction comparing DCS/DES (OLA, KNORA, META-DES); application"
+R0117,EXCLUDE,E2,"Comparison of DES (KNORA, DESP) and greedy ensemble optimization on credit card dataset; application"
+R0118,INCLUDE,I-b,"Texture classification; reports ""significantly higher Oracle accuracy for the ensemble"" as reference versus DCS/static combiners"
+R0119,INCLUDE,I-a,"Proposes ""Hardness-aware Oracle (HaO)"" that ""extends the concept of the Oracle"" for post-selection DES (dissertation)"
+R0120,INCLUDE,I-a,"Establishes ""first- and second-order oracle bounds"" showing fairness improved via ensemble combination; theoretical ensemble bounds"
+R0121,EXCLUDE,E1,"Dynamic data selection for self-supervised learning; ""oracle analysis"" unrelated to classifier ensembles (thesis)"
+R0122,EXCLUDE,E1,"Blockchain business process management; ""computation oracle"" unrelated"
+R0123,EXCLUDE,E1,"Cryptography with partial fractions; ""random oracles"" unrelated to classifier ensembles"
+R0124,EXCLUDE,E2,Hematopoietic cell CNN classifiers with ensembling; clinical application conference abstract
+R0125,INCLUDE,I-c,"New ranking-distance diversity measure for MCS; diversity must ""contribute to fusion classification results"", validated experimentally"
+R0126,INCLUDE,I-c,"New ambiguity-based diversity measures; ""generalisation error is negatively correlated with diversity at high sampling rates"""
+R0127,INCLUDE,I-c,"Learned-embedding simplex-volume diversity measure designed to relate to ""fused classification performance of the MCS"""
+R0128,INCLUDE,I-c,"New diversity measures; ""generalisation error is negatively correlated with diversity"" depending on sampling rate"
+R0129,MAYBE,M,"Analysis of ordered-aggregation pruning metrics incl. ""ensemble diversity"" on 30 benchmark tasks; pruning study"
+R0130,INCLUDE,I-c,"CLEER random projections ensemble; ""ensemble diversity was effectively enhanced"" with more accurate classifications on 24 datasets"
+R0131,INCLUDE,I-c,"Two new diversity measures; reports ""correlation ... among the proposed measures and ... the classifier ensemble accuracy"""
+R0132,MAYBE,M,"ADES stream classifier ""exploiting different amounts of ensemble diversity"" for concept drift; method paper"
+R0133,MAYBE,M,"SVM ensemble with diversity/disparity judgment functions based on negative correlation theory; method, vague abstract"
+R0134,MAYBE,M,"Citation classification ensembles; ""five diversity measures"" and ""diversity re-ranking"" for voting; may relate diversity to accuracy"
+R0135,MAYBE,M,"Selective ensemble of ELMs with ""combined diversity measure"" of complementarity and accuracy; 10 benchmark datasets"
+R0136,MAYBE,M,"Multiple-criteria ensemble pruning using ""multiple diversity and performance measures"" on sixteen binary datasets"
+R0137,EXCLUDE,E5,"No abstract; title ""Complexity-Guided Ensemble Learning for Imbalanced Data"" not decisive"
+R0138,MAYBE,M,OLP++ local ensemble method on 39 high-dimensional problems vs dynamic selection; discusses ensemble diversity
+R0139,EXCLUDE,E3,Solar irradiance forecasting with dynamic selection of regression/forecasting models
+R0140,MAYBE,M,"No abstract; title ""Dynamic selection of classifiers in data streams"" indicates DCS method dissertation"
+R0141,MAYBE,M,Dynamic Ensemble Selection using reinforcement learning (Q-learning selection policy); method paper
+R0142,MAYBE,M,"AutoML with DES of pipelines, new dynamic balanced accuracy criterion, 39 datasets; method paper"
+R0143,MAYBE,M,DES with Regional Expertise: local expertise enhancement and competence region optimization; method paper
+R0144,EXCLUDE,E2,META-DES-AAP for bank telemarketing sales prediction; application
+R0145,MAYBE,M,Multi-label classifier predicts appropriate classifier set for dynamic selection; benchmark DS comparison
+R0146,MAYBE,M,FH-DES: fuzzy hyperbox competence maps for scalable DES; method paper
+R0147,EXCLUDE,E3,DESReg library for dynamic ensemble selection in regression tasks
+R0148,MAYBE,M,"DES-AS: synergy competence via algorithm Shapley, forty datasets; DES method paper"
+R0149,EXCLUDE,E2,"No abstract; title ""Log Facies Identification via Dynamic Classifier Selection"" indicates geophysics application"
+R0150,EXCLUDE,E2,Segmentation + DES for glaucoma severity detection; medical application
+R0151,MAYBE,M,"DES-bADE optimizes competence regions with fitness including diversity, 30 benchmark datasets; method paper"
+R0152,MAYBE,M,AB-DES adaptive bagging-based DES for imbalanced nonstationary streams; method paper
+R0153,MAYBE,M,Integrated instance-specific dynamic feature and classifier selection framework; method paper
+R0154,EXCLUDE,E2,Dynamic classifier selection for software defect prediction on PROMISE; application
+R0155,EXCLUDE,E3,"No abstract; title ""Oceanic Nino Index forecasting based on dynamic ensemble selection"" is forecasting"
+R0156,MAYBE,M,No abstract; title indicates resampling-based DES method for nonstationary streams
+R0157,EXCLUDE,E2,"DES-Clustering on TinyML devices; accuracy vs latency trade-off, application/implementation study"
+R0158,EXCLUDE,E3,DES based on trend classification for time series forecasting (dissertation)
+R0159,MAYBE,M,"MODES/DBDES clustering-based DES of one-class classifiers, 25 databases; method dissertation"
+R0160,MAYBE,M,"No real abstract; title ""DYNSE+: combining dynamic ensemble selection with concept drift detection"" indicates DES method"
+R0161,MAYBE,M,"Dynamic ensemble selection strategy for ECOC using data complexity, UCI datasets; method paper"
+R0162,EXCLUDE,E2,Dynamic ensemble selection of deepfake detectors; application
+R0163,EXCLUDE,E2,DCS with new proximity measure for long-term traffic pattern forecasting; application
+R0164,EXCLUDE,E2,DES-based random forests for fault classification on Tennessee Eastman; application
+R0165,EXCLUDE,E2,DES of CNNs for flower classification; application
+R0166,EXCLUDE,E2,Dynamic coalition ensembles for distributed EEG classification; application
+R0167,EXCLUDE,E2,Bayesian DES for dynamic optical breast imaging classification; application
+R0168,EXCLUDE,E2,Semi-supervised learning with DCS for postmortem interval estimation; forensic application
+R0169,MAYBE,M,DES using hesitant fuzzy multiple criteria decision-making for competence; method chapter
+R0170,EXCLUDE,E2,Dynamic ensemble selection used for adversarial robustness defense; no Oracle/diversity-accuracy analysis
+R0171,MAYBE,M,DES framework desisc-sb for imbalanced streams under limited label access; methodological evaluation
+R0172,MAYBE,M,AD-DES dual dynamic ensemble selection for imbalanced drifting streams; method paper
+R0173,EXCLUDE,E2,DES for early detection of deep vein thrombosis; clinical application
+R0174,MAYBE,M,DESW-ID online DES for imbalanced drift data streams; method paper

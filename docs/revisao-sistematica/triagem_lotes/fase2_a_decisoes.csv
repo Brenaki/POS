@@ -1,0 +1,57 @@
+uid,decision,code,reason,oracle_role,pool,combiners_compared,diversity_measures,datasets,protocol,gap_reported,bias_risk
+R0001,INCLUDE,I-a,Proposes Hardness-aware Oracle (HaO) that explicitly extends the traditional Oracle to evaluate cooperation of DES-selected ensembles; post-selection over DES methods.,generalised,"Perceptron, Logistic Regression, Naive Bayes; homogeneous and heterogeneous pools","KNORA-U, KNOP, DES-P, META-DES vs HaO-DES",n/r (double-fault/kappa terms appear in text),30 databases,n/r,n/r,n/r
+R0009,EXCLUDE,F2,"""Upper bound"" is a generalization bound for pure-accuracy learning; no MCS Oracle, no diversity-accuracy analysis (2 diversity hits).",,,,,,,,
+R0032,EXCLUDE,F1,"Beneficial diversity used only as member-selection criterion; only 10 diversity mentions, no empirical diversity-vs-accuracy analysis; no Oracle.",,,,,,,,
+R0033,EXCLUDE,F1,"Diversity proxied by ensemble size/heterogeneity; no diversity measure visible (0 double-fault/kappa hits); no Oracle. Borderline, verify.",,,,,,,,
+R0034,INCLUDE,I-c,"Proposes Double Fault Disagreement diversity metric; substantial diversity content (85 hits, 16 double-fault, 7 kappa) related to ensemble predictive performance.",none,heterogeneous base learners selected by diversity,"DFD ensemble vs LR, NB, KNN, DT, SVM, MLP, CNN, RF, XGB, stacking",DFD (new); double-fault; kappa,8 NASA/PROMISE (6 imbalanced),n/r,n/r,n/r
+R0035,INCLUDE,I-c,"Pairwise diversity measures used to verify and select accurate-diverse KCRC members; 87 diversity, 10 kappa hits relate diversity to accuracy.",none,bagging of (multi)kernel collaborative representation classifiers,KCRC-bagging vs DIV-KCRC vs base KCRC,"pair of pairwise diversity measures (kappa, double-fault terms present)",3 hyperspectral images,n/r,n/r,n/r
+R0036,INCLUDE,I-c,"Proposes learners interpretability diversity (LID) measure and evaluates LID-based ensembles on accuracy; 56 diversity, 7 kappa hits.",none,decision-tree/random-forest initialised dendritic neuron models,LID-based DDNM ensemble vs popular classifier ensembles,LID (new); kappa,7 benchmark datasets,n/r,n/r,n/r
+R0037,EXCLUDE,F1,"Diversity induced via heterogeneous learners/voting in drift ensembles but not quantified (12 mentions); no Oracle. Borderline, verify.",,,,,,,,
+R0038,INCLUDE,I-c,Diversity-based classifier selection; ablation attributes accuracy gains to diversity selection over 20 datasets; 75 diversity hits. Borderline (diversity as criterion).,none,heterogeneous AutoML classifier pool,optimised decision fusion methods vs AutoML/ensemble baselines,n/r (double-fault terms present),20 real-world datasets,n/r,n/r,n/r
+R0039,EXCLUDE,F1,"Accuracy margin and diversity used only as ranking/selection criterion; 17 diversity mentions, no diversity-accuracy analysis; no Oracle.",,,,,,,,
+R0040,EXCLUDE,F1,"Abstract claims diversity improves accuracy but no diversity measure visible (0 double-fault/kappa); 35 mentions; no Oracle. Borderline, verify.",,,,,,,,
+R0041,EXCLUDE,F1,Oracle appears only via KNORA-U/KNORA-E description in related work; not used as reference in experiments.,,,,,,,,
+R0046,EXCLUDE,F1,"DES for imbalanced streams; no Oracle, 1 diversity mention.",,,,,,,,
+R0051,EXCLUDE,F1,DES framework for imbalanced streams; no Oracle or diversity content.,,,,,,,,
+R0052,EXCLUDE,F1,"Oracle only in KNORA description and background (""oracles are upper bound of EoC""); no Oracle results reported.",,,,,,,,
+R0053,EXCLUDE,F1,Oracle mentioned only as selection criterion of KNORA/KNOP; no Oracle reference in results.,,,,,,,,
+R0054,EXCLUDE,F1,Single KNORA mention in related work; no Oracle reference or diversity-accuracy analysis.,,,,,,,,
+R0055,EXCLUDE,F1,Oracle only in future-work sentence; diversity used as DES selection criterion without analysis vs accuracy.,,,,,,,,
+R0058,EXCLUDE,F1,DCS via cost-sensitive clustering; no Oracle or diversity content in full text.,,,,,,,,
+R0059,EXCLUDE,F1,"Meta-learning recommendation of DES pipelines; no Oracle mentions, 4 diversity mentions.",,,,,,,,
+R0062,EXCLUDE,F1,Oracle only in KNORA description and taxonomy of selection criteria; not an experimental reference.,,,,,,,,
+R0063,EXCLUDE,F1,"Uses KNORA-E ""local oracle"" notion for RoC editing; snippets show no Oracle upper bound in experiments.",,,,,,,,
+R0065,INCLUDE,I-b,Table IV reports the Oracle as conceptual upper bound alongside DS methods; notes META-DES approaches Oracle accuracy on Sensor dataset.,reference,n/r,FH-DES(-M) vs state-of-the-art DS methods incl. META-DES,n/r,n/r (incl. Sensor dataset at varying sizes),n/r,n/r (META-DES close to Oracle on large Sensor data),n/r
+R0072,EXCLUDE,F1,Automatic choice between dynamic ensemble and single classifier; no Oracle or diversity content.,,,,,,,,
+R0084,EXCLUDE,F1,Oracle only in KNORA-E/KNORA-U baseline descriptions; not an experimental reference.,,,,,,,,
+R0086,EXCLUDE,F1,"Oracle upper bound only in related work; diversity optimised in pool generation, no analysis of diversity vs accuracy reported.",,,,,,,,
+R0090,EXCLUDE,F1,"Oracle only in KNORA descriptions; kappa is the kappa statistic metric, not diversity.",,,,,,,,
+R0099,EXCLUDE,F1,Diverse base classifiers via clustering as design goal; no diversity measured against accuracy; no MCS Oracle.,,,,,,,,
+R0101,EXCLUDE,F1,Pairwise diversity used as hierarchical selection criterion; no explicit diversity-vs-accuracy analysis in abstract; no Oracle. Borderline.,,,,,,,,
+R0110,EXCLUDE,F3,Full text not retrieved (abstract only); highly relevant: reports Oracle-DCS gap and DCS-DQ near Oracle. Retrieve if possible.,,,,,,,,
+R0112,EXCLUDE,F1,Oracle only in KNORA names and META-DES.Oracle reference; no Oracle reference in results.,,,,,,,,
+R0113,INCLUDE,I-b,"Uses the MCS Oracle (DESlib-style) as a ""static meta-classifier"" in experiments, reporting it as most accurate; misuse example.",reference,"LR, DT, RF, XGBoost with RFECV feature selection (plus other classifiers)",Oracle vs individual supervised classifiers,n/r,1 clickstream purchase dataset,cross-validation with GridSearchCV/RandomizedSearchCV,n/r,Oracle uses true labels yet presented as deployable classifier; comparison invalid
+R0118,INCLUDE,I-b,Reports Oracle accuracy of ensemble as reference showing room above static/DCS combiners. Thin full text (1 hit); verify.,reference,"classifiers on non-handcrafted features (ViT, CNN architectures)","sum, product, max rules; DCS techniques",n/r,"2 (FMD, DTD)",n/r,"n/r (best F1 93.2% FMD, 81.74% DTD; Oracle ""significantly higher"")",possible: best combiner selection procedure not visible
+R0119,EXCLUDE,F4,"Master dissertation reporting HaO/PS-DES, same study as included journal paper R0001 (also full text not retrieved).",,,,,,,,
+R0120,EXCLUDE,F2,"""Oracle bounds"" in PAC-Bayes sense, bounding fairness (discriminative) risk, not MCS Oracle/performance limit. Borderline; thin full text.",,,,,,,,
+R0125,INCLUDE,I-c,Proposes ranking-distance diversity measure and validates its relation to fusion classification performance; 218 diversity hits.,none,n/r (candidate individual classifiers),member selection by diversity+accuracy vs prevailing diversity measures,ranking-distance (new); prevailing output-based measures incl. kappa,n/r (aviation fault diagnosis/object recognition),n/r,n/r,n/r
+R0126,INCLUDE,I-c,Two ambiguity-based diversity measures; generalisation error correlation with diversity depends on sampling rate; 76 diversity hits.,none,small ensembles of predictors (trees); random forests for big ensembles,diversity-maximised subsets vs random sampling; ambiguous vs unambiguous tree selection,"cross-entropy ambiguity, hinge-loss ambiguity (new); kappa",range of literature classification datasets (n/r count),n/r,n/r,n/r
+R0127,INCLUDE,I-c,"Learned-embedding simplex-volume diversity measure designed to track fused accuracy; compared with existing measures, Wilcoxon test; 157 diversity hits.",none,n/r,proposed vs existing statistical diversity measures,simplex-volume embedding measure (new); existing measures incl. kappa,"Gaussian synthetic, UCI, real-world image datasets",n/r (Wilcoxon signed-rank test),n/r,n/r
+R0128,INCLUDE,I-c,Conference version of R0126: ambiguity diversity measures; error-diversity correlation depends on sampling rate. Treat with R0126 as one study.,none,ensembles of classification trees,diversity-maximised pattern subsets vs random sampling,"cross-entropy ambiguity, hinge-loss ambiguity (new)",literature classification datasets (n/r count),n/r,n/r,n/r
+R0129,EXCLUDE,F1,Ordered-aggregation pruning metrics (incl. diversity) used as pruning criteria; no explicit diversity-vs-accuracy analysis or Oracle. Borderline.,,,,,,,,
+R0130,INCLUDE,I-c,Comparative analysis shows CLEER enhances measured ensemble diversity together with accuracy vs benchmarks; 62 diversity hits.,none,base classifiers on Bernoulli random projections (GA-optimised),CLEER vs state-of-the-art ensemble methods,"n/r (kappa, double-fault terms present)",24 (20 public + 4 clinical),n/r,n/r,n/r
+R0131,INCLUDE,I-c,Two new coverage/similarity diversity measures; reports correlation with other measures and ensemble accuracy; 254 diversity hits.,none,n/r,n/r,coverage and similarity measures (new); existing incl. double-fault,n/r,n/r,n/r,n/r
+R0132,EXCLUDE,F3,Full text not retrieved.,,,,,,,,
+R0133,EXCLUDE,F3,Full text not retrieved.,,,,,,,,
+R0134,EXCLUDE,F1,"Diversity measures used for re-ranking base classifiers; abstract reports no diversity-accuracy relation; ""oracle"" = test-set upper bound. Borderline.",,,,,,,,
+R0135,EXCLUDE,F1,Combined diversity measure used only as swarm-optimisation selection criterion; no analysis of diversity vs accuracy; no Oracle.,,,,,,,,
+R0136,EXCLUDE,F1,Multiple diversity measures used as pruning criteria in D-S decision; no explicit diversity-vs-accuracy analysis; no Oracle. Borderline.,,,,,,,,
+R0138,EXCLUDE,F1,"Oracle only in KNORA names and references (Souza 2017, META-DES.Oracle); no Oracle results visible.",,,,,,,,
+R0140,EXCLUDE,F3,"Full text not retrieved (thesis, no abstract).",,,,,,,,
+R0141,EXCLUDE,F1,"RL-based DES; no Oracle mentions, 1 diversity mention.",,,,,,,,
+R0142,EXCLUDE,F1,"AutoML with DES of pipelines; no Oracle, minimal diversity content.",,,,,,,,
+R0143,EXCLUDE,F3,Full text not retrieved.,,,,,,,,
+R0145,EXCLUDE,F1,Visible Oracle hits only KNORA descriptions; multi-label meta-targets may be Oracle-like correct-classifier sets. Verify manually.,,,,,,,,
+R0146,INCLUDE,I-b,"States ""Oracle concept as upper-bound for DS methods in our experiments"", with MV, SB, GFMM as lower bounds.",reference,n/r,"FH-DES vs KNORA-U, KNORA-E, MCB, DES-KNN, OLA, Rank, KNOP, META-DES; MV, SB, GFMM",n/r,n/r,n/r,n/r,n/r
+R0148,EXCLUDE,F1,"Oracle only in KNORA baselines, taxonomy and references; no Oracle reference in results visible.",,,,,,,,
+R0151,EXCLUDE,F1,"Oracle only in taxonomy tables and references; diversity is a fitness term, not analysed vs accuracy.",,,,,,,,

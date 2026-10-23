@@ -1,0 +1,114 @@
+{
+ "R0110": {
+  "oa_pdf_urls": [],
+  "doi": "10.55730/1300-0632.4092"
+ },
+ "R0119": {
+  "oa_pdf_urls": [],
+  "doi": ""
+ },
+ "R0131": {
+  "status": "ok_pdf",
+  "chars": 102863,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 254,
+  "n_double_fault": 4,
+  "n_kappa": 0,
+  "snippets": [],
+  "n_oracle_zh": 0
+ },
+ "R0132": {
+  "oa_pdf_urls": [
+   "https://downloads.hindawi.com/journals/misy/2021/5549300.pdf",
+   "https://downloads.hindawi.com/journals/misy/2021/5549300.pdf"
+  ],
+  "doi": "10.1155/2021/5549300"
+ },
+ "R0133": {
+  "oa_pdf_urls": [],
+  "doi": "10.1117/12.2671159"
+ },
+ "R0135": {
+  "oa_pdf_urls": [
+   "https://file.techscience.com/ueditor/files/cmes/TSP_CMES-135-1/TSP_CMES_22985/TSP_CMES_22985.pdf",
+   "https://file.techscience.com/ueditor/files/cmes/TSP_CMES-135-1/TSP_CMES_22985/TSP_CMES_22985.pdf"
+  ],
+  "doi": "10.32604/cmes.2022.022985",
+  "status": "ok_pdf",
+  "source_url": "https://file.techscience.com/ueditor/files/cmes/TSP_CMES-135-1/TSP_CMES_22985/TSP_CMES_22985.pdf",
+  "chars": 51981,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 66,
+  "n_double_fault": 5,
+  "n_kappa": 2,
+  "snippets": []
+ },
+ "R0140": {
+  "oa_pdf_urls": [],
+  "doi": ""
+ },
+ "R0143": {
+  "oa_pdf_urls": [],
+  "doi": "10.57709/7029894"
+ },
+ "R0159": {
+  "oa_pdf_urls": [],
+  "doi": ""
+ },
+ "R0160": {
+  "oa_pdf_urls": [],
+  "doi": ""
+ },
+ "R0172": {
+  "oa_pdf_urls": [
+   "http://www.aimspress.com/aimspress-data/era/2025/11/PDF/era-33-11-291.pdf",
+   "http://www.aimspress.com/aimspress-data/era/2025/11/PDF/era-33-11-291.pdf"
+  ],
+  "doi": "10.3934/era.2025291",
+  "status": "ok_pdf",
+  "source_url": "http://www.aimspress.com/aimspress-data/era/2025/11/PDF/era-33-11-291.pdf",
+  "chars": 98198,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 4,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "snippets": []
+ },
+ "R0296": {
+  "oa_pdf_urls": [],
+  "doi": ""
+ },
+ "R0297": {
+  "status": "ok_pdf",
+  "chars": 24004,
+  "n_oracle": 12,
+  "n_upper_bound": 0,
+  "n_diversity": 83,
+  "n_double_fault": 1,
+  "n_kappa": 2,
+  "snippets": [
+   "/detail/23.1538.TP.20210923.1720.006.html 一种卷积神经网络集成的多样性度量方法 汤礼颖 1，贺利乐 1，何林 2，屈东东 1 （1. 西安建筑科技大学 机电工程学院, 陕西 西安 710055; 2. 西安建筑科技大学 理学院, 陕西 西安 710055） 摘 要：分类器模型之间的多样性是分类器集成的一个重要性能指标。目前大多数多样性度量方法都是基于 基分类器模型的 0/1 输出结果（即 Oracle 输出）进行计算，针对卷积神经网络的概率向量输出结果，仍需要将其 转化为 Oracle 输出方式进行度量，这种方式未能充分利用卷积神经网络输出的概率向量所包含的丰富信息。 针对此问题，利用多分类卷积神经网络模型的输出特性，提出了一种基于卷积神经网络的概率向量输出方式的 集成多样性度量方法，建立多个不同结构的卷积神经网络基模型并在 CIFAR-10 和 CIFAR-100 数据集上进行实 验。实验结果表明，与双错度量、不一致性",
+   "ina) Abstract: Diversity among classifier models has been recognized as a significant performance index of a classifier ensemble. Currently, most diversity measuring methods are defined based on the 0/1 outputs (namely Oracle outputs) of the base model. The probability vector outputs of a convolutional neural network (CNN) still need to be converted into Oracle outputs for measurement, which fails to fully use the rich information cont",
+   "s between the models and provide better guidance for a selective ensemble of CNN models. Keywords: CNN; ensemble learning; diversity measures; machine learning; multiple classifier ensembles; probability vector outputs; Oracle outputs; basic model [2] 集成学习是一种重要的机器学习方法，主要 性能的重要因素 ，产生泛化能力强、差异性大的 思路是多个分类器基于某种组合方式组合在一 基学习器是集成算法的关键。但如何有效的度量 起，来取得比单个分类器更好的性能，从而可显 并利用这些多样性还是一个悬而未决的问题。目 [1] 著提高学习系统的预测精度和泛化能力 。 基分类器之间的多样性是影响集成系统泛化 收稿日期：2",
+   " 提出了一种 联合信息增益的过程多样性度量方法，该方法在 西瓜数据集上拥有与传统方法相近的准确性。上 述几种方法都是基于信息论角度来定义多样性的， 基模型的训练和集成都采用机器学习方法得到，在 应用卷积神经网络集成的多样性研究方面较少。 随着深度学习的快速发展，卷积神经网络 [17] （convolutional neural network，CNN） 因其独特 的结构已成为当前图像识别领域的研究热点。卷 积神经网络分类器的输出方式与 Oracle 输出方式 不同，采用的是 c 维向量输出方式。在处理多分 类 （ c>2） 问 题 中 ， 分 类 器 输 出 单 元 都 需 用 Softmax 激活函数进行数值处理，将多分类的输出数 值向量形式转化为类标签的相对概率向量方式， 即 c 维向量形式 D (z) = [d0 (z) d1 (z) · · · dc−1 (z)]， dc− 1 (z) 为 分 类 器 D 给 出 的 样 例 属 于 第 c − 1类 的 置 ",
+   "= 1, 2, · · · , c − 1，c 为不同类标签的数目。针对卷积 神经网络的概率向量输出结果，使用 0/1 输出准 则来统计分类器对样本分类结果的正确/错误个 [18] 数来计算多样性，是一种硬性的评判标准 。如 两个 5 分类器的输出概率向量是 Di (z) = (0.17, 0.03, 0.6, 0.05, 0.15) 和 D j (z) = (0.1, 0.2, 0.5, 0.17, 0.13) ， 将 它 们转化为 Oracle 输出方式，两个分类器的结果都 为第三类，二者输出结果一致，采用基于模型的 Oracle 输出结果多样性度量方法将会判定二者没 有任何不同。但事实上，两个分类器输出结果存 在明显的不同，Oracle 输出方式未能充分利用卷 积神经网络输出的概率向量所包含的丰富信息。 针对此问题，本文充分利用多分类卷积神经 网络的输出特性信息，提出了一种基于卷积神经 网络集成的多样性度量方法。采用概率向量输出 方式来表示模型分类结果，引入两个",
+   " 0.6, 0.05, 0.25) 和 D2 (z j ) = (0.1, 0.17, 0.4, 0.2, 0.13) ，得到分类器最大置信度概率由大到 [ ] 小 排 列 对 应 的 类 标 签 向 量 L1 z j = (2, 4, 3, 1, 0) 和 [ ] L2 z j = (2, 3, 1, 4, 0)，得到向量 fAB (i) = (0, 1 ,1 1 0) 。对 于单一样本 z 得到 第 16 卷 而如果采用基于 Oracle 输出的多样性度量方 式，对于该样本两分类器输出结果相同，得到的 多样性为 0。 { } 3 ) 对 于 已 标 记 样 本 集 Z = z1 , z2 , · · · , z j , · · · , zm ， 两个基模型之间的多样性为所有样本的集合多样 性后的平均值，如式 (7) 所示： ( ) 1∑ DAB z j m j=0 m−1 DAB (Z) = 4) 对于多分类器系统 {D1 , D2 , · · · , "
+  ],
+  "n_oracle_zh": 12
+ },
+ "R0313": {
+  "oa_pdf_urls": [],
+  "doi": ""
+ },
+ "R0315": {
+  "oa_pdf_urls": [],
+  "doi": "10.2174/2666255813999201102093315"
+ },
+ "R0330": {
+  "oa_pdf_urls": [],
+  "doi": ""
+ }
+}

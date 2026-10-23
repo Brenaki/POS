@@ -1,0 +1,34 @@
+{
+ "identified_by_base": {
+  "ieee": 108,
+  "openalex": 250,
+  "scopus": 319
+ },
+ "identified": 677,
+ "duplicates": 329,
+ "screened": 348,
+ "excluded_screening": {
+  "E2": 148,
+  "E3": 31,
+  "E1": 42,
+  "E5": 5,
+  "E4": 10
+ },
+ "sought": 112,
+ "not_retrieved": 10,
+ "excluded_fulltext": {
+  "F2": 2,
+  "F1": 74,
+  "F4": 2
+ },
+ "included_reports": 24,
+ "included_studies": 22,
+ "included_by_code": {
+  "I-a": 1,
+  "I-c": 13,
+  "I-b": 10
+ },
+ "assessed": 102,
+ "excluded_screening_total": 236,
+ "excluded_fulltext_total": 78
+}

@@ -1,0 +1,57 @@
+uid,decision,code,reason,oracle_role,pool,combiners_compared,diversity_measures,datasets,protocol,gap_reported,bias_risk
+R0152,EXCLUDE,F1,"Stream DES method; no Oracle in full text; diversity mentioned only 5 times, no diversity-accuracy analysis.",n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0153,EXCLUDE,F1,"Dynamic feature+classifier selection framework; no Oracle, upper bound or diversity terms in full text.",n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0156,EXCLUDE,F1,"Stream DES method; no Oracle in full text; diversity only 2 mentions, no analysis vs accuracy.",n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0159,EXCLUDE,F3,Full text not retrieved (LA Referencia dissertation on MODES/DBDES; related to R0250).,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0160,EXCLUDE,F3,"Full text not retrieved (LA Referencia dissertation, DYNSE+); no abstract available.",n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0161,EXCLUDE,F1,"ECOC DES strategy using data complexity; no Oracle, upper bound or diversity terms in full text.",n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0169,EXCLUDE,F1,"Hesitant fuzzy MCDM DES chapter; no Oracle, upper bound or diversity terms in accessible text.",n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0171,EXCLUDE,F1,Imbalanced stream DES with limited labels; no Oracle or diversity terms in accessible text.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0172,EXCLUDE,F1,"AD-DES stream method; no Oracle; diversity only 4 mentions, no diversity-accuracy analysis.",n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0174,EXCLUDE,F1,DESW-ID stream method; no Oracle; diversity mentioned 5 times without empirical relation to accuracy.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0179,INCLUDE,I-b,SGP.DES meta-classifier aims to approximate Oracle competence; discussion states meta-classifier behaviour closer to Oracle. No Oracle table row visible.,reference,"n/r (homogeneous pool, DESlib-style)","SGP.DES vs state-of-the-art DES (META-DES, KNORA, KNOP, DES-KL, DES-RRC) and static",n/r,24 classification problems,n/r,n/r,Weak Oracle evidence (conceptual target only)
+R0180,EXCLUDE,F1,"MSD label-noise DS framework; Oracle only as KNORA selection-criterion label in methods table, not as reference.",n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0189,EXCLUDE,F1,GNN-DES conference version (precursor of R0340); Oracle only in references of accessible text (13k chars).,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0190,EXCLUDE,F1,"SCWE+ stream method; no Oracle; kappa hits are performance metric, no diversity-accuracy analysis.",n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0191,EXCLUDE,F1,IncA-DES stream method; single Oracle hit is META-DES.Oracle reference; diversity not related to accuracy.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0193,EXCLUDE,F1,Stream DCES method; only 'oracle' hit is Random Linear Oracle reference in bibliography.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0200,EXCLUDE,F1,Oversampling + cellular GEP + DS for imbalance; no Oracle or diversity terms in accessible text.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0203,EXCLUDE,F1,Imbalanced-data framework with oversampling and DS; no Oracle or diversity terms in accessible text.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0205,EXCLUDE,F1,Multiclass imbalanced stream DES; only Oracle hit is META-DES.Oracle reference.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0207,EXCLUDE,F1,Selective ensemble with rejection vs DES; no Oracle; diversity mentioned once.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0211,EXCLUDE,F1,DSPE imbalance method; Oracle hits only in KNORA-U/KNORA-E descriptions in background.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0212,EXCLUDE,F1,"HDES-AD stream method; diversity used as selection criterion, no empirical diversity-vs-accuracy analysis evident; no Oracle.",n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0214,EXCLUDE,F1,Static ensemble selection; Oracle hits only KNORA naming and citing-article list; kappa not related to Oracle.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0221,EXCLUDE,F1,"ECOC DES with evidence theory for credit rating; no Oracle, upper bound or diversity terms.",n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0228,EXCLUDE,F1,Block-based stream DES; single Oracle hit is KNORA description in method background.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0230,EXCLUDE,F1,"Randomized-model competence DES; no Oracle, upper bound or diversity terms in accessible text.",n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0236,EXCLUDE,F1,Dynamic weighted selective ensemble for radiomics; no Oracle or diversity terms in accessible text.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0244,EXCLUDE,F1,"Multi-label stream ensemble; diversity is a design goal only, no empirical diversity-accuracy analysis; no Oracle.",n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0246,INCLUDE,I-b,"Table 12 last column gives Oracle accuracy per dataset as upper limit of MCS, beside MLS and seven DS methods.",reference,100 Perceptrons,"4 MLS variants, KNORA-U, KNORA-E, DES-P, OLA, MCB, META-DES, Hesitant fuzzy DES",none,"n/r (UCI/KEEL e.g. Balance-Scale, Car-Evaluation, Cardiotocography)",n/r; Quade test,e.g. Balance-Scale 0.9099 (META) vs Oracle 0.9873; Car-Evaluation 0.936 vs 0.9979,n/r
+R0247,EXCLUDE,F1,DES-BAK kernel method for imbalance; no Oracle; diversity mentioned once.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0250,EXCLUDE,F1,MODES one-class DES; no Oracle in full text; kappa/diversity not analysed against Oracle or accuracy.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0277,INCLUDE,I-b,Seed paper: Table 7 reports average Oracle of each pool generator (~99%) as DCS/DES upper limit; DCS/DES then applied.,reference,"Perceptron and Decision Tree pools from PGDCS_A, PGDCS_D, Bagging, AdaBoost, RF, DSOC","Pool generators combined with 3 DCS and DES methods, with/without dynamic selection",decision-space diversity / double-fault (8 hits),28 classification datasets,20 replications,"n/r (Oracle mostly >=99%, lower for AdaBoost)",n/r
+R0281,EXCLUDE,F1,"Ensemble pruning via symmetric uncertainty; diversity as pruning criterion only, no diversity-accuracy analysis; no Oracle.",n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0287,EXCLUDE,F1,Complexity-driven Bagging (short paper); diversity as motivation only; no Oracle.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0296,EXCLUDE,F3,Full text not retrieved (PAC-Bayes ensemble bound for domain generalisation; phase-1 I-a).,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0297,INCLUDE,I-c,"Proposes probability-vector diversity measure for CNN ensembles, compared with double-fault, disagreement, Q; guides selective ensemble accuracy on CIFAR.",none,CNNs of different architectures,Selective ensembles of CNNs guided by diversity measures,new probabilistic measure; double-fault; disagreement; Q-statistic,"CIFAR-10, CIFAR-100",n/r,n/r,n/r (Chinese-language article)
+R0299,EXCLUDE,F1,"Vec2Q-CEEP pruning; new similarity/diversity used as pruning criterion, no empirical diversity-vs-accuracy relation stated; no Oracle.",n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0300,EXCLUDE,F1,CRCEEP pruning; 'Oracle-based representation' is 0/1 output encoding; diversity used for clustering/pruning only.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0302,EXCLUDE,F1,"Selective ensemble on selected samples; diversity as motivation, no diversity-accuracy analysis; no Oracle.",n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0303,INCLUDE,I-c,Abstract and text investigate correlation between MCS diversity and accuracy (weak positive) for RF-MCS land cover models.,none,"Random Forest base classifiers (10 RF-MCS models: training sets, feature selection, One-vs-All)","majority vote, weighted argmax, meta RF",n/r (kappa 1 hit; diversity 13 hits),"1 remote-sensing case (Sentinel-2, Khumbu region)",n/r (accuracy with 95% CI),n/r,Single study area; generalisation limited
+R0304,INCLUDE,I-c,"Exhaustive study of learner diversity vs accuracy in heterogeneous ensembles; double-fault and kappa measures, 27 datasets, label noise.",none,heterogeneous learners,multiple combination methods (n/r specific),double-fault; kappa; others n/r,27 multiclass datasets (with label noise),n/r,n/r,n/r
+R0305,EXCLUDE,F1,E_RSRR multi-modal perturbation ensemble; diversity as generation goal only; no Oracle.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0308,EXCLUDE,F1,"Empirical DS+RUS study (54 datasets); Oracle only as KNORA/selection-criterion taxonomy, not reported as upper bound.",n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0309,INCLUDE,I-b,Oracle included as theoretical upper limit in comparison tables; authors note significant gap between their models and Oracle.,reference,n/r (semi-supervised anomaly detectors),"DESST-OOS, DESST-CSOS, 3 static ensembles, 2 dynamic ensembles with existing measures",n/r,30 public-repository datasets,n/r; Wilcoxon (Oracle excluded),n/r (described as significant),n/r
+R0313,EXCLUDE,F3,Full text not retrieved.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0315,EXCLUDE,F3,Full text not retrieved (only 5.6k chars metadata).,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0317,EXCLUDE,F1,PSEUDOVO OVO selection; Oracle only explained in background on KNORA.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0318,EXCLUDE,F1,AER dynamic ensemble with regularization; single 'upper bound' hit unrelated to MCS performance limit; no Oracle.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0319,EXCLUDE,F1,"Evolutionary NN ensemble with DES; diversity as generation goal, no empirical diversity-accuracy analysis; no Oracle.",n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0320,EXCLUDE,F1,"Stream DES with preprocessing; Oracle only in related work (META-DES.Oracle, KNORA local oracles).",n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0321,INCLUDE,I-b,"Oracle (OR) listed as compared method in AUC result tables, excluded from ranking as an abstraction; outlier detection.",reference,one-class base detectors,proposed MCB-based dynamic outlier ensemble vs static/dynamic outlier ensembles,n/r,20 benchmark datasets,n/r,n/r,n/r
+R0323,EXCLUDE,F1,VisionDES image DES; no Oracle or upper bound in accessible text.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0328,EXCLUDE,F1,DEMS stream member selection; diversity mentioned without empirical analysis; no Oracle.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0330,EXCLUDE,F3,Full text not retrieved (Chinese journal).,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0336,EXCLUDE,F1,Static vs dynamic selection of ensemble parameters; no Oracle; diversity mentioned twice.,n/r,n/r,n/r,n/r,n/r,n/r,n/r,n/r
+R0340,INCLUDE,I-b,Meta-labels are Oracle information on training data; Oracle model included in comparative analysis alongside DES techniques.,defined/reference,Bagging and AdaBoost linear ensembles (Perceptrons),"GNN-DES vs KNU, KNE, DKNN, KNOP, META-DES, RRC, DES-KMEANS, others; MV and AdaBoost baselines",n/r (incompetent-classifier excess analysed),35 high-dimensional small-sample datasets,n/r,n/r,n/r

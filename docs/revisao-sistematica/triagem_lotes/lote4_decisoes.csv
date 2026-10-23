@@ -1,0 +1,88 @@
+uid,decision,code,reason
+R0262,EXCLUDE,E2,DS framework applied to touch-based continuous mobile authentication; no Oracle/bound or diversity analysis
+R0263,EXCLUDE,E3,"SOM-DES for molecular property regression (R2, RMSE on enthalpy of formation)"
+R0264,EXCLUDE,E5,"No abstract; title ""ensemble of classifiers on football data"" not decisive"
+R0265,EXCLUDE,E2,Dissertation applying static/dynamic classifier combination to texture classification; no Oracle or diversity analysis
+R0266,EXCLUDE,E2,DES among combination strategies for landslide susceptibility mapping; application only
+R0267,EXCLUDE,E2,JIT software defect prediction with dynamic classifier selection; domain application
+R0268,EXCLUDE,E5,"No abstract; title ""Explainable Dynamic Ensemble Framework ... multimodal data"" not decisive"
+R0269,EXCLUDE,E2,Heterogeneous vs homogeneous ensembles for landslide susceptibility; diversity not measured against accuracy
+R0270,EXCLUDE,E2,DES methods for pediatric sleep EEG anxiety/stress screening; application only
+R0271,EXCLUDE,E2,EPheClass uses DES (DES-P) for 16S rRNA phenotype classification; application
+R0272,EXCLUDE,E2,Modified Borda voting on DES for Alzheimer classification; application without Oracle/bound
+R0273,EXCLUDE,E2,DES-LSTM for DDoS detection in cloud; application
+R0274,EXCLUDE,E3,"DEP-TSPmeta dynamic ensemble pruning ""ad-hoc for time series prediction"""
+R0275,EXCLUDE,E2,Deep Q learning dynamic classifier selection for diabetic retinopathy diagnosis; application
+R0276,EXCLUDE,E4,Editorial summarising a Frontiers research topic
+R0277,MAYBE,M,"Pool generation exploring diversity in decision spaces; 28 datasets, MCS ""with and without dynamic selection"""
+R0278,EXCLUDE,E5,"No abstract; title on transferable instance hardness, not about ensembles"
+R0279,EXCLUDE,E2,Ensemble pruning for facial expression recognition; no Oracle or diversity-accuracy measurement
+R0280,EXCLUDE,E2,U-M diversity index for pruning in bearing fault diagnosis; diversity not related empirically to accuracy
+R0281,MAYBE,M,Ensemble pruning via classifier interaction (symmetric uncertainty); evaluated on 10 UCI datasets; diversity-related
+R0282,EXCLUDE,E1,"No abstract; ""Statistical Analysis of Forest Soil Properties"" unrelated to classifier ensembles"
+R0283,EXCLUDE,E1,Microbial profiling of smokeless tobacco; not about classifier ensembles
+R0284,EXCLUDE,E1,Multi-objective optimizer for knapsack problem; not classifier ensembles
+R0285,EXCLUDE,E1,Data literacy survey of library professionals; not classifier ensembles
+R0286,EXCLUDE,E1,Sampling ratio selection via class complexity for imbalanced data; no ensembles
+R0287,MAYBE,M,"Complexity-driven Bagging pool generation ""to reach diversity""; 28 datasets; diversity may be analysed"
+R0288,EXCLUDE,E2,Dynamic selection (META-DES) for crowdfunding success prediction; application
+R0289,EXCLUDE,E2,Ensemble methods for financial meta-labeling; application
+R0290,EXCLUDE,E3,Review of weighting approaches in modeling and forecasting
+R0291,EXCLUDE,E1,Theoretical limits of LoRA reuse in LLMs; not classifier ensembles
+R0292,EXCLUDE,E1,"Multi-label label clustering; ""oracle"" is best partition chosen on test set, not classifier ensemble"
+R0293,EXCLUDE,E1,"Cost-budget LLM selection; upper bound is submodular surrogate for optimization, not ensemble limit"
+R0294,EXCLUDE,E3,"Consensus Tobit Kalman filtering; state estimation, not classification"
+R0295,EXCLUDE,E3,Dynamic regressor selection for fault distance; defines oracle but for regression
+R0296,INCLUDE,I-a,"PAC-Bayes upper bound on rho-ensemble risk, ""tighter bound by enforcing ... diversity measure of the classifiers"""
+R0297,INCLUDE,I-c,"New diversity measure for CNN ensembles vs double-fault, disagreement, Q-statistic; ""Oracle outputs""; guides selective ensemble"
+R0298,EXCLUDE,E2,Dynamic classifier selection for glaucoma diagnosis; application
+R0299,MAYBE,M,Ensemble pruning with new classifier representation for diversity/similarity; 12 UCI datasets
+R0300,MAYBE,M,"Classifier subset selection via representation and clustering to ""create ensemble diversity""; UCI datasets"
+R0301,EXCLUDE,E2,Self-labeling plus selective sampling ensemble for semi-supervised learning; no bound or diversity-accuracy study
+R0302,MAYBE,M,Ensemble of classifiers on selected samples plus guided pruning; diversity motivation; 25 datasets
+R0303,INCLUDE,I-c,"""relationship between classification accuracy and MCS diversity was investigated""; weak positive correlation"
+R0304,INCLUDE,I-c,"Evaluates ""impact of the diversity of the learners"" and accuracy-diversity relation on 27 datasets"
+R0305,MAYBE,M,"Multi-modal perturbation pool generation for ""accurate and diverse base classifiers"""
+R0306,EXCLUDE,E2,"Ensemble diversity among face feature extractors for adversarial robustness, not accuracy"
+R0307,EXCLUDE,E2,ML-based mobile malware detection system; application
+R0308,MAYBE,M,Empirical study of 20 DS methods with RUS on 54 imbalanced datasets
+R0309,MAYBE,M,Two competence measures for dynamic ensemble anomaly detection; 30 datasets
+R0310,EXCLUDE,E2,AdaBoost plus LCA selection for ball screw condition identification; application
+R0311,EXCLUDE,E4,Proceedings front matter (GbRPR 2023)
+R0312,EXCLUDE,E3,Dynamic regressor/ensemble selection for path loss prediction; regression
+R0313,MAYBE,M,"New DES method ""avoids error-independence assumption""; compared with five DES methods on thirty datasets"
+R0314,EXCLUDE,E2,Meta-learning DES for power dispatching anomaly detection; application
+R0315,MAYBE,M,NF-DES noise filter with DES on twelve datasets; mentions balancing diversity and accuracy
+R0316,EXCLUDE,E4,Proceedings front matter (ICTAI 2022)
+R0317,MAYBE,M,PSEUDOVO dynamic selection of best classifier in OVO; UCI datasets
+R0318,MAYBE,M,AER dynamic ensemble with regularization for imbalanced classification; benchmark datasets
+R0319,MAYBE,M,Evolutionary NN ensemble generation with DES; accuracy-diversity trade-off stated
+R0320,MAYBE,M,Dynamic ensemble selection with preprocessing for imbalanced drifted streams; 135 streams
+R0321,MAYBE,M,Dynamic outlier ensemble using MCB for competence; loosens error independence; 20 benchmarks
+R0322,EXCLUDE,E2,META-DES with SMOTE-ENN for imbalanced medical data; application
+R0323,MAYBE,M,VisionDES: DES with embedding-based competence for image classification benchmarks
+R0324,EXCLUDE,E2,HMM-based dynamic classifier selector for intrusion detection; application
+R0325,EXCLUDE,E4,Proceedings front matter (ECML PKDD 2024 workshops)
+R0326,EXCLUDE,E1,Adaptive classifier-head selection for debiasing; not classifier ensemble bound or diversity
+R0327,EXCLUDE,E2,Dynamic heterogeneous ensemble for malware family classification; application
+R0328,MAYBE,M,"DEMS dynamic member selection for stream ensembles; mentions ""optimizing ensemble diversity"""
+R0329,EXCLUDE,E2,Dynamic classifier selection framework for intrusion detection; application
+R0330,MAYBE,M,SDW-DES dynamic ensemble selection for imbalanced streams vs 9 algorithms
+R0331,EXCLUDE,E1,Ensemble of feature selection algorithms with pruning; not classifier ensemble bounds
+R0332,EXCLUDE,E4,Proceedings front matter (CISDB Companion 2025)
+R0333,EXCLUDE,E3,Systematic review of software effort estimation methods; regression
+R0334,EXCLUDE,E2,Perspective on ML/DES for ECPR clinical risk prediction; application
+R0335,EXCLUDE,E4,Proceedings front matter (BDA 2024)
+R0336,MAYBE,M,Empirical analysis of static vs dynamic selection of members and combination methods
+R0337,EXCLUDE,E2,MCS/META-DES for electrical fault detection; diversity mentioned but not measured
+R0338,EXCLUDE,E2,BERT plus DES for multi-class sentiment classification; application
+R0339,EXCLUDE,E2,Dynamic ensemble of random forest for underwater target recognition; application
+R0340,MAYBE,M,"GNN-based dynamic selection, 35 high-dimensional datasets; analyses incompetent classifiers in overlap"
+R0341,EXCLUDE,E2,Improved DCS with NCA for ball screw condition recognition; application
+R0342,EXCLUDE,E5,No abstract; title describes a Python library for multimodal dynamic ensembles
+R0343,EXCLUDE,E4,Proceedings front matter (MedAI 2024); no abstract
+R0344,EXCLUDE,E1,Contextual bandits with regression oracles; not classifier ensembles
+R0345,EXCLUDE,E2,Semi-supervised drifting-stream classification with model reuse; no bound or diversity-accuracy study
+R0346,EXCLUDE,E2,Diversity-based GA ensemble for disease diagnosis; application without diversity-accuracy analysis
+R0347,EXCLUDE,E1,Teacher leadership scale; not classifier ensembles
+R0348,EXCLUDE,E2,Hybrid sampling and dynamic ensemble for credit rating; application

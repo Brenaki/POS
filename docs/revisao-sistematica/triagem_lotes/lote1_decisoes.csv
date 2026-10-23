@@ -1,0 +1,88 @@
+uid,decision,code,reason
+R0001,INCLUDE,I-a,Proposes 'Hardness-aware Oracle' that 'extends the traditional Oracle concept' for evaluating DES techniques
+R0002,EXCLUDE,E2,"RF/boosting applied to bike-sharing inventory; no Oracle, bound or diversity analysis"
+R0003,EXCLUDE,E2,KNORA-E hybrid ensemble applied to Arabic sentiment; no Oracle or diversity-accuracy analysis
+R0004,EXCLUDE,E3,Model predictive control; 'upper bound on the performance loss' unrelated to classifier ensembles
+R0005,EXCLUDE,E3,"Binary sparse signal recovery; upper bounds on iterations, not classification ensembles"
+R0006,EXCLUDE,E1,Multi-armed bandit path selection in semantic communication networks; not classifier ensembles
+R0007,EXCLUDE,E1,Class-incremental exemplar selection for remote sensing; no classifier ensemble
+R0008,EXCLUDE,E1,"'Dynamic test oracles' for DNN repair; test-oracle sense, not MCS Oracle"
+R0009,MAYBE,M,Selective ensemble learning optimizing pure accuracy with generalization bound; benchmark ensemble-pruning method
+R0010,EXCLUDE,E3,Swarm learning traffic prediction over blockchain; not classifier ensembles
+R0011,EXCLUDE,E1,Processor cache/prefetch policy selection vs 'an oracle'; not classifier ensembles
+R0012,EXCLUDE,E1,Federated poisoning unlearning with bounded weights; not classifier ensembles
+R0013,EXCLUDE,E1,Multi-armed bandit rate/channel selection in wireless networks; not classifier ensembles
+R0014,EXCLUDE,E1,"Dynamic kernel selection for inference latency, 'oracle performance' unrelated to ensembles"
+R0015,EXCLUDE,E1,VideoLLM speculative decoding token budget; not classifier ensembles
+R0016,EXCLUDE,E1,Fairness in federated learning client selection; not classifier ensembles
+R0017,EXCLUDE,E1,Neuro-symbolic reasoning modality selection in agents; not classifier ensembles
+R0018,EXCLUDE,E1,Federated learning client selection for intrusion detection; not classifier ensembles
+R0019,EXCLUDE,E1,HMM-UCB reference node selection for underwater synchronization; not classifier ensembles
+R0020,EXCLUDE,E1,"Dynamic sensor selection for DNN; 'upper bound' is centralized selection, not ensemble"
+R0021,EXCLUDE,E1,"V2V cryptographic scheme, 'random oracle model'; not classifier ensembles"
+R0022,EXCLUDE,E3,Pipeline selection for financial time series forecasting with offline oracle
+R0023,EXCLUDE,E1,Cell-free massive MIMO power control vs 'static oracle solutions'; not classifier ensembles
+R0024,EXCLUDE,E1,Dynamic defense selection for IDS compared to 'the Oracle'; not classifier ensemble Oracle
+R0025,EXCLUDE,E1,O-RAN handover meta-learning vs oracle with perfect future information; not ensembles
+R0026,EXCLUDE,E1,CPU-FPGA resource provisioning compared to an Oracle strategy; not classifier ensembles
+R0027,EXCLUDE,E1,"Traffic sign recognition model; 'oracle crops' from detector, no classifier ensemble"
+R0028,EXCLUDE,E1,"Deterministic routing in non-terrestrial networks; ILP upper bound, not ensembles"
+R0029,EXCLUDE,E1,Dynamic assortment selection bandit regret bound; not classifier ensembles
+R0030,EXCLUDE,E1,Retransmission scheme for industrial wireless networks; not classifier ensembles
+R0031,EXCLUDE,E1,RDARS antenna system optimization; not classifier ensembles
+R0032,INCLUDE,I-c,MCS uses 'beneficial diversity' for member selection; results show 'effectiveness of combining diverse classifiers'
+R0033,INCLUDE,I-c,Varies ensemble composition 'to investigate if diversity plays a role'; insights into 'relationship between diversity and prediction accuracy'
+R0034,INCLUDE,I-c,"Proposes 'Double Fault Disagreement (DFD), a novel diversity metric' for selecting base classifiers, evaluated on performance"
+R0035,INCLUDE,I-c,Ensemble selection 'with the pair of diversity measures'; selecting accurate and diverse classifiers improves classification
+R0036,INCLUDE,I-c,"Proposes 'learners' interpretability diversity (LID) to measure the diversity', evaluated against ensemble accuracy"
+R0037,INCLUDE,I-c,'investigates how the performance of ensembles is influenced by the diversity' of base learners under drift
+R0038,INCLUDE,I-c,Diversity-based classifier selection; 'improvement is mainly attributed to' diversity-based selection over 20 datasets
+R0039,MAYBE,M,Ensemble classifier ranking/selection by 'accuracy margin and diversity measurement (AMDM)'; method paper
+R0040,INCLUDE,I-c,"'explores the influence of diversity in classifier ensembles, showing that increased diversity contributes to enhanced accuracy'"
+R0041,MAYBE,M,Proposes distribution-based DES framework (DDES) evaluated on 30 classification problems
+R0042,EXCLUDE,E2,Diverse ensemble for cancer gene expression classification; no diversity-accuracy or Oracle analysis
+R0043,EXCLUDE,E2,Polynomial neural network ensemble for imbalanced disease diagnosis; application
+R0044,EXCLUDE,E2,Voting classifier for hate speech detection; application only
+R0045,EXCLUDE,E2,KNORA-E/U applied to almond type classification with XAI; application
+R0046,MAYBE,M,"Proposes DES-HS dynamic ensemble selection model for imbalanced streams, 11 datasets"
+R0047,EXCLUDE,E2,DES methods applied to road crash severity analysis; application
+R0048,EXCLUDE,E2,Evaluates DCS methods for multimodal music mood classification; application
+R0049,EXCLUDE,E2,KNORA-U/E with SHAP for mental health prediction; application
+R0050,EXCLUDE,E2,DES with self-training for unsupervised time series anomaly detection; application
+R0051,MAYBE,M,"Framework combining pre-processing and DES for imbalanced drifting streams, synthetic benchmarks"
+R0052,MAYBE,M,Novel DES-based (KNORA-U) framework with oversampling for imbalanced drifting data streams
+R0053,MAYBE,M,Post-Selection DES (PS-DES) selecting best DES technique per query; MCS method paper
+R0054,MAYBE,M,Proposes DES-ICD dynamic ensemble selection for imbalanced streams; synthetic and real datasets
+R0055,MAYBE,M,"META-DES-Diversity: DES with 'criteria of diversity', 14 KEEL datasets plus bond default"
+R0056,EXCLUDE,E2,DCS with synthetic EHR data to predict cirrhosis complications; application
+R0057,EXCLUDE,E2,Semi-supervised dynamic selection for hyperspectral image classification; domain application
+R0058,MAYBE,M,"Cost-sensitive hierarchical clustering tailored for DCS, compared with state-of-the-art DCS methods"
+R0059,MAYBE,M,"Meta-learning recommendation of pool generation and DES method, 288 datasets"
+R0060,EXCLUDE,E2,SMOTE-ENN with DES for COVID-19 blood sample diagnosis; application
+R0061,EXCLUDE,E3,DES of regressors for forest canopy-height retrieval; regression
+R0062,MAYBE,M,Evaluates data complexity measures as selection criteria for dynamic classifier selection
+R0063,MAYBE,M,Proposes DS technique reducing local class overlap via instance hardness; benchmark evaluation
+R0064,EXCLUDE,E2,DES of CNNs for content-based image retrieval; application
+R0065,MAYBE,M,"Proposes FH-DES, fuzzy hyperbox-based DES framework compared with state-of-the-art DS"
+R0066,EXCLUDE,E2,Dynamic selection for imbalanced Android malware detection; application
+R0067,EXCLUDE,E2,BERT sentiment recognition of Russian satire; no ensemble analysis
+R0068,EXCLUDE,E2,Dynamic classifier selection for chest X-ray images; application
+R0069,EXCLUDE,E3,Dynamic ensemble regressors for crop yield forecasting; regression
+R0070,EXCLUDE,E2,Semi-supervised DCS for hyperspectral image classification; domain application
+R0071,EXCLUDE,E3,Dynamic ensemble selection 'tailored for regression tasks'
+R0072,MAYBE,M,Automatic decision process choosing dynamic classifier ensemble or single classifier; DS method
+R0073,EXCLUDE,E3,Sequential feature acquisition and classifier selection framework; no ensemble bound
+R0074,EXCLUDE,E2,One-vs-One ensemble with DCS for touch-based authentication; application
+R0075,EXCLUDE,E2,OLA-based DCS hybrid ensemble for Arabic sentiment analysis; application
+R0076,EXCLUDE,E2,Diverse self-taught representations for facial emotion recognition; no diversity-accuracy measurement
+R0077,EXCLUDE,E2,DES-KNORA for e-bike power mode adjustment; application
+R0078,EXCLUDE,E3,Ensemble of linear regressions with dynamic regressor selection for streams; regression
+R0079,EXCLUDE,E2,Generative dynamic deep classifier selection for hyperspectral images; domain application
+R0080,EXCLUDE,E3,Dynamic predictor selection for time series forecasting
+R0081,EXCLUDE,E3,Dynamic model ensemble for solar energy generation forecasting
+R0082,EXCLUDE,E2,Dynamic ensemble classifier for malware detection; application
+R0083,EXCLUDE,E2,Bandit-controlled semi-ensemble for accuracy-energy trade-off on edge; no Oracle/diversity analysis
+R0084,MAYBE,M,Proposes Double Dynamic Classifier Selection (DDCS) framework for data streams
+R0085,EXCLUDE,E2,Homogeneous DCS system for EMG movement classification; application
+R0086,INCLUDE,I-c,"Pool generation 'guided by the diversity'; diversity optimized, accuracy improvements with DCS/DES on 28 datasets"
+R0087,EXCLUDE,E2,DES of Transformer classifiers for equity market timing; application

@@ -1,0 +1,1 @@
+("oracle" OR "upper bound" OR "theoretical limit" OR "performance bound" OR "accuracy bound") AND ("multiple classifier system*" OR "classifier ensemble*" OR "ensemble of classifiers" OR "pool of classifiers" OR "dynamic classifier selection" OR "dynamic ensemble selection" OR "dynamic selection" OR "ensemble selection" OR "ensemble pruning" OR "classifier fusion")

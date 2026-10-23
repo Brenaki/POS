@@ -1,0 +1,99 @@
+{
+ "query": "REF(\"Exploring diversity in data complexity and classifier decision spaces for pool generation\") AND PUBYEAR > 2020 AND PUBYEAR < 2027 AND (LANGUAGE(english) OR LANGUAGE(portuguese) OR LANGUAGE(chinese))",
+ "total": 10,
+ "got": 10,
+ "shown": 10,
+ "retrieved": "2026-10-23T03:20:49.967Z",
+ "rows": [
+  {
+   "eid": "105011202946",
+   "title": "Knowledge-Augmented Patient Network Embedding-Based Dynamic Model Selection for Predictive Analysis of Pediatric Drug-Induced Liver Injury",
+   "authors": "Huang, L. , Shi, Z. , Tang, F. , Wang, H.",
+   "source": "IEEE Transactions on Biomedical Engineering , 73(2), pp. 631–643",
+   "year": "2026",
+   "cited": "2",
+   "abstract": "Hide abstract Objective: To address the challenges of developing machine learning frameworks for Electronic Health Records (EHRs)-based predictive tasks, such as the intricate occurrence mechanism of clinical events, patient diversity, and the inherent limitations of real-world data like data incompleteness and class imbalance, we propose the Knowledge-augmented Patient Network embedding-based Dynamic model Selection (KPNDS) framework, focusing on two key aspects: dynamically selecting the most suitable model for each individual and integrating biomedical knowledge into the framework. Methods: KPNDS utilizes graph machine learning algorithms to generate patient embeddings from a knowledge-augmented network which integrates data from a diverse range of data sources including EHRs, drug-related information, toxicogenomics data and other relevant information to enrich the understanding of patients. A meta-learning based framework is adopted to dynamically select the optimal classifiers based on the latent patient representations to perform individualized risk prediction. Multi-Layer Perceptron, Transformer and Kolmogorov-Arnold Networks are used as meta-classifiers to enhance the selection of the optimal classifiers for each patient. Results: The KPNDS framework was validated for the early prediction of drug-induced liver injury (DILI) in pediatric patients. Experimental results show that it outperforms common baseline models and dynamic ensemble selection methods. Conclusion: The KPNDS framework effectively integrates domain knowledge, graph-based machine learning and dynamic model selection strategies, thereby enhancing predictive performance. Significance: The KPNDS framework seamlessly integrates knowledge-augmented networks with dynamic model selection techniques, which has the potential to enable more accurate risk assessment and personalized medicine in complex scenarios, highlighting a novel approach to integrating external knowledge with data-driven models. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "105040985540",
+   "title": "Data Literacy and Research Data Management Practices among Professionals of University Libraries in Selected Nigerian States",
+   "authors": "Igbinovia, M.O. , Danquah, M.M. , Ukubeyinje, E.S. , Dumbiri, R. , Ndu, M.O.",
+   "source": "Serials Librarian , 87(7), pp. 403–419",
+   "year": "2026",
+   "cited": "0",
+   "abstract": "Hide abstract The rapid expansion of research data in university environments has intensified the need for research data management practices (RDMP), which are associated with library professionals' data literacy competencies. Anchored on the knowledge-based view (KBV) theory, this study examined the relationships between data literacy and RDMP among university library professionals in Nigeria, addressing a critical skill-gap in an under-researched context. Using a correlational research design, 137 library professionals across university libraries in Ebonyi, Edo, and Ondo States were surveyed. A structured questionnaire (cronbach's α = 0.97) distributed through Google Forms yielded 107 valid responses (78.1% response rate). Data were analyzed using descriptive statistics to ascertain the level of RDMP. Multivariate test ascertained the overall relationship between data literacy and RDMP, while univariate test ascertained the relationship between onliteracy and each dimension of the RDMP. The study found a moderate level of RDMP (mean = 2.56), with data creation (mean = 2.79) and data processing (mean = 2.66) contributing most to the overall level of RDMP. Multivariate tests revealed a significant relationship between data literacy and the combined RDMP dimensions, Pillai's Trace =.254, F(6, 100) = 5.687, p <.001, partial η2 =.254. Further analysis indicated that data literacy was significantly associated with the overall RDMP score, F(1, 105) = 26.24, p <.001, partial η2 =.200, explaining 20% of the variance. The associations were relatively stronger for the early stages of the RDM lifecycle than for later stages. This study underscores the importance of developing data literacy to support RDMP in university libraries, and provides empirical evidence from the Global South, where such studies are limited. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "105010001823",
+   "title": "Selecting sampling ratios in imbalanced datasets through class complexity",
+   "authors": "Lancho, C. , Cuesta, M. , De Diego, I.M. , Aceña, V. , Moguerza, J.M.",
+   "source": "Pattern Analysis and Applications , 28(3), 134",
+   "year": "2025",
+   "cited": "5",
+   "abstract": "Hide abstract Data characteristics that reveal the complexity of the dataset, such as overlap, lack of density, the presence of noisy points, etc. are key factors for the deterioration of the classification task of imbalanced datasets. The class size imbalance is not the main problem, but its combination with the above mentioned characteristics. Despite this, when applying sampling methods for preprocessing imbalanced data, the sampling ratio is selected based on the class sizes. In this paper, we propose a methodology to select the sampling ratio by seeking for a balance in the complexity of the classes instead of in their sizes. Our proposed methodology, called Hostility-Aware Ratio for Sampling (HARS), tracks how the complexity of the classes changes when a sampling method is applied for different ratios of minority to majority instances, and recommends the ratio for which there is a balance between the class complexities. Complexity is gauged through the hostility measure, a complexity measure that estimates the probability of misclassifying an instance, a class, or the entire dataset. The proposal is assessed on a total of 66 real datasets and compared with the state-of-the-art (SOTA) methods providing satisfactory classification results that validate the use of the complexity for the task of choosing the sampling ratio and that a balance in complexity favors a more balanced learning process of classifiers. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "105022306533",
+   "title": "Dynamic Ensemble Selection for Mental Health Prediction : A Path towards Explainable, Scalable and High-Impact AI Solutions",
+   "authors": "Saha, Y. , Hemalatha, S.",
+   "source": "2025 International Conference on Intelligent Computing and Knowledge Extraction Icicke 2025",
+   "year": "2025",
+   "cited": "0",
+   "abstract": "Hide abstract Mental health conditions such as anxiety, depression, PTSD, and insomnia are widespread, impacting individuals' emotional, physical, and social lives. Conventional diagnostic methods are often expensive, time-consuming, and influenced by stigma and limited accessibility, discouraging many from seeking timely help. Early identification plays a crucial role in preventing severe developments and supporting overall well-being. In order to solve such issues, we have proposed a Machine Learning (ML)-driven system that evaluates mental health status based on responses to a thoughtfully crafted survey using clinically recognized psychological indicators. This approach leverages dynamic ensemble selection techniques like KNORA-U and KNORA-E, along with SHAP (SHapley Additive exPlanations), to enhance both accuracy and interpretability. Achieving an accuracy of 81%, our model outperforms conventional methods and highlights the potential of combining explainable AI with adaptive ensemble strategies. This framework promotes early detection, improves accessibility, and offers a scalable, reliable solution for mental health assessment and intervention. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85201305845",
+   "title": "Enhancing dynamic ensemble selection: combining self-generating prototypes and meta-classifier for data classification",
+   "authors": "Manastarla, A. , Silva, L.A.",
+   "source": "Neural Computing and Applications , 36(32), pp. 20295–20320",
+   "year": "2024",
+   "cited": "4",
+   "abstract": "Hide abstract In dynamic ensemble selection (DES) techniques, the competence level of each classifier is estimated from a pool of classifiers, and only the most competent ones are selected to classify a specific test sample and predict its class labels. A significant challenge in DES is efficiently estimating classifier competence for accurate prediction, especially when these techniques employ the K-Nearest Neighbors (KNN) algorithm to define the competence region of a test sample based on a validation set (known as the dynamic selection dataset or DSEL). This challenge is exacerbated when the DSEL does not accurately reflect the original data distribution or contains noisy data. Such conditions can reduce the precision of the system, induce unexpected behaviors, and compromise stability. To address these issues, this paper introduces the self-generating prototype ensemble selection (SGP.DES) framework, which combines meta-learning with prototype selection. The proposed meta-classifier of SGP.DES supports multiple classification algorithms and utilizes meta-features from prototypes derived from the original training set, enhancing the selection of the best classifiers for a test sample. The method improves the efficiency of KNN in defining competence regions by generating a reduced and noise-free DSEL set that preserves the original data distribution. Furthermore, the SGP.DES framework facilitates tailored optimization for specific classification challenges through the use of hyperparameters that control prototype selection and the meta-classifier operation mode to select the most appropriate classification algorithm for dynamic selection. Empirical evaluations of twenty-four classification problems have demonstrated that SGP.DES outperforms state-of-the-art DES methods as well as traditional single-model and ensemble methods in terms of accuracy, confirming its effectiveness across a wide range of classification contexts. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85190823300",
+   "title": "Meta-learning-based sample discrimination framework for improving dynamic selection of classifiers under label noise",
+   "authors": "Xu, C. , Zhu, Y. , Zhu, P. , Cui, L.",
+   "source": "Knowledge Based Systems , 295, 111811",
+   "year": "2024",
+   "cited": "4",
+   "abstract": "Hide abstract Many real-world datasets encounter the issue of label noise (LN), which significantly degrades the learning performances of classification models. While ensemble learning (EL) has been widely employed to tackle this problem, the Dynamic Selection (DS) of classifiers, as a promising EL branch, is particularly sensitive to LN. To address this issue, a meta-learning-based sample discrimination (MSD) framework is proposed in this paper. Initially, this paper analyzes how LN affects the performance of DS methods through a visual example. Subsequently, under the premise that DS methods are only applicable to samples whose neighborhood is minimally affected or unaffected by LN, a meta-learning dataset is generated in the framework, where the meta-features and meta-labels are derived from the characteristics and the real class distribution of local regions of the samples, respectively. With this dataset, a meta-learner is constructed to determine the feasibility of using DS methods directly to classify a given sample in the presence of LN. For samples that DS methods cannot handle, a novel DS process based on the Genetic Algorithm is designed to mitigate the negative impact of LN. The effectiveness of the MSD framework is validated through extensive experiments conducted on thirty real datasets. These experiments demonstrate the capability of the MSD framework to improve the performances of DS methods across different levels of LN. Furthermore, the efficacy of the proposed MSD framework in handling LN is also highlighted by comparing it with a state-of-the-art method and four mainstream EL methods. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85205017963",
+   "title": "MLRS-PDS: A Meta-learning recommendation of dynamic ensemble selection pipelines",
+   "authors": "Jalalian, H. , Cruz, R.M.O.",
+   "source": "Proceedings of the International Joint Conference on Neural Networks",
+   "year": "2024",
+   "cited": "6",
+   "abstract": "Hide abstract Dynamic Selection (DS), where base classifiers are chosen from a classifier's pool for each new instance at test time, has shown to be highly effective in pattern recognition. However, instability and redundancy in the classifier pools can impede computational efficiency and accuracy in dynamic ensemble selection. This paper introduces a meta-learning recommendation system (MLRS) to recommend the optimal pool generation scheme for DES methods tailored to individual datasets. The system employs a meta-model built from dataset meta-features to predict the most suitable pool generation scheme and DES method for a given dataset. Through an extensive experimental study encompassing 288 datasets, we demonstrate that this meta-learning recommendation system outperforms traditional fixed pool or DES method selection strategies, highlighting the efficacy of a meta-learning approach in refining DES method selection. The source code, datasets, and supplementary results can be found in this project's GitHub repository: https://github.com/Menelau/MLRS-PDS. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85177851584",
+   "title": "Complexity-Driven Sampling for Bagging",
+   "authors": "Lancho, C. , C. P. de Souto, M. , Lorena, A.C. , Martín de Diego, I.",
+   "source": "Lecture Notes in Computer Science Including Subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics , 14404 LNCS, pp. 15–21",
+   "year": "2023",
+   "cited": "3",
+   "abstract": "Hide abstract Ensemble learning consists of combining the prediction of different learners to obtain a final output. One key step for their success is the diversity among the learners. In this paper, we propose to reach the diversity in terms of the classification complexity by guiding the sampling of instances in the Bagging algorithm with complexity measures. The proposed Complexity-driven Bagging algorithm complements the classic Bagging algorithm by considering training samples of different complexity to cover the complexity space. Besides, the algorithm admits any complexity measure to guide the sampling. The proposal is tested in 28 real datasets and for a total of 9 complexity measures, providing satisfactory and promising results and revealing that training with samples of different complexity, ranging from easy to hard samples, is the best strategy when sampling based on complexity. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85187249005",
+   "title": "A Post-Selection Algorithm for Improving Dynamic Ensemble Selection Methods",
+   "authors": "Cordeiro, P.R.G. , Cavalcanti, G.D.C. , Cruz, R.M.O.",
+   "source": "Conference Proceedings IEEE International Conference on Systems Man and Cybernetics , pp. 1142–1147",
+   "year": "2023",
+   "cited": "1",
+   "abstract": "Hide abstract Dynamic Ensemble Selection (DES) is a Multiple Classifier Systems (MCS) approach that aims to select an ensemble for each query sample during the selection phase. Even with the proposal of several DES approaches, no particular DES technique is the best choice for different problems. Thus, we hypothesize that selecting the best DES approach per query instance can lead to better accuracy. To evaluate this idea, we introduce the Post-Selection Dynamic Ensemble Selection (PS-DES) approach, a post-selection scheme that evaluates ensembles selected by several DES techniques using different metrics. Experimental results show that using accuracy as a metric to select the ensembles, PS-DES performs better than individual DES techniques. PS-DES source code is available in a GitHub repository44https://github.com/prgc/ps-des. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85168258650",
+   "title": "Dynamic Ensemble Algorithm Post-Selection Using Hardness-Aware Oracle",
+   "authors": "Cordeiro, P.R.G. , Cavalcanti, G.D.C. , Cruz, R.M.O.",
+   "source": "IEEE Access , 11, pp. 86056–86070",
+   "year": "2023",
+   "cited": "6",
+   "abstract": "Hide abstract Dynamic Ensemble Selection (DES) algorithms have obtained better performance in many tasks compared to monolithic classifiers and static ensembles. However, it is reasonable to assume that no DES algorithm is the optimal solution in different scenarios since diversity plays an important role. Thus, this paper addresses this research gap by proposing a novel approach called Hardness-aware Oracle with Dynamic Ensemble Selection (HaO-DES) that operates as a post-selection strategy, evaluating and selecting the best DES techniques per instance. Each DES technique ensemble is evaluated using a new measure called Hardness-aware Oracle (HaO). HaO extends the traditional Oracle concept by assessing a DES technique based on how the classifiers in the selected ensemble work together, contrasting with the individual classifier evaluation in the traditional assessment. We performed experiments over 30 databases, using three base classifiers (Perceptron, Logistic Regression, and Naive Bayes) in homogeneous and heterogenous pools' configurations, to assess HaO-DES with four DES approaches (KNORA-U, KNOP, DES-P, and META-DES). We use three performance metrics to evaluate the experiments: accuracy, F-score, and Matthews Correlation Coefficient (MCC). The results show that our approach outperforms or obtains similar results against the four individual DES approaches, mainly when considering heterogeneous pool settings. We also demonstrated the HaO-DES efficiency in choosing suitable DES techniques in different situations. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  }
+ ]
+}

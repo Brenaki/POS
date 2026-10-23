@@ -1,0 +1,140 @@
+{
+ "source": "IEEE Xplore",
+ "query": "(\"ensemble diversity\" OR \"classifier diversity\" OR \"diversity measure*\" OR \"double fault\" OR \"disagreement measure*\") AND (\"classifier ensemble*\" OR \"multiple classifier system*\" OR \"ensemble of classifiers\" OR \"pool of classifiers\") AND (\"accuracy\" OR \"performance\")",
+ "filters": "2021-2026, All Metadata",
+ "total": 13,
+ "got": 13,
+ "retrieved": "2026-10-23T03:21:47.465Z",
+ "rows": [
+  {
+   "id": "10865038",
+   "title": "Underwater Target Recognition with Sonar Images Based on Multiple Classifier Systems",
+   "doi": "10.1109/CAC63892.2024.10865038",
+   "authors": "Xinyi Wang; Deqiang Han",
+   "source": "2024 China Automation Congress (CAC)",
+   "year": "2024",
+   "type": "IEEE Conferences",
+   "abstract": "Underwater target recognition(UTR) is an important task, where Multiple Classifier System (MCS) has been widely applied. By combining information from multiple sources or features, the improvement of target recognition accuracy can be expected. However, more classifiers in MCS do not necessarily bring better fusion results. In this paper, we focus on two key strategies to improve MCS performance: ..."
+  },
+  {
+   "id": "9714658",
+   "title": "A Heterogenous Online Ensemble Classifier for Bankruptcy Prediction",
+   "doi": "10.1109/IMITEC52926.2021.9714658",
+   "authors": "Priyank Parsotam; Tinofirei Museba",
+   "source": "2021 3rd International Multidisciplinary Information Technology and Engineering Conference (IMITEC)",
+   "year": "2021",
+   "type": "IEEE Conferences",
+   "abstract": "Considering current economic and market conditions, an ensemble model that generates precise predictions of an organization’s possible bankruptcy state is of utmost importance for strategic decision-making. This research paper aims to investigate and apply reputable ensemble classifiers to existing credit datasets to address our identified research problem, which states, &#34;existing ensemble-based b..."
+  },
+  {
+   "id": "10869442",
+   "title": "A Novel Ensemble Classifier Selection Method for Software Defect Prediction",
+   "doi": "10.1109/ACCESS.2025.3537658",
+   "authors": "Xin Dong; Jie Wang; Yan Liang",
+   "source": "IEEE Access",
+   "year": "2025",
+   "type": "IEEE Journals",
+   "abstract": "The presence of software defects significantly impacts the quality of software systems and increases development and maintenance costs. To improve system quality and reduce costs, it is necessary to predict software defects in the early stages of the software development lifecycle. This paper proposes Double Fault Disagreement (DFD), a novel diversity metric and method for selecting competent base..."
+  },
+  {
+   "id": "9741368",
+   "title": "Diversity-Driven Multikernel Collaborative Representation Ensemble for Hyperspectral Image Classification",
+   "doi": "10.1109/JSTARS.2022.3162121",
+   "authors": "Hongjun Su; Yuzheng Hu; Hongliang Lu; Weiwei Sun; Qian Du",
+   "source": "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing",
+   "year": "2022",
+   "type": "IEEE Journals",
+   "abstract": "Recently, kernel collaborative representation classification (KCRC) has shown its outstanding performance in dealing with the problem of linear inseparability in hyperspectral remote sensing image classification. Meanwhile, ensemble learning has attracted great attention in improving the performance of a single classifier. Aiming at the limitation of a single classifier, bagging algorithm based on..."
+  },
+  {
+   "id": "10174699",
+   "title": "Interpretability Diversity for Decision-Tree-Initialized Dendritic Neuron Model Ensemble",
+   "doi": "10.1109/TNNLS.2023.3290203",
+   "authors": "Xudong Luo; Long Ye; Xiaolan Liu; Xiaohao Wen; Mengchu Zhou; Qin Zhang",
+   "source": "IEEE Transactions on Neural Networks and Learning Systems",
+   "year": "2024",
+   "type": "IEEE Journals",
+   "abstract": "To construct a strong classifier ensemble, base classifiers should be accurate and diverse. However, there is no uniform standard for the definition and measurement of diversity. This work proposes a learners’ interpretability diversity (LID) to measure the diversity of interpretable machine learners. It then proposes a LID-based classifier ensemble. Such an ensemble concept is novel because: 1) i..."
+  },
+  {
+   "id": "9660047",
+   "title": "Improving Diversity in Concept Drift Ensembles",
+   "doi": "10.1109/SSCI50451.2021.9660047",
+   "authors": "José Luis Martínez Pérez; Laura Maria Palomino Mariño; Roberto Souto Maior De Barros",
+   "source": "2021 IEEE Symposium Series on Computational Intelligence (SSCI)",
+   "year": "2021",
+   "type": "IEEE Conferences",
+   "abstract": "This research investigates how the performance of ensembles is influenced by the diversity and behavior of base learners on abrupt and gradual concept drifts. To accomplish that, we propose to enhance ensemble algorithms by adjusting the voting procedure and using heterogeneous base-learners on three benchmark data stream methods: Fast Adaptive Stacking of Ensembles (FASE), Online Adaptive Classif..."
+  },
+  {
+   "id": "11248022",
+   "title": "Auto-CEn: AutoML for Classifier Ensembles - Diversity-Based Classifier Selection and Decision Fusion Optimization",
+   "doi": "10.1109/DSAA65442.2025.11248022",
+   "authors": "Julius Voggesberger; Peter Reimann; Dennis Treder-Tschechlov; Bernhard Mitschang",
+   "source": "2025 IEEE 12th International Conference on Data Science and Advanced Analytics (DSAA)",
+   "year": "2025",
+   "type": "IEEE Conferences",
+   "abstract": "Classifier ensembles are mainly used for classification problems exhibiting complex data characteristics, e.g., a high class imbalance. They consist of a set of classifiers and a decision fusion method that combines the predictions of the classifiers. However, creating an accurate ensemble is a challenging optimization problem, since the individual classifiers and the decision fusion method must b..."
+  },
+  {
+   "id": "9666676",
+   "title": "Ensemble Training with Classifiers Selection Mechanism",
+   "doi": "10.1109/UEMCON53757.2021.9666676",
+   "authors": "Md Syadus Sefat; Md Shahjahan; Mahbubur Rahman; Damian Valles",
+   "source": "2021 IEEE 12th Annual Ubiquitous Computing, Electronics & Mobile Communication Conference (UEMCON)",
+   "year": "2021",
+   "type": "IEEE Conferences",
+   "abstract": "The target of classifiers ranking and selection in the ensemble learning method is to find a small size of learners to improve the performance while saving the computational resources. It is challenging to select classifiers from an ensemble since ensemble learning produces indistinguishable classifiers. We present a novel technique for ranking and selecting classifiers in an ensemble of classifie..."
+  },
+  {
+   "id": "10870227",
+   "title": "Enhancing Semi-Supervised Learning With Concept Drift Detection and Self-Training: A Study on Classifier Diversity and Performance",
+   "doi": "10.1109/ACCESS.2025.3538710",
+   "authors": "José L. M. Pérez; Roberto S. M. Barros; Silas G. T. C. Santos",
+   "source": "IEEE Access",
+   "year": "2025",
+   "type": "IEEE Journals",
+   "abstract": "Machine learning algorithms that assist in decision-making are becoming crucial in several areas, such as healthcare, finance, marketing, etc. Algorithms exposed to a larger and more relevant amount of training data tend to perform better. However, the availability of labeled data without human expert intervention is a challenging task, especially in data stream learning with concept drifts, where..."
+  },
+  {
+   "id": "9366872",
+   "title": "DDES: A Distribution-Based Dynamic Ensemble Selection Framework",
+   "doi": "10.1109/ACCESS.2021.3063254",
+   "authors": "Ye-Rim Choi; Dong-Joon Lim",
+   "source": "IEEE Access",
+   "year": "2021",
+   "type": "IEEE Journals",
+   "abstract": "Dynamic Ensemble Selection (DES) is a special type of ensemble modeling that selects different subsets of base classifiers for different test sample cases. In this process, multiple base classifiers are compared in terms of their competence as an ensemble to the best possible prediction for a given test sample case. Traditional DES methods rely on the Euclidean distance-based k-Nearest Neighbor (k..."
+  },
+  {
+   "id": "10493113",
+   "title": "Exhaustive Exploitation of Nature-Inspired Computation for Cancer Screening in an Ensemble Manner",
+   "doi": "10.1109/TCBB.2024.3385402",
+   "authors": "Xubin Wang; Yunhe Wang; Zhiqiang Ma; Ka-Chun Wong; Xiangtao Li",
+   "source": "IEEE/ACM Transactions on Computational Biology and Bioinformatics",
+   "year": "2024",
+   "type": "IEEE Journals",
+   "abstract": "Accurate screening of cancer types is crucial for effective cancer detection and precise treatment selection. However, the association between gene expression profiles and tumors is often limited to a small number of biomarker genes. While computational methods using nature-inspired algorithms have shown promise in selecting predictive genes, existing techniques are limited by inefficient search a..."
+  },
+  {
+   "id": "9669281",
+   "title": "A Novel Class Imbalance-oriented Polynomial Neural Network Algorithm for Disease Diagnosis",
+   "doi": "10.1109/BIBM52615.2021.9669281",
+   "authors": "Xiaohan Yuan; Shuyu Chen; Chuan Sun; Lu Yuwen",
+   "source": "2021 IEEE International Conference on Bioinformatics and Biomedicine (BIBM)",
+   "year": "2021",
+   "type": "IEEE Conferences",
+   "abstract": "The class imbalance problem is common in disease diagnosis, which significantly damages the artificial intelligence-based diagnostic models and causes enormous cost about disease misclassification. To alleviate the class imbalance problem, we propose a novel class imbalance-oriented polynomial neural network (CIPNN) algorithm, which incorporates the data sampling and the classifier ensemble. Speci..."
+  },
+  {
+   "id": "10395354",
+   "title": "Ensemble Text Classification with TF-IDF Vectorization for Hate Speech Detection in Social Media",
+   "doi": "10.1109/ICSCAN58655.2023.10395354",
+   "authors": "Sathishkumar R; Karthikeyan T; Praveen kumar P; Shamsundar S M",
+   "source": "2023 International Conference on System, Computation, Automation and Networking (ICSCAN)",
+   "year": "2023",
+   "type": "IEEE Conferences",
+   "abstract": "The development of artificial intelligence (AI) has changed how hate speech is detected. In hate speech identification using machine learning, a number of methods are used to automatically find text that uses vocabulary that is considered to be derogatory, discriminatory, or motivated by hatred. Supervised learning techniques like neural networks, decision trees, and SVMs need a labelled dataset c..."
+  }
+ ]
+}

@@ -1,0 +1,786 @@
+[
+ {
+  "uid": "R0001",
+  "doi": "10.1109/access.2023.3304912",
+  "ieee": "10215507",
+  "title": "Dynamic Ensemble Algorithm Post-Selection Using Hardness-Aware Oracle",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0009",
+  "doi": "10.1109/tpami.2022.3171436",
+  "ieee": "9765714",
+  "title": "Generalization Performance of Pure Accuracy and its Application in Selective Ensemble Learning",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0032",
+  "doi": "10.1109/cac63892.2024.10865038",
+  "ieee": "10865038",
+  "title": "Underwater Target Recognition with Sonar Images Based on Multiple Classifier Systems",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0033",
+  "doi": "10.1109/imitec52926.2021.9714658",
+  "ieee": "9714658",
+  "title": "A Heterogenous Online Ensemble Classifier for Bankruptcy Prediction",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0034",
+  "doi": "10.1109/access.2025.3537658",
+  "ieee": "10869442",
+  "title": "A Novel Ensemble Classifier Selection Method for Software Defect Prediction",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0035",
+  "doi": "10.1109/jstars.2022.3162121",
+  "ieee": "9741368",
+  "title": "Diversity-Driven Multikernel Collaborative Representation Ensemble for Hyperspectral Image Classification",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0036",
+  "doi": "10.1109/tnnls.2023.3290203",
+  "ieee": "10174699",
+  "title": "Interpretability Diversity for Decision-Tree-Initialized Dendritic Neuron Model Ensemble",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0037",
+  "doi": "10.1109/ssci50451.2021.9660047",
+  "ieee": "9660047",
+  "title": "Improving Diversity in Concept Drift Ensembles",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0038",
+  "doi": "10.1109/dsaa65442.2025.11248022",
+  "ieee": "11248022",
+  "title": "Auto-CEn: AutoML for Classifier Ensembles - Diversity-Based Classifier Selection and Decision Fusion Optimization",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0039",
+  "doi": "10.1109/uemcon53757.2021.9666676",
+  "ieee": "9666676",
+  "title": "Ensemble Training with Classifiers Selection Mechanism",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0040",
+  "doi": "10.1109/access.2025.3538710",
+  "ieee": "10870227",
+  "title": "Enhancing Semi-Supervised Learning With Concept Drift Detection and Self-Training: A Study on Classifier Diversity and Performance",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0041",
+  "doi": "10.1109/access.2021.3063254",
+  "ieee": "9366872",
+  "title": "DDES: A Distribution-Based Dynamic Ensemble Selection Framework",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0046",
+  "doi": "10.1109/asens69964.2026.11605345",
+  "ieee": "11605345",
+  "title": "Improved model for dynamic ensemble selection based on hybrid sampling",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0051",
+  "doi": "10.1109/iceccme57830.2023.10253212",
+  "ieee": "10253212",
+  "title": "Imbalanced Data Stream Classification using Dynamic Ensemble Selection",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0052",
+  "doi": "10.1109/icrtac59277.2023.10480824",
+  "ieee": "10480824",
+  "title": "Data Stream Classification Framework for Data Streams using Dynamic Ensemble Selection",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0053",
+  "doi": "10.1109/smc53992.2023.10394192",
+  "ieee": "10394192",
+  "title": "A Post-Selection Algorithm for Improving Dynamic Ensemble Selection Methods",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0054",
+  "doi": "10.1109/tnnls.2022.3183120",
+  "ieee": "9802893",
+  "title": "Dynamic Ensemble Selection for Imbalanced Data Streams With Concept Drift",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0055",
+  "doi": "10.1109/access.2023.3262836",
+  "ieee": "10086501",
+  "title": "An Enhanced Dynamic Ensemble Selection Classifier for Imbalance Classification With Application to China Corporation Bond Default Prediction",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0058",
+  "doi": "10.1109/icmla55696.2022.00040",
+  "ieee": "10069850",
+  "title": "Cost-sensitive Hierarchical Clustering for Dynamic Classifier Selection",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0059",
+  "doi": "10.1109/ijcnn60899.2024.10651199",
+  "ieee": "10651199",
+  "title": "MLRS-PDS: A Meta-learning recommendation of dynamic ensemble selection pipelines",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0062",
+  "doi": "10.1109/ictai56018.2022.00021",
+  "ieee": "10098002",
+  "title": "Dynamic selection of classifiers based on complexity measures",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0063",
+  "doi": "10.1109/ijcnn55064.2022.9892846",
+  "ieee": "9892846",
+  "title": "Local overlap reduction procedure for dynamic ensemble selection",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0065",
+  "doi": "10.1109/ijcnn55064.2022.9892635",
+  "ieee": "9892635",
+  "title": "Dynamic Ensemble Selection Using Fuzzy Hyperboxes",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0072",
+  "doi": "10.1109/icmla55696.2022.00144",
+  "ieee": "10069959",
+  "title": "An exploratory analysis of a dynamic ensemble structure using an automatic decision process",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0084",
+  "doi": "10.1109/ijcnn52387.2021.9533702",
+  "ieee": "9533702",
+  "title": "Dynamically Selected Ensemble for Data Stream Classification",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0086",
+  "doi": "10.1109/icpr48806.2021.9412137",
+  "ieee": "9412137",
+  "title": "Classifier Pool Generation based on a Two-level Diversity Approach",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0090",
+  "doi": "10.1109/ijcnn54540.2023.10191423",
+  "ieee": "10191423",
+  "title": "Mass-Based Short Term Selection of Classifiers in Data Streams",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0099",
+  "doi": "10.1109/tkde.2020.3025173",
+  "ieee": "9204459",
+  "title": "A Novel Method for Creating an Optimized Ensemble Classifier by Introducing Cluster Size Reduction and Diversity",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0101",
+  "doi": "10.1109/smc58881.2025.11343304",
+  "ieee": "11343304",
+  "title": "HSFN: Hierarchical Selection for Fake News Detection building Heterogeneous Ensemble",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0110",
+  "doi": "10.55730/1300-0632.4092",
+  "ieee": "",
+  "title": "A new dynamic classifier selection method for text classification",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0112",
+  "doi": "10.1016/j.inffus.2021.10.015",
+  "ieee": "",
+  "title": "An investigation into the effects of label noise on Dynamic Selection algorithms",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0113",
+  "doi": "10.1007/s12351-023-00813-6",
+  "ieee": "",
+  "title": "Customer purchase prediction in electronic markets from clickstream data using the Oracle meta-classifier",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0118",
+  "doi": "10.1007/978-3-032-03708-4_25",
+  "ieee": "",
+  "title": "Combining Classifiers for Texture Classification",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0119",
+  "doi": "",
+  "ieee": "",
+  "title": "Uma abordagem para a pós-seleção de ensembles utilizando conceitos de oráculo e multi-view learning",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0120",
+  "doi": "10.1145/3805689.3806539",
+  "ieee": "",
+  "title": "Improving Fairness with Ensemble Combination: Margin-Dependent Bounds",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0125",
+  "doi": "10.1016/j.cja.2025.103839",
+  "ieee": "",
+  "title": "A novel diversity measure for multiple classifier system based on class-wise performance ranking distance",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0126",
+  "doi": "10.1007/s42979-022-01063-7",
+  "ieee": "",
+  "title": "Optimising Diversity in Classifier Ensembles",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0127",
+  "doi": "10.1016/j.eswa.2026.133210",
+  "ieee": "",
+  "title": "A deep representation learning framework for measuring diversity of multiple classifier systems",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0128",
+  "doi": "10.1007/978-3-030-72699-7_40",
+  "ieee": "",
+  "title": "Optimising Diversity in Classifier Ensembles of Classification Trees",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0129",
+  "doi": "10.1016/j.patcog.2021.108493",
+  "ieee": "",
+  "title": "An analysis of heuristic metrics for classifier ensemble pruning based on ordered aggregation",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0130",
+  "doi": "10.1016/j.eswa.2023.119845",
+  "ieee": "",
+  "title": "Classifier ensemble with evolutionary optimisation enforced random projections",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0131",
+  "doi": "10.13053/cys-25-3-3416",
+  "ieee": "",
+  "title": "New Diversity Measures Based on the Coverage and Similarity of the Classification",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0132",
+  "doi": "10.1155/2021/5549300",
+  "ieee": "",
+  "title": "ADES: A New Ensemble Diversity-Based Approach for Handling Concept Drift",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0133",
+  "doi": "10.1117/12.2671159",
+  "ieee": "",
+  "title": "Evaluate the performance of the support vector machines ensemble",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0134",
+  "doi": "10.1007/s11192-025-05265-7",
+  "ieee": "",
+  "title": "Ensembling approaches to citation function classification and important citation screening",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0135",
+  "doi": "10.32604/cmes.2022.022985",
+  "ieee": "",
+  "title": "Ensemble Classifier Design Based on Perturbation Binary Salp Swarm Algorithm for Classification",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0136",
+  "doi": "10.1007/s13042-022-01690-9",
+  "ieee": "",
+  "title": "A multiple criteria ensemble pruning method for binary classification based on D-S theory of evidence",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0138",
+  "doi": "10.1016/j.inffus.2022.09.010",
+  "ieee": "",
+  "title": "OLP++: An online local classifier for high dimensional data",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0140",
+  "doi": "",
+  "ieee": "",
+  "title": "Dynamic selection of classifiers in data streams",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0141",
+  "doi": "10.1007/978-981-99-4761-4_53",
+  "ieee": "",
+  "title": "Dynamic Ensemble Selection with Reinforcement Learning",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0142",
+  "doi": "10.1007/s10489-023-04770-7",
+  "ieee": "",
+  "title": "Automated machine learning with dynamic ensemble selection",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0143",
+  "doi": "10.57709/7029894",
+  "ieee": "",
+  "title": "Dynamic Ensemble Selection with Regional Expertise",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0145",
+  "doi": "10.1007/s13042-022-01751-z",
+  "ieee": "",
+  "title": "A novel framework based on the multi-label classification for dynamic selection of classifiers",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0146",
+  "doi": "10.1016/j.inffus.2023.102036",
+  "ieee": "",
+  "title": "A scalable dynamic ensemble selection using fuzzy hyperboxes",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0148",
+  "doi": "10.1016/j.patcog.2024.110899",
+  "ieee": "",
+  "title": "DES-AS: Dynamic ensemble selection based on algorithm Shapley",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0151",
+  "doi": "10.1016/j.asoc.2026.115425",
+  "ieee": "",
+  "title": "Dynamic ensemble selection via optimization of competence regions",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0152",
+  "doi": "10.1016/j.eswa.2024.124860",
+  "ieee": "",
+  "title": "Adaptive bagging-based dynamic ensemble selection in nonstationary environments",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0153",
+  "doi": "10.1177/1088467x261495709",
+  "ieee": "",
+  "title": "A structural framework for instance-specific dynamic selection in classifier ensembles",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0156",
+  "doi": "10.1016/j.eswa.2026.134633",
+  "ieee": "",
+  "title": "Spatiotemporal resampling-based dynamic ensemble selection for nonstationary streams",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0159",
+  "doi": "",
+  "ieee": "",
+  "title": "Clustering-based dynamic ensemble selection for one-class decomposition",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0160",
+  "doi": "",
+  "ieee": "",
+  "title": "DYNSE+ : combining dynamic ensemble selection with concept drift detection",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0161",
+  "doi": "10.1016/j.ins.2021.04.038",
+  "ieee": "",
+  "title": "The design of dynamic ensemble selection strategy for the error-correcting output codes family",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0169",
+  "doi": "10.1007/978-3-030-94066-9_7",
+  "ieee": "",
+  "title": "Dynamic Ensemble Selection Based on Hesitant Fuzzy Multiple Criteria Decision-Making",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0171",
+  "doi": "10.1007/978-3-030-87897-9_20",
+  "ieee": "",
+  "title": "Dynamic Ensemble Selection for Imbalanced Data Stream Classification with Limited Label Access",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0172",
+  "doi": "10.3934/era.2025291",
+  "ieee": "",
+  "title": "AD-DES: An adaptive dual dynamic ensemble selection for imbalanced data streams",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0174",
+  "doi": "10.1007/s10115-022-01791-5",
+  "ieee": "",
+  "title": "Dynamic ensemble selection classification algorithm based on window over imbalanced drift data stream",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0179",
+  "doi": "10.1007/s00521-024-10237-8",
+  "ieee": "",
+  "title": "Enhancing dynamic ensemble selection: combining self-generating prototypes and meta-classifier for data classification",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0180",
+  "doi": "10.1016/j.knosys.2024.111811",
+  "ieee": "",
+  "title": "Meta-learning-based sample discrimination framework for improving dynamic selection of classifiers under label noise",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0189",
+  "doi": "10.1007/978-3-031-42795-4_6",
+  "ieee": "",
+  "title": "GNN-DES: A New End-to-End Dynamic Ensemble Selection Method Based on Multi-label Graph Neural Network",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0190",
+  "doi": "10.1007/s10489-026-07129-w",
+  "ieee": "",
+  "title": "SCWE+: A multi-class imbalanced drifting data stream classification algorithm based on sample difficulty weighting and dynamic ensemble selection",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0191",
+  "doi": "10.1016/j.inffus.2025.103272",
+  "ieee": "",
+  "title": "IncA-DES: An incremental and adaptive dynamic ensemble selection approach using online K-d tree neighborhood search for data streams with concept drift",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0193",
+  "doi": "10.1007/978-3-032-31654-7_11",
+  "ieee": "",
+  "title": "Dynamic Classifier Ensemble Selection for Data Stream Mining Based on Local-Global Dominance and Adaptive Online Sampling",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0200",
+  "doi": "10.1007/978-3-030-88081-1_27",
+  "ieee": "",
+  "title": "Imbalanced Data Mining Using Oversampling and Cellular GEP Ensemble",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0203",
+  "doi": "10.1016/j.procs.2021.09.121",
+  "ieee": "",
+  "title": "Framework for imbalanced data classification",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0205",
+  "doi": "10.1016/j.ins.2024.120555",
+  "ieee": "",
+  "title": "Dynamic Classification Ensembles for Handling Imbalanced Multiclass Drifted Data Streams",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0207",
+  "doi": "10.1145/3583780.3614780",
+  "ieee": "",
+  "title": "An Efficient Selective Ensemble Learning with Rejection Approach for Classification",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0211",
+  "doi": "10.1007/s10044-026-01645-8",
+  "ieee": "",
+  "title": "Dynamic self-paced ensemble for imbalance-aware learning",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0212",
+  "doi": "10.1155/2021/6669706",
+  "ieee": "",
+  "title": "An Adaptive Heterogeneous Online Learning Ensemble Classifier for Nonstationary Environments",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0214",
+  "doi": "10.1016/j.patcog.2021.108061",
+  "ieee": "",
+  "title": "Ensemble selection with joint spectral clustering and structural sparsity",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0221",
+  "doi": "10.1002/for.70042",
+  "ieee": "",
+  "title": "A Novel Multiclass Imbalance Classification Framework With Dynamic Evidential Fusion for Credit Rating",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0228",
+  "doi": "10.1007/s12530-026-09816-y",
+  "ieee": "",
+  "title": "Block based ensemble learning on imbalance data stream with concept drift using enhanced particle swarm optimization",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0230",
+  "doi": "10.1007/978-3-030-81523-3_1",
+  "ieee": "",
+  "title": "Building an Ensemble of Classifiers via Randomized Models of Ensemble Members",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0236",
+  "doi": "10.1007/978-3-032-18480-1_67",
+  "ieee": "",
+  "title": "Dynamic Weighted Selective Ensemble Classifier for Radiomics-Based Early Response Prediction in [$$^{18}$$F]-FDG PET/CT Breast Cancer Imaging",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0244",
+  "doi": "10.1016/j.neucom.2022.01.075",
+  "ieee": "",
+  "title": "Adaptive ensemble of self-adjusting nearest neighbor subspaces for multi-label drifting data streams",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0246",
+  "doi": "10.1016/j.asoc.2021.107257",
+  "ieee": "",
+  "title": "Multi-Layer Selector(MLS): Dynamic selection based on filtering some competence measures",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0247",
+  "doi": "10.1038/s41598-026-42940-y",
+  "ieee": "",
+  "title": "Kernel-based dynamic ensemble approach for classifying imbalanced data with overlapping classes",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0250",
+  "doi": "10.1016/j.knosys.2021.107290",
+  "ieee": "",
+  "title": "Dynamic selection and combination of one-class classifiers for multi-class classification",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0277",
+  "doi": "10.1016/j.inffus.2022.09.001",
+  "ieee": "",
+  "title": "Exploring diversity in data complexity and classifier decision spaces for pool generation",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0281",
+  "doi": "10.1007/s00530-023-01227-2",
+  "ieee": "",
+  "title": "An ensemble pruning method considering classifiers’ interaction based on information theory for facial expression recognition",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0287",
+  "doi": "10.1007/978-3-031-48232-8_2",
+  "ieee": "",
+  "title": "Complexity-Driven Sampling for Bagging",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0296",
+  "doi": "",
+  "ieee": "",
+  "title": "DNA: Domain Generalization with Diversified Neural Averaging",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0297",
+  "doi": "",
+  "ieee": "",
+  "title": "Diversity measuring method of a convolutional neural network ensemble",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0299",
+  "doi": "10.1007/s44443-025-00030-5",
+  "ieee": "",
+  "title": "Clustering ensemble pruning algorithm based on vec2vec classifier representation",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0300",
+  "doi": "10.1007/s10489-023-04572-x",
+  "ieee": "",
+  "title": "Classifier subset selection based on classifier representation and clustering ensemble",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0302",
+  "doi": "10.1016/j.neucom.2021.11.045",
+  "ieee": "",
+  "title": "Selective ensemble of classifiers trained on selective samples",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0303",
+  "doi": "10.1007/s11629-021-7130-7",
+  "ieee": "",
+  "title": "Diversity-accuracy assessment of multiple classifier systems for the land cover classification of the Khumbu region in the Himalayas",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0304",
+  "doi": "10.1016/j.asoc.2021.107689",
+  "ieee": "",
+  "title": "Impact of the learners diversity and combination method on the generation of heterogeneous classifier ensembles",
+  "fase1": "INCLUDE"
+ },
+ {
+  "uid": "R0305",
+  "doi": "10.1007/s10462-020-09922-6",
+  "ieee": "",
+  "title": "Ensemble learning based on random super-reduct and resampling",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0308",
+  "doi": "10.1016/j.eswa.2023.119703",
+  "ieee": "",
+  "title": "An empirical study of dynamic selection and random under-sampling for the class imbalance problem",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0309",
+  "doi": "10.1007/s11063-022-11017-y",
+  "ieee": "",
+  "title": "Two Outlier-Sensitive Measures for Semi-supervised Dynamic Ensemble Anomaly Detection Models",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0313",
+  "doi": "",
+  "ieee": "",
+  "title": "A DES-based group decision model for group decision making with large-scale alternatives",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0315",
+  "doi": "10.2174/2666255813999201102093315",
+  "ieee": "",
+  "title": "Novel Noise Filter Techniques and Dynamic Ensemble Selection for Classification",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0317",
+  "doi": "10.1007/s13042-020-01270-9",
+  "ieee": "",
+  "title": "Problems selection under dynamic selection of the best base classifier in one versus one: PSEUDOVO",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0318",
+  "doi": "10.1016/j.inffus.2020.10.017",
+  "ieee": "",
+  "title": "Adaptive ensemble of classifiers with regularization for imbalanced data classification",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0319",
+  "doi": "10.1007/s11047-020-09791-6",
+  "ieee": "",
+  "title": "Ensemble learning based on fitness Euclidean-distance ratio differential evolution for classification",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0320",
+  "doi": "10.1016/j.inffus.2020.09.004",
+  "ieee": "",
+  "title": "Preprocessed dynamic classifier ensemble selection for highly imbalanced drifted data streams",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0321",
+  "doi": "10.1007/s13042-020-01183-7",
+  "ieee": "",
+  "title": "Using multiple classifier behavior to develop a dynamic outlier ensemble",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0323",
+  "doi": "10.1145/3770855.3818121",
+  "ieee": "",
+  "title": "VisionDES: Robust and Explainable Dynamic Vision Ensemble",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0328",
+  "doi": "10.1145/3746252.3761072",
+  "ieee": "",
+  "title": "Dynamic Ensemble Member Selection for Data Stream Classification",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0330",
+  "doi": "",
+  "ieee": "",
+  "title": "Imbalanced Stream Classification Algorithm Based on Weighted and Dynamic Selection | 基于加权与动态选择的不平衡数据流分类算法",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0336",
+  "doi": "10.1007/978-3-031-79029-4_25",
+  "ieee": "",
+  "title": "Dynamicity Analysis in the Selection of Classifier Ensembles Parameters",
+  "fase1": "MAYBE"
+ },
+ {
+  "uid": "R0340",
+  "doi": "10.1016/j.inffus.2023.102145",
+  "ieee": "",
+  "title": "A dynamic multiple classifier system using graph neural network for high dimensional overlapped data",
+  "fase1": "MAYBE"
+ }
+]

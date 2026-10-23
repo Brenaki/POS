@@ -1,0 +1,88 @@
+uid,decision,code,reason
+R0175,EXCLUDE,E3,"Regression: ""prediction intervals"" for blood pressure in hemodialysis; dynamic weighting, no Oracle/diversity analysis"
+R0176,EXCLUDE,E2,"Application: cirrhosis readmission prediction with ""dynamic model selection""; no Oracle or diversity analysis"
+R0177,EXCLUDE,E2,Application: pediatric DILI prediction using DCS-MCB; no Oracle or diversity-accuracy analysis
+R0178,EXCLUDE,E2,"Application: ""predicting financial cycles in India"" with six DES models; no Oracle/diversity analysis"
+R0179,MAYBE,M,"New DES method ""SGP.DES"" (prototype selection + meta-classifier) on twenty-four classification problems vs state-of-the-art DES"
+R0180,MAYBE,M,Method: meta-learning framework improving DS of classifiers under label noise; thirty real datasets
+R0181,EXCLUDE,E2,"Application: semi-supervised hyperspectral image classification with ""validation-driven classifier selection"""
+R0182,EXCLUDE,E2,Applied pipeline: sampling plus DES for multiclass imbalanced UCI data vs bagging/RF; no Oracle/diversity
+R0183,EXCLUDE,E2,"Application: COVID-19 detection from blood count; HMCBCG pool to ""reinforce diversity"", no diversity-accuracy analysis"
+R0184,EXCLUDE,E2,Application: credit risk with voting classifier and Meta-DES on one loan dataset
+R0185,EXCLUDE,E2,"Application: HIV Env mutational pattern prediction with ""k-best classifiers"" DES"
+R0186,EXCLUDE,E2,Application: road crash injury severity with DES-MI and SHAP
+R0187,EXCLUDE,E2,"Application: crash injury severity with ""diversity-driven DES methods""; no diversity-accuracy measurement"
+R0188,EXCLUDE,E2,Application: facial expression recognition combining label distribution learning and DES
+R0189,MAYBE,M,"New DES method ""GNN-DES"" learning combination end-to-end; ""35 high-dimensional problems"" vs DES techniques"
+R0190,MAYBE,M,Method: SCWE+ DES for imbalanced drifting data streams on synthetic/real benchmarks vs nine algorithms
+R0191,MAYBE,M,"Method: ""IncA-DES"" incremental DES for drifting streams with Online K-d tree; vs seven state-of-the-art"
+R0192,EXCLUDE,E2,Application: cardiovascular disease prediction with RL-based dynamic ensemble selection on one dataset
+R0193,MAYBE,M,No abstract; title indicates new dynamic classifier ensemble selection method for data stream mining
+R0194,EXCLUDE,E2,"Application: infectious disease news validation using OLA, META-DES, bagging"
+R0195,EXCLUDE,E2,Application: predicting audit qualifications of Indian firms with DCS/DES and SHAP
+R0196,EXCLUDE,E2,Application: financial statement fraud detection with DES algorithm
+R0197,EXCLUDE,E2,Application: movie review sentiment classification with improved META-DES
+R0198,EXCLUDE,E2,Application: Alzheimer's classification comparing DES algorithms on TADPOLE; no Oracle
+R0199,EXCLUDE,E2,Application: multibiometric verification with competence-based dynamic classifier selection
+R0200,MAYBE,M,Method: oversampling + cellular GEP pool generation + dynamic selection for imbalanced data; extensive experiments
+R0201,EXCLUDE,E2,Application: ICU mortality prediction (DELAK) on MIMIC-III; diversity via K-means not analysed
+R0202,EXCLUDE,E2,Hardware application: FPGA architecture for dynamic classifier selection; no Oracle/diversity
+R0203,MAYBE,M,"Framework combining oversampling and ""dynamical selection of classifiers"" evaluated on benchmark datasets"
+R0204,EXCLUDE,E2,Application: facial expression recognition in-the-wild with meta-learner DES over CNNs
+R0205,MAYBE,M,Method: DES with drift detector and oversampling for imbalanced multiclass streams; benchmark and synthetic streams
+R0206,EXCLUDE,E2,Application: financial fraud detection with SISAE-METADES on Chinese A-share data
+R0207,MAYBE,M,"Method: selective ensemble with rejection on 12 datasets ""compared to 8 dynamic ensemble selection methods"""
+R0208,EXCLUDE,E2,Application: hyperspectral image classification with dynamic weighted residual ensembles on three HSI datasets
+R0209,EXCLUDE,E2,Application: Parkinson's diagnosis from EEG using DCS-MLA
+R0210,EXCLUDE,E3,"Regression: ""software effort estimation"" with Omni-Ensemble Learning"
+R0211,MAYBE,M,"Method: Dynamic Self-paced Ensemble (DSPE) integrating DES; ""45 representative unbalanced datasets"""
+R0212,MAYBE,M,"Method: online DES ""based on Accuracy and Diversity"" (HDES-AD) for drifting streams; artificial/real datasets"
+R0213,EXCLUDE,E2,Application: fake news detection with dynamic representation and ensemble selection
+R0214,MAYBE,M,Method: static ensemble selection via spectral clustering/structural sparsity vs DES; 25 KEEL/UCI datasets
+R0215,EXCLUDE,E2,Application: TinyML resource-constrained stream processing with DES; no Oracle/diversity
+R0216,EXCLUDE,E3,"Regression: ""set of regressors dynamically selected"" for software effort estimation"
+R0217,EXCLUDE,E2,Hardware application: adaptive K-NN on FPGA with dynamic classifier selection
+R0218,EXCLUDE,E2,Application: DDoS attack detection using KNORA-E/KNORA-U on CICDDoS2019
+R0219,EXCLUDE,E2,"Case study: OvO DES verified ""on a real dataset regarding the classification of cutting tools"""
+R0220,EXCLUDE,E3,"Forecasting: ""COVID-19 incidence time series"" with DES based on trend classification"
+R0221,MAYBE,M,Method: DES with evidence theory in ECOC for multiclass imbalance; nine KEEL benchmark datasets
+R0222,EXCLUDE,E2,"No abstract; title indicates application: ""multimodal clinical prediction"" with dynamic ensembles"
+R0223,EXCLUDE,E2,Application: crypto price prediction from media chatter with DES among other models
+R0224,EXCLUDE,E2,Application: aging-related bug prediction comparing five DES algorithms
+R0225,EXCLUDE,E2,Application: Alzheimer's disease detection with DES of classifiers on ADNI
+R0226,EXCLUDE,E2,Application: network intrusion detection with outlier rejection and dynamic classifier selection
+R0227,EXCLUDE,E3,"Regression: ""Dynamic Ensemble Selection-based regression models"" for digital asset prices"
+R0228,MAYBE,M,Method: block-based DES for imbalanced drifting streams; five synthetic and four real datasets
+R0229,EXCLUDE,E2,Application: online loan credit risk with DES-CBCG-MOO on one lending dataset
+R0230,MAYBE,M,"Method: randomized-model competence measure for DES; ""67 benchmark datasets"""
+R0231,EXCLUDE,E4,"Zenodo dataset record of benchmark results, not a peer-reviewed research article"
+R0232,EXCLUDE,E1,Review of hybrid sensor systems for prosthetic hand control; not about classifier ensemble limits
+R0233,EXCLUDE,E4,"Zenodo supplementary materials/dataset (GSI estimation, regression); not a research article"
+R0234,EXCLUDE,E2,Application: credit scoring multi-stage ensemble combining DES and stacking
+R0235,EXCLUDE,E3,Unsupervised outlier detection ensemble (MEOD); not classifier ensemble bound/diversity study
+R0236,MAYBE,M,"Method: dynamic weighted selective ensemble with DES, ""validated on 15 publicly available benchmark datasets"""
+R0237,EXCLUDE,E2,Application: mango damage detection with gas sensors using DCS-LCA
+R0238,EXCLUDE,E2,Application: glaucoma detection in fundus images using META-DES
+R0239,EXCLUDE,E3,Regression/outlier detection: molten steel temperature prediction with dynamic outlier ensemble
+R0240,EXCLUDE,E2,Hardware application: FPGA neural network with dynamic classifier selection
+R0241,EXCLUDE,E2,Application: appliance identification (NILM) with TDA features and FIRE-DES
+R0242,EXCLUDE,E2,Application: touch-based continuous authentication with dynamic selection
+R0243,EXCLUDE,E2,Application: Covid-19 screening from CT with CNN and DES
+R0244,MAYBE,M,"Method: multi-label stream ensemble promoting ""diverse knowledge"" with dynamic classifier selection; 30 datasets"
+R0245,EXCLUDE,E2,Application: flower image classification with adaptive dynamic ensemble CNN
+R0246,MAYBE,M,Method: Multi-Layer Selector combining competence measures; new DS taxonomy; vs state-of-the-art DES
+R0247,MAYBE,M,Method: DES-BAK boundary-aware kernel DES for imbalanced overlapping data; 15 benchmark datasets
+R0248,EXCLUDE,E2,Application: e-commerce stream concept drift with boosted ensemble; DES only a baseline
+R0249,EXCLUDE,E1,"Chemistry: alloy catalyst ""ensembles""; not classifier ensembles"
+R0250,MAYBE,M,Method: MODES one-class classifier DES for multi-class problems; 25 databases
+R0251,EXCLUDE,E2,Application: automotive after-sales service quality evaluation with MCS and DCS indices
+R0252,EXCLUDE,E2,Application: credit card fraud anomaly detection DES-HBOS
+R0253,EXCLUDE,E2,Application: crop selection from soil nutrient data with meta-learning DES
+R0254,EXCLUDE,E2,Application: cross-subject EEG emotion classification with dynamic classifier selection
+R0255,EXCLUDE,E2,"Application: SCADA intrusion detection; NSGA-II maximizing accuracy and diversity, no empirical diversity-accuracy study"
+R0256,EXCLUDE,E4,"""RETRACTED ARTICLE""; no abstract"
+R0257,EXCLUDE,E2,"No abstract; title indicates application: ""Facial Paralysis Detection"" with dynamic ensembles"
+R0258,EXCLUDE,E2,Application: cardiovascular disease prediction from ECG with CNN/DBN and DES
+R0259,EXCLUDE,E2,Application: depression detection with FIRE-KNOP DES and XAI
+R0260,EXCLUDE,E2,Application: lung cancer detection from blood tests with DES model
+R0261,EXCLUDE,E3,Novelty detection with one-class detectors (Selective Feature Bagging); not multi-class ensemble bound study

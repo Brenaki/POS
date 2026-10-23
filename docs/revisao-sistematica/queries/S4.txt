@@ -1,0 +1,1 @@
+TITLE-ABS-KEY(("pool generation" OR "classifier pool" OR "pool of classifiers") AND ("diversity" OR "data complexity")) AND PUBYEAR > 2020 AND PUBYEAR < 2027 AND (LANGUAGE(english) OR LANGUAGE(portuguese) OR LANGUAGE(chinese))

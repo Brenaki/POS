@@ -1,0 +1,580 @@
+{
+ "source": "IEEE Xplore",
+ "query": "\"dynamic classifier selection\" OR \"dynamic ensemble selection\" OR \"dynamic selection of classifiers\"",
+ "filters": "2021-2026, All Metadata",
+ "total": 57,
+ "got": 57,
+ "retrieved": "2026-10-23T03:21:50.949Z",
+ "rows": [
+  {
+   "id": "11427926",
+   "title": "An Explainable Dynamic Ensemble Selection Model for Interpretable Almond Type Classification",
+   "doi": "10.1109/ASET66891.2025.11427926",
+   "authors": "Jatinderkumar R. Saini; Shraddha Vaidya; Alavikunhu Panthakkan; Wathiq Mansoor",
+   "source": "2025 Advances in Science and Engineering Technology International Conferences (ASET)",
+   "year": "2025",
+   "type": "IEEE Conferences",
+   "abstract": "The rich source of vitamins and nutrients makes almonds crucial for maintaining the health of the personnel, in addition to their high commercial importance. To preserve the quality of almonds, it is essential to grade and classify them correctly. Recent techniques have used standard machine learning algorithms for classification; however, these often fail to provide robust results. Furthermore, t..."
+  },
+  {
+   "id": "11605345",
+   "title": "Improved model for dynamic ensemble selection based on hybrid sampling",
+   "doi": "10.1109/ASENS69964.2026.11605345",
+   "authors": "Guangxia Xu; Yi Tang",
+   "source": "2026 3rd International Conference on Algorithms, Software Engineering and Network Security (ASENS)",
+   "year": "2026",
+   "type": "IEEE Conferences",
+   "abstract": "To address local variations and class imbalance in data streams, this paper introduces DES-HS, a dynamic ensemble selection model that outperforms four baselines across 11 datasets. By integrating a novel Borderline-SMOTE and EasyEnsemble hybrid sampling method, DES-HS balances incoming data chunks to train base classifiers that better represent emerging concepts. Unlike global static ensembles, D..."
+  },
+  {
+   "id": "10685365",
+   "title": "Road Traffic Crash Severity Analysis: A Bayesian-Optimized Dynamic Ensemble Selection Guided by Instance Hardness and Region of Competence Strategy",
+   "doi": "10.1109/ACCESS.2024.3465489",
+   "authors": "Kamran Aziz; Feng Chen; Inamullah Khan; Shabir Hussain Khahro; Muhammad Abdul Malik; Zubair Ahmed Memon; Afaq Khattak",
+   "source": "IEEE Access",
+   "year": "2024",
+   "type": "IEEE Journals",
+   "abstract": "Millions of lives are lost in road accidents annually, underscoring the severity of traffic incidents. Despite numerous studies on crash severity forecasting with static ensemble machine learning, the potential of Dynamic Ensemble Selection (DES) for combining classifiers and improving performance remains relatively unexplored in this field. In contrast to previous research focused on static ensem..."
+  },
+  {
+   "id": "10180235",
+   "title": "Multi-Modal Music Mood Classification with Dynamic Classifier Selection",
+   "doi": "10.1109/IWSSIP58668.2023.10180235",
+   "authors": "João G. Bracaioli Vitório; Alceu S. Britto Junior; Costa Yandre M. G.; Carlos N. Silla",
+   "source": "2023 30th International Conference on Systems, Signals and Image Processing (IWSSIP)",
+   "year": "2023",
+   "type": "IEEE Conferences",
+   "abstract": "In this paper we investigate the suitability of different types of Dynamic Classifier Selection approaches for the task of multimodal music mood classification. The dynamic selection methods evaluated were: KNORA-UNION, KNORAELIMINATE, Dynamic Ensemble Selection Performance, Overall Local Accuracy, Local Class Accuracy, Multiple Classifier Behaviour, A Priori and A Posteriori. The experiments were..."
+  },
+  {
+   "id": "9366872",
+   "title": "DDES: A Distribution-Based Dynamic Ensemble Selection Framework",
+   "doi": "10.1109/ACCESS.2021.3063254",
+   "authors": "Ye-Rim Choi; Dong-Joon Lim",
+   "source": "IEEE Access",
+   "year": "2021",
+   "type": "IEEE Journals",
+   "abstract": "Dynamic Ensemble Selection (DES) is a special type of ensemble modeling that selects different subsets of base classifiers for different test sample cases. In this process, multiple base classifiers are compared in terms of their competence as an ensemble to the best possible prediction for a given test sample case. Traditional DES methods rely on the Euclidean distance-based k-Nearest Neighbor (k..."
+  },
+  {
+   "id": "11136272",
+   "title": "Dynamic Ensemble Selection for Mental Health Prediction : A Path towards Explainable, Scalable and High-Impact AI Solutions",
+   "doi": "10.1109/ICICKE65317.2025.11136272",
+   "authors": "Yuvraj Saha; Hemalatha S",
+   "source": "2025 International Conference on Intelligent Computing and Knowledge Extraction (ICICKE)",
+   "year": "2025",
+   "type": "IEEE Conferences",
+   "abstract": "Mental health conditions such as anxiety, depression, PTSD, and insomnia are widespread, impacting individuals&#39; emotional, physical, and social lives. Conventional diagnostic methods are often expensive, time-consuming, and influenced by stigma and limited accessibility, discouraging many from seeking timely help. Early identification plays a crucial role in preventing severe developments and supp..."
+  },
+  {
+   "id": "11508809",
+   "title": "Time Series Anomaly Detection Based on Dynamic Ensemble Selection and Self-Training",
+   "doi": "10.1109/ICAACE69793.2026.11508809",
+   "authors": "Tiantian Yang; Jiangyong Duan; Zhongsong Ma",
+   "source": "2026 9th International Conference on Advanced Algorithms and Control Engineering (ICAACE)",
+   "year": "2026",
+   "type": "IEEE Conferences",
+   "abstract": "Anomaly detection in time series is challenging due to various different time series characteristics, complex normal and anomaly patterns and scare anomaly labels in real world applications. To this end, we propose a progressive framework integrating ensemble learning and self-training for anomaly detection under unsupervised settings. Specifically, the method first employs a group of heterogeneou..."
+  },
+  {
+   "id": "10253212",
+   "title": "Imbalanced Data Stream Classification using Dynamic Ensemble Selection",
+   "doi": "10.1109/ICECCME57830.2023.10253212",
+   "authors": "Priya. S; Haribharathi. S; Vijay Arvind. R",
+   "source": "2023 3rd International Conference on Electrical, Computer, Communications and Mechatronics Engineering (ICECCME)",
+   "year": "2023",
+   "type": "IEEE Conferences",
+   "abstract": "Modern streaming data categorization faces significant challenges from concept drift and class imbalanced data. This negatively impacts the output of the classifier, leading to improper classification. Furthermore, other factors such as the overlapping of multiple classes limit the extent of the correctness of the output. This work proposes a novel framework for integrating data pre-processing and..."
+  },
+  {
+   "id": "10480824",
+   "title": "Data Stream Classification Framework for Data Streams using Dynamic Ensemble Selection",
+   "doi": "10.1109/ICRTAC59277.2023.10480824",
+   "authors": "Priya. S; Dorathi Jayaseeli D; Subham Biswajit",
+   "source": "2023 6th International Conference on Recent Trends in Advance Computing (ICRTAC)",
+   "year": "2023",
+   "type": "IEEE Conferences",
+   "abstract": "With the progressive advancement in the area of information technology, an huge amount of data is produced and transmitted every second in the real world. To address imbalanced data with idea drift for data streams, a novel framework for data stream classification is proposed. The class imbalance problem in data stream is handled using the proposed Adaptive Synthetic Oversampling (ASYNO) algorithm..."
+  },
+  {
+   "id": "10394192",
+   "title": "A Post-Selection Algorithm for Improving Dynamic Ensemble Selection Methods",
+   "doi": "10.1109/SMC53992.2023.10394192",
+   "authors": "Paulo R.G. Cordeiro; George D.C. Cavalcanti; Rafael M.O. Cruz",
+   "source": "2023 IEEE International Conference on Systems, Man, and Cybernetics (SMC)",
+   "year": "2023",
+   "type": "IEEE Conferences",
+   "abstract": "Dynamic Ensemble Selection (DES) is a Multiple Classifier Systems (MCS) approach that aims to select an ensemble for each query sample during the selection phase. Even with the proposal of several DES approaches, no particular DES technique is the best choice for different problems. Thus, we hypothesize that selecting the best DES approach per query instance can lead to better accuracy. To evaluat..."
+  },
+  {
+   "id": "9802893",
+   "title": "Dynamic Ensemble Selection for Imbalanced Data Streams With Concept Drift",
+   "doi": "10.1109/TNNLS.2022.3183120",
+   "authors": "Botao Jiao; Yinan Guo; Dunwei Gong; Qiuju Chen",
+   "source": "IEEE Transactions on Neural Networks and Learning Systems",
+   "year": "2024",
+   "type": "IEEE Journals",
+   "abstract": "Ensemble learning, as a popular method to tackle concept drift in data stream, forms a combination of base classifiers according to their global performances. However, concept drift generally occurs in local data space, causing significantly different performances of a base classifier at different locations. Thus, employing global performance as a criterion to select base classifier is inappropria..."
+  },
+  {
+   "id": "10086501",
+   "title": "An Enhanced Dynamic Ensemble Selection Classifier for Imbalance Classification With Application to China Corporation Bond Default Prediction",
+   "doi": "10.1109/ACCESS.2023.3262836",
+   "authors": "Yu Wang; Junbin Zhang; Wei Yan",
+   "source": "IEEE Access",
+   "year": "2023",
+   "type": "IEEE Journals",
+   "abstract": "China corporation bond default prediction is important and can be formulated as an imbalance classification problem solved by static ensemble classifiers. However, dynamic ensemble selection (DES) classifiers have not been applied to this typical problem in the context of business research. DES classifiers are capable of selecting an ensemble classifier for each test sample, leading to better clas..."
+  },
+  {
+   "id": "10803287",
+   "title": "Predicting Complications of Cirrhosis using Synthetic Data Generation Enhanced Dynamic Classifier Selection",
+   "doi": "10.1109/MedAI62885.2024.00040",
+   "authors": "Zixin Shi; Linjun Huang; Haolin Wang",
+   "source": "2024 IEEE International Conference on Medical Artificial Intelligence (MedAI)",
+   "year": "2024",
+   "type": "IEEE Conferences",
+   "abstract": "Early identification of the risk of complications in cirrhosis is essential for facilitating timely interventions, personalized treatment plans and better patient management. However, developing data-driven models using real-world Electronic Health Records (EHRs) data is often hindered by challenges related to data accessibility, integrity, sparsity and class imbalance. Synthetic data that capture..."
+  },
+  {
+   "id": "10247512",
+   "title": "A Novel Semi-Supervised Dynamic Classifier Selection Method for HSI Classification Based on SP Segmentation",
+   "doi": "10.1109/ACCESS.2023.3314694",
+   "authors": "Xiang Ge; Xuexiang Yu; Xu Yang",
+   "source": "IEEE Access",
+   "year": "2023",
+   "type": "IEEE Journals",
+   "abstract": "This paper proposes a novel hyperspectral image classification method that combines dynamic semi-supervised multiple-kernel collaborative representation ensemble selection with superpixel (SP) consistency constraints. The method is based on the consistency principle of labels within SP blocks, where the hyperspectral image is divided into different SP blocks, and each block is treated as an indepe..."
+  },
+  {
+   "id": "10069850",
+   "title": "Cost-sensitive Hierarchical Clustering for Dynamic Classifier Selection",
+   "doi": "10.1109/ICMLA55696.2022.00040",
+   "authors": "Meinolf Sellmann; Tapan Shah",
+   "source": "2022 21st IEEE International Conference on Machine Learning and Applications (ICMLA)",
+   "year": "2022",
+   "type": "IEEE Conferences",
+   "abstract": "Given an ensemble of classifiers, dynamic classifier selection (DCS) selects one classifier depending on the particular input vector that we get to classify. DCS is a special case of algorithm selection (AS) where we can choose from multiple different algorithms to process a given input. We investigate if cost-sensitive hierarchical clustering (CSHC), a method originally developed for AS, is suite..."
+  },
+  {
+   "id": "10651199",
+   "title": "MLRS-PDS: A Meta-learning recommendation of dynamic ensemble selection pipelines",
+   "doi": "10.1109/IJCNN60899.2024.10651199",
+   "authors": "Hesam Jalalian; Rafael M. O. Cruz",
+   "source": "2024 International Joint Conference on Neural Networks (IJCNN)",
+   "year": "2024",
+   "type": "IEEE Conferences",
+   "abstract": "Dynamic Selection (DS), where base classifiers are chosen from a classifier’s pool for each new instance at test time, has shown to be highly effective in pattern recognition. However, instability and redundancy in the classifier pools can impede computational efficiency and accuracy in dynamic ensemble selection. This paper introduces a meta-learning recommendation system (MLRS) to recommend the ..."
+  },
+  {
+   "id": "9914231",
+   "title": "An Empirical study and assessment of minority oversampling with Dynamic Ensemble Selection on COVID-19 utilizing Blood Sample",
+   "doi": "10.1109/ICEMIS56295.2022.9914231",
+   "authors": "Panigrahi Srikanth; Chandan Kumar Behera",
+   "source": "2022 International Conference on Engineering & MIS (ICEMIS)",
+   "year": "2022",
+   "type": "IEEE Conferences",
+   "abstract": "The COVID-19 virus disease outbreak that erupted in China at the end of 2019 has had a tremendous and disastrous impact on the rest of the world. It has struck the globe to its core, and the destruction has substantially increased the diagnostic burden. In the pandemic zone, clinicians will be able to cut down on their workload and get the right diagnosis of the new disease great to the use of mac..."
+  },
+  {
+   "id": "11585694",
+   "title": "Scenario-Adaptive Multisource LiDAR Sample Fusion for Forest Canopy-Height Retrieval Using a Machine-Learning-Based Dynamic Ensemble Selection Algorithm",
+   "doi": "10.1109/JSTARS.2026.3708029",
+   "authors": "Pengfei Zhang; Ke Zhang; Jiefan Niu; Xu Yang",
+   "source": "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing",
+   "year": "2026",
+   "type": "IEEE Journals",
+   "abstract": "Forest canopy height is fundamental for characterizing forest structure and assessing biomass and ecosystem functions, but regional mapping in mountainous forests remains challenged by limited and unevenly distributed footprint samples, which can reduce retrieval stability. The global ecosystem dynamics investigation (GEDI) and ice, cloud, and land elevation satellite-2 (ICESat-2) provide compleme..."
+  },
+  {
+   "id": "10098002",
+   "title": "Dynamic selection of classifiers based on complexity measures",
+   "doi": "10.1109/ICTAI56018.2022.00021",
+   "authors": "Ederson Schmeing; André Luiz Brun; Ronan Assumpção Silva",
+   "source": "2022 IEEE 34th International Conference on Tools with Artificial Intelligence (ICTAI)",
+   "year": "2022",
+   "type": "IEEE Conferences",
+   "abstract": "Multiple Classifier Systems (MCS) have been an alternative to the monolithic approach to improve the performance of the classification task and increase the accuracy of pattern recognition. The dynamic selection (DS) has shown to be a promising strategy. The architecture in which classification systems are built influences their performance. However, the difficulty of the classification problem is..."
+  },
+  {
+   "id": "9892846",
+   "title": "Local overlap reduction procedure for dynamic ensemble selection",
+   "doi": "10.1109/IJCNN55064.2022.9892846",
+   "authors": "Mariana A. Souza; Robert Sabourin; George D. C. Cavalcanti; Rafael M. O. Cruz",
+   "source": "2022 International Joint Conference on Neural Networks (IJCNN)",
+   "year": "2022",
+   "type": "IEEE Conferences",
+   "abstract": "Class imbalance is a characteristic known for making learning more challenging for classification models as they may end up biased towards the majority class. A promising approach among the ensemble-based methods in the context of imbalance learning is Dynamic Selection (DS). DS techniques single out a subset of the classifiers in the ensemble to label each given unknown sample according to their ..."
+  },
+  {
+   "id": "9533856",
+   "title": "Dynamic selection of classifiers for Content Based Image Retrieval",
+   "doi": "10.1109/IJCNN52387.2021.9533856",
+   "authors": "Safa Hamreras; Bachir Boucheham; Miguel A. Molina-Cabello; Rafaela Benítez-Rochel; Ezequiel López-Rubio",
+   "source": "2021 International Joint Conference on Neural Networks (IJCNN)",
+   "year": "2021",
+   "type": "IEEE Conferences",
+   "abstract": "In this paper, we present a new framework for Content Based Image Retrieval (CBIR), based on Dynamic Ensemble Selection (DES) of classifiers. Herein, the classifiers consist of Convolutional Neural Networks (CNNs) that output the class probability vector of each input image. First, a diverse ensemble is built by training several weak classifiers on different training subsets, from the retrieval da..."
+  },
+  {
+   "id": "9892635",
+   "title": "Dynamic Ensemble Selection Using Fuzzy Hyperboxes",
+   "doi": "10.1109/IJCNN55064.2022.9892635",
+   "authors": "Reza Davtalab; Rafael M.O. Cruz; Robert Sabourin",
+   "source": "2022 International Joint Conference on Neural Networks (IJCNN)",
+   "year": "2022",
+   "type": "IEEE Conferences",
+   "abstract": "Most dynamic ensemble selection (DES) methods utilize the K-Nearest Neighbors (KNN) algorithm to estimate the competence of classifiers in a small region surrounding the query sample. However, KNN is very sensitive to the local distribution of the data. Moreover, it also has a high computational cost as it requires storing the whole data in memory and performing multiple distance calculations duri..."
+  },
+  {
+   "id": "11010722",
+   "title": "Imbalanced malware classification: an approach based on dynamic classifier selection",
+   "doi": "10.1109/CISDBCompanion65092.2025.11010722",
+   "authors": "José Vinicius S. Souza; Camila Barbosa Vieira; George D. C. Cavalcanti; Rafael M. O. Cruz",
+   "source": "2025 IEEE Symposium on Computational Intelligence in Security, Defence and Biometrics Companion (CISDB Companion)",
+   "year": "2025",
+   "type": "IEEE Conferences",
+   "abstract": "In recent years, the rise of cyber threats has emphasized the need for robust malware detection systems, especially on mobile devices. Malware, which targets vulnerabilities in devices and user data, represents a substantial security risk. A significant challenge in malware detection is the imbalance in datasets, where most applications are benign, with only a small fraction posing a threat. This ..."
+  },
+  {
+   "id": "10853605",
+   "title": "Text sentiment recognition model based on BERT and dynamic ensemble selection",
+   "doi": "10.1049/icp.2024.4285",
+   "authors": "Xueting Wang; Shuang Zhang; Chunfu Liu; Yang Wang; Xiuru Deng",
+   "source": "6th International Conference on Artificial Intelligence and Advanced Manufacturing (AIAM 2024)",
+   "year": "2024",
+   "type": "IET Conferences",
+   "abstract": "This study proposes a method for recognizing sentiment in Russian satirical literature using the BERT (Bidirectional Encoder Representations from Transformers) algorithm, based on deep learning technology. Satirical literature, characterized by complex language structures and implicit expressions, presents challenges for natural language processing (NLP) algorithms, as traditional sentiment analys..."
+  },
+  {
+   "id": "9991676",
+   "title": "Dynamic Selection Classification for Chest X-Ray Images",
+   "doi": "10.1109/EHB55594.2022.9991676",
+   "authors": "Anca Ignat",
+   "source": "2022 E-Health and Bioengineering Conference (EHB)",
+   "year": "2022",
+   "type": "IEEE Conferences",
+   "abstract": "In this article, we investigate how well combinations of classifiers work on chest X-ray images when using classical extracted features and deep learning generated features. We employed four methods for classical feature extraction and seven types of features generated with some well-known pre-trained neural networks. A dynamic selection of classifiers method based on accuracy is used for mixing t..."
+  },
+  {
+   "id": "10725479",
+   "title": "Crop yield forecasting through novel machine learning dynamic ensemble selection techniques",
+   "doi": "10.1109/ICCCNT61001.2024.10725479",
+   "authors": "Suragali Chanti; Kasichainula Vydehi; Hima Keerthi Penumatsa; K. Narayana Rao; Nynalasetti Kondala Kameswara Rao; A. Lakshmanarao",
+   "source": "2024 15th International Conference on Computing Communication and Networking Technologies (ICCCNT)",
+   "year": "2024",
+   "type": "IEEE Conferences",
+   "abstract": "Crop yield prediction is a crucial aspect of agricultural planning and decision-making. This study utilizes a Kaggle dataset featuring State, Year, Season, Crop, Area, Production, etc., employing extensive data preprocessing and one-hot encoding of categorical features to enhance predictive performance. Initially, ML regression methods including Multiple Linear Regression, Random Forest Regression..."
+  },
+  {
+   "id": "11074658",
+   "title": "Dynamic classifier selection for semi-supervised hyperspectral image classification using superpixel segmentation",
+   "doi": "10.1049/icp.2025.1368",
+   "authors": "Endravath Nikhitha; Rathod Akshaya; Y. C. A. Padmanabha Reddy",
+   "source": "Parul University International Conference on Engineering and Technology 2025 (PiCET 2025)",
+   "year": "2025",
+   "type": "IET Conferences",
+   "abstract": "The large amount of data and small number of sample are key limitations in hyperspectral image (HSI) classification. In this work, a semi-supervised dynamic classifier selection (DCS) model is proposed that combines superpixel based segmentation and multiple-kernel collaborative representation in order to improve the clasification performence. In contrast to the conventional manners of classifying..."
+  },
+  {
+   "id": "11608383",
+   "title": "Validation-Conditioned Dynamic Ensemble Regression with Applications in Biomedical Data",
+   "doi": "10.1109/ICAD69378.2026.11608383",
+   "authors": "Brandon Warner; Edward Ratner; Elliot Farmer Garcia",
+   "source": "2026 IEEE International Conference on AI and Data Analytics (ICAD)",
+   "year": "2026",
+   "type": "IEEE Conferences",
+   "abstract": "Ensemble learning enhances predictive accuracy through two complementary mechanisms: the construction of diverse base learners and the strategy by which those learners are combined at inference time. Although dynamic ensemble selection (DES) has been extensively studied in classification settings, its application to regression remains comparatively limited due to difficulties associated with conti..."
+  },
+  {
+   "id": "10069959",
+   "title": "An exploratory analysis of a dynamic ensemble structure using an automatic decision process",
+   "doi": "10.1109/ICMLA55696.2022.00144",
+   "authors": "Carine A. Dantas; Anne M. P. Canuto; João C. Xavier-Júnior; Rômulo de Oliveira Nunes",
+   "source": "2022 21st IEEE International Conference on Machine Learning and Applications (ICMLA)",
+   "year": "2022",
+   "type": "IEEE Conferences",
+   "abstract": "The use of dynamic selection techniques in classifier ensembles, for attributes or member selection, has appeared in several studies in the literature as a mechanism to increase accuracy of classifier ensembles. In order to present an efficient classification structure, in this paper, we propose an automatic decision process to select the best classification structure for a testing instance. In or..."
+  },
+  {
+   "id": "10215507",
+   "title": "Dynamic Ensemble Algorithm Post-Selection Using Hardness-Aware Oracle",
+   "doi": "10.1109/ACCESS.2023.3304912",
+   "authors": "Paulo R. G. Cordeiro; George D. C. Cavalcanti; Rafael M. O. Cruz",
+   "source": "IEEE Access",
+   "year": "2023",
+   "type": "IEEE Journals",
+   "abstract": "Dynamic Ensemble Selection (DES) algorithms have obtained better performance in many tasks compared to monolithic classifiers and static ensembles. However, it is reasonable to assume that no DES algorithm is the optimal solution in different scenarios since diversity plays an important role. Thus, this paper addresses this research gap by proposing a novel approach called Hardness-aware Oracle wi..."
+  },
+  {
+   "id": "10323439",
+   "title": "Sequential Datum-wise Feature Acquisition and Classifier Selection",
+   "doi": "10.1109/TAI.2023.3334707",
+   "authors": "Sachini Piyoni Ekanayake; Daphney-Stavroula Zois; Charalampos Chelmis",
+   "source": "IEEE Transactions on Artificial Intelligence",
+   "year": "2024",
+   "type": "IEEE Journals",
+   "abstract": "We present a supervised machine learning framework for sequential datum-wise feature acquisition and classifier selection. The presented method sequentially acquires features during testing until it determines that additional features will not improve label assignment. At that stage, easy-to-classify examples are handled by a simple classifier, which assigns labels based on the lowest expected mis..."
+  },
+  {
+   "id": "10488179",
+   "title": "Touch-Based Continuous Mobile Device Authentication Using One-vs-One Classification Approach",
+   "doi": "10.1109/BigComp60711.2024.00034",
+   "authors": "Masashi Kudo; Tsubasa Takahashi; Hayato Yamana",
+   "source": "2024 IEEE International Conference on Big Data and Smart Computing (BigComp)",
+   "year": "2024",
+   "type": "IEEE Conferences",
+   "abstract": "In recent years, there has been a significant increase in the number of users handling personal information on their smartphones. Although smartphones offer standard login authentication to safeguard the information, there are inherent risks of malicious users hacking these authentication mechanisms. Given this context, touch-based authentication using touch gestures has gained attention as a post..."
+  },
+  {
+   "id": "11604057",
+   "title": "Dynamic Hybrid Ensemble Learning for Arabic Sentiment Analysis: A Statistically Validated Multi-Dataset Approach Using OLA-Based Classifier Selection",
+   "doi": "10.1109/IBI68858.2026.11604057",
+   "authors": "Mohamed Khaldi; Abir Smiti",
+   "source": "2026 Intelligence in Business and Industry (IBI)",
+   "year": "2026",
+   "type": "IEEE Conferences",
+   "abstract": "The exponential growth of Arabic digital content has intensified demand for accurate and interpretable sentiment analysis systems. However, Arabic sentiment analysis faces challenges from intricate morphological structures, dialectal variations, limited annotated corpora, and complex orthography. This study introduces GArBiLOLA, a Dynamic Hybrid Ensemble architecture integrating complementary deep..."
+  },
+  {
+   "id": "9891956",
+   "title": "Evaluation of Self-taught Learning-based Representations for Facial Emotion Recognition",
+   "doi": "10.1109/IJCNN55064.2022.9891956",
+   "authors": "Bruna Rossetto Delazeri; Leonardo Leon Vera; Jean Paul Barddal; Alessandro L. Koerich; S. Britto Alceu de",
+   "source": "2022 International Joint Conference on Neural Networks (IJCNN)",
+   "year": "2022",
+   "type": "IEEE Conferences",
+   "abstract": "This work describes different strategies to generate unsupervised representations obtained through the concept of self-taught learning for facial emotion recognition (FER). The idea is to create complementary representations promoting diver-sity by varying the autoencoders&#39; initialization, architecture, and training data. SVM, Bagging, Random Forest, and a dynamic ensemble selection method are eva..."
+  },
+  {
+   "id": "10725483",
+   "title": "DES-KNORA Model: Developing an Intelligent System for Automatic Power Mode Adjustment in Electric Bicycles",
+   "doi": "10.1109/ICCCNT61001.2024.10725483",
+   "authors": "S Mani; Varun Dutt",
+   "source": "2024 15th International Conference on Computing Communication and Networking Technologies (ICCCNT)",
+   "year": "2024",
+   "type": "IEEE Conferences",
+   "abstract": "Electric bicycles (e-bikes) have gained considerable popularity due to their environmentally friendly nature and suitability as a mode of transportation. However, they face challenges related to manual switches for power mode changes. A potential solution to this issue could be the application of machine learning to improve their performance and safety. Previous research has explored the use of ma..."
+  },
+  {
+   "id": "11521261",
+   "title": "GArBiL-KE: A New Fair, Robust and Efficient Dynamic Hybrid Ensemble Model for Arabic Social Sentiment Analysis",
+   "doi": "10.1109/ICCSIC69301.2026.11521261",
+   "authors": "Mohamed Khaldi; Abir Smiti",
+   "source": "2026 IEEE International Conference on Complex Systems and Intelligent Computing (ICCSIC)",
+   "year": "2026",
+   "type": "IEEE Conferences",
+   "abstract": "The increasing demand for accurate, robust, fair, and interpretable sentiment analysis systems for the Arabic language presents significant challenges owing to its linguistic richness, morphological complexity, dialectal diversity, and the scarcity of large-scale annotated corpora. In this study, we propose a novel Dynamic Hybrid Ensemble framework, referred to as GArBiL-KE, designed to address th..."
+  },
+  {
+   "id": "10191184",
+   "title": "Adaptive Linear Regression for Data Stream",
+   "doi": "10.1109/IJCNN54540.2023.10191184",
+   "authors": "Aldo Marcelo Paim; Fabrício Enembreck",
+   "source": "2023 International Joint Conference on Neural Networks (IJCNN)",
+   "year": "2023",
+   "type": "IEEE Conferences",
+   "abstract": "The approaches that currently constitute the state-of-the-art for the task of regression on continuous data streams usually involve ensembles, regression trees, and regression rules. They have been found to work very well for certain situations but generally consume computational resources to a prohibitive extent. In this paper, we propose a new method based on an ensemble of linear regressions fo..."
+  },
+  {
+   "id": "11303715",
+   "title": "Generative Data-Driven Dynamic Deep-Learning Classifier Selection for Hyperspectral Image Classification",
+   "doi": "10.1109/JSTARS.2025.3646066",
+   "authors": "Hongliang Lu; Xianglin Huang; Yutian Chen",
+   "source": "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing",
+   "year": "2026",
+   "type": "IEEE Journals",
+   "abstract": "Deep learning has emerged as a critical paradigm in hyperspectral image (HSI) classification, addressing the inherent challenges posed by high-dimensional data and limited labeled samples. However, traditional methods often struggle with dynamic adaptability and computational efficiency, particularly under diverse and complex data distributions. This article aims to address two key challenges: 1) ..."
+  },
+  {
+   "id": "9502692",
+   "title": "A Dynamic Predictor Selection Method Based on Recent Temporal Windows for Time Series Forecasting",
+   "doi": "10.1109/ACCESS.2021.3101741",
+   "authors": "Eraylson G. Silva; Paulo S. G. De Mattos Neto; George D. C. Cavalcanti",
+   "source": "IEEE Access",
+   "year": "2021",
+   "type": "IEEE Journals",
+   "abstract": "The development of accurate forecasting systems for real-world time series modeling is a challenging task. Due to the presence of temporal patterns that change over time, the adoption of a single model can lead to underperformed forecasts. In this scenario, Multiple Predictor Systems (MPS) emerge as an alternative to adopting single models since they struggle to learn in the presence of temporal p..."
+  },
+  {
+   "id": "10000238",
+   "title": "Forecasting of Solar Energy Generation via Dynamic Model Ensemble",
+   "doi": "10.1109/EPEC56903.2022.10000238",
+   "authors": "Xijuan Sun; Di Wu; Menghan Jia; Yuxuan Xiao; Benoit Boulet",
+   "source": "2022 IEEE Electrical Power and Energy Conference (EPEC)",
+   "year": "2022",
+   "type": "IEEE Conferences",
+   "abstract": "Solar energy is one of the primary renewable energy sources. The usage of solar energy generation can help reduce carbon emissions and thus help address the challenge of global climate change. In the power system, we would like to maintain the balance between power generation and power usage. How-ever, solar energy generation is quite intermittent and will be affected by many uncontrollable factor..."
+  },
+  {
+   "id": "10559305",
+   "title": "Malware Detection Using a Novel Machine Learning Dynamic Ensemble Classification Approach",
+   "doi": "10.1109/ICEMPS60684.2024.10559305",
+   "authors": "Srinivasa Rao Dangeti; Raja Rao PBV; A Satya Mallesh; Suma Bharati M; Yesujyothi Yerramsetti; Yeddu Sabitha",
+   "source": "2024 International Conference on E-mobility, Power Control and Smart Systems (ICEMPS)",
+   "year": "2024",
+   "type": "IEEE Conferences",
+   "abstract": "As the landscape of malware threats evolves., the need for effective detection methods becomes paramount. This study evaluates the performance of five ML algorithms Random Forest., SVM., DT., KNN., and Logistic Regression. A malware dataset from Kaggle was collected. The dataset., featuring a diverse array of features extracted from windows malware samples undergoes preprocessing and division into..."
+  },
+  {
+   "id": "11662443",
+   "title": "Bandit-Controlled Semi-Ensemble Learning for Accuracy-Energy Trade-off Under Real-Time Edge Conditions",
+   "doi": "10.1109/AITest70988.2026.00039",
+   "authors": "Lifeng Ni; Lixin Tao",
+   "source": "2026 IEEE International Conference on Artificial Intelligence Testing (AITest)",
+   "year": "2026",
+   "type": "IEEE Conferences",
+   "abstract": "Edge intelligence increasingly requires machine learning inference to operate under strict constraints on energy, latency, and thermal stability while maintaining reliable predictive performance in real-time and non-stationary environments. Although ensemble methods can improve robustness and accuracy, static full-ensemble execution is often too costly for resource-constrained edge platforms. This..."
+  },
+  {
+   "id": "9533702",
+   "title": "Dynamically Selected Ensemble for Data Stream Classification",
+   "doi": "10.1109/IJCNN52387.2021.9533702",
+   "authors": "Lucca Portes Cavalheiro; Alceu De Souza Britto; Jean Paul Barddal; Laurent Heutte",
+   "source": "2021 International Joint Conference on Neural Networks (IJCNN)",
+   "year": "2021",
+   "type": "IEEE Conferences",
+   "abstract": "Mining data streams is a hot topic in the machine learning (ML) community. In addition to learning and updating accurate models over time, these techniques must respect constraints that are not necessarily as strong in batch mode, such as time processing and memory consumption efficiency. A successful family of techniques in batch ML is dynamic classifier selection (DCS). However, these are roughl..."
+  },
+  {
+   "id": "11107660",
+   "title": "A Novel EMG-Based Homogeneous Dynamic System for Upper Extremity Movement Classification",
+   "doi": "10.23919/ACC63710.2025.11107660",
+   "authors": "Adib H. Laskar; Reza Tafreshi; Md Ferdous Wahid",
+   "source": "2025 American Control Conference (ACC)",
+   "year": "2025",
+   "type": "IEEE Conferences",
+   "abstract": "Accurate upper extremity (UE) movement classification is essential for effective prosthetic design and rehabilitation. However, distinguishing movements involving simultaneous shoulder and elbow motions is challenging due to the complexity presented by the multiple degrees of freedom (DOF). This study proposes an innovative homogeneous dynamic classifier selection system (HDCS) that accurately dis..."
+  },
+  {
+   "id": "9412137",
+   "title": "Classifier Pool Generation based on a Two-level Diversity Approach",
+   "doi": "10.1109/ICPR48806.2021.9412137",
+   "authors": "Marcos Monteiro; Alceu S. Britto; Jean P. Barddal; Luiz S. Oliveira; Robert Sabourin",
+   "source": "2020 25th International Conference on Pattern Recognition (ICPR)",
+   "year": "2021",
+   "type": "IEEE Conferences",
+   "abstract": "This paper describes a classifier pool generation method guided by the diversity estimated on the data complexity and classifier decisions. First, the behavior of complexity measures is assessed by considering several subsamples of the dataset. The complexity measures with high variability across the subsamples are selected for posterior pool adaptation, where an evolutionary algorithm optimizes d..."
+  },
+  {
+   "id": "11695148",
+   "title": "Dynamic-Flooding Transformer Ensembles for Reinforcement-Learning-Based Equity Market Timing",
+   "doi": "10.1109/ACCESS.2026.3734627",
+   "authors": "Tung-Li Chen; Jyh-Shing Roger Jang",
+   "source": "IEEE Access",
+   "year": "2026",
+   "type": "IEEE Journals",
+   "abstract": "Accurate directional forecasting of equity time series is challenging due to small-sample bottlenecks, regime-dependent non-stationarity, and dominant idiosyncratic noise. This paper presents a coordinated quantitative framework addressing these difficulties. First, causal Transformer classifiers operate over 78 features grouped into five feature groups to mitigate dimensionality constraints. Seco..."
+  },
+  {
+   "id": "10175526",
+   "title": "Effective Software Effort Estimation Leveraging Machine Learning for Digital Transformation",
+   "doi": "10.1109/ACCESS.2023.3293432",
+   "authors": "Akshay Jadhav; Shishir Kumar Shandilya; Ivan Izonin; Michal Gregus",
+   "source": "IEEE Access",
+   "year": "2023",
+   "type": "IEEE Journals",
+   "abstract": "Software effort estimation is a necessary component of software development projects that belong to industrial software systems and digital transformation initiatives. Digital transformation refers to the process of integrating digital technology into various components of a company or organization in order to improve operations, procedures, customer experiences, and overall performance. Industria..."
+  },
+  {
+   "id": "10008471",
+   "title": "Distributed Decision Fusion for Large Scale IoT- Ecosystem",
+   "doi": "10.1109/MCSoC57363.2022.00027",
+   "authors": "Ashwin Raut; Divesh Kumar; Vijay Kumar Chaurasiya; Manish Kumar",
+   "source": "2022 IEEE 15th International Symposium on Embedded Multicore/Many-core Systems-on-Chip (MCSoC)",
+   "year": "2022",
+   "type": "IEEE Conferences",
+   "abstract": "IoT data analytics have numerous applications that generate huge data to gain new insights and information. How-ever, this work remains challenging due to the heterogeneity of IoT data sources, unnecessary data processing, uncertainty in decision-making, data biasness, and ever-increasing data size. To overcome these challenges, we propose distributed decision fusion framework for the large-scale ..."
+  },
+  {
+   "id": "10191423",
+   "title": "Mass-Based Short Term Selection of Classifiers in Data Streams",
+   "doi": "10.1109/IJCNN54540.2023.10191423",
+   "authors": "Daniel Nowak Assis; Fabrício Enembreck; Jean Paul Barddal",
+   "source": "2023 International Joint Conference on Neural Networks (IJCNN)",
+   "year": "2023",
+   "type": "IEEE Conferences",
+   "abstract": "Dynamic classifier selection (DCS) regards well-known machine learning techniques in the batch setting that leverage ensemble performance. Most of the methods use similarity-based methods as a proxy, culminating in high computation costs and becoming unfeasible in many streaming scenarios. In this paper, we propose a DCS method able to cope with the high-speed streaming setting, which is based on ..."
+  },
+  {
+   "id": "11034898",
+   "title": "An Adaptive Thyroid Health Monitoring for Women",
+   "doi": "10.1109/ICKECS65700.2025.11034898",
+   "authors": "P. Dhanalakshmi; Narnavaram Indhuja; Chejarla Sumanth Reddy; Billakanti Mokshith; Gudiyatham Bharath Kumar; Chinthaparthi Prashanth Kumar Reddy",
+   "source": "2025 International Conference on Knowledge Engineering and Communication Systems (ICKECS)",
+   "year": "2025",
+   "type": "IEEE Conferences",
+   "abstract": "Thyroid well being is essential to theoverall health of women since thyroidhormone imbalance may cause severe ill nesses like hypothyroidism, hyperthyroidism, and metabolic disorders. These conditions significantly impact reproductive health, leading to menstrual irregularities, infertility, and pregnancy complications. Early detection and continuous monitoring are essential for effective manageme..."
+  },
+  {
+   "id": "9735343",
+   "title": "Dynamic Ensemble Learning With Multi-View Kernel Collaborative Subspace Clustering for Hyperspectral Image Classification",
+   "doi": "10.1109/JSTARS.2022.3158761",
+   "authors": "Hongliang Lu; Hongjun Su; Jun Hu; Qian Du",
+   "source": "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing",
+   "year": "2022",
+   "type": "IEEE Journals",
+   "abstract": "Recently, a series of collaborative representation (CR) methods have attracted much attention for hyperspectral images classification. In this article, two CR-based dynamic ensemble selection (DES) methods using multiview kernel collaborative subspace clustering (MVKCSC) and random subspace MVKCSC (RSMVKCSC) are proposed. In order to combine spectral and spatial information to construct a region o..."
+  },
+  {
+   "id": "10233687",
+   "title": "A New Multi-Class Rebalancing Framework for Imbalance Medical Data",
+   "doi": "10.1109/ACCESS.2023.3309732",
+   "authors": "Jafhate Edward; Marshima Mohd Rosli; Ali Seman",
+   "source": "IEEE Access",
+   "year": "2023",
+   "type": "IEEE Journals",
+   "abstract": "Class imbalance exists in many data domains, posing numerous challenges to the data research community. Medical datasets, in most cases, are predominantly imbalanced in nature. Through tackling multi-class issues, most researchers preferred the conventional method of decomposing it into binary classes for a more convenient solution. This method is not applicable for solving sensitive and crucial d..."
+  },
+  {
+   "id": "9936151",
+   "title": "Adaptive Deep Belief Neural Networks for Pre-Term Birth Clinical Record to Sense Neonatal Apnea Level Classification",
+   "doi": "10.1109/ICECAA55415.2022.9936151",
+   "authors": "V. VishwaPriya; R. RenugaDevi",
+   "source": "2022 International Conference on Edge Computing and Applications (ICECAA)",
+   "year": "2022",
+   "type": "IEEE Conferences",
+   "abstract": "A Deep learning method has been presented to identify the risk factors for Pre-term Birth (PTB). Premature birth is one of the most important factors that affect the death of the infant. The existing method analyzes the Very low birth weight and pre-term infants more than 1500 grams is a high risk of developing intraventricular bleeding, which is a major cause of brain damage in premature infants...."
+  },
+  {
+   "id": "11082532",
+   "title": "Knowledge-Augmented Patient Network Embedding-Based Dynamic Model Selection for Predictive Analysis of Pediatric Drug-Induced Liver Injury",
+   "doi": "10.1109/TBME.2025.3590149",
+   "authors": "Linjun Huang; Zixin Shi; Fei Tang; Haolin Wang",
+   "source": "IEEE Transactions on Biomedical Engineering",
+   "year": "2026",
+   "type": "IEEE Journals",
+   "abstract": "Objective: To address the challenges of developing machine learning frameworks for Electronic Health Records (EHRs)-based predictive tasks, such as the intricate occurrence mechanism of clinical events, patient diversity, and the inherent limitations of real-world data like data incompleteness and class imbalance, we propose the Knowledge-augmented Patient Network embedding-based Dynamic model Sel..."
+  },
+  {
+   "id": "10434616",
+   "title": "Ensemble Learning Approaches for Big Data Classification Tasks",
+   "doi": "10.1109/UPCON59197.2023.10434616",
+   "authors": "Kilaru Aswini; Uma Reddy; Amandeep Nagpal; Ajay Rana; Praveen; Baydaa Sh. Z. Abood",
+   "source": "2023 10th IEEE Uttar Pradesh Section International Conference on Electrical, Electronics and Computer Engineering (UPCON)",
+   "year": "2023",
+   "type": "IEEE Conferences",
+   "abstract": "Ensemble learning has emerged as a potent method for improving prediction accuracy in Big Data classification tasks. This paper presents a comprehensive study of ensemble learning techniques, specifically focusing on their applicability and performance in handling vast and complex datasets. A detailed exploration of various ensemble methodologies such as bagging, boosting, and stacking is conducte..."
+  },
+  {
+   "id": "11383080",
+   "title": "Addressing Class Imbalance in Credit Scoring through a Two-Stage Meta-Ensemble Strategy",
+   "doi": "10.1109/ICECMSN68058.2025.11383080",
+   "authors": "Umangbhai Soni; Gordhan Jethava",
+   "source": "2025 5th International Conference on Evolutionary Computing and Mobile Sustainable Networks (ICECMSN)",
+   "year": "2025",
+   "type": "IEEE Conferences",
+   "abstract": "Accurately identifying credit risk remains a critical challenge for financial institutions, particularly given the pervasive issue of class imbalance, which tends to obscure the detection of potential defaulters. This study introduces a robust two-stage framework designed to enhance the predictive performance for credit risk assessment on imbalanced datasets. In the first stage, a diverse Voting C..."
+  },
+  {
+   "id": "9643393",
+   "title": "RMkNN and KNORA-IU: Combining Imbalanced Dynamic Selection Techniques for Credit Scoring",
+   "doi": "10.1109/ICTAI52525.2021.00131",
+   "authors": "Leopoldo Melo; Jose Fernandes Macêdo; Franco Maria Nardini; Chiara Renso",
+   "source": "2021 IEEE 33rd International Conference on Tools with Artificial Intelligence (ICTAI)",
+   "year": "2021",
+   "type": "IEEE Conferences",
+   "abstract": "Credit scoring has become a critical tool for financial institutions to discriminate &#34;bad&#34; applicants from &#34;good&#34; ones. One common characteristic of the credit datasets is the imbalance between good and bad applicants, with low defaults (no paid loans). Ensemble classification methodology is widely used in this field. However, dynamic ensemble selection approaches to imbalanced datasets have drawn..."
+  }
+ ]
+}

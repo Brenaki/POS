@@ -1,0 +1,411 @@
+{
+ "R0001": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/10215507",
+  "chars": 51565,
+  "has_references": true,
+  "n_oracle": 48,
+  "n_upper_bound": 0,
+  "n_diversity": 20,
+  "n_double_fault": 8,
+  "n_kappa": 5,
+  "paywall": false,
+  "snippets": [
+   "ed by: Universidade Estadual de Ponta Grossa Sign Out Attention Authors Search by Content Type ADVANCED SEARCH Journals & Magazines >IEEE Access >Volume: 11 Dynamic Ensemble Algorithm Post-Selection Using Hardness-Aware Oracle Publisher: IEEE Cite This PDF Paulo R. G. Cordeiro; George D. C. Cavalcanti; Rafael M. O. Cruz All Authors 6 Cites in Papers 754 Full Text Views Open Access Comment(s) Under a Creative Commons License Abstract Doc",
+   "le to assume that no DES algorithm is the optimal solution in different scenarios since diversity plays an important role. Thus, this paper addresses this research gap by proposing a novel approach called Hardness-aware Oracle with Dynamic Ensemble Selection (HaO-DES) that operates as a post-selection strategy, evaluating and selecting the best DES techniques per instance. Each DES technique ensemble is evaluated using a new measure cal",
+   "of this research. Dynamic selection techniques commonly use a criterion to guide the selection process, including [1]: meta-learning (e.g., META-DES), accuracy (e.g., Dynamic Ensemble Selection Performance (DES-P)), and Oracle (e.g., K-Nearest Oracles Eliminate (KNORA-E) and K-Nearest Oracles Union (KNORA-U)). The Oracle [6] is a theoretical model that chooses a classifier for each query sample if there is at least one classifier in the",
+   "’s label. It means that this concept, when applied to the selection phase, does not evaluate situations where few competent classifiers (i.e., classifiers that correctly answer a sample query) are in the pool. Moreover, Oracle’s evaluation is performed using global information, whereas dynamic selection techniques should focus on local information [7]. It is important to note that the selection phase is not mandatory. For instance, Boos",
+   "ate and choose ensembles selected from a set of different DES techniques to improve the performance of these techniques used individually?” To investigate this question, we propose a novel approach called Hardness-aware Oracle with Dynamic Ensemble Selection (HaO-DES). HaO-DES is based on the assumption that different selection criteria can result in diverse selected ensembles, and the optimal criteria for selecting an ensemble may vary",
+   "d of each model separately, as DES techniques usually work. Given the absence of a quantifiable means to assess diverse ensembles chosen through a collection of DES techniques, we present the concept of a Hardness-aware Oracle (HaO ). HaO represents a novel evaluation metric inspired by the Oracle. It enhances the original oracle’s concept by analyzing not only the existence of a single competent classifier but also the capacity of a DE"
+  ]
+ },
+ "R0009": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/9765714",
+  "chars": 73898,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 7,
+  "n_diversity": 2,
+  "n_double_fault": 0,
+  "n_kappa": 2,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0032": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/10865038",
+  "chars": 22255,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 10,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0033": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/9714658",
+  "chars": 41372,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 31,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0034": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/10869442",
+  "chars": 64779,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 85,
+  "n_double_fault": 16,
+  "n_kappa": 7,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0035": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/9741368",
+  "chars": 48397,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 87,
+  "n_double_fault": 3,
+  "n_kappa": 10,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0036": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/10174699",
+  "chars": 37917,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 56,
+  "n_double_fault": 1,
+  "n_kappa": 7,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0037": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/9660047",
+  "chars": 36584,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 1,
+  "n_diversity": 12,
+  "n_double_fault": 0,
+  "n_kappa": 2,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0038": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/11248022",
+  "chars": 49483,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 75,
+  "n_double_fault": 4,
+  "n_kappa": 1,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0039": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/9666676",
+  "chars": 16640,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 17,
+  "n_double_fault": 0,
+  "n_kappa": 1,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0040": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/10870227",
+  "chars": 61708,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 35,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0041": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/9366872",
+  "chars": 38160,
+  "has_references": true,
+  "n_oracle": 4,
+  "n_upper_bound": 0,
+  "n_diversity": 16,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "th a test sample case. The most competent classifier is then selected by applying OLA to the qualified data points. In the DES approach, RoC defines a validation space where multiple classifiers are examined. K-Nearest-ORAcles-Union (KNORA-U) and K-Nearest-ORAcles-Eliminate (KNORA-E) are two popular Oracle-based methods that discover a subset of base classifiers to correctly predict the unknown pattern in RoC [47]. In particular, KNORA",
+   "an indecision region or not by considering the hardness value calculated from the offline phase. If yes, it generates a local pool using Self-Generating Hyperplanes (SGH) method, and the kNN rule is used otherwise. The oracle-based DES method using a discriminant index, which is used in the Item and Test Analysis (ITA), shows promising results [57]. To compose the RoC, it selects the k most discriminant instances among the validation d"
+  ]
+ },
+ "R0046": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/11605345",
+  "chars": 13547,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 1,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0051": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/10253212",
+  "chars": 16757,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0052": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/10480824",
+  "chars": 24321,
+  "has_references": true,
+  "n_oracle": 9,
+  "n_upper_bound": 1,
+  "n_diversity": 3,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "ft problems are handled using the proposed data stream classification framework integrated with dynamic ensemble selection. A K-nearest neighbors (Knn) of a test instances in the validation set are found using K-nearest ORAcle (KNORA), and the classifiers that correctly labelled those neighbours are identified and then those classifiers are formed as an ensemble of classifiers for categorising the instance in the test set. SECTION II. ",
+   "r select a single model i.e., DCS selects an ensemble of classifiers i.e., DES [9]. In DS, main idea is selecting the best classifier for any test instance and the best classifier models which are chosen are called as \"oracles\" [10]. In order to classify accurately, an ensemble of classifiers is created with many diverse classifiers. The objective of this DCS is to use the concept of oracles, which is the upper bound of the EoC. If one",
+   "rs in the pool which is obtained by Dynamic Ensemble Selection (DES) for retraining. If there is no drift in the batch, then the batch is classified using the selected classifiers obtained using DES. K-nearest neighbour ORAcle (KNORA) determines the classifiers that correctly classifies each neighbour in the validation set for each test data point, and then utilises those classifiers in ensemble to predict the given test instance in the",
+   ". Find the competence region Once the base learner is trained individually, the base leaners are placed in classifier pool. Then the region of competence as depicted in Fig. 3 is determined using the K-Nearest Neighbor Oracle Union (KNORA-U). A group of models (or \"oracles\") are chosen based on their ability to predict the label using nearest K neighbours. The predictions are then aggregated using majority voting to produce the final o",
+   " highest neighbourhood performance are used in making predictions for the query instance. During the process of online learning, for any query instance, the ensemble of classifiers is selected dynamically using the Knn Oracle-Union. All classifiers that have accurately categorised at least one sample from the domain of expertise of the query sample are chosen by the KNORAU. Votes for a classifier are proportional to the percentage of s",
+   "l data in Ψ (Lines 4–9), until either as a minimum one classifier is selected or region of competence is unfilled (Line 3). Fig. 4. Algorithm of KNORA-U Show All C. Build an optimal ensemble The k-Nearest Neighbour Oracle-Union (KNORA-U) approach of dynamic ensemble selection is employed here. KNORA-U is used to find training data instances that are most alike to the target instance. Then, the models that perform best when applied "
+  ]
+ },
+ "R0053": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/10394192",
+  "chars": 24923,
+  "has_references": true,
+  "n_oracle": 4,
+  "n_upper_bound": 0,
+  "n_diversity": 2,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "ion (DCS), and when more than one classifier is selected, it is called Dynamic Ensemble Selection (DES). Examples of DES techniques include META-DES [5], Dynamic Ensemble Selection Performance (DES-P) [6], and K-Nearest Oracles Union (KNORA-U) [4]. The last phase of an MCS is combination, also called integration. In this phase, the output of all the classifiers selected is combined to produce a final prediction. The combination or integ",
+   "ing a subset of the pool for each query sample x q . In dynamic selection, classifiers are chosen based on some criteria, given the pool created in the previous phase. Among the criteria found in the literature are the Oracle approach, as seen in KNORA-E, KNORA-U [4], and K-Nearest Output Profile (KNOP) [14], accuracy-based methods, such as DES Performance (DES-P) [6], and meta-learning, as in the case of META-DES [5]. These criteria a",
+   " the capability of an ensemble selected by a given DS technique to make a correct prediction. Consequently, it works as a post-processing scheme for ensembles chosen according to different criteria (e.g., meta-learning, Oracle, accuracy). In addition, this proposal aims to evaluate the quality or potential of a selected ensemble, which contrasts with the current DES methods that build an ensemble by selecting multiple competent classifi",
+   "cteristics. The number of samples, dimensions (Dim), classes, and imbalance ratio (IR). Four DES approaches (KNORA-U, KNOP, DES-P, and META-DES) were chosen due to their application of various selection criteria (e.g., Oracle, accuracy, meta-learning). These approaches showed superior performance in a recent empirical study [1]. We applied these DES methods default hyperparameter configurations of the DESlib 0.3 library [18] to guarant"
+  ]
+ },
+ "R0054": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/9802893",
+  "chars": 52030,
+  "has_references": true,
+  "n_oracle": 1,
+  "n_upper_bound": 0,
+  "n_diversity": 6,
+  "n_double_fault": 0,
+  "n_kappa": 1,
+  "paywall": false,
+  "snippets": [
+   "ifier pool. How to evaluate the base classifier competence is the most critical issue in this step. A commonly used criterion is the accuracy of candidate classifiers for all neighbors of a query sample, named K-nearest oracles (KNORA) [27]. Recently, to reduce the overlap of the classes, the latest DES framework called FIRE-DES++ introduced the K-nearest neighbor equality (KNNE) [28] method to define a competence region, where the numb"
+  ]
+ },
+ "R0055": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/10086501",
+  "chars": 36212,
+  "has_references": true,
+  "n_oracle": 1,
+  "n_upper_bound": 0,
+  "n_diversity": 41,
+  "n_double_fault": 3,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "ult prediction better than other five typical classifiers. In the future, we would like to continue our research on the following two directions. First, we will propose another version based on formal definition of the Oracle, which is an abstract method that represents an ideal classifier selection scheme. Second, we will consider the case of classification with noisy label. ACKNOWLEDGMENT The authors would like to thank Prof. Rafae"
+  ]
+ },
+ "R0058": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/10069850",
+  "chars": 29964,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0059": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/10651199",
+  "chars": 41548,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 4,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0062": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/10098002",
+  "chars": 28500,
+  "has_references": true,
+  "n_oracle": 3,
+  "n_upper_bound": 0,
+  "n_diversity": 1,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   " by a team of classifiers. This is called the local region. Different approaches are observed in the literature to define the local region, such as the use of ranking, accuracy, probability, relationship, meta-learning, oracle, complexity, diversity, ambiguity, and data manipulation. Every approach can select different classifiers [4], [18]–[33]. Complexity has also been used to define the local region [4], [32]. The authors considered",
+   "iers with conflicting decisions have the highest local accuracy estimates. If there is a tie, the class that was selected most often by the two classifiers is selected. [19]. 3) Knora This selection technique uses the oracle concept [34] for groups of classifiers. It is called KNORA (K-Nearest-Oracles) and has two variants: the KNORA-Eliminate (KN-E) and the KNORA-Union (KN-U). In KNORA-Eliminate (KN-E), the classifiers that can corre"
+  ]
+ },
+ "R0063": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/9892846",
+  "chars": 42310,
+  "has_references": true,
+  "n_oracle": 17,
+  "n_upper_bound": 0,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   ", we propose a dynamic selection technique which dynamically edits the target region taking into account the instances' characteristics with respect to (w.r.t.) the class overlap surrounding them. Based on the K-Nearest-Oracles Eliminate (KNORA-E) [12], the proposed method also searches for local oracles, that is, classifiers in the pool that can correctly label all instances in the RoC. Until a competent model is found, the region is i",
+   "ive way. We describe the KNORA-E technique next. SECTION III. Problem Statement The KNORA-E technique attempts to find in the pool a classifier that can correctly label all instances in the RoC, referred to as a local oracle. Fig. 1 shows a toy example which we use to illustrate the technique. It depicts the initial RoC θ q ={ x 1 , x 2 ,…, x 7 } obtained using the K-Nearest Neighbors (KNN), the query sample x q and the pool of li",
+   " KNORA-E tries to find a classifier in C that can label all x i ∈ θ q correctly. If there is none, it removes from θ q the instance that is the most distant from the query x q , and repeats the search for a local oracle. This process is repeated until at least one classifier is found to correctly label all remaining instances in the RoC. In the example from Fig. 1, the RoC is edited until the removal of X5, as with θ q ={ x 1 , ",
+   "ad to the entire elimination of one of the classes in the region, which can bias the selection towards the remaining class, often the less sparse or under-represented one. Two methods based on the KNORA-E, the K-Nearest Oracles-Borderline (KNORA-B) and K-Nearest Oracles-Borderline-Imbalanced (KNORA-BI) propose to fix this issue by forcing the presence of all classes in the RoC. However, the three methods still assume the samples that ar",
+   "class overlap, as in the example from Fig. 1. In fact, by disregarding the query's closest neighbor ( x 1 ) , which is located in the most overlapped area of the RoC, the classifier c 1 would be recognized as a local oracle and would correctly label x q . SECTION IV. Proposed Technique We propose a dynamic selection technique based on the KNORA-E which performs the RoC editing based on the samples' estimated classification difficu",
+   "ance is located. That is, for a given unknown sample, we remove from the RoC the neighbors with higher instance hardness first, instead of the ones with largest distance to the query, in the search for the nearest local oracles. That way, the samples which are perceived as more reliable (that is, that are easier to classify) have a larger impact on the classifiers' competence estimation compared to the more unreliable ones in the RoC. T"
+  ]
+ },
+ "R0065": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/9892635",
+  "chars": 35167,
+  "has_references": true,
+  "n_oracle": 2,
+  "n_upper_bound": 1,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   " ( n c =19.5) Show All C. Comparison With State-of-the-Art Ds Methods The accuracy and standard deviation of the proposed frame-work and the state-of-the-art DS approaches are reported in Table IV. In this table, the Oracle approach [29] is a conceptual method that selects the base classifier which labels the query sample correctly if such base classifier exists. We can see in Table IV that the proposed approach FH-DES-M achieved th",
+   "the proposed method and META-DES have similar accuracy in small data sizes. However, with larger data size, the accuracy of the KNN-based approach increases. In particular, the accuracy of the META-DES gets close to the oracle's accuracy for the Sensor dataset as the dataset size increases. Because, in large-scale datasets, almost all regions of the feature space are covered by DSEL instances. Thus, sufficient DSEL samples are available"
+  ]
+ },
+ "R0072": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/10069959",
+  "chars": 13402,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0084": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/9533702",
+  "chars": 32972,
+  "has_references": true,
+  "n_oracle": 2,
+  "n_upper_bound": 0,
+  "n_diversity": 2,
+  "n_double_fault": 0,
+  "n_kappa": 6,
+  "paywall": false,
+  "snippets": [
+   "Accuracy - OLA [18]: Selects the classifier with the highest accuracy on the region of competence. Local Class Accuracy - LCA [18]: Selects the classifier with the highest recall on the region of competence. K-Nearest-Oracles Eliminate [19]: Selects all the classifiers with the highest accuracy on the region of competence. K-Nearest-Oracles Union [19]: Selects all the classifiers that correctly predicted at least one instance in the "
+  ]
+ },
+ "R0086": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/9412137",
+  "chars": 29256,
+  "has_references": true,
+  "n_oracle": 2,
+  "n_upper_bound": 2,
+  "n_diversity": 28,
+  "n_double_fault": 5,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "rners sequentially, where the construction of a base learner exploits the mislabeled instances observed in the previous rounds. Souza et al. [29] present another approach for creating a pool of classifiers based on the Oracle upper bound initially described in [21]. An Oracle is an optimal model where if any of the base learners correctly classify a test instance, then it is assumed that the final prediction of the MCS is also correct."
+  ]
+ },
+ "R0090": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/10191423",
+  "chars": 32452,
+  "has_references": true,
+  "n_oracle": 2,
+  "n_upper_bound": 0,
+  "n_diversity": 2,
+  "n_double_fault": 0,
+  "n_kappa": 8,
+  "paywall": false,
+  "snippets": [
+   "the batch setting make usage of kNN, weighting classifiers votes based on the Nearest-Neighbours of the processed instance, known as the region of competence. Some of the most relevant works in this area are: K-Nearest-Oracles Eliminate (KNORA-E) [21]: Select the classifiers with the highest accuracy in the region of competence. K-Nearest-Oracles Union (KNORA-U) [21]: Select the classifiers that have at least one right prediction at t"
+  ]
+ },
+ "R0099": {
+  "status": "ok",
+  "final_url": "https://ieeexplore-ieee-org.ez82.periodicos.capes.gov.br/document/9204459",
+  "chars": 38912,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 2,
+  "n_diversity": 28,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ }
+}

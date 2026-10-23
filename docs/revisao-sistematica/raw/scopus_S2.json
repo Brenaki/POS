@@ -1,0 +1,261 @@
+{
+ "query": "TITLE-ABS-KEY((\"ensemble diversity\" OR \"classifier diversity\" OR \"diversity measure*\" OR \"double fault\" OR \"disagreement measure*\") AND (\"classifier ensemble*\" OR \"multiple classifier system*\" OR \"ensemble of classifiers\" OR \"pool of classifiers\") AND (\"accuracy\" OR \"performance\")) AND PUBYEAR > 2020 AND PUBYEAR < 2027 AND (LANGUAGE(english) OR LANGUAGE(portuguese) OR LANGUAGE(chinese))",
+ "total": 28,
+ "got": 28,
+ "shown": 28,
+ "retrieved": "2026-10-23T03:18:56.337Z",
+ "rows": [
+  {
+   "eid": "105041498676",
+   "title": "A deep representation learning framework for measuring diversity of multiple classifier systems",
+   "authors": "Li, S. , Han, D. , Dezert, J. , Yang, Y.",
+   "source": "Expert Systems with Applications , 331, 133210",
+   "year": "2026",
+   "cited": "0",
+   "abstract": "Hide abstract Multiple Classifier Systems (MCSs) have been widely used in pattern recognition, particularly for their effectiveness in complex environments. Measuring diversity is crucial and challenging for the construction of the MCS. Existing diversity measures generally use the statistical patterns of the classification results, but they usually exhibit no obvious relationship with the fused classification performance of the MCS. To address this issue and enable diversity measures to effectively guide MCS construction, this paper maps classifiers into a learned embedding space to measure the diversity. In such a space, embeddings of classifiers with higher fusion accuracy will be farther apart, whereas those with lower fusion accuracy will be closer together. Based on the geometric relationships among the learned embeddings, we propose a simplex volume based diversity measure. Experimental results validated by Wilcoxon signed-rank test on Gaussian, UCI, and real-world image datasets demonstrate the superiority of the proposed diversity measure. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "105043767449",
+   "title": "A novel diversity measure for multiple classifier system based on class-wise performance ranking distance",
+   "authors": "LI, S. , HAN, D. , DEZERT, J. , YANG, Y.",
+   "source": "Chinese Journal of Aeronautics , 39(8), 103839",
+   "year": "2026",
+   "cited": "2",
+   "abstract": "Hide abstract Multiple Classifier System (MCS) has been widely used in pattern recognition for being competent in the complicated environment. In particular, the MCS plays a crucial role in fault diagnosis and object recognition within the aviation domain. However, MCS will not improve the classification performance compared with the single classifier if there is no diversity among the member classifiers. Prevailing diversity measures are mainly defined based on the inconsistency of different classifiers’ outputs, without considering whether the differences contribute to fusion classification results or not. Using prevailing diversity measures cannot efficiently guide the construction of the MCS. In our opinion, an MCS constructed by several classifiers that are experts in classifying different classes can be considered as complimentary and could be better in terms of classification performance. The difference of skilled classes for different classifiers can be described by the distance between the classifiers’ class-wise classification performance rankings. Therefore, a ranking-distance-based diversity measure is proposed in this paper. To further leverage the performance of the MCS, the diversity and the classification accuracy of the candidate individual classifiers are jointly used for the member classifiers selection. Experimental results validate the advantage of the proposed diversity measure. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "105002755084",
+   "title": "Clustering ensemble pruning algorithm based on vec2vec classifier representation",
+   "authors": "Li, C. , Li, D. , Qin, X. ,... Li, J. , Yuan, J.",
+   "source": "Journal of King Saud University Computer and Information Sciences , 37(3), 22",
+   "year": "2025",
+   "cited": "0",
+   "abstract": "Hide abstract The complementarity of ensemble learning primarily stems from the diversity among its classifier members, which is typically assessed by calculating the similarity or distance between classifiers. However, traditional methods for similarity or distance calculation are limited by the representation of classifiers, which may not accurately reflect the true relationships between them, leading to inferior ensemble pruning performance. To address this issue, this study proposes a new classifier representation paradigm and ensemble pruning algorithm(Vec2Q-CEEP). To begin with, we transform the representation of classifiers through spatial mapping, overcoming the limitations of traditional similarity calculation methods, enriching the ways of calculating classifier diversity, and enhancing the distinguishability between classifiers. Furthermore, we introduce a novel similarity measurement method that integrates classifier information from both the original and mapped spaces, enabling a more comprehensive evaluation of the relationships between classifiers. After conducting extensive experiments on 12 UCI datasets, the experimental results demonstrate that this algorithm outperforms several state-of-the-art ensemble pruning algorithms, thus validating its effectiveness and feasibility. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85218990958",
+   "title": "Ensembling approaches to citation function classification and important citation screening",
+   "authors": "Jiang, X.",
+   "source": "Scientometrics , 130(3), pp. 1371–1419, 101526",
+   "year": "2025",
+   "cited": "6",
+   "abstract": "Hide abstract Compared to feature engineering, deep learning approaches for citation context analysis have yet fully leveraged the myriad of design options for modeling in-text citation, citation sentence, and citation context. In fact, no single modeling option universally excels on all citation function classes or annotation schemes, which implies the untapped potential for synergizing diverse modeling approaches to further elevate the performance of citation context analysis. Motivated by this insight, the current paper undertook a systematic exploration of ensemble methods for citation context analysis. To achieve a better diverse set of base classifiers, I delved into three sources of classifier diversity, incorporated five diversity measures, and introduced two novel diversity re-ranking methods. Then, I conducted a comprehensive examination of both voting and stacking approaches for constructing classifier ensembles. I also proposed a novel weighting method that considers each individual classifier’s performance, resulting in superior voting outcomes. While being simple, voting approaches faced significant challenges in determining the optimal number of base classifiers for combination. Several strategies have been proposed to address this limitation, including meta-classification on base classifiers and utilising deeper ensemble architectures. The latter involved hierarchical voting on a filtered set of meta-classifiers and stacked meta-classification. All proposed methods demonstrate state-of-the-art results on, with the best performances achieving more than 5 and 4% improvements on the 11-class and 6-class schemes of citation function classification and by 3% on important citation screening. The promising empirical results validated the potential of the proposed ensembling approaches for citation context analysis. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85217446013",
+   "title": "Enhancing Semi-Supervised Learning With Concept Drift Detection and Self-Training: A Study on Classifier Diversity and Performance",
+   "authors": "Perez, J.L.M. , Barros, R.S.M. , Santos, S.G.T.C.",
+   "source": "IEEE Access , 13, pp. 24681–24697",
+   "year": "2025",
+   "cited": "4",
+   "abstract": "Hide abstract Machine learning algorithms that assist in decision-making are becoming crucial in several areas, such as healthcare, finance, marketing, etc. Algorithms exposed to a larger and more relevant amount of training data tend to perform better. However, the availability of labeled data without human expert intervention is a challenging task, especially in data stream learning with concept drifts, where data is generated rapidly, in real-time, with the possibility of changes in the data distribution. Concept drift occurs in supervised, semi-supervised and unsupervised learning environments, and is addressed through different approaches such as statistics, machine learning, among others. Currently, the use of drift detectors with base classifiers in semi-supervised learning is uncommon. Semi-supervised classifiers often consume a lot of memory and run-time, and the addition of a detection mechanism increases the computational cost. Furthermore, classification in semi-supervised environments can lead to problems related to labeling data to training: an error in this process can negatively impact model performance. This article investigates the use of supervised concept drift detectors in semi-supervised learning problems, highlighting how the detectors can improve the performance of classification. It also explores the influence of diversity in classifier ensembles, showing that increased diversity contributes to enhanced accuracy and robustness of models in concept drift scenarios. Additionally, it introduces a self-training approach to provide more labels and optimize model learning and adaptation. This research also details updates in the Massive Online Analysis (MOA) framework, that supports the simulation of semi-supervised scenarios. The experiments conducted to test the proposed approach used Hoeffding Tree (HT) and Naive Bayes (NB) as base classifiers, which were also employed as members of the ensembles used in this research. These classifiers were combined with several detectors and tested on a total of 84 artificial and five real-world datasets. The experiments were conducted with 15% and 30% of labeled data, the main percentages addressed in this research, while 100% was used to provide additional grounding in some cases. The results indicate that detectors created for supervised learning can be effectively used in semi-supervised environments. Furthermore, the tests using the introduced self-training approach demonstrates that the inclusion of additional labels significantly improves the performance of the classifiers. These findings may lead to a paradigm shift for future research, as many researchers have not considered concept drift detectors as a viable alternative due to the limited presence of labels in most real-world data streams. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85164431827",
+   "title": "Interpretability Diversity for Decision-Tree-Initialized Dendritic Neuron Model Ensemble",
+   "authors": "Luo, X. , Ye, L. , Liu, X. ,... Zhou, M. , Zhang, Q.",
+   "source": "IEEE Transactions on Neural Networks and Learning Systems , 35(11), pp. 15896–15909",
+   "year": "2024",
+   "cited": "13",
+   "abstract": "Hide abstract To construct a strong classifier ensemble, base classifiers should be accurate and diverse. However, there is no uniform standard for the definition and measurement of diversity. This work proposes a learners' interpretability diversity (LID) to measure the diversity of interpretable machine learners. It then proposes a LID-based classifier ensemble. Such an ensemble concept is novel because: 1) interpretability is used as an important basis for diversity measurement and 2) before its training, the difference between two interpretable base learners can be measured. To verify the proposed method's effectiveness, we choose a decision-tree-initialized dendritic neuron model (DDNM) as a base learner for ensemble design. We apply it to seven benchmark datasets. The results show that the DDNM ensemble combined with LID obtains superior performance in terms of accuracy and computational efficiency compared to some popular classifier ensembles. A random-forest-initialized dendritic neuron model (RDNM) combined with LID is an outstanding representative of the DDNM ensemble. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85190168919",
+   "title": "Exhaustive Exploitation of Nature-Inspired Computation for Cancer Screening in an Ensemble Manner",
+   "authors": "Wang, X. , Wang, Y. , Ma, Z. , Wong, K.-C. , Li, X.",
+   "source": "IEEE ACM Transactions on Computational Biology and Bioinformatics, 21(5), pp. 1366–1379",
+   "year": "2024",
+   "cited": "4",
+   "abstract": "Hide abstract Accurate screening of cancer types is crucial for effective cancer detection and precise treatment selection. However, the association between gene expression profiles and tumors is often limited to a small number of biomarker genes. While computational methods using nature-inspired algorithms have shown promise in selecting predictive genes, existing techniques are limited by inefficient search and poor generalization across diverse datasets. This study presents a framework termed Evolutionary Optimized Diverse Ensemble Learning (EODE) to improve ensemble learning for cancer classification from gene expression data. The EODE methodology combines an intelligent grey wolf optimization algorithm for selective feature space reduction, guided random injection modeling for ensemble diversity enhancement, and subset model optimization for synergistic classifier combinations. Extensive experiments were conducted across 35 gene expression benchmark datasets encompassing varied cancer types. Results demonstrated that EODE obtained significantly improved screening accuracy over individual and conventionally aggregated models. The integrated optimization of advanced feature selection, directed specialized modeling, and cooperative classifier ensembles helps address key challenges in current nature-inspired approaches. This provides an effective framework for robust and generalized ensemble learning with gene expression biomarkers. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85153105383",
+   "title": "Classifier subset selection based on classifier representation and clustering ensemble",
+   "authors": "Li, D. , Zhang, Z. , Wen, G.",
+   "source": "Applied Intelligence , 53(18), pp. 20730–20752",
+   "year": "2023",
+   "cited": "16",
+   "abstract": "Hide abstract Ensemble pruning can improve the performance and reduce the storage requirements of an integration system. Most ensemble pruning approaches remove low-quality or redundant classifiers by evaluating the classifiers’ competence and relationships via their predictions. However, finding the best way to represent classifiers and create ensemble diversity is still a worthy research problem in the ensemble pruning field. To confront this issue, we discuss whether properties other than predictions can represent classifiers and propose a new classifier selection method, classifier-representation- and clustering-ensemble-based ensemble pruning (CRCEEP). In the proposed method, two new classifier-representation-learning methods, local-space- and relative-transformation-based representation, are proposed to obtain more information about classifiers. CRCEEP incorporates the clustering ensemble method to group classifiers and prune redundant learners. Finally, accurate and diverse classifiers are integrated to improve classification performance. Extensive experiments were carried out on UCI datasets, and the experimental results verify CRCEEP’s effectiveness and the necessity of classifier representation. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85150052869",
+   "title": "Classifier ensemble with evolutionary optimisation enforced random projections",
+   "authors": "Mo, T. , Wang, L. , Wu, Y. ,... Yang, R. , Zhen, X.",
+   "source": "Expert Systems with Applications , 222, 119845",
+   "year": "2023",
+   "cited": "9",
+   "abstract": "Hide abstract An effective multi-classifier fusion (MCF) system is demanding in the clinical context in terms of integrating various diagnosis/prognosis predictive models to arrive at a stable and consentaneous medical decision. In this study, we introduced a novel MCF framework for a classifier ensemble with the evolutionary optimisation of random-projections (termed CLEER). The proposed CLEER generated a number of diverse base classifiers via training on the mapped data from the Bernoulli random projection. It innovatively framed the classifier fusion into an evolutionary computation architecture wherein the required diversity and accuracy were enforced by optimising the random projection components using a genetic algorithm. The efficacy of CLEER has been demonstrated via extensive evaluations using twenty public datasets from various research fields, as well as four clinical datasets. A comparative analysis showed that the ensemble diversity was effectively enhanced on using CLEER, and more accurate classifications were achieved as compared to the state-of-the-art benchmark ensemble methods. The proposed CLEER could serve as a potential tool for the fusion of diagnostic or prognostic models for assisting in medical decision making. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85141152753",
+   "title": "A multiple criteria ensemble pruning method for binary classification based on D-S theory of evidence",
+   "authors": "Qiu, J. , Xiao, Z. , Zhong, B.",
+   "source": "International Journal of Machine Learning and Cybernetics , 14(4), pp. 1133–1146",
+   "year": "2023",
+   "cited": "1",
+   "abstract": "Hide abstract Ensemble pruning becomes an important stage in multiple classifier systems, and it has been widely applied to solve binary classification problems. Diversity and performance measures are two widely used evaluation methods to build the selection criterion for ensemble pruning. However, few works consider both of them simultaneously, and they usually use one algorithm to measure the diversity or performance, which may not be enough to capture all the relevant diversities and performance of the base classifiers. To solve this problem, we propose a multiple criteria ensemble pruning method by employing multiple diversity and performance measures to capture the base classifiers’ diversity and evaluate their classification ability respectively. Moreover, a multi-criteria decision making method, based on fuzzy soft set and Dempster-Shafer theory of evidence, is used to build the final selection criterion, which can make a good trade-off between the diversity and performance measures. With sixteen binary data sets, the experimental studies show its effectivity and superiority for ensemble pruning over six state-of-the-art benchmark methods. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85138482266",
+   "title": "OLP++: An online local classifier for high dimensional data",
+   "authors": "Souza, M.A. , Sabourin, R. , Cavalcanti, G.D.C. , Cruz, R.M.O.",
+   "source": "Information Fusion , 90, pp. 120–137",
+   "year": "2023",
+   "cited": "13",
+   "abstract": "Hide abstract Ensemble diversity is an important characteristic of Multiple Classifier Systems (MCS), which aim at improving the overall performance of a classification system by combining the response of several models. While diversity may be introduced through various manipulations at the data level and the model level, some MCSs incorporate local information in order to increase it and/or take advantage of it, based on the idea that the different classifiers in the ensemble may have expertise in distinct areas of the feature space.1 a similar reasoning, we introduced in a previous work an ensemble method which produces in test time a few experts in the local region where each given query sample is located. These local experts, which are generated with slightly differing views of the target area, are then used to label the corresponding unknown instance. While the framework was shown to perform well especially over imbalanced problems, the locality definition in the method is based on the nearest neighbors rule and Euclidian distance, as is the case of various local-based ensembles, which may suffer from the effects of the curse of dimensionality over high dimensional problems. Thus, in this work, we propose a local ensemble method in which we leverage the data partitions given by decision trees for locality definition. More specifically, the partitions defined at different levels of the decision path that a given query instance traverses in the tree(s) are used as the regions over which the local experts are produced. By using different node levels from the path, each classifier in the local pool has a moderately distinct view of the target region without resorting to a dissimilarity metric, which might be susceptible to high dimensional spaces. Experimental results over 39 high dimensional problems showed that the proposed approach was significantly superior to our previous, distance-based framework in balanced accuracy rate. Compared to other six local-based ensemble methods, including dynamic selection and weighting schemes, the proposed method achieved competitive results, outperforming the random forest baseline and two state-of-the-art dynamic ensemble selection techniques. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85139783080",
+   "title": "Ensemble Classifier Design Based on Perturbation Binary Salp Swarm Algorithm for Classification",
+   "authors": "Zhu, X. , Xia, P. , He, Q. , Ni, Z. , Ni, L.",
+   "source": "CMES Computer Modeling in Engineering and Sciences , 135(1), pp. 653–671",
+   "year": "2023",
+   "cited": "96",
+   "abstract": "Hide abstract Multiple classifier system exhibits strong classification capacity compared with single classifiers, but they require significant computational resources. Selective ensemble system aims to attain equivalent or better classification accuracy with fewer classifiers. However, current methods fail to identify precise solutions for constructing an ensemble classifier. In this study, we propose an ensemble classifier design technique based on the perturbation binary salp swarm algorithm (ECDPB). Considering that extreme learning machines (ELMs) have rapid learning rates and good generalization ability, they can serve as the basic classifier for creating multiple candidates while using fewer computational resources. Meanwhile, we introduce a combined diversity measure by taking the complementarity and accuracy of ELMs into account; it is used to identify the ELMs that have good diversity and low error. In addition, we propose an ECDPB with powerful optimizing ability; it is employed to find the optimal subset of ELMs. The selected ELMs can then be used to forman ensemble classifier. Experiments on 10 benchmark datasets have been conducted, and the results demonstrate that the proposed ECDPB delivers superior classification capacity when compared with alternative methods. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85158995459",
+   "title": "Evaluate the Performance of the Support Vector Machines Ensemble",
+   "authors": "Liu, B. , Qiu, Y.",
+   "source": "Proceedings of SPIE the International Society for Optical Engineering , 12610, 126100R",
+   "year": "2023",
+   "cited": "0",
+   "abstract": "Hide abstract Diversity among the members of classifiers is deemed to be a key point in classifier ensemble. However, there doesn't exist a widely accepted diversity measure and construct. In this paper, we propose a sample and feature double random construction of training sample variability. A support vector machine is used as the base classifier to construct the difference by distinguishing the regularization term C and the kernel function. Based on the negative correlation theory, the base classifier generalization error and disparity judgment functions are proposed, and the base classifier is integrated by ranking according to the judgment functions, which could achieve a higher accuracy rate by the support vector machine ensemble. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85186138733",
+   "title": "Combining Self-labeling with Selective Sampling",
+   "authors": "Kozal, J. , Wozniak, M.",
+   "source": "IEEE International Conference on Data Mining Workshops Icdmw , pp. 70–79",
+   "year": "2023",
+   "cited": "1",
+   "abstract": "Hide abstract Access to labeled data is generally expensive, so semi-supervised methods are constantly popular. They enable the acquisition of large datasets without needing too many expert labels. This work combines self-labeling techniques with active learning in a selective sampling scenario by proposing how to build a classifier ensemble. When training the base classifiers, a decision is made on whether to request a new label or use the self-labeling based on evaluating the decision inconsistency of base classifiers. Additionally, a technique inspired by online bagging was used to ensure the ensemble's diversity, whereby individual learning examples are presented to base classifiers at different intensities.The preliminary studies showed that naïve application of self-labeling could harm performance by introducing bias towards selected classes and consequently lead to skewed class distribution. Hence, we propose how to reduce this phenomenon. Experimental evaluation confirmed that the proposed method performs well compared to the known selective sampling methods. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85185008943",
+   "title": "Ensemble Text Classification with TF-IDF Vectorization for Hate Speech Detection in Social Media",
+   "authors": "Sathishkumar, R. , Karthikeyan, T. , Praveen, K.P. , Shamsundar, S.M.",
+   "source": "2023 International Conference on System Computation Automation and Networking Icscan 2023",
+   "year": "2023",
+   "cited": "2",
+   "abstract": "Hide abstract The development of artificial intelligence (AI) has changed how hate speech is detected. In hate speech identification using machine learning, a number of methods are used to automatically find text that uses vocabulary that is considered to be derogatory, discriminatory, or motivated by hatred. Supervised learning techniques like neural networks, decision trees, and SVMs need a labelled dataset comprising samples of hate speech and non-hate speech. This project investigates the use of AI and machine learning techniques to automatically detect material that uses offensive, intolerant, or hostile words. A voting classifier and TF-IDF representations are combined to improve classification accuracy. The ensemble of classifiers, powered by AI approaches, shows impressive accuracy in identifying hate speech by training five different classifiers (Random Forest, Bagging, Support Vector Machine, AdaBoost, and Gradient Boosting) on a labelled dataset of tweets. The TF-IDF representation prioritises textual terms, whereas the ensemble method uses classifier diversity to capture distinctive patterns. Results from experiments show the strategy's effectiveness, with precision 0.95, recall 0.96, f1-score 0.95 and accuracy 0.97 for detecting hate speech. By successfully utilising AI's capacity to fight hate speech, this research helps the development of a diverse and secure online environment. The suggested approach works well for automatically identifying hate speech, making the internet a safer and more welcoming place for all users. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85129737894",
+   "title": "Optimising Diversity in Classifier Ensembles",
+   "authors": "Ivaşcu, C. , Everson, R.M. , Fieldsend, J.E.",
+   "source": "SN Computer Science , 3(3), 191",
+   "year": "2022",
+   "cited": "3",
+   "abstract": "Hide abstract Ensembles of predictors have been generally found to have better performance than single predictors. Although diversity is widely thought to be an important factor in building successful ensembles, there have been contradictory results in the literature regarding the influence of diversity on the generalisation error. Fundamental to this may be the way diversity itself is defined. We present two new diversity measures, based on the idea of ambiguity, obtained from the bias-variance decomposition using the cross-entropy error or the hinge-loss. If random sampling is used to select patterns on which ensemble members are trained, we find that the generalisation error is negatively correlated with diversity at high sampling rates; conversely generalisation error is positively correlated with diversity when the sampling rate is low and the diversity high. We use evolutionary optimisers for small ensembles to select the subsets of patterns for predictor training by maximising these diversity measures on training data. Evaluation of their generalisation performance on a range of classification datasets from the literature shows that the ensembles obtained by maximising the cross-entropy diversity measure generalise well, enhancing the performance of small ensembles. Regarding big ensembles, we define tree selection methods that favour ambiguous ensembles over unambiguous ensembles. Our results show that the approach that prefers ambiguous ensembles reduces the generalisation error the most and considerably reduces the number of trees needed to obtain good generalisation performance. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85121367337",
+   "title": "Selective ensemble of classifiers trained on selective samples",
+   "authors": "M. Mohammed, A. , Onieva, E. , Woźniak, M.",
+   "source": "Neurocomputing , 482, pp. 197–211",
+   "year": "2022",
+   "cited": "17",
+   "abstract": "Hide abstract Classifier ensembles are characterized by the high quality of classification, thanks to their generalizing ability. Most existing ensemble algorithms use all learning samples to learn the base classifiers that may negatively impact the ensemble's diversity. Also, the existing ensemble pruning algorithms often return suboptimal solutions that are biased by the selection criteria. In this work, we present a proposal to alleviate these drawbacks. We employ an instance selection method to query a reduced training set that reduces both the space complexity of the formed ensemble members and the time complexity to classify an instance. Additionally, we propose a guided search-based pruning schema that perfectly explores large-size ensembles and brings on a near-optimal subensemble with less computational requirements in reduced memory space and improved prediction time. We show experimentally how the proposed method could be an alternative to large-size ensembles. We demonstrate how to form less-complex, small-size, and high-accurate ensembles through our proposal. Experiments on 25 datasets show that the proposed method can produce effective ensembles better than Random Forest and baseline classifier pruning methods. Moreover, our proposition is comparable with the Extreme Gradient Boosting Algorithm in terms of accuracy. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85121288572",
+   "title": "An analysis of heuristic metrics for classifier ensemble pruning based on ordered aggregation",
+   "authors": "Mohammed, A.M. , Onieva, E. , Woźniak, M. , Martínez-Muñoz, G.",
+   "source": "Pattern Recognition , 124, 108493",
+   "year": "2022",
+   "cited": "26",
+   "abstract": "Hide abstract Classifier ensemble pruning is a strategy through which a subensemble can be identified via optimizing a predefined performance criterion. Choosing the optimum or suboptimum subensemble decreases the initial ensemble size and increases its predictive performance. In this article, a set of heuristic metrics will be analyzed to guide the pruning process. The analyzed metrics are based on modifying the order of the classifiers in the bagging algorithm, with selecting the first set in the queue. Some of these criteria include general accuracy, the complementarity of decisions, ensemble diversity, the margin of samples, minimum redundancy, discriminant classifiers, and margin hybrid diversity. The efficacy of those metrics is affected by the original ensemble size, the required subensemble size, the kind of individual classifiers, and the number of classes. While the efficiency is measured in terms of the computational cost and the memory space requirements. The performance of those metrics is assessed over fifteen binary and fifteen multiclass benchmark classification tasks, respectively. In addition, the behavior of those metrics against randomness is measured in terms of the distribution of their accuracy around the median. Results show that ordered aggregation is an efficient strategy to generate subensembles that improve both predictive performance as well as computational and memory complexities of the whole bagging ensemble. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85124474654",
+   "title": "Diversity-accuracy assessment of multiple classifier systems for the land cover classification of the Khumbu region in the Himalayas",
+   "authors": "Hanson, C.C. , Brabyn, L. , Gurung, S.B.",
+   "source": "Journal of Mountain Science , 19(2), pp. 365–387",
+   "year": "2022",
+   "cited": "4",
+   "abstract": "Hide abstract Land cover classification of mountainous environments continues to be a challenging remote sensing problem, owing to landscape complexities exhibited by the region. This study explored a multiple classifier system (MCS) approach to the classification of mountain land cover for the Khumbu region in the Himalayas using Sentinel-2 images and a cloud-based model framework. The relationship between classification accuracy and MCS diversity was investigated, and the effects of different diversification and combination methods on MCS classification performance were comparatively assessed for this environment. We present ten MCS models that implement a homogeneous ensemble approach, using the high performing Random Forest (RF) algorithm as the selected classifier. The base classifiers of each MCS model were developed using different combinations of three diversity techniques: (1) distinct training sets, (2) Mean Decrease Accuracy feature selection, and (3) ‘One-vs-All’ problem reduction. The base classifier predictions of each RF-MCS model were combined using: (1) majority vote, (2) weighted argmax, and (3) a meta RF classifier. All MCS models reported higher classification accuracies than the benchmark classifier (overall accuracy with 95% confidence interval: 87.33%±0.97%), with the highest performing model reporting an overall accuracy (±95% confidence interval) of 90.95%±0.84%. Our key findings include: (1) MCS is effective in mountainous environments prone to noise from landscape complexities, (2) problem reduction is indicated as a stronger method over feature selection in improving the diversity of the MCS, (3) although the MCS diversity and accuracy have a positive correlation, our results suggest this is a weak relationship for mountainous classifications, and (4) the selected diversity methods improve the discriminability of MCS against vegetation and forest classes in mountainous land cover classifications and exhibit a cumulative effect on MCS diversity for this context. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85129232645",
+   "title": "Diversity-Driven Multikernel Collaborative Representation Ensemble for Hyperspectral Image Classification",
+   "authors": "Su, H. , Hu, Y. , Lu, H. , Sun, W. , Du, Q.",
+   "source": "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing , 15, pp. 2861–2876",
+   "year": "2022",
+   "cited": "13",
+   "abstract": "Hide abstract Recently, kernel collaborative representation classification (KCRC) has shown its outstanding performance in dealing with the problem of linear inseparability in hyperspectral remote sensing image classification. Meanwhile, ensemble learning has attracted great attention in improving the performance of a single classifier. Aiming at the limitation of a single classifier, bagging algorithm based on KCRC(KCRC-bagging) is presented in this article. The KCRC-bagging method uses bootstrap to increase the diversity of base classifiers, thus improving the classification accuracy and generalization performance. In order to reduce the scale of ensemble, a diversity-driven multikernel collaborative representation classifier ensemble approach (DIV-KCRC) is proposed. DIV-KCRC verifies the effectiveness of the representation classifier with the pair of diversity measures, and classifiers with high accuracy and diversity are selected to improve the classification performance and efficiency of the ensemble system. Three real hyperspectral data sets were applied to prove the validity of the proposed method. The experimental results demonstrate that both KCRC-bagging and DIV-KCRC can yield better classification performance than their corresponding base classifiers. In particular, DIV-KCRC provides more reliable classification results than KCRC-bagging. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85163137994",
+   "title": "DNA: Domain Generalization with Diversified Neural Averaging",
+   "authors": "Chu, X. , Jin, Y. , Zhu, W. ,... Zhang, S. , Mei, H.",
+   "source": "Proceedings of Machine Learning Research , 162, pp. 4010–4034",
+   "year": "2022",
+   "cited": "36",
+   "abstract": "Hide abstract The inaccessibility of the target domain data causes domain generalization (DG) methods prone to forget target discriminative features, and challenges the pervasive theme in existing literature in pursuing a single classifier with an ideal joint risk. In contrast, this paper investigates model misspecification and attempts to bridge DG with classifier ensemble theoretically and methodologically. By introducing a pruned Jensen-Shannon (PJS) loss, we show that the target square-root risk w.r.t. the PJS loss of the ρ-ensemble (the averaged classifier weighted by a quasi-posterior ρ) is bounded by the averaged source square-root risk of the Gibbs classifiers. We derive a tighter bound by enforcing a positive principled diversity measure of the classifiers. We give a PAC-Bayes upper bound on the target square-root risk of the ρ-ensemble. Methodologically, we propose a diversified neural averaging (DNA) method for DG, which optimizes the proposed PAC-Bayes bound approximately. The DNA method samples Gibbs classifiers transversely and longitudinally by simultaneously considering the dropout variational family and optimization trajectory. The ρ-ensemble is approximated by averaging the longitudinal weights in a single run with dropout shut down, ensuring a fast ensemble with low computational overhead. Empirically, the proposed DNA method achieves the state-of-the-art classification performance on standard DG benchmark datasets. Related documents"
+  },
+  {
+   "eid": "85168975202",
+   "title": "Diversity measuring method of a convolutional neural network ensemble",
+   "authors": "Tang, L. , He, L. , He, L. , Qu, D.",
+   "source": "Caai Transactions on Intelligent Systems , 16(6), pp. 1030–1038",
+   "year": "2021",
+   "cited": "2",
+   "abstract": "Hide abstract Diversity among classifier models has been recognized as a significant performance index of a classifier ensemble. Currently, most diversity measuring methods are defined based on the 0/1 outputs (namely Oracle outputs) of the base model. The probability vector outputs of a convolutional neural network (CNN) still need to be converted into Oracle outputs for measurement, which fails to fully use the rich information contained in the CNN probability vector outputs. To solve this problem, a new diversity measuring method for probabilistic vector outputs based on CNNs is proposed. Several base models of CNN models with various structures are established and tested on the CIFAR-10 and CI FAR-100 datasets. Compared with double-fault measure, disagreement measure, and Q-Statistic, the proposed method can better reflect the differences between the models and provide better guidance for a selective ensemble of CNN models. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85110561060",
+   "title": "Impact of the learners diversity and combination method on the generation of heterogeneous classifier ensembles",
+   "authors": "Sesmero, M.P. , Iglesias, J.A. , Magán, E. , Ledezma, A. , Sanchis, A.",
+   "source": "Applied Soft Computing , 111, 107689",
+   "year": "2021",
+   "cited": "52",
+   "abstract": "Hide abstract Ensembles of classifiers is a proven approach in machine learning with a wide variety of research works. The main issue in ensembles of classifiers is not only the selection of the base classifiers, but also the combination of their outputs. According to the literature, it has been established that much is to be gained from combining classifiers if those classifiers are accurate and diverse. However, it is still an open issue how to define the relation between accuracy and diversity in order to define the best possible ensemble of classifiers. In this paper, we propose a novel approach to evaluate the impact of the diversity of the learners on the generation of heterogeneous ensembles. We present an exhaustive study of this approach using 27 different multiclass datasets and analysing their results in detail. In addition, to determine the performance of the different results, the presence of labelling noise is also considered. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85093855059",
+   "title": "Ensemble learning based on random super-reduct and resampling",
+   "authors": "Jiang, F. , Yu, X. , Zhao, H. , Gong, D. , Du, J.",
+   "source": "Artificial Intelligence Review , 54(4), pp. 3115–3140",
+   "year": "2021",
+   "cited": "15",
+   "abstract": "Hide abstract Ensemble learning has been widely used for improving the performance of base classifiers. Diversity among base classifiers is considered as a key issue in ensemble learning. Recently, to promote the diversity of base classifiers, ensemble methods through multi-modal perturbation have been proposed. These methods simultaneously use two or more perturbation techniques when generating base classifiers. In this paper, from the perspective of multi-modal perturbation, we propose an ensemble approach (called ‘E_RSRR’) based on random super-reduct and resampling. To generate a set of accurate and diverse base classifiers, E_RSRR adopts a new multi-modal perturbation strategy. This strategy combines two perturbation techniques together, that is, resampling and random super-reduct. First, it perturbs the sample space via the resampling technique; Second, it perturbs the feature space via the random super-reduct technique, which is a combination of RSS (random subspace selection) technique and ADEFS (approximate decision entropy-based feature selection) method in rough sets. Experimental results show that E_RSRR can provide competitive solutions for ensemble learning. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85107472902",
+   "title": "Optimising Diversity in Classifier Ensembles of Classification Trees",
+   "authors": "Ivaşcu, C. , Everson, R.M. , Fieldsend, J.E.",
+   "source": "Lecture Notes in Computer Science Including Subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics , 12694 LNCS, pp. 634–648",
+   "year": "2021",
+   "cited": "1",
+   "abstract": "Hide abstract Ensembles of predictors have been generally found to have better performance than single predictors. Although diversity is widely thought to be an important factor in building successful ensembles, there have been contradictory results in the literature regarding the influence of diversity on the generalisation error. Fundamental to this may be the way diversity itself is defined. We present two new diversity measures, based on the idea of ambiguity, obtained from the bias-variance decomposition by using the cross-entropy error or the hinge-loss. If random sampling is used to select patterns on which ensemble members are trained, we find that generalisation error is negatively correlated with diversity at high sampling rates; conversely generalisation error is positively correlated with diversity when the sampling rate is low and the diversity high. We use evolutionary optimisers to select the subsets of patterns for predictor training by maximising these diversity measures on training data. Evaluation of their generalisation performance on a range of classification datasets from the literature shows that the ensembles obtained by maximising the cross-entropy diversity measure generalise well, enhancing the performance of small ensembles. Contrary to expectation, we find that there is no correlation between whether a pattern is selected and its proximity to the decision boundary. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85118790936",
+   "title": "New diversity measures based on the coverage and similarity of the classification",
+   "authors": "Morales-Hernández, A. , Cabrera-Hernández, L. , Martínez-Jiménez, Y. , García-Lorenzo, M.M. , Casas-Cardoso, G.M.",
+   "source": "Computacion Y Sistemas , 25(3), pp. 567–600",
+   "year": "2021",
+   "cited": "0",
+   "abstract": "Hide abstract In supervised pattern classification, it often happens that a single individual classifier is not able to meet the requirements of the problem. This is the main reason that leads to the successful use of systems composed of several classifiers (classifier ensembles) looking to obtain better results than a single classifier. The selection of the classifiers to be used is difficult due to its great variety and to the presence of necessary conditions such as the diversity between them to obtain the best possible results. Specifically, the diversity among the classifiers continues being a crucial factor in these systems and the way of measuring it in an effective way is still an open field. There are different measures in literature that help to decide if a group of classifiers is diverse. Some methods explicitly use these measures to obtain more effective classifier ensembles. The obtained results show it is possible to find combinations of classifiers that assure a superior accuracy compare to the best individual accuracy. In this paper, we propose two new diversity measures based on the coverage and similarity of the classification. Our objective is to measure the diversity in a different way in search of better results. We show several experiments where the behavior of the proposed diversity measures is analyzed. Also, we present the correlation that exists among the propose measures and other measures, including the classifier ensemble accuracy. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85125166805",
+   "title": "Ensemble Training with Classifiers Selection Mechanism",
+   "authors": "Sefat, M.S. , Shahjahan, M. , Rahman, M. , Valles, D.",
+   "source": "2021 IEEE 12th Annual Ubiquitous Computing Electronics and Mobile Communication Conference Uemcon 2021, pp. 131–136",
+   "year": "2021",
+   "cited": "2",
+   "abstract": "Hide abstract The target of classifiers ranking and selection in the ensemble learning method is to find a small size of learners to improve the performance while saving the computational resources. It is challenging to select classifiers from an ensemble since ensemble learning produces indistinguishable classifiers. We present a novel technique for ranking and selecting classifiers in an ensemble of classifiers using the accuracy margin and diversity measurement (AMDM) method to resolve this issue. Accuracy margin, computed from classifiers' output, plays a crucial role in ranking and selecting classifiers while other conventional measures fail to way out. Experimental results on three different benchmarks (biomedical datasets such as colon cancer, leukemia, and lymphoma) show that AMDM performs better or equal to that of other single and ensemble classifier based algorithms. Opens in a new tab. View at Publisher Opens in a new tab. Related documents"
+  },
+  {
+   "eid": "85101194311",
+   "title": "Adversarial robustness for face recognition: how to introduce ensemble diversity among feature extractors?",
+   "authors": "Amada, T. , Kakizaki, K. , Araki, T. ,... Keshet, J. , Furukawa, J.",
+   "source": "Ceur Workshop Proceedings , 2808",
+   "year": "2021",
+   "cited": "0",
+   "abstract": "Hide abstract An adversarial example (AX) is a maliciously crafted input that humans can recognize correctly, while machine learning models cannot. This paper considers how to turn deep learning-based face recognition systems to be robust against AXs. A large number of studies have proposed methods for protecting machine learning-classifiers from AXs. One of the most successful methods among them is to prepare an ensemble of classifiers and promote diversity among them. Face recognition typically relies on feature extractors instead of classifiers. We found that directly applying this successful method to feature extractors leads to failure. We show that this failure is due to a lack of true diversity among the feature extractors and fix it by synchronizing the direction of features among models. Our method significantly enhances the robustness against AXs under the white box and black box settings while slightly increasing the accuracy. We also compared our method with adversarial training. Related documents"
+  }
+ ]
+}

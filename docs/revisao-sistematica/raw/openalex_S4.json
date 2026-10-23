@@ -1,0 +1,142 @@
+{
+ "source": "OpenAlex",
+ "query": "(\"pool generation\" OR \"classifier pool\" OR \"pool of classifiers\") AND (\"diversity\" OR \"data complexity\")",
+ "filters": "publication_year:2021-2026,language:en|pt|zh,type:!preprint",
+ "total": 11,
+ "got": 11,
+ "retrieved": "2026-10-23T03:23:09.697048+00:00",
+ "rows": [
+  {
+   "id": "https://openalex.org/W3097916346",
+   "doi": "10.1109/icpr48806.2021.9412137",
+   "title": "Classifier Pool Generation based on a Two-level Diversity Approach",
+   "year": 2021,
+   "type": "conference-paper",
+   "language": "en",
+   "source": "Proceedings - International Conference on Pattern Recognition/Proceedings/International Conference on Pattern Recognition",
+   "authors": "Marcos Monteiro; Alceu S. Britto; Jean Paul Barddal; Luiz S. Oliveira; Robert Sabourin",
+   "cited": 2,
+   "abstract": "This paper describes a classifier pool generation method guided by the diversity estimated on the data complexity and classifier decisions. First, the behavior of complexity measures is assessed by considering several subsamples of the dataset. The complexity measures with high variability across the subsamples are selected for posterior pool adaptation, where an evolutionary algorithm optimizes diversity in both complexity and decision spaces. A robust experimental protocol with 28 datasets and 20 replications is used to evaluate the proposed method. Results show significant accuracy improvements in 69.4% of the experiments when Dynamic Classifier Selection and Dynamic Ensemble Selection methods are applied."
+  },
+  {
+   "id": "https://openalex.org/W4294723731",
+   "doi": "10.1016/j.inffus.2022.09.001",
+   "title": "Exploring diversity in data complexity and classifier decision spaces for pool generation",
+   "year": 2022,
+   "type": "article",
+   "language": "en",
+   "source": "Information Fusion",
+   "authors": "Marcos Monteiro; Alceu S. Britto; Jean Paul Barddal; Luiz S. Oliveira; Robert Sabourin",
+   "cited": 11,
+   "abstract": ""
+  },
+  {
+   "id": "https://openalex.org/W7214740522",
+   "doi": "10.1007/978-3-032-39882-6_26",
+   "title": "Learning Transferable Instance Hardness: A Meta-learning Approach to Predict Model Difficulty Across Datasets",
+   "year": 2026,
+   "type": "conference-paper",
+   "language": "en",
+   "source": "Lecture notes in computer science",
+   "authors": "Patricia S. M. Ueda; Adriano Rívolli; Carlos Soares; Ana Carolina Lorena",
+   "cited": 0,
+   "abstract": ""
+  },
+  {
+   "id": "https://openalex.org/W4323041296",
+   "doi": "10.1007/s00530-023-01062-5",
+   "title": "CSLSEP: an ensemble pruning algorithm based on clustering soft label and sorting for facial expression recognition",
+   "year": 2023,
+   "type": "article",
+   "language": "en",
+   "source": "Multimedia Systems",
+   "authors": "Shisong Huang; Danyang Li; Zhuhong Zhang; Yating Wu; Yumei Tang; Xing Chen; Yiqing Wu",
+   "cited": 11,
+   "abstract": ""
+  },
+  {
+   "id": "https://openalex.org/W7213962925",
+   "doi": "",
+   "title": "Research on bearing fault diagnosis method based on ensemble stacked auto encoder",
+   "year": 2026,
+   "type": "article",
+   "language": "zh",
+   "source": "DOAJ (DOAJ: Directory of Open Access Journals)",
+   "authors": "WANG Chengyun; DING Tianyi; ZHAO Yuanxi; Cheng Sun; ZHANG Jiajia",
+   "cited": 0,
+   "abstract": "ObjectiveIn bearing fault diagnosis based on ensemble deep learning, the number of classifiers is difficult to determine, and traditional ensemble pruning methods are limited by overemphasizing classification accuracy while ignoring classifier diversity and the value of marginal samples. A fault diagnosis method based on ensemble stacked auto encoders was proposed to provide technical reference for accurate multi-fault type identification of rolling bearings.MethodsFirstly, multiple activation functions, stacked autoencoder variant models and Bootstrap-sampled training subsets were combined to construct a base classifier pool, which provided sufficient candidates for ensemble pruning. Secondly, a U-M diversity metric index was constructed based on the sample margin mechanism to quantify the difference among classifiers and the classification contribution of marginal samples, so as to compensate for the application limitations of traditional diversity indexes. Then, a sorting ensemble pruning procedure based on the U-M index was proposed, and parameter optimization of the index was implemented via the particle swarm optimization algorithm to select the classifier subset with optimal diversity. Finally, the pruned classifiers were integrated through the majority voting method, and the final fault diagnosis results were output.ResultsThe results show that verification tests are conducted with the bearing dataset of Case Western Reserve University. The average classification accuracy of the proposed method reaches 99.1%, which is up to 2.4 percentage points higher than that of similar ensemble methods, with a standard deviation of only 0.1% across multiple tests. Under Gaussian noise environments of different intensities, the classification accuracy of this method is higher than that of comparison methods, presenting better anti-interference ability and diagnostic stability."
+  },
+  {
+   "id": "https://openalex.org/W4361799235",
+   "doi": "10.1109/access.2023.3262836",
+   "title": "An Enhanced Dynamic Ensemble Selection Classifier for Imbalance Classification With Application to China Corporation Bond Default Prediction",
+   "year": 2023,
+   "type": "article",
+   "language": "en",
+   "source": "IEEE Access",
+   "authors": "Yu Wang; Junbin Zhang; Wei Yan",
+   "cited": 10,
+   "abstract": "China corporation bond default prediction is important and can be formulated as an imbalance classification problem solved by static ensemble classifiers. However, dynamic ensemble selection (DES) classifiers have not been applied to this typical problem in the context of business research. DES classifiers are capable of selecting an ensemble classifier for each test sample, leading to better classification performance than static ensemble classifiers. Most existing DES classifiers can not address imbalance classification optimally and only use single criteria of competent for classifier selection, resulting in sub-optimal classification performance. In this paper, we propose an enhanced DES classifier, named META-DES-Diversity, that inherits strengths of data sampling, meta-learning, criteria of diversity, and dynamic weighting fusion scheme to alleviate such limitations. Specifically, the synthetic minority over-sampling technique is initially used to balance the training set before generating a candidate classifier pool. To select an ensemble classifier with a highly competent, the meta-learning framework META-DES is utilized to consider multiple criteria of competence. In complement with the meta-leaning framework, a two-phase selection strategy is utilized to perform competence and diverse ensemble classifier selection. Note that a competence-driven decision fusion scheme is employed to effectively fuse classification results from selected ensemble classifiers. Experiments on 14 two-class imbalanced data sets from the KEEL repository and one self-collected China corporation bond data set show the effectiveness and superiority of the proposed enhanced DES classifier."
+  },
+  {
+   "id": "https://openalex.org/W4391294187",
+   "doi": "10.1007/s00530-023-01227-2",
+   "title": "An ensemble pruning method considering classifiers’ interaction based on information theory for facial expression recognition",
+   "year": 2024,
+   "type": "article",
+   "language": "en",
+   "source": "Multimedia Systems",
+   "authors": "Yiqing Wu; Danyang Li; Xing Chen; Yumei Tang; Shisong Huang",
+   "cited": 5,
+   "abstract": ""
+  },
+  {
+   "id": "https://openalex.org/W3127682585",
+   "doi": "10.1016/j.asoc.2021.107166",
+   "title": "A Dynamic Ensemble Learning Algorithm based on K-means for ICU mortality prediction",
+   "year": 2021,
+   "type": "article",
+   "language": "en",
+   "source": "Applied Soft Computing",
+   "authors": "Chonghui Guo; Mucan Liu; Menglin Lu",
+   "cited": 36,
+   "abstract": ""
+  },
+  {
+   "id": "https://openalex.org/W3209280724",
+   "doi": "10.1007/978-3-030-80706-1_4",
+   "title": "Statistical Analysis of Forest Soil Properties",
+   "year": 2021,
+   "type": "book-chapter",
+   "language": "en",
+   "source": "Springer eBooks",
+   "authors": "Gautam Kumar Das",
+   "cited": 1,
+   "abstract": ""
+  },
+  {
+   "id": "https://openalex.org/W7156726975",
+   "doi": "10.1051/bioconf/202623302012/pdf",
+   "title": "Culture-dependent microbial profiling of Indian smokeless tobacco products",
+   "year": 2026,
+   "type": "article",
+   "language": "en",
+   "source": "Springer Link (Chiba Institute of Technology)",
+   "authors": "Nivedita Mishra",
+   "cited": 0,
+   "abstract": "In India, wide range of SLT products are available using variable production processes and additives. Present study characterize cultivable microbial diversity among eighteen commercially available Indian SLT products. Through conventional culture-based approaches 1776 cultivable aerobic, anaerobic, fungal, and nitrate/nitrite-reducing colonies were reported, out of which thirty-five bacterial isolates were further characterized as nitrate-reducing using biochemical identification assays. Antibiotic susceptibility testing was done to evaluate any potential health risks associated. Pan Masala samples exhibited the highest microbial diversity, followed by chewing tobacco leaves, whereas Khaini predominantly supported anaerobic populations. Zarda samples demonstrated comparatively low microbial loads, potentially due to higher chemical additives. The heterogeneous product group displayed variable fungal and nitrate-reducing communities but lacked detectable anaerobic populations. Among the nitrate-reducing isolates, none demonstrated pathogenic characteristics or multidrug resistance. Five strains exhibited enhanced nitrite-reduction capacity, indicating potential to reduce nitrite pool generation and hence possibly impacting the nitrosation processes linked to TSNA formation. Biochemical characterization suggested all nitrite-reducing isolates belongs to Enterobactereaceae group though, further characterization is required. Present study is first to systematically demonstrate the presence of metabolically active Nitrate/Nitrite-reducers in Indian SLT products. Collectively, the findings highlight pronounced microbiological variability across Indian SLT products and confirmed presence of nitrate and nitrite-reducing microbes. This study provides foundational evidence linking variable product characteristics with microbial ecology in SLTs."
+  },
+  {
+   "id": "https://openalex.org/W4404295856",
+   "doi": "10.3390/math12223538",
+   "title": "Modeling and Solving the Knapsack Problem with a Multi-Objective Equilibrium Optimizer Algorithm Based on Weighted Congestion Distance",
+   "year": 2024,
+   "type": "article",
+   "language": "en",
+   "source": "Mathematics",
+   "authors": "Ziqian Wang; Huang Xin; Yan Zhang; Danju Lv; Wei Li; Zhicheng Zhu; Jian-E Dong",
+   "cited": 5,
+   "abstract": "The knapsack problem is a typical bi-objective combinatorial optimization issue, wherein maximizing the value of the packed items is achieved concurrently with minimizing the weight of the load. Due to the conflicting objectives of the knapsack problem and the typical discrete property of the items involved, swarm intelligence algorithms are commonly employed. The diversity of optimal combinations in the knapsack problem has become a focal point, which involves finding multiple packing solutions at the same value and weight. For this purpose, this paper proposes a Multi-Objective Equilibrium Optimizer Algorithm based on Weighted Congestion Distance (MOEO_WCD). The algorithm employs a non-dominated sorting method to find a set of Pareto front solutions rather than a single optimal solution, offering multiple decision-making options based on the varying needs of the decision-makers. Additionally, MOEO_WCD improves the balance pool generation mechanism and incorporates a weighted congestion incentive, emphasizing the diversity of packing combination solutions under the objectives of value and weight to explore more Pareto front solutions. Considering the discrete characteristics of the knapsack combination optimization problem, our algorithm also incorporates appropriate discrete constraint handling. This paper designs multiple sets of multi-objective knapsack combinatorial optimization problems based on the number of knapsacks, the number of items, and the weights and values of the items. This article compares five algorithms suitable for solving multi-objective problems: MODE, MO-PSO-MM, MO-Ring-PSO-SCD, NSGA-II, and DN-NSGAII. In order to evaluate the performance of the algorithm, this paper proposes a new solution set coverage index for evaluation. We also used the hypervolume indicator to evaluate the diversity of algorithms. The results show that our MOEO-WCD algorithm achieves optimal coverage of the reference composite Pareto front in the decision space of four knapsack problems. The experimental results indicate that our MOEO_WCD algorithm achieves the optimal coverage of the reference composite Pareto front in the decision space for four sets of knapsack problems. Although our MOEO_WCD algorithm covers less of the composite front in the objective space compared with the MODE algorithm for knapsack problem 1, its coverage of the integrated reference solutions in the decision space is greater than that of the MODE algorithm. The experiments demonstrate the superior performance of the MOEO_WCD algorithm on bi-objective knapsack combinatorial optimization problem instances, which provides an important solution to the search for diversity in multi-objective combinatorial optimization solutions."
+  }
+ ]
+}

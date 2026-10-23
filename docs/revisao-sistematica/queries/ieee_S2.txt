@@ -1,0 +1,1 @@
+("ensemble diversity" OR "classifier diversity" OR "diversity measure*" OR "double fault" OR "disagreement measure*") AND ("classifier ensemble*" OR "multiple classifier system*" OR "ensemble of classifiers" OR "pool of classifiers") AND ("accuracy" OR "performance")

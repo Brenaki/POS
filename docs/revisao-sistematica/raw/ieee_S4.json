@@ -1,0 +1,80 @@
+{
+ "source": "IEEE Xplore",
+ "query": "(\"pool generation\" OR \"classifier pool\" OR \"pool of classifiers\") AND (\"diversity\" OR \"data complexity\")",
+ "filters": "2021-2026, All Metadata",
+ "total": 7,
+ "got": 7,
+ "retrieved": "2026-10-23T03:21:53.345Z",
+ "rows": [
+  {
+   "id": "9412137",
+   "title": "Classifier Pool Generation based on a Two-level Diversity Approach",
+   "doi": "10.1109/ICPR48806.2021.9412137",
+   "authors": "Marcos Monteiro; Alceu S. Britto; Jean P. Barddal; Luiz S. Oliveira; Robert Sabourin",
+   "source": "2020 25th International Conference on Pattern Recognition (ICPR)",
+   "year": "2021",
+   "type": "IEEE Conferences",
+   "abstract": "This paper describes a classifier pool generation method guided by the diversity estimated on the data complexity and classifier decisions. First, the behavior of complexity measures is assessed by considering several subsamples of the dataset. The complexity measures with high variability across the subsamples are selected for posterior pool adaptation, where an evolutionary algorithm optimizes d..."
+  },
+  {
+   "id": "9204459",
+   "title": "A Novel Method for Creating an Optimized Ensemble Classifier by Introducing Cluster Size Reduction and Diversity",
+   "doi": "10.1109/TKDE.2020.3025173",
+   "authors": "Zohaib Jan; Juan Carlos Munos; Asim Ali",
+   "source": "IEEE Transactions on Knowledge and Data Engineering",
+   "year": "2022",
+   "type": "IEEE Journals",
+   "abstract": "In this paper, a new method is proposed for creating an optimized ensemble classifier. The proposed method mitigates the issue of class imbalances by partitioning the input data into its various data classes. The partitions are then clustered incrementally to generate a pool of class pure data clusters. The generated data clusters are then balanced by adding samples from all classes which are clos..."
+  },
+  {
+   "id": "10135082",
+   "title": "Anomaly Detection Using Ensemble Classification and Evidence Theory",
+   "doi": "10.1109/ACCESS.2023.3280048",
+   "authors": "Fernando Arévalo; M. Tahasanul Ibrahim; M. P. Christian Alison; Andreas Schwung",
+   "source": "IEEE Access",
+   "year": "2023",
+   "type": "IEEE Journals",
+   "abstract": "Multi-class ensemble classification remains a popular focus of investigation within the research community. The popularization of cloud services has sped up their adoption due to the ease of deploying large-scale machine-learning models. It has also drawn the attention of the industrial sector because of its ability to identify common problems in production. However, there are challenges to confor..."
+  },
+  {
+   "id": "10651199",
+   "title": "MLRS-PDS: A Meta-learning recommendation of dynamic ensemble selection pipelines",
+   "doi": "10.1109/IJCNN60899.2024.10651199",
+   "authors": "Hesam Jalalian; Rafael M. O. Cruz",
+   "source": "2024 International Joint Conference on Neural Networks (IJCNN)",
+   "year": "2024",
+   "type": "IEEE Conferences",
+   "abstract": "Dynamic Selection (DS), where base classifiers are chosen from a classifier’s pool for each new instance at test time, has shown to be highly effective in pattern recognition. However, instability and redundancy in the classifier pools can impede computational efficiency and accuracy in dynamic ensemble selection. This paper introduces a meta-learning recommendation system (MLRS) to recommend the ..."
+  },
+  {
+   "id": "11343304",
+   "title": "HSFN: Hierarchical Selection for Fake News Detection building Heterogeneous Ensemble",
+   "doi": "10.1109/SMC58881.2025.11343304",
+   "authors": "Sara B. Coutinho; Rafael M. O. Cruz; Francimaria R. S. Nascimento; George D. C. Cavalcanti",
+   "source": "2025 IEEE International Conference on Systems, Man, and Cybernetics (SMC)",
+   "year": "2025",
+   "type": "IEEE Conferences",
+   "abstract": "Psychological biases, such as confirmation bias, make individuals particularly vulnerable to believing and spreading fake news on social media, leading to significant consequences in domains such as public health and politics. Machine learning–based fact-checking systems have been widely studied to mitigate this problem. Among them, ensemble methods are particularly effective in combining multiple..."
+  },
+  {
+   "id": "8894520",
+   "title": "A Hybrid Ensemble Algorithm Combining AdaBoost and Genetic Algorithm for Cancer Classification with Gene Expression Data",
+   "doi": "10.1109/TCBB.2019.2952102",
+   "authors": "Huijuan Lu; Huiyun Gao; Minchao Ye; Xiuhui Wang",
+   "source": "IEEE/ACM Transactions on Computational Biology and Bioinformatics",
+   "year": "2021",
+   "type": "IEEE Journals",
+   "abstract": "The diversity of base classifiers and integration of multiple classifiers are two key issues in the field of ensemble learning. This paper puts forward a hybrid ensemble algorithm combining AdaBoost and genetic algorithm(GA) for cancer classification with gene expression data. The decision group is designed to increase the diversity of base classifier pool, and the GA is used to assign weight to e..."
+  },
+  {
+   "id": "10086501",
+   "title": "An Enhanced Dynamic Ensemble Selection Classifier for Imbalance Classification With Application to China Corporation Bond Default Prediction",
+   "doi": "10.1109/ACCESS.2023.3262836",
+   "authors": "Yu Wang; Junbin Zhang; Wei Yan",
+   "source": "IEEE Access",
+   "year": "2023",
+   "type": "IEEE Journals",
+   "abstract": "China corporation bond default prediction is important and can be formulated as an imbalance classification problem solved by static ensemble classifiers. However, dynamic ensemble selection (DES) classifiers have not been applied to this typical problem in the context of business research. DES classifiers are capable of selecting an ensemble classifier for each test sample, leading to better clas..."
+  }
+ ]
+}

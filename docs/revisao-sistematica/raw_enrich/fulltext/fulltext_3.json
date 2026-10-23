@@ -1,0 +1,371 @@
+{
+ "R0152": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S0957417424017275?via%3Dihub",
+  "chars": 82844,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 5,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0153": {
+  "status": "ok",
+  "final_url": "https://journals-sagepub-com.ez82.periodicos.capes.gov.br/doi/10.1177/1088467X261495709",
+  "chars": 13332,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": true,
+  "snippets": []
+ },
+ "R0156": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S0957417426035372?via%3Dihub",
+  "chars": 105219,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 2,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0159": {
+  "status": "no_locator"
+ },
+ "R0160": {
+  "status": "no_locator"
+ },
+ "R0161": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S0020025521003650?via%3Dihub",
+  "chars": 89024,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0169": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/chapter/10.1007/978-3-030-94066-9_7",
+  "chars": 10049,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0171": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/chapter/10.1007/978-3-030-87897-9_20",
+  "chars": 10201,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0172": {
+  "status": "ok",
+  "final_url": "http://www.aimspress.com/article/doi/10.3934/era.2025291",
+  "chars": 6633,
+  "has_references": false,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0174": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/article/10.1007/s10115-022-01791-5",
+  "chars": 56312,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 5,
+  "n_double_fault": 0,
+  "n_kappa": 1,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0179": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/article/10.1007/s00521-024-10237-8",
+  "chars": 96715,
+  "has_references": true,
+  "n_oracle": 7,
+  "n_upper_bound": 0,
+  "n_diversity": 7,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "s decisions such as the Kullback–Leibler divergence, DES-KL [39], and the randomized reference classifier DES-PRC [40]; and classifier behavior analysis using methods such as KNOP [41] and the KNORA family [37] based on Oracle information. Brun et al. [42] discussed the role of data complexity measures, such as Fisher’s Discriminant Ratio [43], in identifying the most competent classifiers. Additionally, some criteria assess the compete",
+   "potentially improve classifier selection and enhance the effectiveness of the EoC dynamically created for a specific test sample under analysis, enhancing the generalization performance of the SGP.DES better reflects to Oracle performance in terms of accuracy. 2.2 Prototype selection applied to dynamic selection Prototype selection (PS) in machine learning is an important technique for reducing the training set size while aiming to ma",
+   "ion to estimate the competence of the base classifier, such as local accuracy, ranking, and classifier behavior. Additionally, even though SGP.DES does not incorporate a feature selection implementation akin to META.DES.Oracle [22] through the BSPO algorithm, uses of multiple meta-features, as shown in Table 1, along with various operational possibilities for the meta-classifier using different embedded classification algorithms, enable",
+   "set more effectively for specific classification challenges. Additionally, implementing a feature selection strategy to identify the most important meta-features for a given classification scenario, akin to the Meta-DES.Oracle approach [22], would be advantageous. Furthermore, developing an automatic selector mode for the meta-classifier that determines the optimal predictive algorithm during the meta-training phase could streamline the",
+   "tween datasets. Different problems are associated with varying degrees of data complexity [43, 77] and may require a distinct set of meta-features to obtain a meta-classifier that exhibits behavior closer to that of the Oracle for estimating the competence of the base classifiers. Hence, the results corroborate the idea that the choice of the best set of meta-features are problem-dependent, as observed in the article on the Meta-DES alg",
+   "Khan I, Zhang X, Rehman M, Ali R (2020) A literature survey and empirical study of meta-learning for classifier selection. IEEE Access 8:10262–10281 Google Scholar Cruz RM, Sabourin R, Cavalcanti GD (2017) Meta-des. oracle: meta-learning and feature selection for dynamic ensemble selection. Inf Fusion 38, 84–103 Cruz RM, Sabourin R, Cavalcanti GD (2014) On meta-learning for dynamic ensemble selection. In: 2014 22nd international co"
+  ]
+ },
+ "R0180": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S0950705124004453?via%3Dihub",
+  "chars": 97567,
+  "has_references": true,
+  "n_oracle": 2,
+  "n_upper_bound": 0,
+  "n_diversity": 2,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "Brief description of eight selected DS methods. DS Methods Ways of determining local region Selection criteria Categories Sources OLA KNN Accuracy DCS [25] LCA KNN Accuracy DCS [25] MCB KNN Behavior DCS [26] KNORAE KNN Oracle DES [40] KNORAU KNN Oracle DES [40] DESP KNN Probability DES [41] DESRRC KNN Probability DES [42] METADES KNN Meta-learning DES [19] To fully capture the relationship between the characteristics of the local regio"
+  ]
+ },
+ "R0189": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/chapter/10.1007/978-3-031-42795-4_6",
+  "chars": 13217,
+  "has_references": true,
+  "n_oracle": 2,
+  "n_upper_bound": 0,
+  "n_diversity": 1,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "169–186. Springer, Cham (2017). https://doi-org.ez82.periodicos.capes.gov.br/10.1007/978-3-319-71249-9_11 Chapter Google Scholar Oliveira, D.V., Cavalcanti, G.D., Porpino, T.N., Cruz, R.M., Sabourin, R.: K-nearest oracles borderline dynamic classifier ensemble selection. In: 2018 International Joint Conference on Neural Networks (IJCNN), pp. 1–8. IEEE (2018) Google Scholar Pereira, M., Britto, A., Oliveira, L., Sabourin, R.: D"
+  ]
+ },
+ "R0190": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/article/10.1007/s10489-026-07129-w",
+  "chars": 95644,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 6,
+  "n_double_fault": 0,
+  "n_kappa": 21,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0191": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S1566253525003458?via%3Dihub",
+  "chars": 135160,
+  "has_references": true,
+  "n_oracle": 1,
+  "n_upper_bound": 0,
+  "n_diversity": 21,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "fier system using graph neural network for high dimensional overlapped data Inf. Fusion, 103 (2024), Article 102145 View PDF View articleView in ScopusGoogle Scholar [35] R.M. Cruz, R. Sabourin, G.D. Cavalcanti Meta-des.oracle: Meta-learning and feature selection for dynamic ensemble selection Inf. Fusion, 38 (2017), pp. 84-103 View PDF View articleView in ScopusGoogle Scholar [36] J. Gama, P. Medas, G. Castillo, P. Rodrigues Learning w"
+  ]
+ },
+ "R0193": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/chapter/10.1007/978-3-032-31654-7_11",
+  "chars": 11567,
+  "has_references": true,
+  "n_oracle": 1,
+  "n_upper_bound": 0,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "rch trees used for associative searching. Commun. ACM 18(9), 509–517 (1975). https://doi-org.ez82.periodicos.capes.gov.br/10.1145/361002.361007 Kuncheva, L.I., Rodriguez, J.J.: Classifier ensembles with a random linear oracle. IEEE Trans. Knowl. Data Eng. 19(4), 500–508 (2007). https://doi-org.ez82.periodicos.capes.gov.br/10.1109/TKDE.2007.1016 Article Google Scholar Brzezinski, D., Stefanowski, J.: Ensemble classifiers for imbal"
+  ]
+ },
+ "R0200": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/chapter/10.1007/978-3-030-88081-1_27",
+  "chars": 10737,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0203": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S1877050921018603?via%3Dihub",
+  "chars": 10201,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0205": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S0020025524004687?via%3Dihub",
+  "chars": 58177,
+  "has_references": true,
+  "n_oracle": 1,
+  "n_upper_bound": 0,
+  "n_diversity": 3,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "sifiers using measures of competence and diversity of base classifiers Neurocomputing, 125 (1) (2014), pp. 29-35 View PDF View articleView in ScopusGoogle Scholar [25] R.MO. Cruz, R. Sabourin, G.DC. Cavalcanti META-DES. Oracle: Meta-learning and feature selection for dynamic ensemble selection Inf. Fusion, 38 (1) (2017), pp. 84-103 View PDF View articleView in ScopusGoogle Scholar [26] J.L. Lobo, et al. CURIE: a cellular automaton for c"
+  ]
+ },
+ "R0207": {
+  "status": "ok",
+  "final_url": "https://dl-acm-org.ez82.periodicos.capes.gov.br/doi/10.1145/3583780.3614780",
+  "chars": 18505,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 1,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0211": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/article/10.1007/s10044-026-01645-8",
+  "chars": 70335,
+  "has_references": true,
+  "n_oracle": 3,
+  "n_upper_bound": 0,
+  "n_diversity": 6,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "ch means that they have a local accuracy that is better than that of the random classifier: $$\\begin{aligned} \\delta _{i, j}=\\hat{P}\\left( c_{i} \\mid \\theta _{j}\\right) -\\frac{1}{L}. \\end{aligned}$$ (2) 2.2.2 K-nearest oracles union (KNORA-U) KNORA-Union technique [38] selects every classifier that is able to accurately detect at least one sample from the competence region \\(\\theta _{j}.\\) If a base classifier \\(c_i\\) correctly classi",
+   "cquired by the meta-classifier \\(\\lambda .\\) Four meta-classifiers are evaluated in [37] to analyze their impact. Among them, a Naive Bayes classifier was the best according to winning in many datasets. 2.2.6 K-nearest oracles eliminate (KNORA-E) KNORA-Eliminate technique [38] selects the classifiers that correctly identify every sample that belongs to the competence region \\(\\theta _{j}.\\) In other words, every classifier that obtain"
+  ]
+ },
+ "R0212": {
+  "status": "ok",
+  "final_url": "https://onlinelibrary-wiley-com.ez82.periodicos.capes.gov.br/doi/10.1155/2021/6669706",
+  "chars": 43993,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 38,
+  "n_double_fault": 0,
+  "n_kappa": 21,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0214": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S003132032100248X?via%3Dihub",
+  "chars": 77100,
+  "has_references": true,
+  "n_oracle": 3,
+  "n_upper_bound": 0,
+  "n_diversity": 3,
+  "n_double_fault": 0,
+  "n_kappa": 6,
+  "paywall": false,
+  "snippets": [
+   "mance for every test instance [11], [12]. Typically, the competence of a base learner is estimated based on a local region of the feature space where the test instance is located [13], [14]. For example, both 𝐾-Nearest Oracles Eliminate (KNORA-E) [20] and 𝐾-Nearest Oracles Union (KNORA-U) [20] use 𝐾-nearest neighbours (KNN) to find the neighborhood of the test instance that represents the local region of competence and then they sele",
+   "unsupervised clustering with adaptive neighbors Wang J., …, Li X. Pattern Recognition • Volume 125 • 2022 • Article 108517 Show abstract Customer purchase prediction in electronic markets from clickstream data using the Oracle meta-classifier Ehsani F., Hosseini M. Operational Research • Volume 24 • 2024 • Article 11 View all citing articles on Scopus Metrics Citations Citation Indexes 20 Captures Mendeley Readers 9 View details © 2021 "
+  ]
+ },
+ "R0221": {
+  "status": "ok",
+  "final_url": "https://onlinelibrary-wiley-com.ez82.periodicos.capes.gov.br/doi/10.1002/for.70042",
+  "chars": 58243,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0228": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/article/10.1007/s12530-026-09816-y",
+  "chars": 55615,
+  "has_references": true,
+  "n_oracle": 1,
+  "n_upper_bound": 0,
+  "n_diversity": 2,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": [
+   "receded. The most recent data block is selected for validation, and the subregion corresponds to a query instance's closest neighbors in a validation dataset. A dynamic ensemble selection based on the K-Nearest Neighbor Oracle algorithm (Cruz et al. 2018) is used to predict the label of the query instance. To classify the given pattern in the test set, KNORA merely positions its K neighbors that are nearest to it from the validation set"
+  ]
+ },
+ "R0230": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/chapter/10.1007/978-3-030-81523-3_1",
+  "chars": 11056,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0236": {
+  "status": "ok",
+  "final_url": "https://link-springer-com.ez82.periodicos.capes.gov.br/chapter/10.1007/978-3-032-18480-1_67",
+  "chars": 10017,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 0,
+  "n_double_fault": 0,
+  "n_kappa": 0,
+  "paywall": false,
+  "snippets": []
+ },
+ "R0244": {
+  "status": "ok",
+  "final_url": "https://www-sciencedirect-com.ez82.periodicos.capes.gov.br/science/article/pii/S0925231222000984?via%3Dihub",
+  "chars": 93944,
+  "has_references": true,
+  "n_oracle": 0,
+  "n_upper_bound": 0,
+  "n_diversity": 13,
+  "n_double_fault": 0,
+  "n_kappa": 2,
+  "paywall": false,
+  "snippets": []
+ }
+}
