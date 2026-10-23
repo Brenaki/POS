@@ -7,6 +7,8 @@ comparison target. Each profile is a frozen dict of protocol parameters;
 * `pos-oracle-v2` — POS main experiment, 10-fold CV, Oracle_N.
 * `monteiro-2023-dt-compatible-v1` — Decision-Tree slice of Monteiro 2023,
   20× holdout 50/25/25, for comparison with the published tables.
+* `monteiro-2023-dt-compatible-v2` — v1 with the ECoL 0.3.0 complexity
+  measures (`complexity_backend`, ADR 0024).
 
 The profile dict is the single source of truth; nothing in the recorder
 hardcodes protocol numbers. A config fingerprint lets resume refuse to
@@ -89,10 +91,21 @@ MONTIERO_2023_DT: dict[str, Any] = {
     **PGDCS_CORE,
 }
 
+# v1 with T1/N1/LSC/F4 computed as ECoL 0.3.0 does (ADR 0024). v1 keeps the
+# fast definitions, and its fingerprint, so the published run stays reproducible.
+MONTEIRO_2023_DT_ECOL: dict[str, Any] = {
+    **MONTIERO_2023_DT,
+    "profile": "monteiro-2023-dt-compatible-v2",
+    "complexity_backend": "ecol-0.3.0",
+}
+
 _PROFILES = {
     "pos-oracle-v2": POS_ORACLE_V2,
     "monteiro-2023-dt-compatible-v1": MONTIERO_2023_DT,
+    "monteiro-2023-dt-compatible-v2": MONTEIRO_2023_DT_ECOL,
 }
+
+MONTEIRO_PROFILES = ("monteiro-2023-dt-compatible-v1", "monteiro-2023-dt-compatible-v2")
 
 PROFILE_NAMES = tuple(_PROFILES.keys())
 
@@ -104,15 +117,17 @@ def profile_for(name: str) -> dict[str, Any]:
     return copy.deepcopy(_PROFILES[name])
 
 
+_MONTEIRO_SMOKE = {
+    "n_replications": 3, "nr_generation": 3, "M": 12, "nr_individual": 12,
+    "nr_pop": 12, "nr_child": 12,
+}
+
 _SMOKE_OVERRIDES = {
     "pos-oracle-v2": {
         "n_folds": 3, "nr_generation": 3, "M": 12, "nr_individual": 12,
         "nr_pop": 12, "nr_child": 12,
     },
-    "monteiro-2023-dt-compatible-v1": {
-        "n_replications": 3, "nr_generation": 3, "M": 12, "nr_individual": 12,
-        "nr_pop": 12, "nr_child": 12,
-    },
+    **dict.fromkeys(MONTEIRO_PROFILES, _MONTEIRO_SMOKE),
 }
 
 

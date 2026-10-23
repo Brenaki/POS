@@ -23,8 +23,9 @@ from pos.oracle.profiles import (
 
 
 class TestRegistry:
-    def test_exposes_the_two_profiles(self):
-        assert set(PROFILE_NAMES) == {"pos-oracle-v2", "monteiro-2023-dt-compatible-v1"}
+    def test_exposes_the_three_profiles(self):
+        assert set(PROFILE_NAMES) == {"pos-oracle-v2", "monteiro-2023-dt-compatible-v1",
+                                      "monteiro-2023-dt-compatible-v2"}
 
     def test_treatments_are_exactly_the_three(self):
         assert SCIENTIFIC_TREATMENTS == ("pgdcs_a", "pgdcs_d", "bagging")

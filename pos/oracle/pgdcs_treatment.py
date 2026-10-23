@@ -10,7 +10,8 @@ replacement sub-samples, one Overlapping + one Neighborhood measure, ties
 broken by mean dispersion. `measure_selection="once_per_dataset"` (the
 Monteiro profile, whose Table 4 is per dataset) lets the recorder vote once
 and pass the result back in `_selected_measures`; `"per_fold"` (the POS
-profile) votes inside each fold's own training data.
+profile) votes inside each fold's own training data. `complexity_backend`
+(ADR 0024) picks the measure definitions for both the vote and the GA.
 """
 
 from __future__ import annotations
@@ -24,7 +25,8 @@ from pos.pool.pgdcs_evolution import PgdcsEvolution
 def select_measures(X_tr, y_tr, cfg: dict[str, Any], seed) -> list[str]:
     """One Overlapping + one Neighborhood measure for this training data."""
     return monteiro_get_best_types(
-        X_tr, y_tr, cfg.get("measure_fraction", 0.5), random_state=seed
+        X_tr, y_tr, cfg.get("measure_fraction", 0.5), random_state=seed,
+        backend=cfg.get("complexity_backend", "fast"),
     )
 
 
@@ -47,6 +49,7 @@ def build_pgdcs_result(
         jobs=cfg.get("jobs", 1),
         types=list(types),
         random_state=seed,
+        complexity_backend=cfg.get("complexity_backend", "fast"),
     )
     tracker = pg.run(X_tr, y_tr, X_val, y_val)
     return {

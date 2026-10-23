@@ -25,6 +25,7 @@ from pos.oracle.bagging_pool import build_bagging_pool_v2
 from pos.oracle.fold_splitter import stratified_three_way_split
 from pos.oracle.monteiro_splitter import monteiro_holdout_splits
 from pos.oracle.pgdcs_treatment import build_pgdcs_result
+from pos.oracle.profiles import MONTEIRO_PROFILES
 from pos.oracle.summary_v2 import build_summary_row_v2
 from pos.oracle.treatment_eval import evaluate_treatment
 
@@ -47,7 +48,7 @@ def profile_splits(config: dict[str, Any], X, y) -> list[dict[str, Any]]:
                         "X_test": X[te_idx], "y_test": y[te_idx],
                         "train_idx": tr_idx, "test_idx": te_idx})
         return out
-    if profile == "monteiro-2023-dt-compatible-v1":
+    if profile in MONTEIRO_PROFILES:
         root = config.get("reproducibility_root_seed", 86)
         splits = monteiro_holdout_splits(
             X, y, n_replications=config.get("n_replications", 20),

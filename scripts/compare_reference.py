@@ -22,6 +22,7 @@ sys.path.insert(0, str(REPO_DIR))
 import pandas as pd  # noqa: E402
 
 from pos.oracle.comparison_report import build_report  # noqa: E402
+from pos.oracle.profiles import MONTEIRO_PROFILES  # noqa: E402
 
 SHOW = ["dataset", "treatment", "method", "published_mean", "published_std",
         "pos_mean", "pos_std", "delta_percentage_points",
@@ -43,9 +44,9 @@ def main() -> None:
     if manifest_path.exists():
         manifest = json.loads(manifest_path.read_text())
         profile = manifest.get("profile")
-        if profile != "monteiro-2023-dt-compatible-v1":
+        if profile not in MONTEIRO_PROFILES:
             print(f"[warn] profile is {profile!r}; only "
-                  "monteiro-2023-dt-compatible-v1 is comparable to the paper")
+                  f"{' / '.join(MONTEIRO_PROFILES)} are comparable to the paper")
         if manifest.get("comparable") is False:
             print("[warn] run is marked comparable=false (smoke scale, "
                   "overrides or unverified data)")

@@ -30,6 +30,7 @@ CATALOG_FILE = "pos_catalog.json"
 _PROFILE_REFERENCE = {
     "pos-oracle-v2": POS_CATALOG,
     "monteiro-2023-dt-compatible-v1": TABLE_2,
+    "monteiro-2023-dt-compatible-v2": TABLE_2,
 }
 
 

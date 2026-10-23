@@ -19,11 +19,12 @@ from pos.pool.bag_generator import build_bags
 from pos.voting import voting_classifier
 
 
-def _eval_one(i, bags_inst, X_train, y_train, X_val, y_val, classifier, group, types, random_state=None):
+def _eval_one(i, bags_inst, X_train, y_train, X_val, y_val, classifier, group, types,
+              random_state=None, backend="fast"):
     """Module-level: evaluate one bag (thread-safe, no shared mutable state)."""
     indx_bag1 = bags_inst[i]
     X_bag, y_bag = build_bags(indx_bag1, X_train, y_train)
-    cpx = complexity_data3(X_bag, y_bag, group, types)
+    cpx = complexity_data3(X_bag, y_bag, group, types, backend=backend)
     rs_i = random_state + i if isinstance(random_state, int) else None
     if classifier == "perc":
         estimator, score, pred = biuld_classifier(X_bag, y_bag, X_bag, y_bag, X_val, y_val,
@@ -44,7 +45,8 @@ class FitnessEvaluatorMixin:
     def parallel_distance2(self, i, bags, group, types):
         indx_bag1 = bags["inst"][i]
         X_bag, y_bag = build_bags(indx_bag1, self.X_train, self.y_train)
-        cpx = complexity_data3(X_bag, y_bag, group, types)
+        cpx = complexity_data3(X_bag, y_bag, group, types,
+                               backend=getattr(self, "complexity_backend", "fast"))
         rs_i = self.random_state + i if isinstance(self.random_state, int) else None
         if self.classifier == "perc":
             estimator, score, pred = biuld_classifier(
@@ -89,7 +91,8 @@ class FitnessEvaluatorMixin:
                     results = list(ex.map(
                         lambda t: _eval_one(t[0], self.bags["inst"], self.X_train,
                             self.y_train, self.X_val, self.y_val, self.classifier,
-                            self.group, self.types, self.random_state),
+                            self.group, self.types, self.random_state,
+                            getattr(self, "complexity_backend", "fast")),
                         todo))
             else:
                 results = [self.parallel_distance2(i, self.bags, self.group,

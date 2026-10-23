@@ -49,7 +49,8 @@ def _resolve_winners(
 
 
 def monteiro_vote_complexity(
-    X_data, y_data, tam_bags, grupos=None, random_state: Seed = None
+    X_data, y_data, tam_bags, grupos=None, random_state: Seed = None,
+    backend: str = "fast",
 ) -> tuple:
     """Vote over 10×100 random-with-replacement sub-samples (Monteiro 2023)."""
     if grupos is None:
@@ -67,7 +68,8 @@ def monteiro_vote_complexity(
         cp = []
         for inst in bags["inst"]:
             idx = np.asarray(inst, dtype=int)
-            cp.append(complexity_data3(X_data[idx], y_data[idx], grupos))
+            cp.append(complexity_data3(X_data[idx], y_data[idx], grupos,
+                                       backend=backend))
         cpx = np.asarray(cp).T
         round_sigmas.append([float(np.std(min_max_norm(row))) for row in cpx])
     votes = votes_from_sigmas(round_sigmas, slices)
@@ -77,12 +79,13 @@ def monteiro_vote_complexity(
 
 
 def monteiro_get_best_types(
-    X_train, y_train, tam_bags, random_state: Seed = None
+    X_train, y_train, tam_bags, random_state: Seed = None, backend: str = "fast"
 ) -> list[str]:
     """Return the two ADR 0020 measures: one Overlapping + one Neighborhood."""
     groups = ["overlapping", "neighborhood"]
     types, _, _ = monteiro_vote_complexity(
-        X_train, y_train, tam_bags, groups, random_state=random_state
+        X_train, y_train, tam_bags, groups, random_state=random_state,
+        backend=backend,
     )
     logger.info("monteiro vote picked %s", types)
     return types

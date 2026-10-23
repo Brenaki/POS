@@ -32,8 +32,10 @@ from pos.pool.pool_generation import poolGeneration
 class PgdcsEvolution(poolGeneration):
     """One PGDCS trajectory; PGDCS_A and PGDCS_D are read from its tracker."""
 
-    def __init__(self, tracker: PgdcsTracker | None = None, **kwargs) -> None:
+    def __init__(self, tracker: PgdcsTracker | None = None,
+                 complexity_backend: str = "fast", **kwargs) -> None:
         super().__init__(**kwargs)
+        self.complexity_backend = complexity_backend  # ADR 0024
         self.keep_estimators = True
         self.tracker = tracker if tracker is not None else PgdcsTracker()
 
