@@ -28,3 +28,4 @@ logs/
 /results/monteiro_full.log
 /results/p2_resume.log
 /results/pos_oracle_v2.log
+/results/images_run_*.log
