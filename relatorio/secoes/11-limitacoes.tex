@@ -9,6 +9,15 @@ $32$ dimensões que retém só $59\%$--$80\%$ da variância. Os resultados valem
 sobre imagens, e não para pools treinados ponta a ponta. Com cinco bases, os
 contrastes contra as $28$ tabulares têm pouco poder estatístico.
 
+\item \textbf{O T1 do GA é uma aproximação, não o T1 do ECoL.} Os runs usam o
+backend rápido de complexidade (ADR~0023). Validado contra o ECoL em $700$ bags
+de $35$ bases, ele reproduz F1--F3, N2 e N3 (Kendall $\ge0{,}94$ na ordem dos
+bags), mas o T1 usa raio fixo $d/2$ e conta esferas por instância. Contra o ECoL
+0.3.0, a versão que o código legado chamava, a ordem dos bags sai invertida
+(Kendall $-0{,}36$); contra o 0.4.4, a concordância é fraca ($0{,}37$). O
+``PGDCS-F1/T1'' deste relatório deve ser lido como F1 mais um T1 aproximado. Há
+porta exata do T1 do ECoL no código, mas ela ainda não foi usada em nenhum run.
+
 \item \textbf{$M=100$ fixo.} Todas as conclusões sobre $N^{*}$ são relativas a
 $M=100$. O argumento estrutural ($\On{M/2+1}\le\mvr\le\On{M/2}$ em problema binário)
 é independente de $M$, mas a verificação empírica não varreu $M$.

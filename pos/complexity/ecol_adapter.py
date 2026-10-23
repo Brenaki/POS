@@ -1,7 +1,8 @@
 """R/ECoL adapter (extracted from Cpx.complexity_data3 during Fase 2 refactor).
 
-THIS MODULE REQUIRES R + ECoL + R_HOME. It is the legacy backend; Fase 3
-will add a pyhard-based adapter as the default and demote this to optional.
+THIS MODULE REQUIRES R + ECoL + R_HOME (rpy2). It is the legacy backend, kept
+for reference only: the default is `fast_adapter`, and validation against R
+goes through the Rscript subprocess in `ecol_bridge` (ADR 0023).
 """
 
 from __future__ import annotations

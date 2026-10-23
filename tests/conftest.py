@@ -10,8 +10,6 @@ and are skipped automatically when R is not on PATH.
 
 from __future__ import annotations
 
-import importlib
-import os
 import shutil
 import subprocess
 import sys

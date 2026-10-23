@@ -1,6 +1,7 @@
 # ADR 0003 — Remove R/ECoL dependency via pyhard
 
-- **Status**: Proposed (to be Accepted after Fase 3 validation)
+- **Status**: Superseded by ADR 0023 (2026-10-23): the default backend is
+  `fast_adapter`, validated against ECoL 0.3.0/0.4.4; pyhard stays optional
 - **Date**: 2026-08-17
 - **Supersedes**: none
 - **Related**: `docs/analise-pos-vs-cge.md` (portabilidade candidata #1)

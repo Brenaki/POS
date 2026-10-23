@@ -35,19 +35,21 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
 - [x] `pyproject.toml` (pytest + ruff + mypy + cov≥80)
 - [x] `ROADMAP.md` (this file)
 - [x] ADRs 0001–0003 criados
-- [~] R + ECoL instalados (pendente: `sudo pacman -S r tk` + `R -e 'install.packages("ECoL")'`)
-- [~] `rpy2==3.5.7` instalado (bloqueado por R)
-- [ ] `pyhard` validado funcional com deps pinadas
+- [x] R 4.6.1 + `cluster`/`e1071`/`MASS`/`FNN`/`igraph`; o ECoL não é instalado,
+      o fonte vem do tarball do CRAN fixado por SHA-256 (0.3.0 e 0.4.4, ADR 0023)
+- [x] `rpy2==3.5.7` instalado (só o `ecol_adapter` legado usa; a ponte é por `Rscript`)
+- [x] `pyhard` 2.2.4 funcional, mas fora do padrão (229 min de votação em Phoneme, ADR 0023)
 
 ### Fase 1 — Suite de caracterização (Fowler, antes de mudar nada)
-- [ ] `tests/conftest.py` com fixtures `load_wine_split`, `requires_r` skip
-- [ ] `tests/characterization/cpx_characterization_test.py` — golden values de
-      `min_max_norm`, `dispersion_linear`, `dispersion`, `diversitys`,
-      `voting_classifier`, `complexity_data3` (R), `biuld_classifier[_tree]`
-- [ ] `tests/characterization/pool_generation_characterization_test.py` —
-      `poolGeneration.generate → get_bags → get_pool` end-to-end (load_wine, rs=42)
-- [ ] `tests/unit/` para funções isoladas
-- [ ] Cobertura ≥80% das partes não-R; verdes
+- [x] `tests/conftest.py` com fixtures do split `wine` e `requires_r`, que agora
+      testa `Rscript` + `cluster`/`e1071`/`MASS` de verdade
+- [x] `tests/characterization/test_cpx_pure_functions.py` e
+      `test_cpx_complexity_data3.py` — funções puras e `complexity_data3`
+- [x] `tests/characterization/test_ecol_golden.py` — as 22 medidas contra o ECoL
+      0.3.0 (`tests/_ecol_legacy_golden.json`): 11 exatas, 11 desvios documentados
+- [x] `tests/characterization/test_pool_generation.py` — geração end-to-end
+- [x] `tests/unit/` para funções isoladas
+- [x] Cobertura ≥80%; verdes
 
 ### Fase 2 — Refatoração estrutural (preserva comportamento)
 - [x] Pacote `pos/` criado
@@ -57,12 +59,14 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
 - [x] `sample.ipynb` continua rodando sem alteração
 - [x] ADRs 0004–0005
 
-### Fase 3 — Remoção do R via pyhard (modifica comportamento)
-- [ ] `pos/complexity/pyhard_adapter.py` com `ClassificationMeasures`
-- [ ] Substituir `ecol.overlapping/neighborhood/...` em `complexity_data3`
-- [ ] Golden values do ECoL preservados em `tests/_ecol_legacy_golden.json`
-- [ ] Testes de caracterização atualizados para assertar propriedades (shape, range)
-- [ ] ADR 0003 atualizado com decisão pyhard final
+### Fase 3 — Remoção do R (modifica comportamento)
+- [x] `pos/complexity/pyhard_adapter.py` com `ClassificationMeasures` (opcional)
+- [x] `complexity_data3` padrão = `fast_adapter`; balance e dimensionality exatos
+      (`simple_measures.py`) em vez de `0.0`
+- [x] Golden values do ECoL preservados em `tests/_ecol_legacy_golden.json`
+- [x] Testes de caracterização atualizados para assertar propriedades (shape, range)
+- [x] ADR 0003 substituído pelo **ADR 0023**: o R fica só em desenvolvimento, pela
+      ponte `ecol_bridge` (`Rscript`, tarball fixado por hash)
 
 ### Fase 4 — Oracle_N (TDD, novo)
 - [x] `pos/oracle/correctness_matrix.py` — matriz de acertos do pool
@@ -106,7 +110,9 @@ ADR-per-decision, ≥80% coverage). They are sequenced before the science milest
       por classe, `voting_classifier` sob demanda, `dispersion*` vetorizadas,
       Perceptron linear corrigido e adotado como base do GA, `--jobs` = núcleos-1.
       Magic: 8,05 h → 0,71 h
-- [ ] Validar `T1_fast` contra ECoL/R em bags congelados (ranking dos bags)
+- [x] Validar `T1_fast` contra ECoL/R em bags congelados (ranking dos bags) —
+      ADR 0023: não equivale a nenhuma versão (τ −0.36 contra a 0.3.0 do legado,
+      0.37 contra a 0.4.4); porta exata `t1_ecol` disponível; troca em aberto
 - [x] Decidir formalmente: `GA-F1/T1` vs PGDCS completo (`get_best_types` reativado)
       — decidido no **ADR 0019**: em vez de escolher no papel, os dois viram modos
       do run canônico (`ga` e `pgdcs`) e a diferença é medida. Ver Fase 8.
@@ -396,15 +402,21 @@ caracterização e remoção do R que dependem dele, relatórios PROPESP).
 - [x] Relatório: nova seção "Revisão sistemática", objetivo 1 com a síntese,
       limitações e referências atualizadas, lista dos estudos incluídos; objetivo 5 com a
       bateria de imagens (tabela, figura 9), resumo e resultados esperados
-- [ ] Pendências que ficam: R/ECoL (`sudo pacman -S r tk`), validação do
-      `T1_fast` contra ECoL, Fases 1 e 3, relatórios PROPESP (semestral até
-      15/03/2027, final até 11/09/2027), segundo revisor para a triagem PRISMA
+- [x] **ADR 0023** — R/ECoL instalados; backend rápido validado contra o ECoL
+      0.3.0 e 0.4.4 em 700 bags de 35 bases (`results/validation/*_a898e80`).
+      F1–F3, N2, N3, C1, C2, T2–T4 exatas; LSC preserva a ordem (τ 0.94); N1, F4
+      em parte; `T1_fast` inverte a ordem do T1 da 0.3.0. Portas exatas de T1, N1,
+      LSC e F4 provadas iguais ao R. Fases 1 e 3 fechadas
+- [ ] Decidir se GA/votação passam a usar as portas exatas (opção por perfil,
+      ADR 0023 §6)
+- [ ] Pendências que ficam: relatórios PROPESP (semestral até 15/03/2027, final
+      até 11/09/2027), segundo revisor para a triagem PRISMA
 
 ## Decision log (ADRs)
 
 - `docs/adr/0001-python-version-and-deps.md` — pin Python 3.10, deps de requirements.txt
 - `docs/adr/0002-file-size-cap-150.md` — aperta o cap de 300 → 150 LOC/arquivo
-- `docs/adr/0003-remove-r-via-pyhard.md` — substituir R/ECoL por pyhard
+- `docs/adr/0003-remove-r-via-pyhard.md` — substituir R/ECoL por pyhard (substituído pelo 0023)
 - `docs/adr/0004-split-cpx.md` — split Cpx.py em pacote pos/
 - `docs/adr/0005-split-pool-generation.md` — split pool_generation.py via mixins
 - `docs/adr/0006-oracle-n-architecture.md` — arquitetura Oracle_N, protocolo 10-fold
@@ -425,12 +437,12 @@ caracterização e remoção do R que dependem dele, relatórios PROPESP).
 
 - `docs/adr/0021-per-profile-conformance-gate.md` — portão de conformance por perfil, catálogo SHA-256 dos snapshots do POS
 - `docs/adr/0022-image-battery-cnn-embeddings.md` — segunda bateria: bases de imagem via embeddings de ResNet-18 congelada + PCA disjunto
+- `docs/adr/0023-complexity-backend-validated-against-ecol.md` — `fast_adapter` validado contra ECoL 0.3.0/0.4.4, portas exatas, R só em desenvolvimento
 
 ## Notes
 
-- **R install pending**: rode `sudo pacman -S r tk` no Arch, depois
-  `R -e 'install.packages("ECoL", repos="https://cloud.r-project.org")'` e
-  `export R_HOME="$(R RHOME)"` antes de instalar `rpy2`.
-- **pyhard vs deps pinadas**: pyhard 2.2.4 requer numpy~=1.23, sklearn~=1.5,
-  scipy~=1.13 — conflita com as versões pinadas do POS. Decisão adiada para a
-  Fase 3 (talvez venv separado ou downgrade do pyhard).
+- **R (só desenvolvimento)**: `sudo pacman -S r tk gcc-fortran` e, no R,
+  `install.packages(c("cluster","e1071","MASS","FNN","igraph"))` (o `igraph`
+  compila Fortran). O ECoL não precisa ser instalado: `ecol_bridge` baixa o
+  tarball fixado por SHA-256 para `~/.cache/pos/ecol`.
+- **pyhard**: 2.2.4 roda no ambiente, mas não é o backend padrão (ADR 0023).

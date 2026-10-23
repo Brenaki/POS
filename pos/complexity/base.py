@@ -1,8 +1,8 @@
 """ECoL complexity measure header constants.
 
 The 22 measures from the R ECoL package, grouped into 6 families. Used by
-both the legacy ecol_adapter (Fase 2) and the pyhard_adapter (Fase 3) to
-align measure names across backends.
+every backend (fast_adapter, the default; ecol_adapter; pyhard_adapter) to
+align measure names (ADR 0023).
 """
 
 from __future__ import annotations
