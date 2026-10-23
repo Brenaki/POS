@@ -2,8 +2,10 @@
 
 `conformant` matches Table 2 exactly. `approved_with_note` is a
 reconciled divergence: usable for the published comparison, with the
-reason recorded. `mismatch` is excluded unless the run passes
-`--allow-unverified-data`, which sets `comparable=false`.
+reason recorded. `mismatch` is excluded from the Monteiro profile
+unless the run passes `--allow-unverified-data`, which sets
+`comparable=false`. Since ADR 0021 this table gates only the
+Monteiro profile: `pos-oracle-v2` gates on `Dataset/pos_catalog.json`.
 
 | # | Dataset | File | Paper (inst/feat/class) | Snapshot | Status | Note | SHA-256 |
 |--:|---|---|---|---|---|---|---|
