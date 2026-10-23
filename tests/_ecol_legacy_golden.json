@@ -1,0 +1,32 @@
+{
+  "source": "ECoL 0.3.0 sourced from https://cran.r-project.org/src/contrib/Archive/ECoL/ECoL_0.3.0.tar.gz",
+  "tarball_sha256": "8e5837c18a4843e94a7ac2330be2155e73f4d503d6e4244a356ea0080df5440a",
+  "r_version": "R version 4.6.1 (2026-06-24)",
+  "data": "load_wine, train_test_split(test_size=0.4, random_state=42), X_train",
+  "data_sha256": "7c63ff2b9befaf6f1814daf137b5d9fa20ad158bd01ac8eff1b4c2880f2832c0",
+  "summary": "mean; N4 under set.seed(0)",
+  "values": {
+    "overlapping.F1": 0.558792677814843,
+    "overlapping.F1v": 0.0274150317712112,
+    "overlapping.F2": 1.12665176123203e-05,
+    "overlapping.F3": 0.142560635711321,
+    "overlapping.F4": 0.0,
+    "neighborhood.N1": 0.0943396226415094,
+    "neighborhood.N2": 0.361354422306985,
+    "neighborhood.N3": 0.0377358490566038,
+    "neighborhood.N4": 0.0,
+    "neighborhood.T1": 0.032258064516129,
+    "neighborhood.LSC": 0.8374866500534,
+    "linearity.L1": 0.09747830760765,
+    "linearity.L2": 0.0146198570914089,
+    "linearity.L3": 0.00964569315996,
+    "dimensionality.T2": 0.122641509433962,
+    "dimensionality.T3": 0.0094339622641509,
+    "dimensionality.T4": 0.0769230769230769,
+    "balance.C1": 0.98566775858653,
+    "balance.C2": 0.0249328508542864,
+    "network.Density": 0.836657681940701,
+    "network.ClsCoef": 0.36660196606349,
+    "network.Hubs": 0.760428420524199
+  }
+}
